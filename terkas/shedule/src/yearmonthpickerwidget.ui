@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>YearMonthPickerWidget</class>
+ <widget class="QWidget" name="YearMonthPickerWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>282</width>
+    <height>46</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QFormLayout" name="formLayout">
+   <property name="fieldGrowthPolicy">
+    <enum>QFormLayout::ExpandingFieldsGrow</enum>
+   </property>
+   <item row="0" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="yearLabel">
+       <property name="text">
+        <string>Year:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="yearComboBox">
+       <item>
+        <property name="text">
+         <string>2014</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2015</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2016</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="monthLabel">
+       <property name="text">
+        <string>Month:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="monthComboBox">
+       <item>
+        <property name="text">
+         <string>Все месяцы</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Январь</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Февраль</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Март</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Апрель</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Май</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Июнь</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Июль</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Август</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Сентябрь</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Октябрь</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Ноябрь</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Декабрь</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

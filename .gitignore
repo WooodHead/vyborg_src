@@ -1,0 +1,7 @@
+*.pro.user*
+tmp/
+*/.build/
+include/
+lib/
+#share/
+*~

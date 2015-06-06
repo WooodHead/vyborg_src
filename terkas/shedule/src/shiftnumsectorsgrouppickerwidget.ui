@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ShiftNumSectorsGroupPickerWidget</class>
+ <widget class="QWidget" name="ShiftNumSectorsGroupPickerWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>386</width>
+    <height>46</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QFormLayout" name="formLayout">
+   <item row="0" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="shiftNumLabel">
+       <property name="text">
+        <string>Номер смены </string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="shiftNumComboBox">
+       <item>
+        <property name="text">
+         <string>Все смены</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Смена 1</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Смена 2</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Смена 3</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Смена 4</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Смена 5</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Смена 6</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="sectorsGroupLabel">
+       <property name="text">
+        <string>Направление</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="sectorsGroupComboBox">
+       <item>
+        <property name="text">
+         <string>Все направления</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Киев/Харьков</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
