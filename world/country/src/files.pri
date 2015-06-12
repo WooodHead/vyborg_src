@@ -2,7 +2,8 @@ HEADERS +=  src/declarations.h \
     src/tabledelegate.h \
     src/imagewidget.h \
     src/maindialog.h \
-    src/mapperdialog.h
+    src/mapperdialog.h \
+    $$PWD/imagelabel.h
 
 SOURCES +=  \
     src/dialog.cpp \

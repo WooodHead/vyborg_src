@@ -2,7 +2,8 @@
 
 #include "imagelabel.h"
 
-ImageLabel::ImageLabel(QObject *parent)
+ImageLabel::ImageLabel(QWidget *parent)
+    : QLabel(parent)
 {
     pixmap = QPixmap();
 }

@@ -1,6 +1,7 @@
 *.pro.user*
 tmp/
-*/.build/
+*/.build/*
+*.build*
 include/
 lib/
 #share/

@@ -7,7 +7,7 @@
 
 #define PGSQL
 #define PGSQL_DATABASE "terkas"
-#define PGSQL_TABLENAME "data.statistics"
+#define PGSQL_TABLENAME "statistics.statistics"
 
 enum {
     statistics_id,
