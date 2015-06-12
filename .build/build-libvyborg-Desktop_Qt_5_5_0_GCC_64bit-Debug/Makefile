@@ -49,7 +49,6 @@ OBJECTS_DIR   = tmp/
 ####### Files
 
 SOURCES       = ../../libvyborg/src/libvyborg.cpp \
-		../../libvyborg/src/vyborg_maindialog.cpp \
 		../../libvyborg/src/vyborg_mapperdialog.cpp \
 		../../libvyborg/src/vyborg_mappercontrolbuttonbox.cpp \
 		../../libvyborg/src/vyborg_navigationbuttonbox.cpp \
@@ -59,8 +58,8 @@ SOURCES       = ../../libvyborg/src/libvyborg.cpp \
 		../../libvyborg/src/vyborg_yearmonthwidget.cpp \
 		../../libvyborg/src/vyborg_sortdialog.cpp \
 		../../libvyborg/src/vyborg_filterdialog.cpp \
-		../../libvyborg/src/vyborg_aboutdialog.cpp qrc_resource.cpp \
-		tmp/moc_vyborg_maindialog.cpp \
+		../../libvyborg/src/vyborg_aboutdialog.cpp \
+		../../libvyborg/src/vyborg_maindialog.cpp qrc_resource.cpp \
 		tmp/moc_vyborg_mapperdialog.cpp \
 		tmp/moc_vyborg_mappercontrolbuttonbox.cpp \
 		tmp/moc_vyborg_navigationbuttonbox.cpp \
@@ -68,9 +67,9 @@ SOURCES       = ../../libvyborg/src/libvyborg.cpp \
 		tmp/moc_vyborg_yearmonthwidget.cpp \
 		tmp/moc_vyborg_sortdialog.cpp \
 		tmp/moc_vyborg_filterdialog.cpp \
-		tmp/moc_vyborg_aboutdialog.cpp
+		tmp/moc_vyborg_aboutdialog.cpp \
+		tmp/moc_vyborg_maindialog.cpp
 OBJECTS       = tmp/libvyborg.o \
-		tmp/vyborg_maindialog.o \
 		tmp/vyborg_mapperdialog.o \
 		tmp/vyborg_mappercontrolbuttonbox.o \
 		tmp/vyborg_navigationbuttonbox.o \
@@ -81,8 +80,8 @@ OBJECTS       = tmp/libvyborg.o \
 		tmp/vyborg_sortdialog.o \
 		tmp/vyborg_filterdialog.o \
 		tmp/vyborg_aboutdialog.o \
+		tmp/vyborg_maindialog.o \
 		tmp/qrc_resource.o \
-		tmp/moc_vyborg_maindialog.o \
 		tmp/moc_vyborg_mapperdialog.o \
 		tmp/moc_vyborg_mappercontrolbuttonbox.o \
 		tmp/moc_vyborg_navigationbuttonbox.o \
@@ -90,7 +89,8 @@ OBJECTS       = tmp/libvyborg.o \
 		tmp/moc_vyborg_yearmonthwidget.o \
 		tmp/moc_vyborg_sortdialog.o \
 		tmp/moc_vyborg_filterdialog.o \
-		tmp/moc_vyborg_aboutdialog.o
+		tmp/moc_vyborg_aboutdialog.o \
+		tmp/moc_vyborg_maindialog.o
 DIST          = ../../../../Qt/Qt5.5.0/5.5/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt/Qt5.5.0/5.5/gcc_64/mkspecs/common/unix.conf \
 		../../../../Qt/Qt5.5.0/5.5/gcc_64/mkspecs/common/linux.conf \
@@ -223,7 +223,6 @@ DIST          = ../../../../Qt/Qt5.5.0/5.5/gcc_64/mkspecs/features/spec_pre.prf 
 		../../../../Qt/Qt5.5.0/5.5/gcc_64/mkspecs/features/lex.prf \
 		../../../libvyborg/libvyborg.pro ../../libvyborg/include/libvyborg.h \
 		../../libvyborg/include/libvyborg_global.h \
-		../../libvyborg/include/vyborg_maindialog.h \
 		../../libvyborg/include/vyborg_mapperdialog.h \
 		../../libvyborg/include/vyborg_connection.h \
 		../../libvyborg/include/vyborg_mappercontrolbuttonbox.h \
@@ -235,8 +234,8 @@ DIST          = ../../../../Qt/Qt5.5.0/5.5/gcc_64/mkspecs/features/spec_pre.prf 
 		../../libvyborg/include/vyborg_sortdialog.h \
 		../../libvyborg/include/vyborg.h \
 		../../libvyborg/include/vyborg_filterdialog.h \
-		../../libvyborg/include/vyborg_aboutdialog.h ../../libvyborg/src/libvyborg.cpp \
-		../../libvyborg/src/vyborg_maindialog.cpp \
+		../../libvyborg/include/vyborg_aboutdialog.h \
+		../../libvyborg/include/vyborg_maindialog.h ../../libvyborg/src/libvyborg.cpp \
 		../../libvyborg/src/vyborg_mapperdialog.cpp \
 		../../libvyborg/src/vyborg_mappercontrolbuttonbox.cpp \
 		../../libvyborg/src/vyborg_navigationbuttonbox.cpp \
@@ -246,7 +245,8 @@ DIST          = ../../../../Qt/Qt5.5.0/5.5/gcc_64/mkspecs/features/spec_pre.prf 
 		../../libvyborg/src/vyborg_yearmonthwidget.cpp \
 		../../libvyborg/src/vyborg_sortdialog.cpp \
 		../../libvyborg/src/vyborg_filterdialog.cpp \
-		../../libvyborg/src/vyborg_aboutdialog.cpp
+		../../libvyborg/src/vyborg_aboutdialog.cpp \
+		../../libvyborg/src/vyborg_maindialog.cpp
 QMAKE_TARGET  = vyborg
 DESTDIR       = ../../../../lib/vyborg/#avoid trailing-slash linebreak
 TARGET        = libvyborg.so.1.0.0
@@ -591,8 +591,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../libvyborg/resource.qrc $(DISTDIR)/
-	$(COPY_FILE) --parents ../../libvyborg/include/libvyborg.h ../../libvyborg/include/libvyborg_global.h ../../libvyborg/include/vyborg_maindialog.h ../../libvyborg/include/vyborg_mapperdialog.h ../../libvyborg/include/vyborg_connection.h ../../libvyborg/include/vyborg_mappercontrolbuttonbox.h ../../libvyborg/include/vyborg_navigationbuttonbox.h ../../libvyborg/include/vyborg_maindialogcontrolbuttonbox.h ../../libvyborg/include/vyborg_yearmonth.h ../../libvyborg/include/vyborg_yearmonthday.h ../../libvyborg/include/vyborg_yearmonthwidget.h ../../libvyborg/include/vyborg_sortdialog.h ../../libvyborg/include/vyborg.h ../../libvyborg/include/vyborg_filterdialog.h ../../libvyborg/include/vyborg_aboutdialog.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../../libvyborg/src/libvyborg.cpp ../../libvyborg/src/vyborg_maindialog.cpp ../../libvyborg/src/vyborg_mapperdialog.cpp ../../libvyborg/src/vyborg_mappercontrolbuttonbox.cpp ../../libvyborg/src/vyborg_navigationbuttonbox.cpp ../../libvyborg/src/vyborg_maindialogcontrolbuttonbox.cpp ../../libvyborg/src/vyborg_yearmonth.cpp ../../libvyborg/src/vyborg_yearmonthday.cpp ../../libvyborg/src/vyborg_yearmonthwidget.cpp ../../libvyborg/src/vyborg_sortdialog.cpp ../../libvyborg/src/vyborg_filterdialog.cpp ../../libvyborg/src/vyborg_aboutdialog.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../../libvyborg/include/libvyborg.h ../../libvyborg/include/libvyborg_global.h ../../libvyborg/include/vyborg_mapperdialog.h ../../libvyborg/include/vyborg_connection.h ../../libvyborg/include/vyborg_mappercontrolbuttonbox.h ../../libvyborg/include/vyborg_navigationbuttonbox.h ../../libvyborg/include/vyborg_maindialogcontrolbuttonbox.h ../../libvyborg/include/vyborg_yearmonth.h ../../libvyborg/include/vyborg_yearmonthday.h ../../libvyborg/include/vyborg_yearmonthwidget.h ../../libvyborg/include/vyborg_sortdialog.h ../../libvyborg/include/vyborg.h ../../libvyborg/include/vyborg_filterdialog.h ../../libvyborg/include/vyborg_aboutdialog.h ../../libvyborg/include/vyborg_maindialog.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../../libvyborg/src/libvyborg.cpp ../../libvyborg/src/vyborg_mapperdialog.cpp ../../libvyborg/src/vyborg_mappercontrolbuttonbox.cpp ../../libvyborg/src/vyborg_navigationbuttonbox.cpp ../../libvyborg/src/vyborg_maindialogcontrolbuttonbox.cpp ../../libvyborg/src/vyborg_yearmonth.cpp ../../libvyborg/src/vyborg_yearmonthday.cpp ../../libvyborg/src/vyborg_yearmonthwidget.cpp ../../libvyborg/src/vyborg_sortdialog.cpp ../../libvyborg/src/vyborg_filterdialog.cpp ../../libvyborg/src/vyborg_aboutdialog.cpp ../../libvyborg/src/vyborg_maindialog.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -624,115 +624,9 @@ qrc_resource.cpp: ../../libvyborg/resource.qrc \
 		../../libvyborg/images/icon-backward.png
 	/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/bin/rcc -name resource ../../libvyborg/resource.qrc -o qrc_resource.cpp
 
-compiler_moc_header_make_all: tmp/moc_vyborg_maindialog.cpp tmp/moc_vyborg_mapperdialog.cpp tmp/moc_vyborg_mappercontrolbuttonbox.cpp tmp/moc_vyborg_navigationbuttonbox.cpp tmp/moc_vyborg_maindialogcontrolbuttonbox.cpp tmp/moc_vyborg_yearmonthwidget.cpp tmp/moc_vyborg_sortdialog.cpp tmp/moc_vyborg_filterdialog.cpp tmp/moc_vyborg_aboutdialog.cpp
+compiler_moc_header_make_all: tmp/moc_vyborg_mapperdialog.cpp tmp/moc_vyborg_mappercontrolbuttonbox.cpp tmp/moc_vyborg_navigationbuttonbox.cpp tmp/moc_vyborg_maindialogcontrolbuttonbox.cpp tmp/moc_vyborg_yearmonthwidget.cpp tmp/moc_vyborg_sortdialog.cpp tmp/moc_vyborg_filterdialog.cpp tmp/moc_vyborg_aboutdialog.cpp tmp/moc_vyborg_maindialog.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) tmp/moc_vyborg_maindialog.cpp tmp/moc_vyborg_mapperdialog.cpp tmp/moc_vyborg_mappercontrolbuttonbox.cpp tmp/moc_vyborg_navigationbuttonbox.cpp tmp/moc_vyborg_maindialogcontrolbuttonbox.cpp tmp/moc_vyborg_yearmonthwidget.cpp tmp/moc_vyborg_sortdialog.cpp tmp/moc_vyborg_filterdialog.cpp tmp/moc_vyborg_aboutdialog.cpp
-tmp/moc_vyborg_maindialog.cpp: ../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/QDialog \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/qdialog.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/qwidget.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qwindowdefs.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qglobal.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qconfig.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qfeatures.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qsystemdetection.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qprocessordetection.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qcompilerdetection.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qtypeinfo.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qtypetraits.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qsysinfo.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qlogging.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qflags.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qbasicatomic.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_bootstrap.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qgenericatomic.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_cxx11.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_gcc.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_msvc.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_armv7.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_armv6.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_armv5.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_ia64.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_mips.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_x86.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_unix.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qglobalstatic.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qmutex.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qnumeric.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qobjectdefs.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qnamespace.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qobjectdefs_impl.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qwindowdefs_win.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qobject.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qstring.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qchar.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qbytearray.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qrefcount.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qarraydata.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qstringbuilder.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qlist.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qalgorithms.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qiterator.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qbytearraylist.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qstringlist.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qregexp.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qstringmatcher.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qcoreevent.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qscopedpointer.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qmetatype.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qvarlengtharray.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qcontainerfwd.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qisenum.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qobject_impl.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qmargins.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qpaintdevice.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qrect.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qsize.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qpoint.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qpalette.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qcolor.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qrgb.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qbrush.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qpair.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qvector.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qmatrix.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qpolygon.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qregion.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qdatastream.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qiodevice.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qline.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qtransform.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qpainterpath.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qimage.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qpixelformat.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qpixmap.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qsharedpointer.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qshareddata.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qhash.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qsharedpointer_impl.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qfont.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qfontmetrics.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qfontinfo.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/qsizepolicy.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qcursor.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qkeysequence.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qevent.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qvariant.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qmap.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qdebug.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qtextstream.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qlocale.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qset.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qcontiguouscache.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qurl.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qurlquery.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qfile.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qfiledevice.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qvector2d.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qtouchdevice.h \
-		../../libvyborg/include/vyborg_maindialog.h
-	/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/bin/moc $(DEFINES) -I/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/mkspecs/linux-g++ -I/usr/local/src/vyborg/libvyborg -I/usr/local/src/vyborg/libvyborg/include -I/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include -I/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets -I/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui -I/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtSql -I/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore -I. ../../libvyborg/include/vyborg_maindialog.h -o tmp/moc_vyborg_maindialog.cpp
-
+	-$(DEL_FILE) tmp/moc_vyborg_mapperdialog.cpp tmp/moc_vyborg_mappercontrolbuttonbox.cpp tmp/moc_vyborg_navigationbuttonbox.cpp tmp/moc_vyborg_maindialogcontrolbuttonbox.cpp tmp/moc_vyborg_yearmonthwidget.cpp tmp/moc_vyborg_sortdialog.cpp tmp/moc_vyborg_filterdialog.cpp tmp/moc_vyborg_aboutdialog.cpp tmp/moc_vyborg_maindialog.cpp
 tmp/moc_vyborg_mapperdialog.cpp: ../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/QDialog \
 		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/qdialog.h \
 		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/qwidget.h \
@@ -1583,56 +1477,7 @@ tmp/moc_vyborg_aboutdialog.cpp: ../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets
 		../../libvyborg/include/vyborg_aboutdialog.h
 	/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/bin/moc $(DEFINES) -I/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/mkspecs/linux-g++ -I/usr/local/src/vyborg/libvyborg -I/usr/local/src/vyborg/libvyborg/include -I/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include -I/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets -I/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui -I/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtSql -I/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore -I. ../../libvyborg/include/vyborg_aboutdialog.h -o tmp/moc_vyborg_aboutdialog.cpp
 
-compiler_moc_source_make_all:
-compiler_moc_source_clean:
-compiler_uic_make_all:
-compiler_uic_clean:
-compiler_yacc_decl_make_all:
-compiler_yacc_decl_clean:
-compiler_yacc_impl_make_all:
-compiler_yacc_impl_clean:
-compiler_lex_make_all:
-compiler_lex_clean:
-compiler_clean: compiler_rcc_clean compiler_moc_header_clean 
-
-####### Compile
-
-tmp/libvyborg.o: ../../libvyborg/src/libvyborg.cpp ../../libvyborg/include/libvyborg.h \
-		../../libvyborg/include/libvyborg_global.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qglobal.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qconfig.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qfeatures.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qsystemdetection.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qprocessordetection.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qcompilerdetection.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qtypeinfo.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qtypetraits.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qsysinfo.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qlogging.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qflags.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qbasicatomic.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_bootstrap.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qgenericatomic.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_cxx11.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_gcc.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_msvc.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_armv7.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_armv6.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_armv5.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_ia64.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_mips.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_x86.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_unix.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qglobalstatic.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qmutex.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qnumeric.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tmp/libvyborg.o ../../libvyborg/src/libvyborg.cpp
-
-tmp/vyborg_maindialog.o: ../../libvyborg/src/vyborg_maindialog.cpp ../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtSql \
-		../../libvyborg/include/vyborg_maindialog.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/QDialog \
+tmp/moc_vyborg_maindialog.cpp: ../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/QDialog \
 		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/qdialog.h \
 		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/qwidget.h \
 		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qwindowdefs.h \
@@ -1735,15 +1580,54 @@ tmp/vyborg_maindialog.o: ../../libvyborg/src/vyborg_maindialog.cpp ../../../Qt/Q
 		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qfiledevice.h \
 		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qvector2d.h \
 		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qtouchdevice.h \
-		../../libvyborg/include/vyborg_maindialogcontrolbuttonbox.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/QDialogButtonBox \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/qdialogbuttonbox.h \
-		../../libvyborg/include/vyborg_mapperdialog.h \
-		../../libvyborg/include/vyborg_filterdialog.h \
-		../../libvyborg/include/vyborg_sortdialog.h \
-		../../libvyborg/include/vyborg_aboutdialog.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/QDebug
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tmp/vyborg_maindialog.o ../../libvyborg/src/vyborg_maindialog.cpp
+		../../libvyborg/include/vyborg_maindialog.h
+	/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/bin/moc $(DEFINES) -I/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/mkspecs/linux-g++ -I/usr/local/src/vyborg/libvyborg -I/usr/local/src/vyborg/libvyborg/include -I/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include -I/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets -I/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui -I/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtSql -I/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore -I. ../../libvyborg/include/vyborg_maindialog.h -o tmp/moc_vyborg_maindialog.cpp
+
+compiler_moc_source_make_all:
+compiler_moc_source_clean:
+compiler_uic_make_all:
+compiler_uic_clean:
+compiler_yacc_decl_make_all:
+compiler_yacc_decl_clean:
+compiler_yacc_impl_make_all:
+compiler_yacc_impl_clean:
+compiler_lex_make_all:
+compiler_lex_clean:
+compiler_clean: compiler_rcc_clean compiler_moc_header_clean 
+
+####### Compile
+
+tmp/libvyborg.o: ../../libvyborg/src/libvyborg.cpp ../../libvyborg/include/libvyborg.h \
+		../../libvyborg/include/libvyborg_global.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qglobal.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qconfig.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qfeatures.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qtypetraits.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qsysinfo.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qlogging.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qflags.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_gcc.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_armv7.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_armv6.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_armv5.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_ia64.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_mips.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_x86.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_unix.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qmutex.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qnumeric.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tmp/libvyborg.o ../../libvyborg/src/libvyborg.cpp
 
 tmp/vyborg_mapperdialog.o: ../../libvyborg/src/vyborg_mapperdialog.cpp ../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets \
 		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtSql \
@@ -2800,11 +2684,124 @@ tmp/vyborg_aboutdialog.o: ../../libvyborg/src/vyborg_aboutdialog.cpp ../../libvy
 		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qtouchdevice.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tmp/vyborg_aboutdialog.o ../../libvyborg/src/vyborg_aboutdialog.cpp
 
+tmp/vyborg_maindialog.o: ../../libvyborg/src/vyborg_maindialog.cpp ../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtSql \
+		../../libvyborg/include/vyborg_maindialog.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/QDialog \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/qdialog.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/qwidget.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qwindowdefs.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qglobal.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qconfig.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qfeatures.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qsystemdetection.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qprocessordetection.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qcompilerdetection.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qtypeinfo.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qtypetraits.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qsysinfo.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qlogging.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qflags.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qbasicatomic.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qgenericatomic.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_cxx11.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_gcc.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_msvc.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_armv7.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_armv6.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_armv5.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_ia64.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_mips.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_x86.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_unix.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qglobalstatic.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qmutex.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qnumeric.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qobjectdefs.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qnamespace.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qwindowdefs_win.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qobject.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qstring.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qchar.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qbytearray.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qrefcount.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qarraydata.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qstringbuilder.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qlist.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qalgorithms.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qiterator.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qbytearraylist.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qstringlist.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qregexp.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qstringmatcher.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qcoreevent.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qscopedpointer.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qmetatype.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qvarlengtharray.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qcontainerfwd.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qisenum.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qobject_impl.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qmargins.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qpaintdevice.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qrect.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qsize.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qpoint.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qpalette.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qcolor.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qrgb.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qbrush.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qpair.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qvector.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qmatrix.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qpolygon.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qregion.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qdatastream.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qiodevice.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qline.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qtransform.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qpainterpath.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qimage.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qpixelformat.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qpixmap.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qsharedpointer.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qshareddata.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qhash.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qfont.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qfontmetrics.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qfontinfo.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/qsizepolicy.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qcursor.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qkeysequence.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qevent.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qvariant.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qmap.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qdebug.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qtextstream.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qlocale.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qset.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qcontiguouscache.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qurl.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qurlquery.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qfile.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qfiledevice.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qvector2d.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qtouchdevice.h \
+		../../libvyborg/include/vyborg_maindialogcontrolbuttonbox.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/QDialogButtonBox \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/qdialogbuttonbox.h \
+		../../libvyborg/include/vyborg_mapperdialog.h \
+		../../libvyborg/include/vyborg_filterdialog.h \
+		../../libvyborg/include/vyborg_sortdialog.h \
+		../../libvyborg/include/vyborg_aboutdialog.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/QDebug
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tmp/vyborg_maindialog.o ../../libvyborg/src/vyborg_maindialog.cpp
+
 tmp/qrc_resource.o: qrc_resource.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tmp/qrc_resource.o qrc_resource.cpp
-
-tmp/moc_vyborg_maindialog.o: tmp/moc_vyborg_maindialog.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tmp/moc_vyborg_maindialog.o tmp/moc_vyborg_maindialog.cpp
 
 tmp/moc_vyborg_mapperdialog.o: tmp/moc_vyborg_mapperdialog.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tmp/moc_vyborg_mapperdialog.o tmp/moc_vyborg_mapperdialog.cpp
@@ -2830,6 +2827,9 @@ tmp/moc_vyborg_filterdialog.o: tmp/moc_vyborg_filterdialog.cpp
 tmp/moc_vyborg_aboutdialog.o: tmp/moc_vyborg_aboutdialog.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tmp/moc_vyborg_aboutdialog.o tmp/moc_vyborg_aboutdialog.cpp
 
+tmp/moc_vyborg_maindialog.o: tmp/moc_vyborg_maindialog.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tmp/moc_vyborg_maindialog.o tmp/moc_vyborg_maindialog.cpp
+
 ####### Install
 
 install_headers: first FORCE
@@ -2837,7 +2837,6 @@ install_headers: first FORCE
 	mkdir -p /usr/local/include/vyborg
 	-$(INSTALL_FILE) /usr/local/src/vyborg/libvyborg/include/libvyborg.h $(INSTALL_ROOT)/usr/local/include/vyborg/
 	-$(INSTALL_FILE) /usr/local/src/vyborg/libvyborg/include/libvyborg_global.h $(INSTALL_ROOT)/usr/local/include/vyborg/
-	-$(INSTALL_FILE) /usr/local/src/vyborg/libvyborg/include/vyborg_maindialog.h $(INSTALL_ROOT)/usr/local/include/vyborg/
 	-$(INSTALL_FILE) /usr/local/src/vyborg/libvyborg/include/vyborg_mapperdialog.h $(INSTALL_ROOT)/usr/local/include/vyborg/
 	-$(INSTALL_FILE) /usr/local/src/vyborg/libvyborg/include/vyborg_connection.h $(INSTALL_ROOT)/usr/local/include/vyborg/
 	-$(INSTALL_FILE) /usr/local/src/vyborg/libvyborg/include/vyborg_mappercontrolbuttonbox.h $(INSTALL_ROOT)/usr/local/include/vyborg/
@@ -2850,8 +2849,10 @@ install_headers: first FORCE
 	-$(INSTALL_FILE) /usr/local/src/vyborg/libvyborg/include/vyborg.h $(INSTALL_ROOT)/usr/local/include/vyborg/
 	-$(INSTALL_FILE) /usr/local/src/vyborg/libvyborg/include/vyborg_filterdialog.h $(INSTALL_ROOT)/usr/local/include/vyborg/
 	-$(INSTALL_FILE) /usr/local/src/vyborg/libvyborg/include/vyborg_aboutdialog.h $(INSTALL_ROOT)/usr/local/include/vyborg/
+	-$(INSTALL_FILE) /usr/local/src/vyborg/libvyborg/include/vyborg_maindialog.h $(INSTALL_ROOT)/usr/local/include/vyborg/
 
 uninstall_headers: FORCE
+	-$(DEL_FILE) -r $(INSTALL_ROOT)/usr/local/include/vyborg/vyborg_maindialog.h
 	-$(DEL_FILE) -r $(INSTALL_ROOT)/usr/local/include/vyborg/vyborg_aboutdialog.h
 	-$(DEL_FILE) -r $(INSTALL_ROOT)/usr/local/include/vyborg/vyborg_filterdialog.h
 	-$(DEL_FILE) -r $(INSTALL_ROOT)/usr/local/include/vyborg/vyborg.h
@@ -2864,7 +2865,6 @@ uninstall_headers: FORCE
 	-$(DEL_FILE) -r $(INSTALL_ROOT)/usr/local/include/vyborg/vyborg_mappercontrolbuttonbox.h
 	-$(DEL_FILE) -r $(INSTALL_ROOT)/usr/local/include/vyborg/vyborg_connection.h
 	-$(DEL_FILE) -r $(INSTALL_ROOT)/usr/local/include/vyborg/vyborg_mapperdialog.h
-	-$(DEL_FILE) -r $(INSTALL_ROOT)/usr/local/include/vyborg/vyborg_maindialog.h
 	-$(DEL_FILE) -r $(INSTALL_ROOT)/usr/local/include/vyborg/libvyborg_global.h
 	-$(DEL_FILE) -r $(INSTALL_ROOT)/usr/local/include/vyborg/libvyborg.h
 	-$(DEL_DIR) $(INSTALL_ROOT)/usr/local/include/vyborg/ 

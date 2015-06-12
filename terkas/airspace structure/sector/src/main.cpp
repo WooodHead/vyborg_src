@@ -4,7 +4,7 @@
 #include "declaration.h"
 #include <vyborg_connection.h>
 
-#include "dialog.h"
+#include "maindialog.h"
 
 int main(int argc, char *argv[])
 {
@@ -13,7 +13,8 @@ int main(int argc, char *argv[])
     if (openConnection() == false)
         return -1;
 
-    Dialog dialog;
+    MainDialog dialog;
+    dialog.setTitle("Сектора РДЦ МЦ АУВД");
     dialog.showMaximized();
 
     return app.exec();

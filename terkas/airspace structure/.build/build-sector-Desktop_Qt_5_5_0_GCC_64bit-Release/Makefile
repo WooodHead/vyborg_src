@@ -49,10 +49,14 @@ OBJECTS_DIR   = tmp/
 ####### Files
 
 SOURCES       = ../../sector/src/main.cpp \
-		../../sector/src/dialog.cpp tmp/moc_dialog.cpp
+		../../sector/src/mapperdialog.cpp \
+		../../sector/src/maindialog.cpp tmp/moc_mapperdialog.cpp \
+		tmp/moc_maindialog.cpp
 OBJECTS       = tmp/main.o \
-		tmp/dialog.o \
-		tmp/moc_dialog.o
+		tmp/mapperdialog.o \
+		tmp/maindialog.o \
+		tmp/moc_mapperdialog.o \
+		tmp/moc_maindialog.o
 DIST          = /usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/mkspecs/features/spec_pre.prf \
 		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/mkspecs/common/unix.conf \
 		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/mkspecs/common/linux.conf \
@@ -184,9 +188,11 @@ DIST          = /usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/mkspecs/features/spec_pre.p
 		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/mkspecs/features/exceptions.prf \
 		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/mkspecs/features/yacc.prf \
 		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/mkspecs/features/lex.prf \
-		../../../sector/sector.pro ../../sector/src/dialog.h \
-		../../sector/src/declaration.h ../../sector/src/main.cpp \
-		../../sector/src/dialog.cpp
+		../../../sector/sector.pro ../../sector/src/declaration.h \
+		../../sector/src/mapperdialog.h \
+		../../sector/src/maindialog.h ../../sector/src/main.cpp \
+		../../sector/src/mapperdialog.cpp \
+		../../sector/src/maindialog.cpp
 QMAKE_TARGET  = sector
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = sector
@@ -504,8 +510,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../../sector/src/dialog.h ../../sector/src/declaration.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../../sector/src/main.cpp ../../sector/src/dialog.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../../sector/src/declaration.h ../../sector/src/mapperdialog.h ../../sector/src/maindialog.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../../sector/src/main.cpp ../../sector/src/mapperdialog.cpp ../../sector/src/maindialog.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -528,10 +534,11 @@ check: first
 
 compiler_rcc_make_all:
 compiler_rcc_clean:
-compiler_moc_header_make_all: tmp/moc_dialog.cpp
+compiler_moc_header_make_all: tmp/moc_mapperdialog.cpp tmp/moc_maindialog.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) tmp/moc_dialog.cpp
-tmp/moc_dialog.cpp: /usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/QDialog \
+	-$(DEL_FILE) tmp/moc_mapperdialog.cpp tmp/moc_maindialog.cpp
+tmp/moc_mapperdialog.cpp: /usr/local/include/vyborg/vyborg_mapperdialog.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/QDialog \
 		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/qdialog.h \
 		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/qwidget.h \
 		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qwindowdefs.h \
@@ -634,8 +641,123 @@ tmp/moc_dialog.cpp: /usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/QDial
 		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qfiledevice.h \
 		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qvector2d.h \
 		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qtouchdevice.h \
-		../../sector/src/dialog.h
-	/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/bin/moc $(DEFINES) -I/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/mkspecs/linux-g++ -I'/usr/local/src/vyborg/terkas/airspace structure/sector' -I/usr/local/include/vyborg -I/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include -I/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets -I/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui -I/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtSql -I/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore -I. ../../sector/src/dialog.h -o tmp/moc_dialog.cpp
+		../../sector/src/mapperdialog.h
+	/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/bin/moc $(DEFINES) -I/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/mkspecs/linux-g++ -I'/usr/local/src/vyborg/terkas/airspace structure/sector' -I/usr/local/include/vyborg -I/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include -I/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets -I/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui -I/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtSql -I/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore -I. ../../sector/src/mapperdialog.h -o tmp/moc_mapperdialog.cpp
+
+tmp/moc_maindialog.cpp: /usr/local/include/vyborg/vyborg.h \
+		/usr/local/include/vyborg/vyborg_maindialog.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/QDialog \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/qdialog.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/qwidget.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qwindowdefs.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qglobal.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qconfig.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qfeatures.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qsystemdetection.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qprocessordetection.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qcompilerdetection.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qtypeinfo.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qtypetraits.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qsysinfo.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qlogging.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qflags.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qbasicatomic.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qgenericatomic.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_gcc.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_msvc.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_armv7.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_armv6.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_armv5.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_ia64.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_mips.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_x86.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_unix.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qglobalstatic.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qmutex.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qnumeric.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qobjectdefs.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qnamespace.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qwindowdefs_win.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qobject.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qstring.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qchar.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qbytearray.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qrefcount.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qarraydata.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qstringbuilder.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qlist.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qalgorithms.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qiterator.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qbytearraylist.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qstringlist.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qregexp.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qstringmatcher.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qcoreevent.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qscopedpointer.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qmetatype.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qvarlengtharray.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qcontainerfwd.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qisenum.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qobject_impl.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qmargins.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qpaintdevice.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qrect.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qsize.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qpoint.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qpalette.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qcolor.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qrgb.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qbrush.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qpair.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qvector.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qmatrix.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qpolygon.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qregion.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qdatastream.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qiodevice.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qline.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qtransform.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qpainterpath.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qimage.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qpixelformat.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qpixmap.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qsharedpointer.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qshareddata.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qhash.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qfont.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qfontmetrics.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qfontinfo.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/qsizepolicy.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qcursor.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qkeysequence.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qevent.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qvariant.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qmap.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qdebug.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qtextstream.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qlocale.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qset.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qcontiguouscache.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qurl.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qurlquery.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qfile.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qfiledevice.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qvector2d.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qtouchdevice.h \
+		/usr/local/include/vyborg/vyborg_maindialogcontrolbuttonbox.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/QDialogButtonBox \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/qdialogbuttonbox.h \
+		/usr/local/include/vyborg/vyborg_mapperdialog.h \
+		/usr/local/include/vyborg/vyborg_filterdialog.h \
+		/usr/local/include/vyborg/vyborg_sortdialog.h \
+		/usr/local/include/vyborg/vyborg_aboutdialog.h \
+		../../sector/src/maindialog.h
+	/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/bin/moc $(DEFINES) -I/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/mkspecs/linux-g++ -I'/usr/local/src/vyborg/terkas/airspace structure/sector' -I/usr/local/include/vyborg -I/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include -I/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets -I/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui -I/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtSql -I/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore -I. ../../sector/src/maindialog.h -o tmp/moc_maindialog.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -1102,6 +1224,7 @@ tmp/main.o: ../../sector/src/main.cpp /usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/inclu
 		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/qtoolbox.h \
 		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/qtoolbutton.h \
 		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/qtwidgetsversion.h \
+		../../sector/src/declaration.h \
 		/usr/local/include/vyborg/vyborg_connection.h \
 		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtSql/QSqlDatabase \
 		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtSql/qsqldatabase.h \
@@ -1110,12 +1233,126 @@ tmp/main.o: ../../sector/src/main.cpp /usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/inclu
 		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtSql/qsqlerror.h \
 		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/QFile \
 		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/QMessageBox \
-		../../sector/src/declaration.h \
-		../../sector/src/dialog.h \
-		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/QDialog
+		../../sector/src/maindialog.h \
+		/usr/local/include/vyborg/vyborg.h \
+		/usr/local/include/vyborg/vyborg_maindialog.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/QDialog \
+		/usr/local/include/vyborg/vyborg_maindialogcontrolbuttonbox.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/QDialogButtonBox \
+		/usr/local/include/vyborg/vyborg_mapperdialog.h \
+		/usr/local/include/vyborg/vyborg_filterdialog.h \
+		/usr/local/include/vyborg/vyborg_sortdialog.h \
+		/usr/local/include/vyborg/vyborg_aboutdialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tmp/main.o ../../sector/src/main.cpp
 
-tmp/dialog.o: ../../sector/src/dialog.cpp /usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/QtWidgets \
+tmp/mapperdialog.o: ../../sector/src/mapperdialog.cpp ../../sector/src/mapperdialog.h \
+		/usr/local/include/vyborg/vyborg_mapperdialog.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/QDialog \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/qdialog.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/qwidget.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qwindowdefs.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qglobal.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qconfig.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qfeatures.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qsystemdetection.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qprocessordetection.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qcompilerdetection.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qtypeinfo.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qtypetraits.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qsysinfo.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qlogging.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qflags.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qbasicatomic.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_bootstrap.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qgenericatomic.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_cxx11.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_gcc.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_msvc.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_armv7.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_armv6.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_armv5.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_ia64.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_mips.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_x86.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qatomic_unix.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qglobalstatic.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qmutex.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qnumeric.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qobjectdefs.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qnamespace.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qwindowdefs_win.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qobject.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qstring.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qchar.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qbytearray.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qrefcount.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qarraydata.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qstringbuilder.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qlist.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qalgorithms.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qiterator.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qbytearraylist.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qstringlist.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qregexp.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qstringmatcher.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qcoreevent.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qscopedpointer.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qmetatype.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qvarlengtharray.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qcontainerfwd.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qisenum.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qobject_impl.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qmargins.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qpaintdevice.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qrect.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qsize.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qpoint.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qpalette.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qcolor.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qrgb.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qbrush.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qpair.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qvector.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qmatrix.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qpolygon.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qregion.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qdatastream.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qiodevice.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qline.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qtransform.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qpainterpath.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qimage.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qpixelformat.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qpixmap.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qsharedpointer.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qshareddata.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qhash.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qsharedpointer_impl.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qfont.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qfontmetrics.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qfontinfo.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/qsizepolicy.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qcursor.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qkeysequence.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qevent.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qvariant.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qmap.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qdebug.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qtextstream.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qlocale.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qset.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qcontiguouscache.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qurl.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qurlquery.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qfile.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/qfiledevice.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qvector2d.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtGui/qtouchdevice.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tmp/mapperdialog.o ../../sector/src/mapperdialog.cpp
+
+tmp/maindialog.o: ../../sector/src/maindialog.cpp /usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/QtWidgets \
 		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/QtWidgetsDepends \
 		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/QtCore \
 		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/QtCoreDepends \
@@ -1582,13 +1819,24 @@ tmp/dialog.o: ../../sector/src/dialog.cpp /usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/i
 		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtSql/qsqlrelationaltablemodel.h \
 		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtSql/qsqltablemodel.h \
 		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtSql/qtsqlversion.h \
-		../../sector/src/dialog.h \
+		../../sector/src/maindialog.h \
+		/usr/local/include/vyborg/vyborg.h \
+		/usr/local/include/vyborg/vyborg_maindialog.h \
 		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/QDialog \
-		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/QDebug
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tmp/dialog.o ../../sector/src/dialog.cpp
+		/usr/local/include/vyborg/vyborg_maindialogcontrolbuttonbox.h \
+		/usr/local/src/Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/QDialogButtonBox \
+		/usr/local/include/vyborg/vyborg_mapperdialog.h \
+		/usr/local/include/vyborg/vyborg_filterdialog.h \
+		/usr/local/include/vyborg/vyborg_sortdialog.h \
+		/usr/local/include/vyborg/vyborg_aboutdialog.h \
+		../../sector/src/mapperdialog.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tmp/maindialog.o ../../sector/src/maindialog.cpp
 
-tmp/moc_dialog.o: tmp/moc_dialog.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tmp/moc_dialog.o tmp/moc_dialog.cpp
+tmp/moc_mapperdialog.o: tmp/moc_mapperdialog.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tmp/moc_mapperdialog.o tmp/moc_mapperdialog.cpp
+
+tmp/moc_maindialog.o: tmp/moc_maindialog.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tmp/moc_maindialog.o tmp/moc_maindialog.cpp
 
 ####### Install
 

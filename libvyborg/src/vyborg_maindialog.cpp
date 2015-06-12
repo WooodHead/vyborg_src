@@ -18,10 +18,10 @@ VyborgMainDialog::VyborgMainDialog(QWidget *parent)
     model_->setEditStrategy(QSqlTableModel::OnManualSubmit);
 
 
-    identityProxy_ = new QIdentityProxyModel(this);
+//    identityProxy_ = new QIdentityProxyModel(this);
 
-    sortFilterProxy_ = new QSortFilterProxyModel(this);
-    sortFilterProxy_->setSortCaseSensitivity(Qt::CaseInsensitive);
+//    sortFilterProxy_ = new QSortFilterProxyModel(this);
+//    sortFilterProxy_->setSortCaseSensitivity(Qt::CaseInsensitive);
 
 
     view_ = new QTableView(this);
@@ -36,10 +36,12 @@ VyborgMainDialog::VyborgMainDialog(QWidget *parent)
 
 
 
-    filterDialog_ = new VyborgFilterDialog(sortFilterProxy_, this);
+//    filterDialog_ = new VyborgFilterDialog(sortFilterProxy_, this);
+    filterDialog_ = new VyborgFilterDialog();
     filterDialog_->setWindowTitle("Filter Dialog");
 
-    sortDialog_ = new VyborgSortDialog(sortFilterProxy_, this);
+//    sortDialog_ = new VyborgSortDialog(sortFilterProxy_, this);
+    sortDialog_ = new VyborgSortDialog();
     sortDialog_->setWindowTitle("Sort Dialog");
 
     aboutDialog_ = new VyborgAboutDialog(this);
@@ -95,14 +97,15 @@ void VyborgMainDialog::add()
 
 
     QModelIndex modelIndex = model_->index(modelRow, 0);                                     // index for model
-    QModelIndex identityProxyIndex = identityProxy_->mapFromSource(modelIndex);              // index for identity proxy
-    QModelIndex sortFilterProxyIndex = sortFilterProxy_->mapFromSource(identityProxyIndex);  // index for sort/filter proxy (equal to view index)
+//    QModelIndex identityProxyIndex = identityProxy_->mapFromSource(modelIndex);              // index for identity proxy
+//    QModelIndex sortFilterProxyIndex = sortFilterProxy_->mapFromSource(identityProxyIndex);  // index for sort/filter proxy (equal to view index)
 
-    int viewRow = sortFilterProxyIndex.row();  // row for view
+//    int viewRow = sortFilterProxyIndex.row();  // row for view
+    int viewRow = modelIndex.row();
     view_->selectRow(viewRow);
 
-    mapperDialog_->setDirty(true);
-    showMapperDialog();
+//    mapperDialog_->setDirty(true);
+//    showMapperDialog();
 
 
 
@@ -122,10 +125,11 @@ void VyborgMainDialog::add()
 void VyborgMainDialog::remove()
 {
     QModelIndex viewIndex = view_->currentIndex();                             // index for sort/filter proxy (equal to view index)
-    QModelIndex identityProxyIndex = sortFilterProxy_->mapToSource(viewIndex); // index for identity proxy
-    QModelIndex modelIndex = identityProxy_->mapToSource(identityProxyIndex);  // index for model
+//    QModelIndex identityProxyIndex = sortFilterProxy_->mapToSource(viewIndex); // index for identity proxy
+//    QModelIndex modelIndex = identityProxy_->mapToSource(identityProxyIndex);  // index for model
 
-    int modelRow = modelIndex.row();  // row for model
+//    int modelRow = modelIndex.row();  // row for model
+    int modelRow = viewIndex.row();
     int viewRow = viewIndex.row();    // row for view
 
 
@@ -185,8 +189,8 @@ void VyborgMainDialog::showSortDialog()
 
 void VyborgMainDialog::update()
 {
-    sortFilterProxy_->invalidate();
-    sortFilterProxy_->setFilterWildcard("*");
+//    sortFilterProxy_->invalidate();
+//    sortFilterProxy_->setFilterWildcard("*");
 }
 
 void VyborgMainDialog::about()

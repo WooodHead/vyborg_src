@@ -1,7 +1,9 @@
 HEADERS  += \
-    $$PWD/dialog.h \
-    $$PWD/declaration.h
+    $$PWD/declaration.h \
+    $$PWD/mapperdialog.h \
+    $$PWD/maindialog.h
 
 SOURCES +=\
     $$PWD/main.cpp \
-    $$PWD/dialog.cpp
+    $$PWD/mapperdialog.cpp \
+    $$PWD/maindialog.cpp

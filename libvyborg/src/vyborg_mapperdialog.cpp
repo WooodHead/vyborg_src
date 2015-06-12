@@ -6,57 +6,63 @@
 #include "vyborg_navigationbuttonbox.h"
 
 
-VyborgMapperDialog::VyborgMapperDialog(QSortFilterProxyModel *proxy, QWidget *parent)
+#include <QDebug>
+
+
+VyborgMapperDialog::VyborgMapperDialog(QSqlRelationalTableModel *model, QWidget *parent)
     : QDialog(parent),
       dirty_(false)
 {
-    proxy_ = proxy;
+    m_model = model;
 
 
-    mapper_ = new QDataWidgetMapper(this);
-    mapper_->setModel(proxy_);
-    mapper_->setSubmitPolicy(QDataWidgetMapper::ManualSubmit);
+    qDebug() << "Check point 1";
 
 
-    controlButtonBox = new VyborgMapperControlButtonBox;
-    controlButtonBox->setOrientation(Qt::Vertical);
-
-    navButtonBox = new VyborgNavigationButtonBox;
-
-    privateWidgetsLayout = new QVBoxLayout;
+//    mapper_ = new QDataWidgetMapper(this);
+//    mapper_->setModel(proxy_);
+//    mapper_->setSubmitPolicy(QDataWidgetMapper::ManualSubmit);
 
 
-    QVBoxLayout *vLayout = new QVBoxLayout;
-    vLayout->addLayout(navButtonBox);
-    vLayout->addLayout(privateWidgetsLayout);
+//    controlButtonBox = new VyborgMapperControlButtonBox;
+//    controlButtonBox->setOrientation(Qt::Vertical);
 
-    QHBoxLayout *mainLayout = new QHBoxLayout;
-    mainLayout->addLayout(vLayout);
-    mainLayout->addWidget(controlButtonBox);
+//    navButtonBox = new VyborgNavigationButtonBox;
 
-    setLayout(mainLayout);
+//    privateWidgetsLayout = new QVBoxLayout;
 
 
-    connect(navButtonBox, SIGNAL(goFirst()),
-            mapper_, SLOT(toFirst()));
-    connect(navButtonBox, SIGNAL(goPrevious()),
-            mapper_, SLOT(toPrevious()));
-    connect(navButtonBox, SIGNAL(goNext()),
-            mapper_, SLOT(toNext()));
-    connect(navButtonBox, SIGNAL(goLast()),
-            mapper_, SLOT(toLast()));
+//    QVBoxLayout *vLayout = new QVBoxLayout;
+//    vLayout->addLayout(navButtonBox);
+//    vLayout->addLayout(privateWidgetsLayout);
 
-    connect(controlButtonBox, SIGNAL(edit()),
-            SLOT(edit()));
-    connect(controlButtonBox, SIGNAL(submit()),
-            SLOT(submit()));
-    connect(controlButtonBox, SIGNAL(revert()),
-            SLOT(revert()));
-    connect(controlButtonBox, SIGNAL(close()),
-            SLOT(close()));
+//    QHBoxLayout *mainLayout = new QHBoxLayout;
+//    mainLayout->addLayout(vLayout);
+//    mainLayout->addWidget(controlButtonBox);
+
+//    setLayout(mainLayout);
 
 
-    navButtonBox->setCount(proxy_->rowCount());
+//    connect(navButtonBox, SIGNAL(goFirst()),
+//            mapper_, SLOT(toFirst()));
+//    connect(navButtonBox, SIGNAL(goPrevious()),
+//            mapper_, SLOT(toPrevious()));
+//    connect(navButtonBox, SIGNAL(goNext()),
+//            mapper_, SLOT(toNext()));
+//    connect(navButtonBox, SIGNAL(goLast()),
+//            mapper_, SLOT(toLast()));
+
+//    connect(controlButtonBox, SIGNAL(edit()),
+//            SLOT(edit()));
+//    connect(controlButtonBox, SIGNAL(submit()),
+//            SLOT(submit()));
+//    connect(controlButtonBox, SIGNAL(revert()),
+//            SLOT(revert()));
+//    connect(controlButtonBox, SIGNAL(close()),
+//            SLOT(close()));
+
+
+//    navButtonBox->setCount(proxy_->rowCount());
 }
 
 void VyborgMapperDialog::edit()
@@ -81,14 +87,14 @@ void VyborgMapperDialog::submit()
 
 void VyborgMapperDialog::revert()
 {
-    int curRow = mapper_->currentIndex();
+//    int curRow = mapper_->currentIndex();
 
-    mapper_->revert();
-    proxy_->revert();
+//    mapper_->revert();
+//    proxy_->revert();
 
-    mapper_->setCurrentIndex(qMin(curRow, proxy_->rowCount()));
+//    mapper_->setCurrentIndex(qMin(curRow, proxy_->rowCount()));
 
-    setDirty(false);
+//    setDirty(false);
 }
 
 void VyborgMapperDialog::close()
