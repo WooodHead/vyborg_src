@@ -208,6 +208,7 @@ DIST          = ../../../../Qt/Qt5.5.0/5.5/gcc_64/mkspecs/features/spec_pre.prf 
 		../../../../Qt/Qt5.5.0/5.5/gcc_64/mkspecs/features/spec_post.prf \
 		../../../../Qt/Qt5.5.0/5.5/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt/Qt5.5.0/5.5/gcc_64/mkspecs/features/default_pre.prf \
+		../../../libvyborg/src/files.pri \
 		../../../../Qt/Qt5.5.0/5.5/gcc_64/mkspecs/features/resolve_config.prf \
 		../../../../Qt/Qt5.5.0/5.5/gcc_64/mkspecs/features/default_post.prf \
 		../../../../Qt/Qt5.5.0/5.5/gcc_64/mkspecs/features/warn_on.prf \
@@ -420,6 +421,7 @@ Makefile: ../../libvyborg/libvyborg.pro ../../../Qt/Qt5.5.0/5.5/gcc_64/mkspecs/f
 		../../../Qt/Qt5.5.0/5.5/gcc_64/mkspecs/features/spec_post.prf \
 		../../../Qt/Qt5.5.0/5.5/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../Qt/Qt5.5.0/5.5/gcc_64/mkspecs/features/default_pre.prf \
+		../../libvyborg/src/files.pri \
 		../../../Qt/Qt5.5.0/5.5/gcc_64/mkspecs/features/resolve_config.prf \
 		../../../Qt/Qt5.5.0/5.5/gcc_64/mkspecs/features/default_post.prf \
 		../../../Qt/Qt5.5.0/5.5/gcc_64/mkspecs/features/warn_on.prf \
@@ -557,6 +559,7 @@ Makefile: ../../libvyborg/libvyborg.pro ../../../Qt/Qt5.5.0/5.5/gcc_64/mkspecs/f
 ../../../Qt/Qt5.5.0/5.5/gcc_64/mkspecs/features/spec_post.prf:
 ../../../Qt/Qt5.5.0/5.5/gcc_64/mkspecs/features/exclusive_builds.prf:
 ../../../Qt/Qt5.5.0/5.5/gcc_64/mkspecs/features/default_pre.prf:
+../../libvyborg/src/files.pri:
 ../../../Qt/Qt5.5.0/5.5/gcc_64/mkspecs/features/resolve_config.prf:
 ../../../Qt/Qt5.5.0/5.5/gcc_64/mkspecs/features/default_post.prf:
 ../../../Qt/Qt5.5.0/5.5/gcc_64/mkspecs/features/warn_on.prf:
@@ -1743,7 +1746,8 @@ tmp/vyborg_mapperdialog.o: ../../libvyborg/src/vyborg_mapperdialog.cpp ../../../
 		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/qboxlayout.h \
 		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/qlayout.h \
 		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/qlayoutitem.h \
-		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/qgridlayout.h
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tmp/vyborg_mapperdialog.o ../../libvyborg/src/vyborg_mapperdialog.cpp
 
 tmp/vyborg_mappercontrolbuttonbox.o: ../../libvyborg/src/vyborg_mappercontrolbuttonbox.cpp ../../../Qt/Qt5.5.0/5.5/gcc_64/include/QtWidgets \

@@ -10,19 +10,11 @@
 
 #include <QDebug>
 
-
 VyborgMainDialog::VyborgMainDialog(QWidget *parent)
     : QDialog(parent)
 {
     model_ = new QSqlRelationalTableModel(this);
     model_->setEditStrategy(QSqlTableModel::OnManualSubmit);
-
-
-//    identityProxy_ = new QIdentityProxyModel(this);
-
-//    sortFilterProxy_ = new QSortFilterProxyModel(this);
-//    sortFilterProxy_->setSortCaseSensitivity(Qt::CaseInsensitive);
-
 
     view_ = new QTableView(this);
     view_->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -31,16 +23,12 @@ VyborgMainDialog::VyborgMainDialog(QWidget *parent)
     view_->setShowGrid(true);
     view_->setAlternatingRowColors(true);
     view_->verticalHeader()->setVisible(false);
-
     view_->setFocus();
+    view_->selectRow(0);
 
-
-
-//    filterDialog_ = new VyborgFilterDialog(sortFilterProxy_, this);
     filterDialog_ = new VyborgFilterDialog();
     filterDialog_->setWindowTitle("Filter Dialog");
 
-//    sortDialog_ = new VyborgSortDialog(sortFilterProxy_, this);
     sortDialog_ = new VyborgSortDialog();
     sortDialog_->setWindowTitle("Sort Dialog");
 
@@ -96,17 +84,11 @@ void VyborgMainDialog::add()
     }
 
 
-    QModelIndex modelIndex = model_->index(modelRow, 0);                                     // index for model
-//    QModelIndex identityProxyIndex = identityProxy_->mapFromSource(modelIndex);              // index for identity proxy
-//    QModelIndex sortFilterProxyIndex = sortFilterProxy_->mapFromSource(identityProxyIndex);  // index for sort/filter proxy (equal to view index)
+    QModelIndex modelIndex = model_->index(modelRow, 0);
+    view_->selectRow(modelIndex.row());
 
-//    int viewRow = sortFilterProxyIndex.row();  // row for view
-    int viewRow = modelIndex.row();
-    view_->selectRow(viewRow);
-
-//    mapperDialog_->setDirty(true);
-//    showMapperDialog();
-
+    mapperDialog_->setDirty(true);
+    showMapperDialog();
 
 
 //    model_->database().transaction();
@@ -124,7 +106,7 @@ void VyborgMainDialog::add()
 
 void VyborgMainDialog::remove()
 {
-    QModelIndex viewIndex = view_->currentIndex();                             // index for sort/filter proxy (equal to view index)
+    QModelIndex viewIndex = view_->currentIndex();  // index for sort/filter proxy (equal to view index)
 //    QModelIndex identityProxyIndex = sortFilterProxy_->mapToSource(viewIndex); // index for identity proxy
 //    QModelIndex modelIndex = identityProxy_->mapToSource(identityProxyIndex);  // index for model
 
