@@ -77,14 +77,14 @@ void VyborgMapperDialog::submit()
 
 void VyborgMapperDialog::revert()
 {
-//    int curRow = mapper_->currentIndex();
+    int curRow = mapper_->currentIndex();
 
-//    mapper_->revert();
-//    proxy_->revert();
+    mapper_->revert();
+    m_model->revert();
 
-//    mapper_->setCurrentIndex(qMin(curRow, proxy_->rowCount()));
+    mapper_->setCurrentIndex(qMin(curRow, m_model->rowCount()));
 
-//    setDirty(false);
+    setDirty(false);
 }
 
 void VyborgMapperDialog::close()

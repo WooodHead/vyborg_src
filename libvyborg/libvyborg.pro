@@ -32,6 +32,9 @@ unix {
     features.files = features/vyborg.prf
     features.path = $$FEATURES_INSTALL_DIR
     INSTALLS += features
+
+#    endup.extra = make install
+#    INSTALLS += endup
 }
 
 DESTDIR = $$LIBS_INSTALL_DIR

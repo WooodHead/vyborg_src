@@ -24,6 +24,7 @@ void MainDialog::setupView()
 {
     view_->setModel(model_);
     view_->setColumnHidden(0, true);
+    view_->selectRow(0);
 }
 
 void MainDialog::setupMapperDialog()
