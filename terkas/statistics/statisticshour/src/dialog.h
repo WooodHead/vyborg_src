@@ -9,6 +9,13 @@ class Dialog : public QDialog
 
 public:
     Dialog(QWidget *parent = 0);
+
+private slots:
+    void add();
+    void remove();
+    void edit();
+    void save();
+    void reject();
 };
 
 #endif // DIALOG_H

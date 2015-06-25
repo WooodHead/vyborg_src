@@ -1,5 +1,5 @@
-QT       += core gui widgets sql
-TARGET = statisticsSectorHourWorkload
+QT += core gui widgets sql
+TARGET = statisticshour
 TEMPLATE = app
 
 MOC_DIR = tmp

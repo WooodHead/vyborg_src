@@ -1,6 +1,8 @@
-#include "dialog.h"
 #include <QApplication>
 #include <QtSql>
+
+#include "dialog.h"
+#include "mainwindow.h"
 
 int main(int argc, char *argv[])
 {
@@ -13,8 +15,8 @@ int main(int argc, char *argv[])
     db.setDatabaseName("terkas");
     db.open();
 
-    Dialog dialog;
-    dialog.showMaximized();
+    MainWindow mainWindow;
+    mainWindow.showMaximized();
 
     return app.exec();
 }
