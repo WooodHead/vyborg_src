@@ -1,10 +1,8 @@
 QT += core gui widgets sql
-TARGET = statisticshour
+TARGET = statistics_hour
 TEMPLATE = app
-
+DESTDIR = /home/debian/bin
 MOC_DIR = tmp
 OBJECTS_DIR = tmp
 
-#DISTFILES += \
-#    src/files.pri
 include(src/files.pri)

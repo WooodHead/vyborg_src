@@ -4,8 +4,8 @@
 #include "declarations.h"
 
 
-MapperDialog::MapperDialog(QSortFilterProxyModel *proxy, QWidget *parent)
-    : VyborgMapperDialog(proxy, parent)
+MapperDialog::MapperDialog(QSqlRelationalTableModel *model, QWidget *parent)
+    : VyborgMapperDialog(model, parent)
 {
     createPrivateWidgets();
     layoutPrivateWidgets();
@@ -29,12 +29,12 @@ void MapperDialog::createPrivateWidgets()
 
 
     mapper_->addMapping(dateEdit,            statistics_date);
-    mapper_->addMapping(innerFlightsEdit,    statistics_innerFlights);
-    mapper_->addMapping(foreignFlightsEdit,  statistics_foreignFlights);
-    mapper_->addMapping(transitFlightsEdit,  statistics_transitFlights);
-    mapper_->addMapping(charterFlightsEdit,  statistics_charterFlights);
-    mapper_->addMapping(maxInDayFlightsEdit, statistics_maxInDayFlights);
-    mapper_->addMapping(foreignACEdit,       statistics_foreignAC);
+    mapper_->addMapping(innerFlightsEdit,    statistics_internal);
+    mapper_->addMapping(foreignFlightsEdit,  statistics_external);
+    mapper_->addMapping(transitFlightsEdit,  statistics_transit);
+    mapper_->addMapping(charterFlightsEdit,  statistics_charter);
+    mapper_->addMapping(maxInDayFlightsEdit, statistics_maxday);
+    mapper_->addMapping(foreignACEdit,       statistics_foreigner);
     mapper_->addMapping(noteEdit,            statistics_note);
 }
 

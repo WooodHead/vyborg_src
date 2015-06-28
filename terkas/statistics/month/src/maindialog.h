@@ -13,7 +13,6 @@ public:
 
 protected:
     virtual void setupModel();
-    virtual void setupProxy();
     virtual void setupView();
     virtual void setupMapperDialog();
     virtual void setupFilterDialog();

@@ -4,5 +4,6 @@ tmp/
 *.build*
 include/
 lib/
-#share/
 *~
+.*
+!/.gitignore

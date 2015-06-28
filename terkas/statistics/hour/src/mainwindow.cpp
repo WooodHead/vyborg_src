@@ -50,19 +50,16 @@ void MainWindow::bboxClicked(QAbstractButton *button)
 {
     QDialogButtonBox::StandardButton standardButton = bbox->standardButton(button);
     switch (standardButton) {
-        case QDialogButtonBox::NoButton: {
-            int actionRole = button->property("ActionRole").toInt();
-            switch(actionRole) {
-                case AddRole:
-                    break;
-                case RemRole:
-                    qDebug() << "Removing row";
-                    rem();
-                    break;
-                default:
-                    break;
-            }
+    case QDialogButtonBox::NoButton: {
+        int actionRole = button->property("ActionRole").toInt();
+        if (actionRole == AddRole) {
+            break;
+        } else if (actionRole == RemRole) {
+            qDebug() << "Removing row";
+            rem();
+            break;
         }
+    }
     default: // shouldn't happen
         break;
     }
@@ -78,6 +75,7 @@ void MainWindow::rem()
     qDebug() << "rem()";
     QModelIndex indx = m_view->currentIndex();
     m_model->removeRow(indx.row());
+    m_model->submitAll();
 }
 
 void MainWindow::edit()

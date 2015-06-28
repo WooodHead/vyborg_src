@@ -13,7 +13,7 @@ class MapperDialog : public VyborgMapperDialog
     Q_OBJECT
 
 public:
-    MapperDialog(QSortFilterProxyModel *proxy, QWidget *parent = 0);
+    MapperDialog(QSqlRelationalTableModel *model, QWidget *parent = 0);
 
 protected:
     virtual void createPrivateWidgets();

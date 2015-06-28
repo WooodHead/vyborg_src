@@ -5,7 +5,7 @@
 HourModel::HourModel(QObject *parent)
     : QSqlTableModel(parent)
 {
-
+    setEditStrategy(QSqlTableModel::OnManualSubmit);
 }
 
 Qt::ItemFlags HourModel::flags(const QModelIndex &index) const
