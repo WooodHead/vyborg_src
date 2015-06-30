@@ -1,6 +1,6 @@
 #include <QtWidgets>
 
-#include "vyborg_navigationbuttonbox.h"
+#include "navigationbuttonbox.h"
 
 
 VyborgNavigationButtonBox::VyborgNavigationButtonBox(QWidget *parent)

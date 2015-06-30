@@ -4,22 +4,26 @@ CONFIG += install
 TARGET = vyborg
 TEMPLATE = lib
 
+VERSION = 1.0
+
 OBJECTS_DIR = tmp
 MOC_DIR = tmp
 
 DEFINES += LIBVYBORG_LIBRARY
 
-SUBDIRS += src \
-    include \
-    test
+SUBDIRS += src include test
 test.depends = $$SUBDIRS
+
+DISTFILES += \
+    src/files.pri
 
 INCLUDEPATH += include
 include(src/files.pri)
 
 
-HEADERS_INSTALL_DIR = /usr/local/include/$$TARGET
-LIBS_INSTALL_DIR = /usr/local/lib/$$TARGET
+DIR_PREFIX = /usr/local
+HEADERS_INSTALL_DIR = $$DIR_PREFIX/include/$$TARGET
+LIBS_INSTALL_DIR = $$DIR_PREFIX/lib/$$TARGET
 QT_INSTALL_DIR = /usr/local/src/Qt/Qt5.5.0/5.5/Src/
 FEATURES_INSTALL_DIR = $$QT_INSTALL_DIR/qtbase/mkspecs/features/unix
 
@@ -33,8 +37,9 @@ unix {
     features.path = $$FEATURES_INSTALL_DIR
     INSTALLS += features
 
-#    endup.extra = make install
-#    INSTALLS += endup
+    endup.extra = make install
+#    endup.path = $$PWD
+    INSTALLS += endup
 }
 
 DESTDIR = $$LIBS_INSTALL_DIR
@@ -45,5 +50,3 @@ RESOURCES += \
 OTHER_FILES += \
     features/vyborg.prf
 
-#DISTFILES += \
-#    src/files.pri

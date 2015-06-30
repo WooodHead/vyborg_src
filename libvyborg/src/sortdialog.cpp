@@ -1,7 +1,7 @@
 #include <QtWidgets>
 #include <QtSql>
 
-#include "vyborg_sortdialog.h"
+#include "sortdialog.h"
 
 
 VyborgSortDialog::VyborgSortDialog(QSortFilterProxyModel *proxy, QWidget *parent)

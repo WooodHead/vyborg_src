@@ -1,7 +1,7 @@
 #include <QtWidgets>
 
 #include <QDialogButtonBox>
-#include "vyborg_maindialogcontrolbuttonbox.h"
+#include "maindialogcontrolbuttonbox.h"
 
 
 VyborgMainDialogControlButtonBox::VyborgMainDialogControlButtonBox(QWidget *parent)

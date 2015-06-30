@@ -1,20 +1,14 @@
-#include "vyborg_yearmonth.h"
+#include "yearmonthday.h"
 
 const int PaintingScaleFactor = 60;
 
 
-VyborgYearMonth::VyborgYearMonth(QString year, QString month)
+VyborgYearMonthDay::VyborgYearMonthDay(QString year, QString month, QString day)
+    : year_(year), month_(month), day_(day)
 {
-    year_ = year;
-    month_ = month;
 }
 
-QSize VyborgYearMonth::sizeHint() const
-{
-    return PaintingScaleFactor * 1.1 * QSize(1, 1);
-}
-
-void VyborgYearMonth::paint(QPainter *painter, const QRect &rect)
+void VyborgYearMonthDay::paint(QPainter *painter, const QRect &rect)
 {
     painter->setRenderHint(QPainter::Antialiasing, true);
     painter->setBrush(QBrush(Qt::yellow));
@@ -38,8 +32,13 @@ void VyborgYearMonth::paint(QPainter *painter, const QRect &rect)
     painter->setFont(font);
 
     QRectF rectMonth(QPointF(2, 2), QSize(56, 26));
-    painter->drawText(rectMonth, Qt::AlignCenter, month_);
+    painter->drawText(rectMonth, Qt::AlignCenter, QString(day_ + " " + month_));
 
     QRectF rectYear(QPointF(2, 32), QSize(56, 26));
     painter->drawText(rectYear, Qt::AlignCenter, year_);
+}
+
+QSize VyborgYearMonthDay::sizeHint() const
+{
+    return PaintingScaleFactor * 1.1 * QSize(1, 1);
 }

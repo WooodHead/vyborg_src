@@ -1,5 +1,5 @@
 #include <QtWidgets>
-#include <vyborg_yearmonth.h>
+#include <vyborg/yearmonth.h>
 
 #include "tabledelegate.h"
 

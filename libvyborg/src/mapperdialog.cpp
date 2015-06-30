@@ -1,9 +1,9 @@
 #include <QtWidgets>
 #include <QtSql>
 
-#include "vyborg_mapperdialog.h"
-#include "vyborg_mappercontrolbuttonbox.h"
-#include "vyborg_navigationbuttonbox.h"
+#include "mapperdialog.h"
+#include "mappercontrolbuttonbox.h"
+#include "navigationbuttonbox.h"
 
 #include <QDebug>
 

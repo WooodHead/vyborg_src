@@ -1,12 +1,12 @@
 #include <QtWidgets>
 #include <QtSql>
 
-#include "vyborg_maindialog.h"
-#include "vyborg_maindialogcontrolbuttonbox.h"
-#include "vyborg_mapperdialog.h"
-#include "vyborg_filterdialog.h"
-#include "vyborg_sortdialog.h"
-#include "vyborg_aboutdialog.h"
+#include "maindialog.h"
+#include "maindialogcontrolbuttonbox.h"
+#include "mapperdialog.h"
+#include "filterdialog.h"
+#include "sortdialog.h"
+#include "aboutdialog.h"
 
 #include <QDebug>
 

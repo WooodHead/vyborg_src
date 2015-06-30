@@ -1,7 +1,7 @@
 #include <QtWidgets>
 
-#include "vyborg_yearmonthwidget.h"
-#include "vyborg_yearmonth.h"
+#include "yearmonthwidget.h"
+#include "yearmonth.h"
 
 VyborgYearMonthWidget::VyborgYearMonthWidget(QString year, QString month, QWidget *parent)
     : QWidget(parent)

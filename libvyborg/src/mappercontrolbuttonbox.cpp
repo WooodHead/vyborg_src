@@ -1,6 +1,6 @@
 #include <QtWidgets>
 
-#include "vyborg_mappercontrolbuttonbox.h"
+#include "mappercontrolbuttonbox.h"
 
 
 VyborgMapperControlButtonBox::VyborgMapperControlButtonBox(QWidget *parent)
