@@ -14,8 +14,9 @@ int main(int argc, char *argv[])
         return -1;
 
     MainDialog dialog;
-    dialog.setTitle(QObject::trUtf8("Количество обслуженных ВС филиалом \"МЦ АУВД\" ФГУП \"Госкорпорация по ОрВД\" в МЗ ЕС ОрВД"));
+    dialog.setTitle(QObject::trUtf8("Количество ВС обслуженных филиалом \"МЦ АУВД\" ФГУП \"Госкорпорация по ОрВД\" в МЗ ЕС ОрВД"));
     dialog.showMaximized();
+
     
     app.exec();
 

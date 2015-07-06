@@ -13,6 +13,21 @@ SOURCES += \
     $$PWD/yearmonthwidget.cpp
 
 HEADERS += \
+#    $$INCLUDEPATH/libvyborg.h\
+#    $$INCLUDEPATH/libvyborg_global.h \
+#    vyborg.h \
+#    aboutdialog.h \
+#    connection.h \
+#    filterdialog.h \
+#    maindialog.h \
+#    maindialogcontrolbuttonbox.h \
+#    mappercontrolbuttonbox.h \
+#    mapperdialog.h \
+#    navigationbuttonbox.h \
+#    sortdialog.h \
+#    yearmonth.h \
+#    yearmonthwidget.h \
+#    yearmonthday.h
     $$PWD/../include/libvyborg.h\
     $$PWD/../include/libvyborg_global.h \
     $$PWD/../include/vyborg.h \

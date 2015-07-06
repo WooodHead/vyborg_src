@@ -21,10 +21,10 @@ MainDialog::MainDialog(QWidget *parent)
 
 void MainDialog::setupModel()
 {
-    model_->setTable(PGSQL_TABLENAME);
-    bool ret = model_->select();
+    m_model->setTable(PGSQL_TABLENAME);
+    bool ret = m_model->select();
     if (ret == false) {
-        QString msgText("SELECT returned FALSE: " + model_->lastError().text());
+        QString msgText("SELECT returned FALSE: " + m_model->lastError().text());
         QMessageBox::warning(this,
                              "ERROR",
                              msgText,
@@ -36,7 +36,7 @@ void MainDialog::setupModel()
 
 void MainDialog::setupView()
 {
-    view_->setModel(model_);
+    view_->setModel(m_model);
 
     view_->setColumnHidden(statistics_note, true);
 
@@ -54,8 +54,8 @@ void MainDialog::setupView()
 
 void MainDialog::setupMapperDialog()
 {
-    MapperDialog *mapperDialog = new MapperDialog(model_);
-    mapperDialog_ = static_cast<VyborgMapperDialog *>(mapperDialog);
+    MapperDialog *mapperDialog = new MapperDialog(m_model);
+    m_mapperDialog = static_cast<VyborgMapperDialog *>(mapperDialog);
 }
 
 void MainDialog::setupFilterDialog()

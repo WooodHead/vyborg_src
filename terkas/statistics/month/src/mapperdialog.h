@@ -16,9 +16,9 @@ public:
     MapperDialog(QSqlRelationalTableModel *model, QWidget *parent = 0);
 
 protected:
-    virtual void createPrivateWidgets();
-    virtual void layoutPrivateWidgets();
-    virtual void updatePrivateWidgets();
+    virtual void createPrivateWidgets() Q_DECL_OVERRIDE;
+    virtual void layoutPrivateWidgets() Q_DECL_OVERRIDE;
+    virtual void updatePrivateWidgets() Q_DECL_OVERRIDE;
 
 private:
     QDateEdit *dateEdit;

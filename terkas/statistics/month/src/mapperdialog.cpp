@@ -28,14 +28,15 @@ void MapperDialog::createPrivateWidgets()
     noteEdit            = new QTextEdit;
 
 
-    mapper_->addMapping(dateEdit,            statistics_date);
-    mapper_->addMapping(innerFlightsEdit,    statistics_internal);
-    mapper_->addMapping(foreignFlightsEdit,  statistics_external);
-    mapper_->addMapping(transitFlightsEdit,  statistics_transit);
-    mapper_->addMapping(charterFlightsEdit,  statistics_charter);
-    mapper_->addMapping(maxInDayFlightsEdit, statistics_maxday);
-    mapper_->addMapping(foreignACEdit,       statistics_foreigner);
-    mapper_->addMapping(noteEdit,            statistics_note);
+    QDataWidgetMapper* m_mapper = mapper();
+    m_mapper->addMapping(dateEdit,            statistics_date);
+    m_mapper->addMapping(innerFlightsEdit,    statistics_internal);
+    m_mapper->addMapping(foreignFlightsEdit,  statistics_external);
+    m_mapper->addMapping(transitFlightsEdit,  statistics_transit);
+    m_mapper->addMapping(charterFlightsEdit,  statistics_charter);
+    m_mapper->addMapping(maxInDayFlightsEdit, statistics_maxday);
+    m_mapper->addMapping(foreignACEdit,       statistics_foreigner);
+    m_mapper->addMapping(noteEdit,            statistics_note);
 }
 
 void MapperDialog::layoutPrivateWidgets()
@@ -75,12 +76,13 @@ void MapperDialog::layoutPrivateWidgets()
     gridLayout->addWidget(foreignACLabel,       6, 0, 1, 1);    gridLayout->addWidget(foreignACEdit,       6, 1, 1, 1);
     gridLayout->addWidget(noteLabel,            7, 0, 1, 1);    gridLayout->addWidget(noteEdit,            7, 1, 2, 1);
 
-    privateWidgetsLayout->addLayout(gridLayout);
+    QVBoxLayout *m_privateWidgetsLayout = privateWidgetsLayout();
+    m_privateWidgetsLayout->addLayout(gridLayout);
 }
 
 void MapperDialog::updatePrivateWidgets()
 {
-    if (dirty_ == true) {
+    if (isDirty()) {
         dateEdit->setReadOnly(false);
         innerFlightsEdit->setReadOnly(false);
         foreignFlightsEdit->setReadOnly(false);

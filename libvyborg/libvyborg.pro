@@ -4,7 +4,7 @@ CONFIG += install
 TARGET = vyborg
 TEMPLATE = lib
 
-VERSION = 1.0
+VERSION = 1.1
 
 OBJECTS_DIR = tmp
 MOC_DIR = tmp

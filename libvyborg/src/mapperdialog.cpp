@@ -9,53 +9,66 @@
 
 VyborgMapperDialog::VyborgMapperDialog(QSqlRelationalTableModel *model, QWidget *parent)
     : QDialog(parent),
-      dirty_(false)
+      m_dirty(false)
 {
     m_model = model;
 
-    mapper_ = new QDataWidgetMapper(this);
-    mapper_->setModel(m_model);
-    mapper_->setSubmitPolicy(QDataWidgetMapper::ManualSubmit);
+    m_mapper = new QDataWidgetMapper(this);
+    m_mapper->setModel(m_model);
+    m_mapper->setSubmitPolicy(QDataWidgetMapper::ManualSubmit);
 
 
-    controlButtonBox = new VyborgMapperControlButtonBox;
-    controlButtonBox->setOrientation(Qt::Vertical);
+    m_controlButtonBox = new VyborgMapperControlButtonBox;
+    m_controlButtonBox->setOrientation(Qt::Vertical);
 
-    navButtonBox = new VyborgNavigationButtonBox;
+    m_navButtonBox = new VyborgNavigationButtonBox;
 
-    privateWidgetsLayout = new QVBoxLayout;
+    m_privateWidgetsLayout = new QVBoxLayout;
 
     QVBoxLayout *vLayout = new QVBoxLayout;
-    vLayout->addLayout(navButtonBox);
-    vLayout->addLayout(privateWidgetsLayout);
+    vLayout->addLayout(m_navButtonBox);
+    vLayout->addLayout(m_privateWidgetsLayout);
 
     QHBoxLayout *mainLayout = new QHBoxLayout;
     mainLayout->addLayout(vLayout);
-    mainLayout->addWidget(controlButtonBox);
+    mainLayout->addWidget(m_controlButtonBox);
 
     setLayout(mainLayout);
 
 
-    connect(navButtonBox, SIGNAL(goFirst()),
-            mapper_, SLOT(toFirst()));
-    connect(navButtonBox, SIGNAL(goPrevious()),
-            mapper_, SLOT(toPrevious()));
-    connect(navButtonBox, SIGNAL(goNext()),
-            mapper_, SLOT(toNext()));
-    connect(navButtonBox, SIGNAL(goLast()),
-            mapper_, SLOT(toLast()));
+    connect(m_navButtonBox, SIGNAL(goFirst()),
+            m_mapper, SLOT(toFirst()));
+    connect(m_navButtonBox, SIGNAL(goPrevious()),
+            m_mapper, SLOT(toPrevious()));
+    connect(m_navButtonBox, SIGNAL(goNext()),
+            m_mapper, SLOT(toNext()));
+    connect(m_navButtonBox, SIGNAL(goLast()),
+            m_mapper, SLOT(toLast()));
 
-    connect(controlButtonBox, SIGNAL(edit()),
+    connect(m_controlButtonBox, SIGNAL(add()),
+            SLOT(add()));
+    connect(m_controlButtonBox, SIGNAL(remove()),
+            SLOT(remove()));
+    connect(m_controlButtonBox, SIGNAL(edit()),
             SLOT(edit()));
-    connect(controlButtonBox, SIGNAL(submit()),
+    connect(m_controlButtonBox, SIGNAL(submit()),
             SLOT(submit()));
-    connect(controlButtonBox, SIGNAL(revert()),
+    connect(m_controlButtonBox, SIGNAL(revert()),
             SLOT(revert()));
-    connect(controlButtonBox, SIGNAL(close()),
+    connect(m_controlButtonBox, SIGNAL(close()),
             SLOT(close()));
 
+    m_navButtonBox->setCount(m_model->rowCount());
+}
 
-    navButtonBox->setCount(m_model->rowCount());
+void VyborgMapperDialog::add()
+{
+
+}
+
+void VyborgMapperDialog::remove()
+{
+
 }
 
 void VyborgMapperDialog::edit()
@@ -65,31 +78,31 @@ void VyborgMapperDialog::edit()
 
 void VyborgMapperDialog::submit()
 {
-    int curRow = mapper_->currentIndex();
+    int curRow = m_mapper->currentIndex();
 
-    mapper_->submit();
+    m_mapper->submit();
     m_model->submitAll();
 
-    mapper_->setCurrentIndex(curRow);
+    m_mapper->setCurrentIndex(curRow);
 
     setDirty(false);
 }
 
 void VyborgMapperDialog::revert()
 {
-    int curRow = mapper_->currentIndex();
+    int curRow = m_mapper->currentIndex();
 
-    mapper_->revert();
+    m_mapper->revert();
     m_model->revert();
 
-    mapper_->setCurrentIndex(qMin(curRow, m_model->rowCount()));
+    m_mapper->setCurrentIndex(qMin(curRow, m_model->rowCount()));
 
     setDirty(false);
 }
 
 void VyborgMapperDialog::close()
 {
-    if (isDirty()) {
+    if (dirty() == true) {
         done(QDialog::Rejected);
     } else {
         done(QDialog::Accepted);
@@ -99,28 +112,43 @@ void VyborgMapperDialog::close()
 
 void VyborgMapperDialog::setCurrentRow(int row)
 {
-    mapper_->setCurrentIndex(row);
-    navButtonBox->setCurrentIndex(row);
+    m_mapper->setCurrentIndex(row);
+    m_navButtonBox->setCurrentIndex(row);
 }
 
 void VyborgMapperDialog::setDirty(bool dirty)
 {
-    if (dirty != dirty_) {
-        dirty_ = dirty;
+    if (dirty != m_dirty) {
+        m_dirty = dirty;
     }
 
     updatePrivateWidgets();
 
-    if (dirty_) {
-        controlButtonBox->setDirty(true);
-        navButtonBox->setDirty(true);
+    if (m_dirty) {
+        m_controlButtonBox->setDirty(true);
+        m_navButtonBox->setDirty(true);
     } else {
-        controlButtonBox->setDirty(false);
-        navButtonBox->setDirty(false);
+        m_controlButtonBox->setDirty(false);
+        m_navButtonBox->setDirty(false);
     }
 }
 
-bool VyborgMapperDialog::isDirty() const
+bool VyborgMapperDialog::dirty() const
 {
-    return dirty_;
+    return m_dirty;
+}
+
+bool VyborgMapperDialog::isDirty()
+{
+    return dirty();
+}
+
+QDataWidgetMapper* VyborgMapperDialog::mapper()
+{
+    return m_mapper;
+}
+
+QVBoxLayout* VyborgMapperDialog::privateWidgetsLayout()
+{
+    return m_privateWidgetsLayout;
 }

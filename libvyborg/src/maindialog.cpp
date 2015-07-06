@@ -13,8 +13,8 @@
 VyborgMainDialog::VyborgMainDialog(QWidget *parent)
     : QDialog(parent)
 {
-    model_ = new QSqlRelationalTableModel(this);
-    model_->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    m_model = new QSqlRelationalTableModel(this);
+    m_model->setEditStrategy(QSqlTableModel::OnManualSubmit);
 
     view_ = new QTableView(this);
     view_->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -73,33 +73,36 @@ void VyborgMainDialog::setTitle(const QString &title)
 void VyborgMainDialog::add()
 {
     int modelRow = 0;
-    if (model_->insertRow(modelRow) == false) {
+    int val = m_model->insertRow(modelRow);
+    if (val == false) {
         QMessageBox::warning(this,
                              trUtf8("Insert New Row"),
                              trUtf8("The database reported an error: %1")
-                             .arg(model_->lastError().text()));
+                             .arg(m_model->lastError().text()));
         return;
     } else {
+
+
+    QModelIndex modelIndex = m_model->index(modelRow, 0);
+
+    qDebug() << "START";
+    m_mapperDialog->setDirty(true);
+    showMapperDialog();
+    qDebug() << "END";
+
+    view_->selectRow(modelIndex.row());
         view_->update();
     }
 
-
-    QModelIndex modelIndex = model_->index(modelRow, 0);
-    view_->selectRow(modelIndex.row());
-
-    mapperDialog_->setDirty(true);
-    showMapperDialog();
-
-
-//    model_->database().transaction();
-//    if (model_->submitAll()) {
-//        model_->database().commit();
+//    m_model->database().transaction();
+//    if (m_model->submitAll()) {
+//        m_model->database().commit();
 //    } else {
-//        model_->database().rollback();
+//        m_model->database().rollback();
 //        QMessageBox::warning(this,
 //                             trUtf8("Commit Changes"),
 //                             trUtf8("The database reported an error: %1")
-//                             .arg(model_->lastError().text()));
+//                             .arg(m_model->lastError().text()));
 //        return;
 //    }
 }
@@ -115,10 +118,10 @@ void VyborgMainDialog::remove()
     int viewRow = viewIndex.row();    // row for view
 
 
-    model_->removeRow(modelRow);
-    model_->submitAll();
+    m_model->removeRow(modelRow);
+    m_model->submitAll();
 
-    view_->selectRow(qMin(viewRow, model_->rowCount()));
+    view_->selectRow(qMin(viewRow, m_model->rowCount()));
 }
 
 void VyborgMainDialog::showMapperDialog()
@@ -127,36 +130,36 @@ void VyborgMainDialog::showMapperDialog()
     int row = indx.row();
 
 
-//    mapperDialog_->setCurrentRow(row);
-//    mapperDialog_->exec();
+//    m_mapperDialog->setCurrentRow(row);
+//    m_mapperDialog->exec();
 
-//    model_->submitAll();
+//    m_model->submitAll();
 
 
 
-    mapperDialog_->setCurrentRow(row);
-    int res = mapperDialog_->exec();
+    m_mapperDialog->setCurrentRow(row);
+    int res = m_mapperDialog->exec();
     if (res == QDialog::Rejected) {
         return;
     }
 
 
-    model_->database().transaction();
-    if (model_->submitAll()) {
-        model_->database().commit();
+    m_model->database().transaction();
+    if (m_model->submitAll()) {
+        m_model->database().commit();
     } else {
-        model_->database().rollback();
+        m_model->database().rollback();
         QMessageBox::warning(this,
                              trUtf8("Commit Changes"),
                              trUtf8("The database reported an error: %1")
-                             .arg(model_->lastError().text()));
+                             .arg(m_model->lastError().text()));
         return;
     }
 
 
     view_->update();
     view_->updateGeometry();
-    view_->selectRow(qMin(row, model_->rowCount()));
+    view_->selectRow(qMin(row, m_model->rowCount()));
 }
 
 void VyborgMainDialog::showFilterDialog()

@@ -2,34 +2,46 @@
 
 #include "mappercontrolbuttonbox.h"
 
-
 VyborgMapperControlButtonBox::VyborgMapperControlButtonBox(QWidget *parent)
     : QDialogButtonBox(parent),
-      dirty_(false)
+      m_dirty(false)
 {
-    editButton   = new QPushButton(trUtf8("Edit"));
-    submitButton = new QPushButton(trUtf8("Submit"));
-    revertButton = new QPushButton(trUtf8("Revert"));
-    closeButton  = new QPushButton(trUtf8("Close"));
+    m_addButton    = new QPushButton(trUtf8("Add"));
+    m_removeButton = new QPushButton(trUtf8("Remove"));
+    m_editButton   = new QPushButton(trUtf8("Edit"));
+    m_submitButton = new QPushButton(trUtf8("Submit"));
+    m_revertButton = new QPushButton(trUtf8("Revert"));
+    m_closeButton  = new QPushButton(trUtf8("Close"));
 
+    addButton(m_addButton,    QDialogButtonBox::ActionRole);
+    addButton(m_removeButton, QDialogButtonBox::ActionRole);
+    addButton(m_editButton,   QDialogButtonBox::ActionRole);
+    addButton(m_submitButton, QDialogButtonBox::ActionRole);
+    addButton(m_revertButton, QDialogButtonBox::ActionRole);
+    addButton(m_closeButton,  QDialogButtonBox::ActionRole);
 
-    addButton(editButton,   QDialogButtonBox::ActionRole);
-    addButton(submitButton, QDialogButtonBox::ActionRole);
-    addButton(revertButton, QDialogButtonBox::ActionRole);
-    addButton(closeButton,  QDialogButtonBox::ActionRole);
-
-
-    connect(editButton, SIGNAL(clicked()),
+    connect(m_editButton, SIGNAL(clicked()),
             this, SLOT(on_editButtonClicked()));
-    connect(submitButton, SIGNAL(clicked()),
+    connect(m_submitButton, SIGNAL(clicked()),
             this, SLOT(on_submitButtonClicked()));
-    connect(revertButton, SIGNAL(clicked()),
+    connect(m_revertButton, SIGNAL(clicked()),
             this, SLOT(on_revertButtonClicked()));
-    connect(closeButton, SIGNAL(clicked()),
+    connect(m_closeButton, SIGNAL(clicked()),
             this, SLOT(on_closeButtonClicked()));
 
+    setDirty(m_dirty);
+}
 
-    setDirty(dirty_);
+void VyborgMapperControlButtonBox::on_addButtonClicked()
+{
+    setDirty(true);
+    emit add();
+}
+
+void VyborgMapperControlButtonBox::on_removeButtonClicked()
+{
+    setDirty(true);
+    emit remove();
 }
 
 void VyborgMapperControlButtonBox::on_editButtonClicked()
@@ -57,17 +69,21 @@ void VyborgMapperControlButtonBox::on_closeButtonClicked()
 
 void VyborgMapperControlButtonBox::setDirty(bool dirty)
 {
-    dirty_ = dirty;
+    m_dirty = dirty;
 
-    if (dirty_) {
-        editButton->setEnabled(false);
-        submitButton->setEnabled(true);
-        revertButton->setEnabled(true);
-        closeButton->setEnabled(true);
+    if (m_dirty) {
+        m_addButton->setEnabled(false);
+        m_removeButton->setEnabled(false);
+        m_editButton->setEnabled(false);
+        m_submitButton->setEnabled(true);
+        m_revertButton->setEnabled(true);
+        m_closeButton->setEnabled(true);
     } else {
-        editButton->setEnabled(true);
-        submitButton->setEnabled(false);
-        revertButton->setEnabled(false);
-        closeButton->setEnabled(true);
+        m_addButton->setEnabled(true);
+        m_removeButton->setEnabled(true);
+        m_editButton->setEnabled(true);
+        m_submitButton->setEnabled(false);
+        m_revertButton->setEnabled(false);
+        m_closeButton->setEnabled(true);
     }
 }
