@@ -76,8 +76,8 @@ void MapperDialog::layoutPrivateWidgets()
     gridLayout->addWidget(foreignACLabel,       6, 0, 1, 1);    gridLayout->addWidget(foreignACEdit,       6, 1, 1, 1);
     gridLayout->addWidget(noteLabel,            7, 0, 1, 1);    gridLayout->addWidget(noteEdit,            7, 1, 2, 1);
 
-    QVBoxLayout *m_privateWidgetsLayout = privateWidgetsLayout();
-    m_privateWidgetsLayout->addLayout(gridLayout);
+    QVBoxLayout *privateWidgetsLayout = layout();
+    privateWidgetsLayout->addLayout(gridLayout);
 }
 
 void MapperDialog::updatePrivateWidgets()

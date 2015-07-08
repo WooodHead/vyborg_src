@@ -20,6 +20,10 @@ VyborgMapperControlButtonBox::VyborgMapperControlButtonBox(QWidget *parent)
     addButton(m_revertButton, QDialogButtonBox::ActionRole);
     addButton(m_closeButton,  QDialogButtonBox::ActionRole);
 
+    connect(m_addButton, SIGNAL(clicked(bool)),
+            this, SLOT(on_addButtonClicked()));
+    connect(m_removeButton, SIGNAL(clicked(bool)),
+            this, SLOT(on_removeButtonClicked()));
     connect(m_editButton, SIGNAL(clicked()),
             this, SLOT(on_editButtonClicked()));
     connect(m_submitButton, SIGNAL(clicked()),

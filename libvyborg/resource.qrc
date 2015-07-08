@@ -1,9 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>images/Button FRW.png</file>
-        <file>images/Button First.png</file>
-        <file>images/Button FFW.png</file>
-        <file>images/Button End.png</file>
         <file alias="Next">images/icon-forward.png</file>
         <file alias="First">images/icon-fast-forward.png</file>
         <file alias="Last">images/icon-fast-backward.png</file>

@@ -50,6 +50,11 @@ void VyborgNavigationButtonBox::setCurrentIndex(const int currentIndex)
     update();
 }
 
+int VyborgNavigationButtonBox::currentIndex() const
+{
+    return currentIndex_;
+}
+
 void VyborgNavigationButtonBox::setCount(const int count)
 {
     count_ = count;

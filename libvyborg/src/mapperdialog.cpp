@@ -63,7 +63,16 @@ VyborgMapperDialog::VyborgMapperDialog(QSqlRelationalTableModel *model, QWidget 
 
 void VyborgMapperDialog::add()
 {
+    qDebug() << "Adding row";
+    int curRow = m_navButtonBox->currentIndex();
+    qDebug() << "VyborgMapperDiaog::currentIndex() = " << curRow;
+    m_model->insertRow(curRow);
 
+    m_mapper->setCurrentIndex(curRow);
+    m_navButtonBox->setCount(m_model->rowCount());
+    m_navButtonBox->setCurrentIndex(curRow);
+
+    edit();
 }
 
 void VyborgMapperDialog::remove()
@@ -109,7 +118,6 @@ void VyborgMapperDialog::close()
     }
 }
 
-
 void VyborgMapperDialog::setCurrentRow(int row)
 {
     m_mapper->setCurrentIndex(row);
@@ -138,7 +146,7 @@ bool VyborgMapperDialog::dirty() const
     return m_dirty;
 }
 
-bool VyborgMapperDialog::isDirty()
+bool VyborgMapperDialog::isDirty() const
 {
     return dirty();
 }
@@ -148,7 +156,7 @@ QDataWidgetMapper* VyborgMapperDialog::mapper()
     return m_mapper;
 }
 
-QVBoxLayout* VyborgMapperDialog::privateWidgetsLayout()
+QVBoxLayout* VyborgMapperDialog::layout()
 {
     return m_privateWidgetsLayout;
 }
