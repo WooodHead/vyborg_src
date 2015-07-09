@@ -160,7 +160,15 @@ void VyborgMapperDialog::revert()
 
 void VyborgMapperDialog::close()
 {
-    if (dirty() == true) {
+    if (isDirty()) {
+        int ret = QMessageBox::warning(this,
+                                 trUtf8("WARNING"),
+                                 trUtf8("Unsaved data exists!\nDo you want to save data?"),
+                                 QMessageBox::Save | QMessageBox::Discard);
+        if (ret == QMessageBox::Save)
+            submit();
+        else if (ret == QMessageBox::Discard)
+            revert();
         done(QDialog::Rejected);
     } else {
         done(QDialog::Accepted);

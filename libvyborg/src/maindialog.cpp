@@ -107,6 +107,8 @@ void VyborgMainDialog::add()
 //                             .arg(m_model->lastError().text()));
 //        return;
 //    }
+    showMapperDialog();
+    m_mapperDialog->add();
 }
 
 void VyborgMainDialog::remove()
@@ -140,10 +142,11 @@ void VyborgMainDialog::showMapperDialog()
 
 
     m_mapperDialog->setCurrentRow(curRow);
-    int res = m_mapperDialog->exec();
-    if (res == QDialog::Rejected) {
-        return;
-    }
+    m_mapperDialog->show();
+//    int res = m_mapperDialog->exec();
+//    if (res == QDialog::Rejected) {
+//        return;
+//    }
 
 
 //    m_model->database().transaction();

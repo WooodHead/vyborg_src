@@ -31,6 +31,8 @@ void MainDialog::setupModel()
                              QMessageBox::Close);
         qApp->quit();
     }
+
+    m_model->setHeaderData(statistics_date, Qt::Horizontal, trUtf8("Дата\n(Месяц, Год)"), Qt::DisplayRole);
 }
 
 
