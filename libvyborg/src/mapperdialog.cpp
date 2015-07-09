@@ -58,21 +58,61 @@ VyborgMapperDialog::VyborgMapperDialog(QSqlRelationalTableModel *model, QWidget 
     connect(m_controlButtonBox, SIGNAL(close()),
             SLOT(close()));
 
-    m_navButtonBox->setCount(m_model->rowCount());
+//    m_navButtonBox->setCount(m_model->rowCount());
+    updateOuterWidgets();
+}
+
+void VyborgMapperDialog::updateOuterWidgets()
+{
+    if (isDirty()) {
+        m_controlButtonBox->setDirty(true);
+        m_navButtonBox->setDirty(true);
+    } else {
+        m_controlButtonBox->setDirty(false);
+        m_navButtonBox->setDirty(false);
+    }
+
+//    int nRows = m_model->rowCount();
+//    int curRow = m_mapper->currentIndex();
+//    m_navButtonBox->setCount(nRows);
+//    m_navButtonBox->setCurrentIndex(curRow);
 }
 
 void VyborgMapperDialog::add()
 {
-    qDebug() << "Adding row";
-    int curRow = m_navButtonBox->currentIndex();
-    qDebug() << "VyborgMapperDiaog::currentIndex() = " << curRow;
+//    int curRow = m_navButtonBox->currentIndex();
+    int curRow = m_mapper->currentIndex();
     m_model->insertRow(curRow);
-
     m_mapper->setCurrentIndex(curRow);
-    m_navButtonBox->setCount(m_model->rowCount());
-    m_navButtonBox->setCurrentIndex(curRow);
 
     edit();
+
+//    m_mapper->setCurrentIndex(curRow);
+//    m_navButtonBox->setCount(m_model->rowCount());
+//    m_navButtonBox->setCurrentIndex(curRow);
+
+
+//    int modelRow = 0;
+//    int val = m_model->insertRow(modelRow);
+//    if (val == false) {
+//        QMessageBox::warning(this,
+//                             trUtf8("Insert New Row"),
+//                             trUtf8("The database reported an error: %1")
+//                             .arg(m_model->lastError().text()));
+//        return;
+//    } else {
+
+
+//    QModelIndex modelIndex = m_model->index(modelRow, 0);
+
+//    qDebug() << "START";
+//    m_mapperDialog->setDirty(true);
+//    showMapperDialog();
+//    qDebug() << "END";
+
+//    view_->selectRow(modelIndex.row());
+//        view_->update();
+
 }
 
 void VyborgMapperDialog::remove()
@@ -83,18 +123,24 @@ void VyborgMapperDialog::remove()
 void VyborgMapperDialog::edit()
 {
     setDirty(true);
+
+    updatePrivateWidgets();
+    updateOuterWidgets();
 }
 
 void VyborgMapperDialog::submit()
 {
-    int curRow = m_mapper->currentIndex();
+//    int curRow = m_mapper->currentIndex();
 
     m_mapper->submit();
     m_model->submitAll();
 
-    m_mapper->setCurrentIndex(curRow);
+//    m_mapper->setCurrentIndex(curRow);
 
     setDirty(false);
+
+    updatePrivateWidgets();
+    updateOuterWidgets();
 }
 
 void VyborgMapperDialog::revert()
@@ -107,6 +153,9 @@ void VyborgMapperDialog::revert()
     m_mapper->setCurrentIndex(qMin(curRow, m_model->rowCount()));
 
     setDirty(false);
+
+    updatePrivateWidgets();
+    updateOuterWidgets();
 }
 
 void VyborgMapperDialog::close()
@@ -121,7 +170,8 @@ void VyborgMapperDialog::close()
 void VyborgMapperDialog::setCurrentRow(int row)
 {
     m_mapper->setCurrentIndex(row);
-    m_navButtonBox->setCurrentIndex(row);
+//    m_navButtonBox->setCurrentIndex(row);
+    updateOuterWidgets();
 }
 
 void VyborgMapperDialog::setDirty(bool dirty)
@@ -130,15 +180,8 @@ void VyborgMapperDialog::setDirty(bool dirty)
         m_dirty = dirty;
     }
 
-    updatePrivateWidgets();
-
-    if (m_dirty) {
-        m_controlButtonBox->setDirty(true);
-        m_navButtonBox->setDirty(true);
-    } else {
-        m_controlButtonBox->setDirty(false);
-        m_navButtonBox->setDirty(false);
-    }
+//    updateOuterWidgets();
+//    updatePrivateWidgets();
 }
 
 bool VyborgMapperDialog::dirty() const

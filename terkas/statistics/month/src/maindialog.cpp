@@ -36,19 +36,19 @@ void MainDialog::setupModel()
 
 void MainDialog::setupView()
 {
-    view_->setModel(m_model);
+    m_view->setModel(m_model);
 
-    view_->setColumnHidden(statistics_note, true);
+    m_view->setColumnHidden(statistics_note, true);
 
-    view_->setItemDelegateForColumn(statistics_date, new DateDelegate(view_));
+    m_view->setItemDelegateForColumn(statistics_date, new DateDelegate(m_view));
 
-    view_->resizeRowsToContents();
-    view_->resizeColumnsToContents();
+    m_view->resizeRowsToContents();
+    m_view->resizeColumnsToContents();
 
-    view_->selectRow(0);
+    m_view->selectRow(0);
 
 
-    QHeaderView *header = view_->horizontalHeader();
+    QHeaderView *header = m_view->horizontalHeader();
     header->setSectionResizeMode(statistics_date, QHeaderView::Fixed);
 }
 

@@ -3,21 +3,21 @@ QT += widgets sql
 CONFIG += install
 TARGET = vyborg
 TEMPLATE = lib
-
-VERSION = 1.1
+VERSION = 1.2
+DEFINES += LIBVYBORG_LIBRARY
 
 OBJECTS_DIR = tmp
 MOC_DIR = tmp
 
-DEFINES += LIBVYBORG_LIBRARY
-
-SUBDIRS += src include test
+INCLUDEPATH += include
+SUBDIRS += src \
+    include \
+    test
 test.depends = $$SUBDIRS
 
-DISTFILES += \
-    src/files.pri
+#DISTFILES += \
+#    src/files.pri
 
-INCLUDEPATH += include
 include(src/files.pri)
 
 
@@ -50,4 +50,3 @@ RESOURCES += \
 
 OTHER_FILES += \
     features/vyborg.prf
-
