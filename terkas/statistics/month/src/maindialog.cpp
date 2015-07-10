@@ -62,7 +62,9 @@ void MainDialog::setupMapperDialog()
 
 void MainDialog::setupFilterDialog()
 {
-    filterDialog_->addColumn(trUtf8("Дата"), statistics_date);
+//    filterDialog_->addColumn(trUtf8("Дата"), statistics_date);
+    filterDialog_->addColumn(trUtf8("Дата"), trUtf8("date"));
+    filterDialog_->addColumn(trUtf8("Внутренние полеты"), trUtf8("internal"));
 }
 
 void MainDialog::setupSortDialog()

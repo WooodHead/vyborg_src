@@ -71,6 +71,11 @@ void VyborgFilterDialog::addColumn(const QString &columnText, const int columnDa
     columnComboBox->addItem(columnText, columnData);
 }
 
+void VyborgFilterDialog::addColumn(const QString &columnText, const QString &columnData)
+{
+    columnComboBox->addItem(columnText, columnData);
+}
+
 void VyborgFilterDialog::filterRegExpChanged()
 {
     patternLineEdit->text().isEmpty() ? filterButton->setEnabled(false) :
@@ -80,17 +85,30 @@ void VyborgFilterDialog::filterRegExpChanged()
 void VyborgFilterDialog::filter()
 {
 //    int col = columnComboBox->currentData().toInt();
-//    QRegExp::PatternSyntax syntax = QRegExp::PatternSyntax(syntaxComboBox->itemData(syntaxComboBox->currentIndex()).toInt());
+//    QRegExp::PatternSyntax syntax =
+//            QRegExp::PatternSyntax(syntaxComboBox->itemData(syntaxComboBox->currentIndex()).toInt());
 //    Qt::CaseSensitivity cs = caseSensitivityCheckBox->isChecked() ? Qt::CaseSensitive :
 //                                                                    Qt::CaseInsensitive;
 //    QString text = patternLineEdit->text();
 //    QRegExp rx(text, cs, syntax);
 
-    m_model->setFilter("internal=21559");
-    m_model->select();
+
+    QString columnData = columnComboBox->currentData().toString();
+    QString text = patternLineEdit->text();
+    QString filterExp = columnData + "=\'" + text + "\'";
+    m_model->setFilter(filterExp);
+
+//    qDebug() << "FILTER: " << filterStr;
+
+
+
+//    m_model->setFilter("internal=21559");
+//    m_model->select();
 
 //    proxy_->setFilterKeyColumn(col);
 //    proxy_->setFilterRegExp(rx);
+
+    done(QDialog::Accepted);
 }
 
 void VyborgFilterDialog::close()

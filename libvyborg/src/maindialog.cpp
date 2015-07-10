@@ -169,10 +169,9 @@ void VyborgMainDialog::showMapperDialog()
 
 void VyborgMainDialog::showFilterDialog()
 {
-    filterDialog_->exec();
-
-    m_model->setFilter("internal=21559");
-    m_model->select();
+    int ret = filterDialog_->exec();
+    if (ret == QDialog::Accepted)
+        m_model->select();
 }
 
 void VyborgMainDialog::showSortDialog()
@@ -184,6 +183,8 @@ void VyborgMainDialog::update()
 {
 //    sortFilterProxy_->invalidate();
 //    sortFilterProxy_->setFilterWildcard("*");
+    m_model->setFilter("");
+    m_model->select();
 }
 
 void VyborgMainDialog::about()
