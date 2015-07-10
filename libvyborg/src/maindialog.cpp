@@ -176,14 +176,19 @@ void VyborgMainDialog::showFilterDialog()
 
 void VyborgMainDialog::showSortDialog()
 {
-    sortDialog_->exec();
+    int ret = sortDialog_->exec();
+    if (ret == QDialog::Accepted)
+        m_model->select();
 }
 
 void VyborgMainDialog::update()
 {
 //    sortFilterProxy_->invalidate();
 //    sortFilterProxy_->setFilterWildcard("*");
+
     m_model->setFilter("");
+    m_model->setSort(0, Qt::AscendingOrder);
+//    m_model->clear();
     m_model->select();
 }
 

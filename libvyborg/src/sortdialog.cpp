@@ -81,9 +81,9 @@ void VyborgSortDialog::sort()
 //    m_model->setSort(1, Qt::AscendingOrder);
 
 //    m_model->select();
-    qDebug() << "SSSTART";
-    m_model->sort(1, Qt::AscendingOrder);
-    qDebug() << "FFFINISH";
+
+    m_model->setSort(col, order);
+    done(QDialog::Accepted);
 }
 
 void VyborgSortDialog::close()

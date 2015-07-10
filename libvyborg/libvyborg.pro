@@ -3,7 +3,7 @@ QT += widgets sql
 CONFIG += install
 TARGET = vyborg
 TEMPLATE = lib
-VERSION = 1.2
+VERSION = 1.3
 DEFINES += LIBVYBORG_LIBRARY
 
 OBJECTS_DIR = tmp
