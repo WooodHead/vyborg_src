@@ -4,11 +4,12 @@
 #include "filterdialog.h"
 
 //VyborgFilterDialog::VyborgFilterDialog(QSortFilterProxyModel *proxy, QWidget *parent)
-VyborgFilterDialog::VyborgFilterDialog(QSqlTableModel *model, QWidget *parent)
-    : QDialog(parent),
-      m_model(model)
+VyborgFilterDialog::VyborgFilterDialog(QSqlRelationalTableModel *model, QWidget *parent)
+    : QDialog(parent)
+//      m_model(model)
 {
 //    proxy_ = proxy;
+    m_model = model;
 
     caseSensitivityCheckBox = new QCheckBox(trUtf8("Case sensitive filtering"));
 
@@ -78,12 +79,15 @@ void VyborgFilterDialog::filterRegExpChanged()
 
 void VyborgFilterDialog::filter()
 {
-    int col = columnComboBox->currentData().toInt();
-    QRegExp::PatternSyntax syntax = QRegExp::PatternSyntax(syntaxComboBox->itemData(syntaxComboBox->currentIndex()).toInt());
-    Qt::CaseSensitivity cs = caseSensitivityCheckBox->isChecked() ? Qt::CaseSensitive :
-                                                                    Qt::CaseInsensitive;
-    QString text = patternLineEdit->text();
-    QRegExp rx(text, cs, syntax);
+//    int col = columnComboBox->currentData().toInt();
+//    QRegExp::PatternSyntax syntax = QRegExp::PatternSyntax(syntaxComboBox->itemData(syntaxComboBox->currentIndex()).toInt());
+//    Qt::CaseSensitivity cs = caseSensitivityCheckBox->isChecked() ? Qt::CaseSensitive :
+//                                                                    Qt::CaseInsensitive;
+//    QString text = patternLineEdit->text();
+//    QRegExp rx(text, cs, syntax);
+
+    m_model->setFilter("internal=21559");
+    m_model->select();
 
 //    proxy_->setFilterKeyColumn(col);
 //    proxy_->setFilterRegExp(rx);

@@ -29,10 +29,10 @@ VyborgMainDialog::VyborgMainDialog(QWidget *parent)
 //    m_mapperDialog = new VyborgMapperDialog(m_model, this);
 //    m_mapperDialog->setWindowTitle(trUtf8("Single Item Dialog"));
 
-    filterDialog_ = new VyborgFilterDialog;
+    filterDialog_ = new VyborgFilterDialog(m_model);
     filterDialog_->setWindowTitle(trUtf8("Filter Dialog"));
 
-    sortDialog_ = new VyborgSortDialog;
+    sortDialog_ = new VyborgSortDialog(m_model);
     sortDialog_->setWindowTitle(trUtf8("Sort Dialog"));
 
     aboutDialog_ = new VyborgAboutDialog;
@@ -170,6 +170,9 @@ void VyborgMainDialog::showMapperDialog()
 void VyborgMainDialog::showFilterDialog()
 {
     filterDialog_->exec();
+
+    m_model->setFilter("internal=21559");
+    m_model->select();
 }
 
 void VyborgMainDialog::showSortDialog()
