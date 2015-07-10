@@ -32,7 +32,14 @@ void MainDialog::setupModel()
         qApp->quit();
     }
 
-    m_model->setHeaderData(statistics_date, Qt::Horizontal, trUtf8("Дата\n(Месяц, Год)"), Qt::DisplayRole);
+    m_model->setHeaderData(statistics_date,      Qt::Horizontal, trUtf8("Дата\n(Месяц, Год)"), Qt::DisplayRole);
+    m_model->setHeaderData(statistics_internal,  Qt::Horizontal, trUtf8("Внутренние\nрейсы"), Qt::DisplayRole);
+    m_model->setHeaderData(statistics_external,  Qt::Horizontal, trUtf8("Международные\nрейсы"), Qt::DisplayRole);
+    m_model->setHeaderData(statistics_transit,   Qt::Horizontal, trUtf8("Транзитные\nрейсы"), Qt::DisplayRole);
+    m_model->setHeaderData(statistics_charter,   Qt::Horizontal, trUtf8("Рейсы вне расписания\n(чартерные)"), Qt::DisplayRole);
+    m_model->setHeaderData(statistics_maxday,    Qt::Horizontal, trUtf8("Максимальная суточная\nинтенсивность"), Qt::DisplayRole);
+    m_model->setHeaderData(statistics_foreigner, Qt::Horizontal, trUtf8("Рейсы иностранных\nавиакомпаний"), Qt::DisplayRole);
+    m_model->setHeaderData(statistics_note,      Qt::Horizontal, trUtf8("Примечание"), Qt::DisplayRole);
 }
 
 
@@ -64,7 +71,7 @@ void MainDialog::setupFilterDialog()
 {
 //    filterDialog_->addColumn(trUtf8("Дата"), statistics_date);
     filterDialog_->addColumn(trUtf8("Дата"), trUtf8("date"));
-    filterDialog_->addColumn(trUtf8("Внутренние полеты"), trUtf8("internal"));
+    filterDialog_->addColumn(trUtf8("Внутренние рейсы"), trUtf8("internal"));
 }
 
 void MainDialog::setupSortDialog()
