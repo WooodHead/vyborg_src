@@ -4,6 +4,7 @@
 #define PGSQL
 #define PGSQL_DATABASE "terkas"
 #define PGSQL_TABLENAME "statistics.vw_month"
+//#define PGSQL_TABLENAME "statistics.month"
 
 enum {
 //    statistics_id,

@@ -3,11 +3,12 @@
 
 #include "filterdialog.h"
 
-
-VyborgFilterDialog::VyborgFilterDialog(QSortFilterProxyModel *proxy, QWidget *parent)
-    : QDialog(parent)
+//VyborgFilterDialog::VyborgFilterDialog(QSortFilterProxyModel *proxy, QWidget *parent)
+VyborgFilterDialog::VyborgFilterDialog(QSqlTableModel *model, QWidget *parent)
+    : QDialog(parent),
+      m_model(model)
 {
-    proxy_ = proxy;
+//    proxy_ = proxy;
 
     caseSensitivityCheckBox = new QCheckBox(trUtf8("Case sensitive filtering"));
 
@@ -84,8 +85,8 @@ void VyborgFilterDialog::filter()
     QString text = patternLineEdit->text();
     QRegExp rx(text, cs, syntax);
 
-    proxy_->setFilterKeyColumn(col);
-    proxy_->setFilterRegExp(rx);
+//    proxy_->setFilterKeyColumn(col);
+//    proxy_->setFilterRegExp(rx);
 }
 
 void VyborgFilterDialog::close()

@@ -7,20 +7,20 @@ INCLUDEPATH += ..
 
 
 SOURCES += main.cpp\
-        dialog.cpp \
+    dialog.cpp \
     ../navigationbuttonbox.cpp \
     ../yearmonth.cpp \
     ../yearmonthwidget.cpp \
-    ../controlbuttonbox.cpp \
-    ../mappercontrolbuttonbox.cpp \
+    ../maindialogcontrolbuttonbox.cpp \
+    ../mapperdialogcontrolbuttonbox.cpp \
     ../mapperdialog.cpp
 
 HEADERS  += dialog.h \
     ../navigationbuttonbox.h \
     ../yearmonth.h \
     ../yearmonthwidget.h \
-    ../controlbuttonbox.h \
-    ../mappercontrolbuttonbox.h \
+    ../maindialogcontrolbuttonbox.h \
+    ../mapperdialogcontrolbuttonbox.h \
     ../mapperdialog.h
 
 RESOURCES += \
