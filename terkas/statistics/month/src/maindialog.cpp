@@ -32,14 +32,22 @@ void MainDialog::setupModel()
         qApp->quit();
     }
 
-    m_model->setHeaderData(statistics_date,      Qt::Horizontal, trUtf8("Дата\n(Месяц, Год)"), Qt::DisplayRole);
-    m_model->setHeaderData(statistics_internal,  Qt::Horizontal, trUtf8("Внутренние\nрейсы"), Qt::DisplayRole);
-    m_model->setHeaderData(statistics_external,  Qt::Horizontal, trUtf8("Международные\nрейсы"), Qt::DisplayRole);
-    m_model->setHeaderData(statistics_transit,   Qt::Horizontal, trUtf8("Транзитные\nрейсы"), Qt::DisplayRole);
-    m_model->setHeaderData(statistics_charter,   Qt::Horizontal, trUtf8("Рейсы вне расписания\n(чартерные)"), Qt::DisplayRole);
-    m_model->setHeaderData(statistics_maxday,    Qt::Horizontal, trUtf8("Максимальная суточная\nинтенсивность"), Qt::DisplayRole);
-    m_model->setHeaderData(statistics_foreigner, Qt::Horizontal, trUtf8("Рейсы иностранных\nавиакомпаний"), Qt::DisplayRole);
-    m_model->setHeaderData(statistics_note,      Qt::Horizontal, trUtf8("Примечание"), Qt::DisplayRole);
+    m_model->setHeaderData(statistics_date,      Qt::Horizontal,
+                           trUtf8("Дата\n(Месяц, Год)"), Qt::DisplayRole);
+    m_model->setHeaderData(statistics_internal,  Qt::Horizontal,
+                           trUtf8("Внутренние\nрейсы"), Qt::DisplayRole);
+    m_model->setHeaderData(statistics_external,  Qt::Horizontal,
+                           trUtf8("Международные\nрейсы"), Qt::DisplayRole);
+    m_model->setHeaderData(statistics_transit,   Qt::Horizontal,
+                           trUtf8("Транзитные\nрейсы"), Qt::DisplayRole);
+    m_model->setHeaderData(statistics_charter,   Qt::Horizontal,
+                           trUtf8("Рейсы вне расписания\n(чартерные)"), Qt::DisplayRole);
+    m_model->setHeaderData(statistics_maxday,    Qt::Horizontal,
+                           trUtf8("Максимальная суточная\nинтенсивность ВС\nсекторов РДЦ"), Qt::DisplayRole);
+    m_model->setHeaderData(statistics_foreigner, Qt::Horizontal,
+                           trUtf8("Рейсы иностранных\nавиакомпаний"), Qt::DisplayRole);
+    m_model->setHeaderData(statistics_note,      Qt::Horizontal,
+                           trUtf8("Примечание"), Qt::DisplayRole);
 }
 
 
@@ -69,18 +77,22 @@ void MainDialog::setupMapperDialog()
 
 void MainDialog::setupFilterDialog()
 {
-//    filterDialog_->addColumn(trUtf8("Дата"), statistics_date);
     filterDialog_->addColumn(trUtf8("Дата"), trUtf8("date"));
     filterDialog_->addColumn(trUtf8("Внутренние рейсы"), trUtf8("internal"));
+    filterDialog_->addColumn(trUtf8("Международные рейсы"), trUtf8("external"));
+    filterDialog_->addColumn(trUtf8("Транзитные рейсы"), trUtf8("transit"));
+    filterDialog_->addColumn(trUtf8("Рейсы вне расписания (чартерные) рейсы"), trUtf8("charter"));
+    filterDialog_->addColumn(trUtf8("Максимальная суточная интенсивность ВС секторов РДЦ рейсы"), trUtf8("maxday"));
+    filterDialog_->addColumn(trUtf8("Рейсы иностранных авиакомпаний"), trUtf8("foreigner"));
 }
 
 void MainDialog::setupSortDialog()
 {
     sortDialog_->addColumn(trUtf8("Дата"), statistics_date);
-    sortDialog_->addColumn(trUtf8("Внутренние полеты"), statistics_internal);
-    sortDialog_->addColumn(trUtf8("Международные полеты"), statistics_external);
-    sortDialog_->addColumn(trUtf8("Транзитные полеты"), statistics_transit);
-    sortDialog_->addColumn(trUtf8("Чартерные рейсы"), statistics_charter);
-    sortDialog_->addColumn(trUtf8("Максимальное количество рейсов за сутки"), statistics_maxday);
-    sortDialog_->addColumn(trUtf8("Международные перевозчики"), statistics_foreigner);
+    sortDialog_->addColumn(trUtf8("Внутренние рейсы"), statistics_internal);
+    sortDialog_->addColumn(trUtf8("Международные рейсы"), statistics_external);
+    sortDialog_->addColumn(trUtf8("Транзитные рейсы"), statistics_transit);
+    sortDialog_->addColumn(trUtf8("Рейсы вне расписания (чартерные) рейсы"), statistics_charter);
+    sortDialog_->addColumn(trUtf8("Максимальная суточная интенсивность ВС секторов РДЦ рейсы"), statistics_maxday);
+    sortDialog_->addColumn(trUtf8("Рейсы иностранных авиакомпаний"), statistics_foreigner);
 }

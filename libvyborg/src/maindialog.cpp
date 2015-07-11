@@ -122,10 +122,19 @@ void VyborgMainDialog::remove()
     int viewRow = viewIndex.row();    // row for view
 
 
-    m_model->removeRow(modelRow);
-    m_model->submitAll();
 
-    m_view->selectRow(qMin(viewRow, m_model->rowCount()));
+
+    QMessageBox msgBox;
+    msgBox.setText(trUtf8("WARNING"));
+    msgBox.setInformativeText(trUtf8("Are you sure you want to delete the row?"));
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    msgBox.setDefaultButton(QMessageBox::No);
+    int ret = msgBox.exec();
+    if (ret == QMessageBox::Yes) {
+        m_model->removeRow(modelRow);
+        m_model->submitAll();
+        m_view->selectRow(qMin(viewRow, m_model->rowCount()));
+    }
 }
 
 void VyborgMainDialog::showMapperDialog()

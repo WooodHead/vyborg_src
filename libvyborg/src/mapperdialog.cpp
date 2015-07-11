@@ -72,10 +72,10 @@ void VyborgMapperDialog::updateOuterWidgets()
         m_navButtonBox->setDirty(false);
     }
 
-//    int nRows = m_model->rowCount();
-//    int curRow = m_mapper->currentIndex();
-//    m_navButtonBox->setCount(nRows);
-//    m_navButtonBox->setCurrentIndex(curRow);
+    int nRows = m_model->rowCount();
+    int curRow = m_mapper->currentIndex();
+    m_navButtonBox->setCount(nRows);
+    m_navButtonBox->setCurrentIndex(curRow);
 }
 
 void VyborgMapperDialog::add()
@@ -130,12 +130,12 @@ void VyborgMapperDialog::edit()
 
 void VyborgMapperDialog::submit()
 {
-//    int curRow = m_mapper->currentIndex();
+    int curRow = m_mapper->currentIndex();
 
     m_mapper->submit();
     m_model->submitAll();
 
-//    m_mapper->setCurrentIndex(curRow);
+    m_mapper->setCurrentIndex(curRow);
 
     setDirty(false);
 
@@ -178,7 +178,8 @@ void VyborgMapperDialog::close()
 void VyborgMapperDialog::setCurrentRow(int row)
 {
     m_mapper->setCurrentIndex(row);
-//    m_navButtonBox->setCurrentIndex(row);
+    m_navButtonBox->setCurrentIndex(row);
+
     updateOuterWidgets();
 }
 
