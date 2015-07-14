@@ -5,7 +5,6 @@
 
 #include "maindialog.h"
 
-
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
@@ -22,12 +21,10 @@ int main(int argc, char *argv[])
                 << QObject::trUtf8("Максимальная суточная интенсивность ВС секторов РДЦ рейсы")
                 << QObject::trUtf8("Рейсы иностранных авиакомпаний");
 
-
     MainDialog dialog;
     dialog.setTitle(QObject::trUtf8("Количество ВС обслуженных филиалом \"МЦ АУВД\" ФГУП \"Госкорпорация по ОрВД\" в МЗ ЕС ОрВД"));
     dialog.showMaximized();
 
-    
     app.exec();
 
     if (!closeConnection())
