@@ -1,12 +1,15 @@
-QT      += core gui widgets
+QT      += core gui widgets sql
 TARGET   = monthsector
 TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        dialog.cpp
+        dialog.cpp \
+    mapperdialog.cpp
 
-HEADERS  += dialog.h
+HEADERS  += dialog.h \
+    declarations.h \
+    mapperdialog.h
 
 MOC_DIR = tmp
 OBJECTS_DIR = tmp
