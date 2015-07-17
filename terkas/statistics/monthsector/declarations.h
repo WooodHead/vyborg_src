@@ -12,4 +12,3 @@ enum {
 };
 
 #endif // DECLARATIONS_H
-

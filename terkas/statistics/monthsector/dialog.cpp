@@ -4,6 +4,7 @@
 #include "declarations.h"
 #include "dialog.h"
 #include "mapperdialog.h"
+#include "tabledelegate.h"
 
 Dialog::Dialog(QWidget *parent)
     : VyborgMainDialog(parent)
@@ -42,7 +43,7 @@ void Dialog::setupView()
 
 //    m_view->setColumnHidden(statistics_note, true);
 
-//    m_view->setItemDelegateForColumn(statistics_date, new DateDelegate(m_view));
+    m_view->setItemDelegateForColumn(monthsector_date, new TableDelegate(m_view));
 
     m_view->resizeRowsToContents();
     m_view->resizeColumnsToContents();
