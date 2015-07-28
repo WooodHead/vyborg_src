@@ -19,7 +19,7 @@ HEADERS += \
     $$PWD/aboutdialog.h \
     $$PWD/connection.h \
     $$PWD/filterdialog.h \
-    $$PWDmaindialog.h \
+    $$PWD/maindialog.h \
     $$PWD/maindialogcontrolbuttonbox.h \
     $$PWD/mappercontrolbuttonbox.h \
     $$PWD/mapperdialog.h \

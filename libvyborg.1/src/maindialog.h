@@ -8,13 +8,10 @@ class QSqlRelationalTableModel;
 class QTableView;
 QT_END_NAMESPACE
 
-class QPushButton;
-
 class VyborgMapperDialog;
 class VyborgFilterDialog;
 class VyborgSortDialog;
 class VyborgAboutDialog;
-class VyborgMainDialogControlButtonBox;
 
 class VyborgMainDialog : public QDialog
 {
@@ -25,7 +22,6 @@ public:
     VyborgMainDialog(QWidget *parent = 0);
 
     void setTitle(const QString &title);
-    QPushButton* addButton(const QString &text);
 
 protected:
     virtual void setupModel()        = 0;
@@ -50,7 +46,6 @@ public:
     VyborgFilterDialog         *filterDialog_;
     VyborgSortDialog           *sortDialog_;
     VyborgAboutDialog          *aboutDialog_;
-    VyborgMainDialogControlButtonBox *m_controlButtonBox;
 };
 
 #endif // VYBORGMAINDIALOG_H

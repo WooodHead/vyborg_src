@@ -38,7 +38,7 @@ unix {
     INSTALLS += features
 
     endup.extra = make install
-    endup.path = $$PWD
+#    endup.path = $$PWD
     INSTALLS += endup
 }
 

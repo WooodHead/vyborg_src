@@ -11,8 +11,6 @@ class VyborgMainDialogControlButtonBox : public QDialogButtonBox
 public:
     VyborgMainDialogControlButtonBox(QWidget *parent = 0);
 
-//    void addButton(QPushButton);
-
 signals:
     void sort();
     void filter();

@@ -13,18 +13,18 @@ SOURCES += \
     $$PWD/yearmonthwidget.cpp
 
 HEADERS += \
-    $$PWD/../include/libvyborg.h \
-    $$PWD/../include/libvyborg_global.h \
-    $$PWD/../include/vyborg.h \
-    $$PWD/../include/aboutdialog.h \
-    $$PWD/../include/connection.h \
-    $$PWD/../include/filterdialog.h \
-    $$PWD/../include/maindialog.h \
-    $$PWD/../include/maindialogcontrolbuttonbox.h \
-    $$PWD/../include/mappercontrolbuttonbox.h \
-    $$PWD/../include/mapperdialog.h \
-    $$PWD/../include/navigationbuttonbox.h \
-    $$PWD/../include/sortdialog.h \
-    $$PWD/../include/yearmonth.h \
-    $$PWD/../include/yearmonthwidget.h \
-    $$PWD/../include/yearmonthday.h
+    $$PWD/libvyborg.h\
+    $$PWD/libvyborg_global.h \
+    $$PWD/vyborg.h \
+    $$PWD/aboutdialog.h \
+    $$PWD/connection.h \
+    $$PWD/filterdialog.h \
+    $$PWDmaindialog.h \
+    $$PWD/maindialogcontrolbuttonbox.h \
+    $$PWD/mappercontrolbuttonbox.h \
+    $$PWD/mapperdialog.h \
+    $$PWD/navigationbuttonbox.h \
+    $$PWD/sortdialog.h \
+    $$PWD/yearmonth.h \
+    $$PWD/yearmonthwidget.h \
+    $$PWD/yearmonthday.h

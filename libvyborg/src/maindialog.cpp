@@ -38,29 +38,30 @@ VyborgMainDialog::VyborgMainDialog(QWidget *parent)
     aboutDialog_ = new VyborgAboutDialog;
     aboutDialog_->setWindowTitle(trUtf8("About Dialog"));
 
-    VyborgMainDialogControlButtonBox *controlButtonBox = new VyborgMainDialogControlButtonBox(this);
-    controlButtonBox->setOrientation(Qt::Vertical);
+//    VyborgMainDialogControlButtonBox *controlButtonBox = new VyborgMainDialogControlButtonBox(this);
+    m_controlButtonBox = new VyborgMainDialogControlButtonBox(this);
+    m_controlButtonBox->setOrientation(Qt::Vertical);
 
     QHBoxLayout *mainLayout = new QHBoxLayout;
     mainLayout->addWidget(m_view);
-    mainLayout->addWidget(controlButtonBox);
+    mainLayout->addWidget(m_controlButtonBox);
 
     setLayout(mainLayout);
 
 
-    connect(controlButtonBox, SIGNAL(filter()),
+    connect(m_controlButtonBox, SIGNAL(filter()),
             SLOT(showFilterDialog()));
-    connect(controlButtonBox, SIGNAL(sort()),
+    connect(m_controlButtonBox, SIGNAL(sort()),
             SLOT(showSortDialog()));
-    connect(controlButtonBox, SIGNAL(update()),
+    connect(m_controlButtonBox, SIGNAL(update()),
             SLOT(update()));
-    connect(controlButtonBox, SIGNAL(add()),
+    connect(m_controlButtonBox, SIGNAL(add()),
             SLOT(add()));
-    connect(controlButtonBox, SIGNAL(remove()),
+    connect(m_controlButtonBox, SIGNAL(remove()),
             SLOT(remove()));
-    connect(controlButtonBox, SIGNAL(about()),
+    connect(m_controlButtonBox, SIGNAL(about()),
             SLOT(about()));
-    connect(controlButtonBox, SIGNAL(close()),
+    connect(m_controlButtonBox, SIGNAL(close()),
             qApp, SLOT(quit()));
 
     connect(m_view, SIGNAL(doubleClicked(QModelIndex)),
@@ -70,6 +71,12 @@ VyborgMainDialog::VyborgMainDialog(QWidget *parent)
 void VyborgMainDialog::setTitle(const QString &title)
 {
     setWindowTitle(title);
+}
+
+QPushButton* VyborgMainDialog::addButton(const QString &text)
+{
+    QPushButton *button = m_controlButtonBox->addButton(text, QDialogButtonBox::ActionRole);
+    return button;
 }
 
 void VyborgMainDialog::add()

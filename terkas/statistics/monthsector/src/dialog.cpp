@@ -14,6 +14,8 @@ Dialog::Dialog(QWidget *parent)
     setupMapperDialog();
     setupFilterDialog();
     setupSortDialog();
+
+    addButton("TEST");
 }
 
 void Dialog::setupModel()
