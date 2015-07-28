@@ -3,16 +3,17 @@
 
 #include <vyborg.h>
 
+QT_BEGIN_NAMESPACE
 class QLineEdit;
 class QTextEdit;
-
+QT_END_NAMESPACE
 
 class MapperDialog : public VyborgMapperDialog
 {
     Q_OBJECT
 
 public:
-    MapperDialog(QSortFilterProxyModel *proxy, QWidget *parent = 0);
+    MapperDialog(QSqlTableModel *model, QWidget *parent = 0);
 
 protected:
     virtual void createPrivateWidgets();

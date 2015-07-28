@@ -12,8 +12,8 @@ MOC_DIR = tmp
 INCLUDEPATH += include
 SUBDIRS += src \
     include \
-#    test
-#test.depends = $$SUBDIRS
+    test
+test.depends = $$SUBDIRS
 
 #DISTFILES += \
 #    src/files.pri

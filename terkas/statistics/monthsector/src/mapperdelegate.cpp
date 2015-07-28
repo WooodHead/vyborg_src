@@ -14,9 +14,8 @@ void MapperDelegate::setEditorData(QWidget *editor, const QModelIndex &index) co
     if (index.column() == monthsector_sector) {
         QSqlQueryModel *model = new QSqlQueryModel;
         model->setQuery("SELECT * FROM ("
-                        "SELECT sector FROM dblink('dbname=gis',"
-                                                  "'SELECT sector FROM data.polygon_fir_sector') "
-                                           "dblink(sector text)) tb ORDER BY sector");
+                        "SELECT abbr FROM dblink('dbname=gis', 'SELECT abbr FROM polygon.fir') "
+                                         "dblink(abbr text)) tb ORDER BY abbr");
 
         QComboBox *comboEditor = qobject_cast<QComboBox *>(editor);
         Q_ASSERT(comboEditor);

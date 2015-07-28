@@ -8,7 +8,7 @@ OBJECTS_DIR = tmp
 MOC_DIR = tmp
 
 
-QMAKESPEC = /usr/src/vyborg/libvyborg/
+#QMAKESPEC = /usr/src/vyborg/libvyborg/
 
 include(src/files.pri)
 

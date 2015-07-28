@@ -5,8 +5,8 @@
 #include "declarations.h"
 
 
-MapperDialog::MapperDialog(QSortFilterProxyModel *proxy, QWidget *parent)
-    : VyborgMapperDialog(proxy, parent)
+MapperDialog::MapperDialog(QSqlTableModel *model, QWidget *parent)
+    : VyborgMapperDialog(model, parent)
 {
     createPrivateWidgets();
     layoutPrivateWidgets();

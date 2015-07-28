@@ -12,7 +12,7 @@ MainDialog::MainDialog(QWidget *parent)
     : VyborgMainDialog(parent)
 {
     setupModel();
-    setupProxy();
+//    setupProxy();
     setupView();
     setupMapperDialog();
     setupFilterDialog();
@@ -21,42 +21,42 @@ MainDialog::MainDialog(QWidget *parent)
 
 void MainDialog::setupModel()
 {
-    model_->setTable(PGSQL_TABLENAME);
+    m_model->setTable(PGSQL_TABLENAME);
 //    model_->setRelation(AC_country_id, QSqlRelation("country.country", "id", "name"));
-    model_->select();
+    m_model->select();
 }
 
-void MainDialog::setupProxy()
-{
-    identityProxy_->setSourceModel(model_);
-    identityProxy_->setHeaderData(person_id,          Qt::Horizontal, trUtf8("ID"));
-    identityProxy_->setHeaderData(person_surname,     Qt::Horizontal, trUtf8("Фамилия"));
-    identityProxy_->setHeaderData(person_name,        Qt::Horizontal, trUtf8("Имя"));
-    identityProxy_->setHeaderData(person_middleName,  Qt::Horizontal, trUtf8("Отчество"));
-    identityProxy_->setHeaderData(person_innerID,     Qt::Horizontal, trUtf8("Табельный\nномер"));
-    identityProxy_->setHeaderData(person_mobilePhone, Qt::Horizontal, trUtf8("Мобильный\nтелефон"));
+//void MainDialog::setupProxy()
+//{
+//    identityProxy_->setSourceModel(model_);
+//    identityProxy_->setHeaderData(person_id,          Qt::Horizontal, trUtf8("ID"));
+//    identityProxy_->setHeaderData(person_surname,     Qt::Horizontal, trUtf8("Фамилия"));
+//    identityProxy_->setHeaderData(person_name,        Qt::Horizontal, trUtf8("Имя"));
+//    identityProxy_->setHeaderData(person_middleName,  Qt::Horizontal, trUtf8("Отчество"));
+//    identityProxy_->setHeaderData(person_innerID,     Qt::Horizontal, trUtf8("Табельный\nномер"));
+//    identityProxy_->setHeaderData(person_mobilePhone, Qt::Horizontal, trUtf8("Мобильный\nтелефон"));
 
-    sortFilterProxy_->setSourceModel(identityProxy_);
-    sortFilterProxy_->sort(person_surname, Qt::AscendingOrder);
-}
+//    sortFilterProxy_->setSourceModel(identityProxy_);
+//    sortFilterProxy_->sort(person_surname, Qt::AscendingOrder);
+//}
 
 void MainDialog::setupView()
 {
-    view_->setModel(sortFilterProxy_);
-    view_->setItemDelegate(new PersonModelDelegate(view_));
+    m_view->setModel(m_model);
+    m_view->setItemDelegate(new PersonModelDelegate(m_view));
 
-    view_->setColumnHidden(person_id, true);
+    m_view->setColumnHidden(person_id, true);
 
-    view_->resizeRowsToContents();
-    view_->resizeColumnsToContents();
+    m_view->resizeRowsToContents();
+    m_view->resizeColumnsToContents();
 
-    view_->selectRow(0);
+    m_view->selectRow(0);
 }
 
 void MainDialog::setupMapperDialog()
 {
-    MapperDialog *mapperDialog = new MapperDialog(sortFilterProxy_, this);
-    mapperDialog_ = static_cast<VyborgMapperDialog *>(mapperDialog);
+    MapperDialog *mapperDialog = new MapperDialog(m_model, this);
+    m_mapperDialog = static_cast<VyborgMapperDialog *>(mapperDialog);
 }
 
 void MainDialog::setupFilterDialog()

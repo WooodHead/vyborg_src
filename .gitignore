@@ -2,8 +2,7 @@
 tmp/
 */.build/*
 *.build*
-include/
-lib/
+build/
 *~
 .*
 !/.gitignore
