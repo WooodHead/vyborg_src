@@ -13,3 +13,6 @@ LIBS += -L/usr/local/lib/vyborg -lvyborg
 
 #DISTFILES += \
 #    src/files.pri
+
+
+
