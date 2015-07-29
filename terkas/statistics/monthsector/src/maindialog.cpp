@@ -2,7 +2,7 @@
 #include <QtSql>
 
 #include "declarations.h"
-#include "dialog.h"
+#include "maindialog.h"
 #include "mapperdialog.h"
 #include "tabledelegate.h"
 
@@ -11,6 +11,7 @@ Dialog::Dialog(QWidget *parent)
 {
     setupModel();
     setupView();
+
     setupMapperDialog();
     setupFilterDialog();
     setupSortDialog();

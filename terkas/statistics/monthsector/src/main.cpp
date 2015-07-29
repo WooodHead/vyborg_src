@@ -2,7 +2,7 @@
 
 #include "declarations.h"
 #include <vyborg/connection.h>
-#include "dialog.h"
+#include "maindialog.h"
 
 int main(int argc, char *argv[])
 {
