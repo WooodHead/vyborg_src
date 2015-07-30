@@ -3,7 +3,7 @@
 
 #include "declarations.h"
 #include "dialog.h"
-//#include "mapperdialog.h"
+#include "mapperdialog.h"
 //#include "tabledelegate.h"
 
 Dialog::Dialog(QWidget *parent)
@@ -58,8 +58,8 @@ void Dialog::setupView()
 
 void Dialog::setupMapperDialog()
 {
-//    MapperMainDialog *mapperMainDialog = new MapperMainDialog(m_model);
-//    m_mapperMainDialog = static_cast<VyborgMapperMainDialog *>(mapperMainDialog);
+    MapperDialog *mapperDialog = new MapperDialog(m_model);
+    m_mapperDialog = static_cast<VyborgMapperDialog *>(mapperDialog);
 }
 
 void Dialog::setupFilterDialog()
