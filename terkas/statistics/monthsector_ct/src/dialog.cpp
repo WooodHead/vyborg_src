@@ -2,9 +2,9 @@
 #include <QtSql>
 
 #include "declarations.h"
-#include "maindialog.h"
-#include "mapperdialog.h"
-#include "tabledelegate.h"
+#include "dialog.h"
+//#include "mapperdialog.h"
+//#include "tabledelegate.h"
 
 Dialog::Dialog(QWidget *parent)
     : VyborgMainDialog(parent)
@@ -15,8 +15,6 @@ Dialog::Dialog(QWidget *parent)
     setupMapperDialog();
     setupFilterDialog();
     setupSortDialog();
-
-//    addButton("TEST");
 }
 
 void Dialog::setupModel()
@@ -32,12 +30,12 @@ void Dialog::setupModel()
         qApp->quit();
     }
 
-    m_model->setHeaderData(monthsector_date, Qt::Horizontal,
-                           trUtf8("Дата\n(Месяц, Год)"), Qt::DisplayRole);
-    m_model->setHeaderData(monthsector_sector, Qt::Horizontal,
-                           trUtf8("Сектор"), Qt::DisplayRole);
-    m_model->setHeaderData(monthsector_vol, Qt::Horizontal,
-                           trUtf8("Количество"), Qt::DisplayRole);
+//    m_model->setHeaderData(monthsector_date, Qt::Horizontal,
+//                           trUtf8("Дата\n(Месяц, Год)"), Qt::DisplayRole);
+//    m_model->setHeaderData(monthsector_sector, Qt::Horizontal,
+//                           trUtf8("Сектор"), Qt::DisplayRole);
+//    m_model->setHeaderData(monthsector_vol, Qt::Horizontal,
+//                           trUtf8("Количество"), Qt::DisplayRole);
 }
 
 void Dialog::setupView()
@@ -46,7 +44,7 @@ void Dialog::setupView()
 
 //    m_view->setColumnHidden(statistics_note, true);
 
-    m_view->setItemDelegateForColumn(monthsector_date, new TableDelegate(m_view));
+//    m_view->setItemDelegateForColumn(monthsector_date, new TableDelegate(m_view));
 
     m_view->resizeRowsToContents();
     m_view->resizeColumnsToContents();
@@ -60,8 +58,8 @@ void Dialog::setupView()
 
 void Dialog::setupMapperDialog()
 {
-    MapperDialog *mapperDialog = new MapperDialog(m_model);
-    m_mapperDialog = static_cast<VyborgMapperDialog *>(mapperDialog);
+//    MapperMainDialog *mapperMainDialog = new MapperMainDialog(m_model);
+//    m_mapperMainDialog = static_cast<VyborgMapperMainDialog *>(mapperMainDialog);
 }
 
 void Dialog::setupFilterDialog()
