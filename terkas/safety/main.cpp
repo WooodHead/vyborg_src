@@ -5,20 +5,17 @@
 
 #include "maindialog.h"
 
-
 int main(int argc, char *argv[])
 {
-    QApplication app(argc, argv);
-
     if (!openConnection())
         return -1;
 
+    QApplication a(argc, argv);
 
-    MainDialog dialog;
-    dialog.showMaximized();
-    
-    app.exec();
+    MainDialog w;
+    w.show();
 
+    a.exec();
 
     if (!closeConnection())
         return -1;
