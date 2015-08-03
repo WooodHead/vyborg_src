@@ -5,7 +5,6 @@
 
 QT_BEGIN_NAMESPACE
 class QLineEdit;
-class QTextEdit;
 QT_END_NAMESPACE
 
 class MapperDialog : public VyborgMapperDialog
@@ -13,7 +12,7 @@ class MapperDialog : public VyborgMapperDialog
     Q_OBJECT
 
 public:
-    MapperDialog(QSqlTableModel *model, QWidget *parent = 0);
+    MapperDialog(QSqlRelationalTableModel *model, QWidget *parent = 0);
 
 protected:
     virtual void createPrivateWidgets();
@@ -21,11 +20,11 @@ protected:
     virtual void updatePrivateWidgets();
 
 private:
-    QLineEdit *surnameLineEdit;
-    QLineEdit *nameLineEdit;
-    QLineEdit *middleNameLineEdit;
-    QLineEdit *innerIdLineEdit;
-    QLineEdit *mobilePhoneLineEdit;
+    QLineEdit *m_surnameLineEdit;
+    QLineEdit *m_nameLineEdit;
+    QLineEdit *m_middlenameLineEdit;
+    QLineEdit *m_innernumLineEdit;
+    QLineEdit *m_phonemobileLineEdit;
 };
 
 #endif // MAPPERDIALOG_H

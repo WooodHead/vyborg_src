@@ -12,8 +12,8 @@ PersonModelDelegate::PersonModelDelegate(QObject *parent) :
 
 void PersonModelDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-    if (index.column() == person_innerID ||
-        index.column() == person_mobilePhone) {
+    if (index.column() == person_innernum ||
+        index.column() == person_phonemobile) {
 
         painter->save();
         painter->setRenderHint(QPainter::Antialiasing, true);
@@ -24,10 +24,10 @@ void PersonModelDelegate::paint(QPainter *painter, const QStyleOptionViewItem &o
         }
 
         QString outputStr;
-        if (index.column() == person_innerID) {
+        if (index.column() == person_innernum) {
             int innerId = index.data().toInt();
             outputStr = QString("%1").arg(innerId, 6, 10, QChar('0'));
-        } else if (index.column() == person_mobilePhone) {
+        } else if (index.column() == person_phonemobile) {
             QString mobilePhoneStr = index.data().toString();
             QString firstLetters = mobilePhoneStr.mid(0, 3);
             QString secondLetters = mobilePhoneStr.mid(3, 3);
@@ -47,7 +47,7 @@ void PersonModelDelegate::paint(QPainter *painter, const QStyleOptionViewItem &o
 
 QSize PersonModelDelegate::sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-    if (index.column() == person_mobilePhone) {
+    if (index.column() == person_phonemobile) {
         QFont defFont = QGuiApplication::font();
         QFontMetrics fm(defFont);
         QString str15(15, QChar('0'));

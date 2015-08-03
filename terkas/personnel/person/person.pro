@@ -1,7 +1,8 @@
 QT     += core gui widgets sql
 CONFIG += vyborg
-TARGET = vyborg_person
+TARGET = person
 TEMPLATE = app
+DESTDIR = /home/debian/bin
 
 
 OBJECTS_DIR = tmp
