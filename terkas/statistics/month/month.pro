@@ -12,8 +12,8 @@ MOC_DIR = tmp
 DEPENDPATH += . \
     src
 
-DISTFILES += \
-    src/files.pri
+#DISTFILES += \
+#    src/files.pri
 
 include(src/files.pri)
 
