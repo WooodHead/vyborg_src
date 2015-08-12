@@ -59,9 +59,15 @@ void MainDialog::setupView()
 
     m_view->selectRow(0);
 
+    m_view->setColumnHidden(safety_cause,   true);
+    m_view->setColumnHidden(safety_details, true);
+    m_view->setColumnHidden(safety_factor,  true);
+
+    m_view->resizeRowsToContents();
+
 
 //    QHeaderView *header = m_view->horizontalHeader();
-//    header->setSectionResizeMode(statistics_date, QHeaderView::Fixed);
+    //    header->setSectionResizeMode(safe, QHeaderView::Fixed);
 }
 
 void MainDialog::setupMapperDialog()

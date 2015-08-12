@@ -6,6 +6,7 @@
 QT_BEGIN_NAMESPACE
 class QDateEdit;
 class QLineEdit;
+class QComboBox;
 class QTextEdit;
 QT_END_NAMESPACE
 
@@ -29,8 +30,9 @@ private:
     QTextEdit *m_factorEdit;
     QTextEdit *m_detailsEdit;
     QLineEdit *m_sectorEdit;
-    QLineEdit *m_accEdit;
-    QLineEdit *m_classificationEdit;
+    QComboBox *m_accCombo;
+    QComboBox *m_classificationCombo;
+    QComboBox *m_typeCombo;
 };
 
 #endif // MAPPERDIALOG_H

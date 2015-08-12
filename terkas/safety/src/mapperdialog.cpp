@@ -2,7 +2,7 @@
 
 #include "mapperdialog.h"
 #include "declarations.h"
-
+#include "mapperdelegate.h"
 
 MapperDialog::MapperDialog(QSqlRelationalTableModel *model, QWidget *parent)
     : VyborgMapperDialog(model, parent)
@@ -23,19 +23,22 @@ void MapperDialog::createPrivateWidgets()
     m_factorEdit = new QTextEdit;
     m_detailsEdit = new QTextEdit;
     m_sectorEdit = new QLineEdit;
-    m_accEdit = new QLineEdit;
-    m_classificationEdit = new QLineEdit;
+    m_accCombo = new QComboBox;
+    m_classificationCombo = new QComboBox;
+    m_typeCombo = new QComboBox;
 
     QDataWidgetMapper* m_mapper = mapper();
-    m_mapper->addMapping(m_dateEdit,           safety_date);
-    m_mapper->addMapping(m_shiftEdit,          safety_shift);
-    m_mapper->addMapping(m_locationEdit,       safety_location);
-    m_mapper->addMapping(m_causeEdit,          safety_cause);
-    m_mapper->addMapping(m_factorEdit,         safety_factor);
-    m_mapper->addMapping(m_detailsEdit,        safety_details);
-    m_mapper->addMapping(m_sectorEdit,         safety_sector_id);
-    m_mapper->addMapping(m_accEdit,            safety_acc);
-    m_mapper->addMapping(m_classificationEdit, safety_classification);
+    m_mapper->addMapping(m_dateEdit,            safety_date);
+    m_mapper->addMapping(m_shiftEdit,           safety_shift);
+    m_mapper->addMapping(m_locationEdit,        safety_location);
+    m_mapper->addMapping(m_causeEdit,           safety_cause);
+    m_mapper->addMapping(m_factorEdit,          safety_factor);
+    m_mapper->addMapping(m_detailsEdit,         safety_details);
+    m_mapper->addMapping(m_sectorEdit,          safety_sector_id);
+    m_mapper->addMapping(m_accCombo,            safety_acc);
+    m_mapper->addMapping(m_classificationCombo, safety_classification);
+    m_mapper->addMapping(m_typeCombo,           safety_type);
+    m_mapper->setItemDelegate(new MapperDelegate);
 }
 
 void MapperDialog::layoutPrivateWidgets()
@@ -62,22 +65,25 @@ void MapperDialog::layoutPrivateWidgets()
     sectorLabel->setBuddy(m_sectorEdit);
 
     QLabel *accLabel = new QLabel(trUtf8("ACC:"));
-    accLabel->setBuddy(m_accEdit);
+    accLabel->setBuddy(m_accCombo);
 
     QLabel *classificationLabel = new QLabel(trUtf8("Classification:"));
-    classificationLabel->setBuddy(m_classificationEdit);
+    classificationLabel->setBuddy(m_classificationCombo);
 
+    QLabel *typeLabel = new QLabel(trUtf8("Type:"));
+    typeLabel->setBuddy(m_typeCombo);
 
     QGridLayout *gridLayout = new QGridLayout;
-    gridLayout->addWidget(dateLabel,           0, 0, 1, 1);    gridLayout->addWidget(m_dateEdit,           0, 1, 1, 1);
-    gridLayout->addWidget(shiftLabel,          1, 0, 1, 1);    gridLayout->addWidget(m_shiftEdit,          1, 1, 1, 1);
-    gridLayout->addWidget(locationLabel,       2, 0, 1, 1);    gridLayout->addWidget(m_locationEdit,       2, 1, 1, 1);
-    gridLayout->addWidget(causeLabel,          3, 0, 1, 1);    gridLayout->addWidget(m_causeEdit,          3, 1, 1, 1);
-    gridLayout->addWidget(factorLabel,         4, 0, 1, 1);    gridLayout->addWidget(m_factorEdit,         4, 1, 1, 1);
-    gridLayout->addWidget(detailsLabel,        5, 0, 1, 1);    gridLayout->addWidget(m_detailsEdit,        5, 1, 1, 1);
-    gridLayout->addWidget(sectorLabel,         6, 0, 1, 1);    gridLayout->addWidget(m_sectorEdit,         6, 1, 1, 1);
-    gridLayout->addWidget(accLabel,            7, 0, 1, 1);    gridLayout->addWidget(m_accEdit,            7, 1, 1, 1);
-    gridLayout->addWidget(classificationLabel, 8, 0, 1, 1);    gridLayout->addWidget(m_classificationEdit, 8, 1, 1, 1);
+    gridLayout->addWidget(dateLabel,           0, 0, 1, 1);    gridLayout->addWidget(m_dateEdit,            0, 1, 1, 1);
+    gridLayout->addWidget(shiftLabel,          1, 0, 1, 1);    gridLayout->addWidget(m_shiftEdit,           1, 1, 1, 1);
+    gridLayout->addWidget(locationLabel,       2, 0, 1, 1);    gridLayout->addWidget(m_locationEdit,        2, 1, 1, 1);
+    gridLayout->addWidget(causeLabel,          3, 0, 1, 1);    gridLayout->addWidget(m_causeEdit,           3, 1, 1, 1);
+    gridLayout->addWidget(factorLabel,         4, 0, 1, 1);    gridLayout->addWidget(m_factorEdit,          4, 1, 1, 1);
+    gridLayout->addWidget(detailsLabel,        5, 0, 1, 1);    gridLayout->addWidget(m_detailsEdit,         5, 1, 1, 1);
+    gridLayout->addWidget(sectorLabel,         6, 0, 1, 1);    gridLayout->addWidget(m_sectorEdit,          6, 1, 1, 1);
+    gridLayout->addWidget(accLabel,            7, 0, 1, 1);    gridLayout->addWidget(m_accCombo,            7, 1, 1, 1);
+    gridLayout->addWidget(classificationLabel, 8, 0, 1, 1);    gridLayout->addWidget(m_classificationCombo, 8, 1, 1, 1);
+    gridLayout->addWidget(typeLabel,           9, 0, 1, 1);    gridLayout->addWidget(m_typeCombo,           9, 1, 1, 1);
 
     QVBoxLayout *privateWidgetsLayout = layout();
     privateWidgetsLayout->addLayout(gridLayout);

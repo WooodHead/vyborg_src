@@ -7,6 +7,7 @@
 
 enum {
     quota_abbr,
+    quota_function,
     quota_val,
     quota_valmax
 };

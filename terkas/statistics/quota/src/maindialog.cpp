@@ -31,9 +31,10 @@ void MainDialog::setupModel()
         qApp->quit();
     }
 
-    m_model->setHeaderData(quota_abbr,   Qt::Horizontal, trUtf8("Сектор УВД"), Qt::DisplayRole);
-    m_model->setHeaderData(quota_val,    Qt::Horizontal, trUtf8("Допустимое значение"), Qt::DisplayRole);
-    m_model->setHeaderData(quota_valmax, Qt::Horizontal, trUtf8("Предельно-допустимое значение"), Qt::DisplayRole);
+    m_model->setHeaderData(quota_abbr,     Qt::Horizontal, trUtf8("Сектор\nУВД"), Qt::DisplayRole);
+    m_model->setHeaderData(quota_function, Qt::Horizontal, trUtf8("Выполняемые\nфунции"), Qt::DisplayRole);
+    m_model->setHeaderData(quota_val,      Qt::Horizontal, trUtf8("Допустимое\nзначение"), Qt::DisplayRole);
+    m_model->setHeaderData(quota_valmax,   Qt::Horizontal, trUtf8("Предельно-допустимое\nзначение"), Qt::DisplayRole);
 }
 
 

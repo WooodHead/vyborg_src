@@ -4,6 +4,7 @@
 #include <vyborg.h>
 
 QT_BEGIN_NAMESPACE
+class QComboBox;
 class QLineEdit;
 QT_END_NAMESPACE
 
@@ -20,7 +21,8 @@ protected:
     virtual void updatePrivateWidgets() Q_DECL_OVERRIDE;
 
 private:
-    QLineEdit *m_abbrLineEdit;
+    QComboBox *m_abbrComboBox;
+    QLineEdit *m_functionLineEdit;
     QLineEdit *m_valLineEdit;
     QLineEdit *m_valmaxLineEdit;
 };
