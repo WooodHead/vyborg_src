@@ -6,10 +6,10 @@
 
 int main(int argc, char *argv[])
 {
+    QApplication a(argc, argv);
+
     if (!openConnection())
         return -1;
-
-    QApplication a(argc, argv);
 
     MainDialog dialog;
     dialog.setTitle(QObject::trUtf8("Нормативы пропускной способности"));

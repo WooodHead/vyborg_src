@@ -24,7 +24,7 @@ DIR_PREFIX = /usr/local
 HEADERS_INSTALL_DIR = $$DIR_PREFIX/include/$$TARGET
 LIBS_INSTALL_DIR = $$DIR_PREFIX/lib/$$TARGET
 
-QT_INSTALL_DIR = /usr/local/src/Qt/Qt5.5.0/5.5/Src/
+QT_INSTALL_DIR = /usr/src/Qt/QtSrc/Qt5.5.0/5.5/Src/
 FEATURES_INSTALL_DIR = $$QT_INSTALL_DIR/qtbase/mkspecs/features/unix
 
 unix {

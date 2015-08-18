@@ -15,7 +15,11 @@ enum {
     safety_sector_id,
     safety_acc,
     safety_classification,
-    safety_type
+    safety_type,
+    safety_terkas,
+    safety_alpha,
+    safety_tcas1,
+    safety_tcas2
 };
 
 #endif // DECLARATIONS_H

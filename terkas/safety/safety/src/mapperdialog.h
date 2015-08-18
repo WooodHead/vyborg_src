@@ -33,6 +33,10 @@ private:
     QComboBox *m_accCombo;
     QComboBox *m_classificationCombo;
     QComboBox *m_typeCombo;
+    QComboBox *m_terkasCombo;
+    QComboBox *m_alphaCombo;
+    QComboBox *m_tcas1Combo;
+    QComboBox *m_tcas2Combo;
 };
 
 #endif // MAPPERDIALOG_H
