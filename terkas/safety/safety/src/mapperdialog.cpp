@@ -93,21 +93,44 @@ void MapperDialog::layoutPrivateWidgets()
     QLabel *tcas2Label = new QLabel(trUtf8("TCAS 2 ВС:"));
     tcas2Label->setBuddy(m_tcas2Combo);
 
+
+    QHBoxLayout *dateLocationLayout = new QHBoxLayout;
+    dateLocationLayout->addWidget(dateLabel);
+    dateLocationLayout->addWidget(m_dateEdit);
+    dateLocationLayout->addWidget(locationLabel);
+    dateLocationLayout->addWidget(m_locationEdit);
+
+    QHBoxLayout *accSectorShiftLayout = new QHBoxLayout;
+    accSectorShiftLayout->addWidget(accLabel);
+    accSectorShiftLayout->addWidget(m_accCombo);
+    accSectorShiftLayout->addWidget(sectorLabel);
+    accSectorShiftLayout->addWidget(m_sectorEdit);
+    accSectorShiftLayout->addWidget(shiftLabel);
+    accSectorShiftLayout->addWidget(m_shiftEdit);
+
+    QHBoxLayout *atcSposLayout = new QHBoxLayout;
+    atcSposLayout->addWidget(terkasLabel);
+    atcSposLayout->addWidget(m_terkasCombo);
+    atcSposLayout->addWidget(alphaLabel);
+    atcSposLayout->addWidget(m_alphaCombo);
+
+    QHBoxLayout *tcasLayout = new QHBoxLayout;
+    tcasLayout->addWidget(tcas1Label);
+    tcasLayout->addWidget(m_tcas1Combo);
+    tcasLayout->addWidget(tcas2Label);
+    tcasLayout->addWidget(m_tcas2Combo);
+
+
     QGridLayout *gridLayout = new QGridLayout;
-    gridLayout->addWidget(dateLabel,            0, 0, 1, 1);    gridLayout->addWidget(m_dateEdit,             0, 1, 1, 1);
-    gridLayout->addWidget(shiftLabel,           1, 0, 1, 1);    gridLayout->addWidget(m_shiftEdit,            1, 1, 1, 1);
-    gridLayout->addWidget(locationLabel,        2, 0, 1, 1);    gridLayout->addWidget(m_locationEdit,         2, 1, 1, 1);
-    gridLayout->addWidget(causeLabel,           3, 0, 1, 1);    gridLayout->addWidget(m_causeEdit,            3, 1, 1, 1);
-    gridLayout->addWidget(factorLabel,          4, 0, 1, 1);    gridLayout->addWidget(m_factorEdit,           4, 1, 1, 1);
-    gridLayout->addWidget(detailsLabel,         5, 0, 1, 1);    gridLayout->addWidget(m_detailsEdit,          5, 1, 1, 1);
-    gridLayout->addWidget(sectorLabel,          6, 0, 1, 1);    gridLayout->addWidget(m_sectorEdit,           6, 1, 1, 1);
-    gridLayout->addWidget(accLabel,             7, 0, 1, 1);    gridLayout->addWidget(m_accCombo,             7, 1, 1, 1);
-    gridLayout->addWidget(classificationLabel,  8, 0, 1, 1);    gridLayout->addWidget(m_classificationCombo,  8, 1, 1, 1);
-    gridLayout->addWidget(typeLabel,            9, 0, 1, 1);    gridLayout->addWidget(m_typeCombo,            9, 1, 1, 1);
-    gridLayout->addWidget(terkasLabel,         10, 0, 1, 1);    gridLayout->addWidget(m_terkasCombo,         10, 1, 1, 1);
-    gridLayout->addWidget(alphaLabel,          11, 0, 1, 1);    gridLayout->addWidget(m_alphaCombo,          11, 1, 1, 1);
-    gridLayout->addWidget(tcas1Label,          12, 0, 1, 1);    gridLayout->addWidget(m_tcas1Combo,          12, 1, 1, 1);
-    gridLayout->addWidget(tcas2Label,          13, 0, 1, 1);    gridLayout->addWidget(m_tcas2Combo,          13, 1, 1, 1);
+    gridLayout->addLayout(dateLocationLayout,   0, 0, 1, 2);
+    gridLayout->addLayout(accSectorShiftLayout, 1, 0, 1, 2);
+    gridLayout->addWidget(classificationLabel,  2, 0, 1, 1);    gridLayout->addWidget(m_classificationCombo,  2, 1, 1, 1);
+    gridLayout->addWidget(typeLabel,            3, 0, 1, 1);    gridLayout->addWidget(m_typeCombo,            3, 1, 1, 1);
+    gridLayout->addLayout(atcSposLayout,        4, 0, 1, 2);
+    gridLayout->addLayout(tcasLayout,           5, 0, 1, 2);
+    gridLayout->addWidget(causeLabel,           6, 0, 1, 1);    gridLayout->addWidget(m_causeEdit,            6, 1, 1, 1);
+    gridLayout->addWidget(factorLabel,          7, 0, 1, 1);    gridLayout->addWidget(m_factorEdit,           7, 1, 1, 1);
+    gridLayout->addWidget(detailsLabel,         8, 0, 1, 1);    gridLayout->addWidget(m_detailsEdit,          8, 1, 1, 1);
 
     QVBoxLayout *privateWidgetsLayout = layout();
     privateWidgetsLayout->addLayout(gridLayout);
