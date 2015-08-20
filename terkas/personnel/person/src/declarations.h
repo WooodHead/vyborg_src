@@ -3,11 +3,10 @@
 
 #define PGSQL
 #define PGSQL_DATABASE "terkas"
-#define PGSQL_TABLENAME "personnel.person"
+#define PGSQL_TABLENAME "personnel.vw_person"
 
 
 enum Columns {
-    person_pid,
     person_surname,
     person_name,
     person_middlename,

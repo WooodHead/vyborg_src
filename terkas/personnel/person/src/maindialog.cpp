@@ -45,8 +45,6 @@ void MainDialog::setupView()
     m_view->setModel(m_model);
     m_view->setItemDelegate(new PersonModelDelegate(m_view));
 
-    m_view->setColumnHidden(person_pid, true);
-
     m_view->resizeRowsToContents();
     m_view->resizeColumnsToContents();
 

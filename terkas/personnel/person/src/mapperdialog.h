@@ -24,7 +24,10 @@ private:
     QLineEdit *m_nameLineEdit;
     QLineEdit *m_middlenameLineEdit;
     QLineEdit *m_innernumLineEdit;
+    QLineEdit *m_shiftNumLineEdit;
+    QLineEdit *m_sectorsLineEdit;
     QLineEdit *m_phonemobileLineEdit;
+    QLineEdit *m_birthdayLineEdit;
 };
 
 #endif // MAPPERDIALOG_H

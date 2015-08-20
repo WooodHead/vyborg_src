@@ -19,14 +19,20 @@ void MapperDialog::createPrivateWidgets()
     m_nameLineEdit        = new QLineEdit;
     m_middlenameLineEdit  = new QLineEdit;
     m_innernumLineEdit    = new QLineEdit;
+    m_shiftNumLineEdit    = new QLineEdit;
+    m_sectorsLineEdit     = new QLineEdit;
     m_phonemobileLineEdit = new QLineEdit;
+    m_birthdayLineEdit    = new QLineEdit;
 
     QDataWidgetMapper* m_mapper = mapper();
     m_mapper->addMapping(m_surnameLineEdit,     person_surname);
     m_mapper->addMapping(m_nameLineEdit,        person_name);
     m_mapper->addMapping(m_middlenameLineEdit,  person_middlename);
     m_mapper->addMapping(m_innernumLineEdit,    person_innernum);
+    m_mapper->addMapping(m_shiftNumLineEdit,    person_shiftnum);
+    m_mapper->addMapping(m_sectorsLineEdit,     person_sectors);
     m_mapper->addMapping(m_phonemobileLineEdit, person_phonemobile);
+    m_mapper->addMapping(m_birthdayLineEdit,    person_birthday);
 }
 
 void MapperDialog::layoutPrivateWidgets()
@@ -36,7 +42,10 @@ void MapperDialog::layoutPrivateWidgets()
     formLayout->addRow("Name",         m_nameLineEdit);
     formLayout->addRow("Middle Name",  m_middlenameLineEdit);
     formLayout->addRow("Inner ID",     m_innernumLineEdit);
+    formLayout->addRow("Номер смены:", m_shiftNumLineEdit);
+    formLayout->addRow("Допуски на секторах:", m_sectorsLineEdit);
     formLayout->addRow("Mobile Phone", m_phonemobileLineEdit);
+    formLayout->addRow("Дата рождения:", m_birthdayLineEdit);
 
     QVBoxLayout *privateWidgetsLayout = layout();
     privateWidgetsLayout->addLayout(formLayout);
@@ -44,20 +53,26 @@ void MapperDialog::layoutPrivateWidgets()
 
 void MapperDialog::updatePrivateWidgets()
 {
-    if (isDirty() == true)
+    if (isDirty())
     {
-//        surnameLineEdit->setReadOnly(false);
-//        nameLineEdit->setReadOnly(false);
-//        middleNameLineEdit->setReadOnly(false);
-//        innerIdLineEdit->setReadOnly(false);
-//        mobilePhoneLineEdit->setReadOnly(false);
+        m_surnameLineEdit->setReadOnly(false);
+        m_nameLineEdit->setReadOnly(false);
+        m_middlenameLineEdit->setReadOnly(false);
+        m_innernumLineEdit->setReadOnly(false);
+        m_shiftNumLineEdit->setReadOnly(false);
+        m_sectorsLineEdit->setReadOnly(false);
+        m_phonemobileLineEdit->setReadOnly(false);
+        m_birthdayLineEdit->setReadOnly(false);
     }
     else
     {
-//        surnameLineEdit->setReadOnly(true);
-//        nameLineEdit->setReadOnly(true);
-//        middleNameLineEdit->setReadOnly(true);
-//        innerIdLineEdit->setReadOnly(true);
-//        mobilePhoneLineEdit->setReadOnly(true);
+        m_surnameLineEdit->setReadOnly(true);
+        m_nameLineEdit->setReadOnly(true);
+        m_middlenameLineEdit->setReadOnly(true);
+        m_innernumLineEdit->setReadOnly(true);
+        m_shiftNumLineEdit->setReadOnly(true);
+        m_sectorsLineEdit->setReadOnly(true);
+        m_phonemobileLineEdit->setReadOnly(true);
+        m_birthdayLineEdit->setReadOnly(true);
     }
 }
