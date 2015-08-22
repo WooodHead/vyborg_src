@@ -22,7 +22,7 @@ HEADERS  += \
     src/monthheaderview.h \
     src/monthtableview.h \
     src/personpopupmenu.h \
-    src/addvacationdialog.h
+    $$PWD/addvacationdialog.h
 
 FORMS += \
     src/yearmonthpickerwidget.ui \

@@ -1,5 +1,5 @@
 #include "personpopupmenu.h"
-#include "addvacancydialog.h"
+#include "addvacationdialog.h"
 
 
 PersonPopupMenu::PersonPopupMenu(QWidget *parent)
