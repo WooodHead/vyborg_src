@@ -17,22 +17,22 @@ void MonthTableView::mousePressEvent(QMouseEvent *event)
         QModelIndex index = indexAt(event->pos());
         int cellData = index.data(Qt::EditRole).toInt();
 
-        switch (cellData) {
-        case ACTIVITY_VACATION:
-            MonthTableModel *monthTableModel = model();
-            QDate date = monthTableModel->dateData(index);
-            int personId = monthTableModel->personIdData(index);
-            QString table("id" + QString::number(personId));
+//        switch (cellData) {
+//        case ACTIVITY_VACATION:
+//            MonthTableModel *monthTableModel = model();
+//            QDate date = monthTableModel->dateData(index);
+//            int personId = monthTableModel->personIdData(index);
+//            QString table("id" + QString::number(personId));
 
-            QSqlQuery query;
-            query.prepare("DELETE FROM "
-                          + table + " " +
-                          "WHERE :date BETWEEN startDate AND endDate");
-            query.bindValue(":date", date);
-            query.exec();
+//            QSqlQuery query;
+//            query.prepare("DELETE FROM "
+//                          + table + " " +
+//                          "WHERE :date BETWEEN startDate AND endDate");
+//            query.bindValue(":date", date);
+//            query.exec();
 
-            break;
-        }
+//            break;
+//        }
     } else {
         QTableView::mousePressEvent(event);
     }

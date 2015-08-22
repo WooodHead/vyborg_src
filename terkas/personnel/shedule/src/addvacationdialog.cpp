@@ -27,7 +27,8 @@ AddVacancyDialog::~AddVacancyDialog()
 
 void AddVacancyDialog::on_buttonBox_accepted()
 {
-    int activity_id = ACTIVITY_VACATION;
+//    int activity_id = ACTIVITY_VACATION;
+    int activity_id = 3;
     QString table("id" + QString::number(m_personId));
 
     QSqlQuery query;

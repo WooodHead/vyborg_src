@@ -1,30 +1,34 @@
 SOURCES +=\
-    src/main.cpp \
-    src/mainwindow.cpp \
-    src/monthdelegate.cpp \
-    src/monthtablemodel.cpp \
-    src/yearmonthpickerwidget.cpp \
-    src/shiftnumsectorsgrouppickerwidget.cpp \
-    src/datepopupmenu.cpp \
-    src/monthheaderview.cpp \
-    src/monthtableview.cpp \
-    src/personpopupmenu.cpp \
-    src/addvacationdialog.cpp
+    $$PWD/main.cpp \
+    $$PWD/mainwindow.cpp \
+    $$PWD/monthdelegate.cpp \
+    $$PWD/monthtablemodel.cpp \
+    $$PWD/yearmonthpickerwidget.cpp \
+    $$PWD/shiftnumsectorsgrouppickerwidget.cpp \
+    $$PWD/datepopupmenu.cpp \
+    $$PWD/monthheaderview.cpp \
+    $$PWD/monthtableview.cpp \
+    $$PWD/personpopupmenu.cpp \
+    $$PWD/addvacationdialog.cpp \
+    $$PWD/maindialog.cpp \
+    $$PWD/mapperdialog.cpp
 
 HEADERS  += \
-    src/declarations.h \
-    src/mainwindow.h \
-    src/monthdelegate.h \
-    src/monthtablemodel.h \
-    src/yearmonthpickerwidget.h \
-    src/shiftnumsectorsgrouppickerwidget.h \
-    src/datepopupmenu.h \
-    src/monthheaderview.h \
-    src/monthtableview.h \
-    src/personpopupmenu.h \
-    $$PWD/addvacationdialog.h
+    $$PWD/declarations.h \
+    $$PWD/mainwindow.h \
+    $$PWD/monthdelegate.h \
+    $$PWD/monthtablemodel.h \
+    $$PWD/yearmonthpickerwidget.h \
+    $$PWD/shiftnumsectorsgrouppickerwidget.h \
+    $$PWD/datepopupmenu.h \
+    $$PWD/monthheaderview.h \
+    $$PWD/monthtableview.h \
+    $$PWD/personpopupmenu.h \
+    $$PWD/addvacationdialog.h \
+    $$PWD/maindialog.h \
+    $$PWD/mapperdialog.h
 
 FORMS += \
-    src/yearmonthpickerwidget.ui \
-    src/shiftnumsectorsgrouppickerwidget.ui \
-    src/addvacationdialog.ui
+    $$PWD/yearmonthpickerwidget.ui \
+    $$PWD/shiftnumsectorsgrouppickerwidget.ui \
+    $$PWD/addvacationdialog.ui
