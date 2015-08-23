@@ -20,6 +20,7 @@ void MapperDialog::createPrivateWidgets()
     m_nameLineEdit = new QLineEdit;
     m_middlenameLineEdit = new QLineEdit;
     m_surnameLineEdit = new QLineEdit;
+    m_innernumLineEdit = new QLineEdit;
     m_activityLineEdit = new QLineEdit;
     m_sectorpidLineEdit = new QLineEdit;
 
@@ -31,6 +32,7 @@ void MapperDialog::createPrivateWidgets()
     m_mapper->addMapping(m_nameLineEdit,       shedule_name);
     m_mapper->addMapping(m_middlenameLineEdit, shedule_middlename);
     m_mapper->addMapping(m_surnameLineEdit,    shedule_surname);
+    m_mapper->addMapping(m_innernumLineEdit,   shedule_innernum);
     m_mapper->addMapping(m_activityLineEdit,   shedule_activity);
     m_mapper->addMapping(m_sectorpidLineEdit,  shedule_sector_pid);
     m_mapper->addMapping(m_startDateEdit,      shedule_start);
@@ -54,8 +56,9 @@ void MapperDialog::layoutPrivateWidgets()
     formLayout->addRow("Имя:", m_nameLineEdit);
     formLayout->addRow("Отчество:", m_middlenameLineEdit);
     formLayout->addRow("Фамилия:", m_surnameLineEdit);
-    formLayout->addRow("Сектор:", m_sectorpidLineEdit);
+    formLayout->addRow("Табельный номер:", m_innernumLineEdit);
     formLayout->addRow("Вид деятельности:", m_activityLineEdit);
+    formLayout->addRow("Сектор:", m_sectorpidLineEdit);
     formLayout->addRow("Дата начала:", m_startDateEdit);
     formLayout->addRow("Дата окончания:", m_stopDateEdit);
 
