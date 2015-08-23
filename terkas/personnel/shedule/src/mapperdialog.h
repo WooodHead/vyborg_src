@@ -23,10 +23,9 @@ protected:
     virtual void updatePrivateWidgets() Q_DECL_OVERRIDE;
 
 private:
-    QLineEdit *m_nameLineEdit;
-    QLineEdit *m_middlenameLineEdit;
-    QLineEdit *m_surnameLineEdit;
+    QLineEdit *m_fullnameLineEdit;
     QLineEdit *m_innernumLineEdit;
+    QLineEdit *m_shiftnumLineEdit;
     QLineEdit *m_activityLineEdit;
     QLineEdit *m_sectorpidLineEdit;
     QDateEdit *m_startDateEdit;

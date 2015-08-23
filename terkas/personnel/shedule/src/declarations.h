@@ -6,10 +6,9 @@
 #define PGSQL_TABLENAME "shedule.vw_shedule"
 
 enum {
-    shedule_name,
-    shedule_middlename,
-    shedule_surname,
+    shedule_fullname,
     shedule_innernum,
+    shedule_shiftnum,
     shedule_activity,
     shedule_sector_pid,
     shedule_start,

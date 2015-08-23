@@ -31,10 +31,11 @@ void MainDialog::setupModel()
         qApp->quit();
     }
 
-    m_model->setHeaderData(shedule_name,       Qt::Horizontal, trUtf8("Имя"),             Qt::DisplayRole);
-    m_model->setHeaderData(shedule_middlename, Qt::Horizontal, trUtf8("Отчетсво"),        Qt::DisplayRole);
-    m_model->setHeaderData(shedule_surname,    Qt::Horizontal, trUtf8("Фамилия"),         Qt::DisplayRole);
+    m_model->setHeaderData(shedule_fullname,       Qt::Horizontal, trUtf8("Имя"),             Qt::DisplayRole);
+//    m_model->setHeaderData(shedule_middlename, Qt::Horizontal, trUtf8("Отчетсво"),        Qt::DisplayRole);
+//    m_model->setHeaderData(shedule_surname,    Qt::Horizontal, trUtf8("Фамилия"),         Qt::DisplayRole);
     m_model->setHeaderData(shedule_innernum,   Qt::Horizontal, trUtf8("Табельный номер"), Qt::DisplayRole);
+    m_model->setHeaderData(shedule_shiftnum,   Qt::Horizontal, trUtf8("Номер смены"),     Qt::DisplayRole);
     m_model->setHeaderData(shedule_sector_pid, Qt::Horizontal, trUtf8("Сектор"),          Qt::DisplayRole);
     m_model->setHeaderData(shedule_activity,   Qt::Horizontal, trUtf8("Активность"),      Qt::DisplayRole);
     m_model->setHeaderData(shedule_start,      Qt::Horizontal, trUtf8("Дата начала"),     Qt::DisplayRole);
@@ -51,15 +52,7 @@ void MainDialog::setupView()
 
     m_view->selectRow(0);
 
-//    m_view->setColumnHidden(safety_cause,   true);
-//    m_view->setColumnHidden(safety_details, true);
-//    m_view->setColumnHidden(safety_factor,  true);
-
     m_view->resizeRowsToContents();
-
-
-//    QHeaderView *header = m_view->horizontalHeader();
-    //    header->setSectionResizeMode(safe, QHeaderView::Fixed);
 }
 
 void MainDialog::setupMapperDialog()
