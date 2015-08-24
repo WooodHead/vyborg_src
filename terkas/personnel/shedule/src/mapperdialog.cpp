@@ -69,7 +69,8 @@ void MapperDialog::layoutPrivateWidgets()
 
 void MapperDialog::updatePrivateWidgets()
 {
-    if (isDirty()) {
+    if (isDirty())
+    {
         m_fullnameLineEdit->setReadOnly(false);
         m_innernumLineEdit->setReadOnly(false);
         m_shiftnumLineEdit->setReadOnly(false);
@@ -77,7 +78,9 @@ void MapperDialog::updatePrivateWidgets()
         m_sectorpidLineEdit->setReadOnly(false);
         m_startDateEdit->setReadOnly(false);
         m_stopDateEdit->setReadOnly(false);
-    } else {
+    }
+    else
+    {
         m_fullnameLineEdit->setReadOnly(true);
         m_innernumLineEdit->setReadOnly(true);
         m_shiftnumLineEdit->setReadOnly(true);
