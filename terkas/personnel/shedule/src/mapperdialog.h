@@ -6,7 +6,7 @@
 QT_BEGIN_NAMESPACE
 class QDateEdit;
 class QLineEdit;
-//class QComboBox;
+class QComboBox;
 //class QTextEdit;
 QT_END_NAMESPACE
 
@@ -23,7 +23,7 @@ protected:
     virtual void updatePrivateWidgets() Q_DECL_OVERRIDE;
 
 private:
-    QLineEdit *m_fullnameLineEdit;
+    QComboBox *m_fullnameComboBox;
     QLineEdit *m_innernumLineEdit;
     QLineEdit *m_shiftnumLineEdit;
     QLineEdit *m_activityLineEdit;

@@ -11,7 +11,8 @@ SOURCES +=\
     $$PWD/personpopupmenu.cpp \
     $$PWD/addvacationdialog.cpp \
     $$PWD/maindialog.cpp \
-    $$PWD/mapperdialog.cpp
+    $$PWD/mapperdialog.cpp \
+    $$PWD/mapperdelegate.cpp
 
 HEADERS  += \
     $$PWD/declarations.h \
@@ -26,7 +27,8 @@ HEADERS  += \
     $$PWD/personpopupmenu.h \
     $$PWD/addvacationdialog.h \
     $$PWD/maindialog.h \
-    $$PWD/mapperdialog.h
+    $$PWD/mapperdialog.h \
+    $$PWD/mapperdelegate.h
 
 FORMS += \
     $$PWD/yearmonthpickerwidget.ui \
