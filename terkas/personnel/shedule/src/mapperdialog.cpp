@@ -4,6 +4,8 @@
 #include "declarations.h"
 #include "mapperdelegate.h"
 
+#include "personwidget.h"
+
 MapperDialog::MapperDialog(QSqlRelationalTableModel *model, QWidget *parent)
     : VyborgMapperDialog(model, parent)
 {
@@ -31,8 +33,11 @@ void MapperDialog::createPrivateWidgets()
     m_startDateEdit->setDisplayFormat("yyyy MMMM dd");
     m_stopDateEdit->setDisplayFormat("yyyy MMMM dd");
 
+    PersonWidget *pwid = new PersonWidget;
+
 
     QDataWidgetMapper* m_mapper = mapper();
+    m_mapper->addMapping(pwid, shedule_fullname);
     m_mapper->addMapping(m_fullnameComboBox,       shedule_fullname);
 //    m_mapper->addMapping(m_middlenameLineEdit, shedule_middlename);
 //    m_mapper->addMapping(m_surnameLineEdit,    shedule_surname);
