@@ -9,6 +9,8 @@ class QLineEdit;
 class QComboBox;
 QT_END_NAMESPACE
 
+class PersonWidget;
+
 class MapperDialog : public VyborgMapperDialog
 {
     Q_OBJECT
@@ -22,7 +24,7 @@ protected:
     virtual void updatePrivateWidgets() Q_DECL_OVERRIDE;
 
 private:
-    QLineEdit *m_personpidLineEdit;
+    PersonWidget *m_personWid;
     QLineEdit *m_activityLineEdit;
     QLineEdit *m_sectorpidLineEdit;
     QDateEdit *m_startDateEdit;
