@@ -1,21 +1,33 @@
 #include <QApplication>
-#include <QtWidgets>
 
-#include "declaration.h"
-#include <vyborg_connection.h>
+#include "declarations.h"
+#include <vyborg/connection.h>
 
+//#include "mainwindow.h"
 #include "maindialog.h"
+
 
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-    if (openConnection() == false)
+    if (!openConnection()) {
         return -1;
+    }
 
-    MainDialog dialog;
-    dialog.setTitle("Сектора РДЦ МЦ АУВД");
-    dialog.showMaximized();
+//    MainWindow win;
+//    win.showMaximized();
+//    win.show();
 
-    return app.exec();
+    MainDialog dlg;
+    dlg.showMaximized();
+
+    app.exec();
+
+    if (!closeConnection()) {
+        return -1;
+    }
+
+    return 0;
 }
+

@@ -1,7 +1,7 @@
 #ifndef MAINDIALOG_H
 #define MAINDIALOG_H
 
-#include <vyborg.h>
+#include <vyborg/vyborg.h>
 
 class MainDialog : public VyborgMainDialog
 {
@@ -11,11 +11,12 @@ public:
     MainDialog(QWidget *parent = 0);
 
 protected:
-    virtual void setupModel();
-    virtual void setupView();
-    virtual void setupMapperDialog();
-    virtual void setupSortDialog();
-    virtual void setupFilterDialog();
+    virtual void setupModel()        Q_DECL_OVERRIDE;
+    virtual void setupView()         Q_DECL_OVERRIDE;
+    virtual void setupMapperDialog() Q_DECL_OVERRIDE;
+    virtual void setupFilterDialog() Q_DECL_OVERRIDE;
+    virtual void setupSortDialog()   Q_DECL_OVERRIDE;
 };
 
 #endif // MAINDIALOG_H
+
