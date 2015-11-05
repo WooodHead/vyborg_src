@@ -43,7 +43,7 @@ void MainDialog::setupModel()
 void MainDialog::setupView()
 {
     m_view->setModel(m_model);
-    m_view->setItemDelegate(new PersonModelDelegate(m_view));
+//    m_view->setItemDelegate(new PersonModelDelegate(m_view));
 
     m_view->resizeRowsToContents();
     m_view->resizeColumnsToContents();
