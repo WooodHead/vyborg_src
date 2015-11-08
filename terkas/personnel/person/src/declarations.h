@@ -7,6 +7,7 @@
 
 
 enum Columns {
+    person_pid,
     person_surname,
     person_name,
     person_middlename,

@@ -12,7 +12,6 @@ MainDialog::MainDialog(QWidget *parent)
     : VyborgMainDialog(parent)
 {
     setupModel();
-//    setupProxy();
     setupView();
     setupMapperDialog();
     setupFilterDialog();
@@ -22,23 +21,8 @@ MainDialog::MainDialog(QWidget *parent)
 void MainDialog::setupModel()
 {
     m_model->setTable(PGSQL_TABLENAME);
-//    model_->setRelation(AC_country_id, QSqlRelation("country.country", "id", "name"));
     m_model->select();
 }
-
-//void MainDialog::setupProxy()
-//{
-//    identityProxy_->setSourceModel(model_);
-//    identityProxy_->setHeaderData(person_id,          Qt::Horizontal, trUtf8("ID"));
-//    identityProxy_->setHeaderData(person_surname,     Qt::Horizontal, trUtf8("Фамилия"));
-//    identityProxy_->setHeaderData(person_name,        Qt::Horizontal, trUtf8("Имя"));
-//    identityProxy_->setHeaderData(person_middleName,  Qt::Horizontal, trUtf8("Отчество"));
-//    identityProxy_->setHeaderData(person_innerID,     Qt::Horizontal, trUtf8("Табельный\nномер"));
-//    identityProxy_->setHeaderData(person_mobilePhone, Qt::Horizontal, trUtf8("Мобильный\nтелефон"));
-
-//    sortFilterProxy_->setSourceModel(identityProxy_);
-//    sortFilterProxy_->sort(person_surname, Qt::AscendingOrder);
-//}
 
 void MainDialog::setupView()
 {
@@ -55,6 +39,7 @@ void MainDialog::setupMapperDialog()
 {
     MapperDialog *mapperDialog = new MapperDialog(m_model, this);
     m_mapperDialog = static_cast<VyborgMapperDialog *>(mapperDialog);
+    m_mapperDialog->resize(800, 480);
 }
 
 void MainDialog::setupFilterDialog()
