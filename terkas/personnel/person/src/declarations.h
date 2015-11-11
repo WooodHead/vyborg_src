@@ -19,7 +19,7 @@ enum Columns {
     person_shift,
     person_class,
     person_icaolevel,
-    person_icaoleveldate,
+    person_icaolevelvalid,
     person_licencenum,
     person_licencevalid,
     person_mobilephone,

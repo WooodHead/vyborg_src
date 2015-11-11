@@ -32,6 +32,8 @@ void MainDialog::setupView()
     m_view->resizeRowsToContents();
     m_view->resizeColumnsToContents();
 
+    m_view->hideColumn(person_pid);
+
     m_view->selectRow(0);
 }
 

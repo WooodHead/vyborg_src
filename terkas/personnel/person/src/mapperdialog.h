@@ -31,7 +31,7 @@ private:
     QLineEdit *m_shiftLE;
     QLineEdit *m_classLE;
     QLineEdit *m_icaolevelLE;
-    QLineEdit *m_icaoleveldateLE;
+    QLineEdit *m_icaolevelvalidLE;
     QLineEdit *m_licencenumLE;
     QLineEdit *m_licencevalidLE;
     QLineEdit *m_mobilephoneLE;

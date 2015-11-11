@@ -3,6 +3,7 @@
 
 #include "mapperdialog.h"
 #include "declarations.h"
+#include "mapperdelegate.h"
 
 
 MapperDialog::MapperDialog(QSqlRelationalTableModel *model, QWidget *parent)
@@ -26,7 +27,7 @@ void MapperDialog::createPrivateWidgets()
     m_shiftLE = new QLineEdit;
     m_classLE = new QLineEdit;
     m_icaolevelLE = new QLineEdit;
-    m_icaoleveldateLE = new QLineEdit;
+    m_icaolevelvalidLE = new QLineEdit;
     m_licencenumLE = new QLineEdit;
     m_licencevalidLE = new QLineEdit;
     m_mobilephoneLE = new QLineEdit;
@@ -65,7 +66,7 @@ void MapperDialog::createPrivateWidgets()
     m_mapper->addMapping(m_shiftLE, person_shift);
     m_mapper->addMapping(m_classLE, person_class);
     m_mapper->addMapping(m_icaolevelLE, person_icaolevel);
-    m_mapper->addMapping(m_icaoleveldateLE, person_icaoleveldate);
+    m_mapper->addMapping(m_icaolevelvalidLE, person_icaolevelvalid);
     m_mapper->addMapping(m_licencenumLE, person_licencenum);
     m_mapper->addMapping(m_licencevalidLE, person_licencevalid);
     m_mapper->addMapping(m_mobilephoneLE, person_mobilephone);
@@ -90,6 +91,7 @@ void MapperDialog::createPrivateWidgets()
     m_mapper->addMapping(m_otraslnagradyLE, person_otraslnagrady);
     m_mapper->addMapping(m_fgupnagradyLE, person_fgupnagrady);
     m_mapper->addMapping(m_filialnagradyLE, person_filialnagrady);
+    m_mapper->setItemDelegate(new MapperDelegate);
 }
 
 void MapperDialog::layoutPrivateWidgets()
@@ -131,7 +133,7 @@ void MapperDialog::layoutPrivateWidgets()
     // Сроки действия
 
     QFormLayout *formLayout5 = new QFormLayout;
-    formLayout5->addRow(trUtf8("Уровень ИКАО (срок действия)"), m_icaoleveldateLE);
+    formLayout5->addRow(trUtf8("Уровень ИКАО (срок действия)"), m_icaolevelvalidLE);
     formLayout5->addRow(trUtf8("Свидетельство (срок действия)"), m_licencevalidLE);
     formLayout5->addRow(trUtf8("ВЛЭК (дата)"), m_medicalvalidLE);
 
@@ -206,7 +208,7 @@ void MapperDialog::updatePrivateWidgets()
         m_shiftLE->setReadOnly(false);
         m_classLE->setReadOnly(false);
         m_icaolevelLE->setReadOnly(false);
-        m_icaoleveldateLE->setReadOnly(false);
+        m_icaolevelvalidLE->setReadOnly(false);
         m_licencenumLE->setReadOnly(false);
         m_licencevalidLE->setReadOnly(false);
         m_mobilephoneLE->setReadOnly(false);
@@ -245,7 +247,7 @@ void MapperDialog::updatePrivateWidgets()
         m_shiftLE->setReadOnly(true);
         m_classLE->setReadOnly(true);
         m_icaolevelLE->setReadOnly(true);
-        m_icaoleveldateLE->setReadOnly(true);
+        m_icaolevelvalidLE->setReadOnly(true);
         m_licencenumLE->setReadOnly(true);
         m_licencevalidLE->setReadOnly(true);
         m_mobilephoneLE->setReadOnly(true);
