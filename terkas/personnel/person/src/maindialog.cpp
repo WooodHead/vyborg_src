@@ -26,15 +26,15 @@ void MainDialog::setupModel()
     m_model->setHeaderData(person_surname, Qt::Horizontal, trUtf8("Фамилия"));
     m_model->setHeaderData(person_name, Qt::Horizontal, trUtf8("Имя"));
     m_model->setHeaderData(person_middlename, Qt::Horizontal, trUtf8("Отчество"));
-    m_model->setHeaderData(person_birthday, Qt::Horizontal, trUtf8("Дата рождения"));
-    m_model->setHeaderData(person_tabnum, Qt::Horizontal, trUtf8("Табельный номер"));
+    m_model->setHeaderData(person_birthday, Qt::Horizontal, trUtf8("Дата\nрождения"));
+    m_model->setHeaderData(person_tabnum, Qt::Horizontal, trUtf8("Табельный\nномер"));
     m_model->setHeaderData(person_division, Qt::Horizontal, trUtf8("Служба"));
     m_model->setHeaderData(person_subdivision, Qt::Horizontal, trUtf8("Подразделение"));
-    m_model->setHeaderData(person_shift, Qt::Horizontal, trUtf8("Номер смены"));
+    m_model->setHeaderData(person_shift, Qt::Horizontal, trUtf8("Номер\nсмены"));
     m_model->setHeaderData(person_position, Qt::Horizontal, trUtf8("Должность"));
     m_model->setHeaderData(person_class, Qt::Horizontal, trUtf8("Класс"));
-    m_model->setHeaderData(person_icaolevel, Qt::Horizontal, trUtf8("Уровень ICAO"));
-    m_model->setHeaderData(person_sectorgroup, Qt::Horizontal, trUtf8("Рабочее направление"));
+    m_model->setHeaderData(person_icaolevel, Qt::Horizontal, trUtf8("Уровень\nICAO"));
+    m_model->setHeaderData(person_sectorgroup, Qt::Horizontal, trUtf8("Рабочее\nнаправление"));
 }
 
 void MainDialog::setupView()
