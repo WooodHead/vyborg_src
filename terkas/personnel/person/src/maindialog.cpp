@@ -5,7 +5,7 @@
 #include "declarations.h"
 #include "mapperdialog.h"
 #include "personmodeldelegate.h"
-
+#include "tablemodel.h"
 
 
 MainDialog::MainDialog(QWidget *parent)
@@ -20,6 +20,7 @@ MainDialog::MainDialog(QWidget *parent)
 
 void MainDialog::setupModel()
 {
+    m_model = static_cast<QSqlTableModel *> (new TableModel);
     m_model->setTable(PGSQL_TABLENAME);
     m_model->select();
 

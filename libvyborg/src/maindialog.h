@@ -4,7 +4,7 @@
 #include <QDialog>
 
 QT_BEGIN_NAMESPACE
-class QSqlRelationalTableModel;
+class QSqlTableModel;
 class QTableView;
 QT_END_NAMESPACE
 
@@ -44,7 +44,7 @@ private slots:
     void showSortDialog();
 
 public:
-    QSqlRelationalTableModel   *m_model;
+    QSqlTableModel   *m_model;
     QTableView                 *m_view;
     VyborgMapperDialog         *m_mapperDialog;
     VyborgFilterDialog         *filterDialog_;

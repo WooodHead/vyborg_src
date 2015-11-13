@@ -4,7 +4,7 @@
 #include "filterdialog.h"
 
 //VyborgFilterDialog::VyborgFilterDialog(QSortFilterProxyModel *proxy, QWidget *parent)
-VyborgFilterDialog::VyborgFilterDialog(QSqlRelationalTableModel *model, QWidget *parent)
+VyborgFilterDialog::VyborgFilterDialog(QSqlTableModel *model, QWidget *parent)
     : QDialog(parent)
 //      m_model(model)
 {

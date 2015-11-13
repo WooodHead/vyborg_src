@@ -6,7 +6,7 @@
 #include "mapperdelegate.h"
 
 
-MapperDialog::MapperDialog(QSqlRelationalTableModel *model, QWidget *parent)
+MapperDialog::MapperDialog(QSqlTableModel *model, QWidget *parent)
     : VyborgMapperDialog(model, parent)
 {
     createPrivateWidgets();

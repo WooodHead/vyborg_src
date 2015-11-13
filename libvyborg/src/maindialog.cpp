@@ -13,7 +13,7 @@
 VyborgMainDialog::VyborgMainDialog(QWidget *parent)
     : QDialog(parent)
 {
-    m_model = new QSqlRelationalTableModel(this);
+    m_model = new QSqlTableModel(this);
     m_model->setEditStrategy(QSqlTableModel::OnManualSubmit);
 
     m_view = new QTableView(this);

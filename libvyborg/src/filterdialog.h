@@ -5,7 +5,7 @@
 
 QT_BEGIN_NAMESPACE
 //class QSortFilterProxyModel;
-class QSqlRelationalTableModel;
+class QSqlTableModel;
 class QLineEdit;
 class QComboBox;
 class QCheckBox;
@@ -18,7 +18,7 @@ class VyborgFilterDialog : public QDialog
 
 public:
 //    VyborgFilterDialog(QSortFilterProxyModel *proxy = 0, QWidget *parent = 0);
-    VyborgFilterDialog(QSqlRelationalTableModel *model = 0, QWidget *parent = 0);
+    VyborgFilterDialog(QSqlTableModel *model = 0, QWidget *parent = 0);
 
     void addColumn(const QString &columnText, const int columnData);
     void addColumn(const QString &columnText, const QString &columnData);
@@ -36,7 +36,7 @@ private:
     QPushButton *filterButton;
 
 //    QSortFilterProxyModel *proxy_;
-    QSqlRelationalTableModel *m_model;
+    QSqlTableModel *m_model;
 };
 
 #endif // VYBORG_FILTERDIALOG_H

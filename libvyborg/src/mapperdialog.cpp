@@ -7,7 +7,7 @@
 
 #include <QDebug>
 
-VyborgMapperDialog::VyborgMapperDialog(QSqlRelationalTableModel *model, QWidget *parent)
+VyborgMapperDialog::VyborgMapperDialog(QSqlTableModel *model, QWidget *parent)
     : QDialog(parent),
       m_dirty(false)
 {
