@@ -98,10 +98,15 @@ void MapperDialog::layoutPrivateWidgets()
 {
     // Основные данные
 
+    QHBoxLayout *nameLayout = new QHBoxLayout;
+    nameLayout->addWidget(m_surnameLE);
+    nameLayout->addWidget(m_nameLE);
+    nameLayout->addWidget(m_middlenameLE);
+
     QFormLayout *formLayout1 = new QFormLayout;
-    formLayout1->addRow(trUtf8("Фамилия"), m_surnameLE);
-    formLayout1->addRow(trUtf8("Имя"), m_nameLE);
-    formLayout1->addRow(trUtf8("Отчество"), m_middlenameLE);
+//    formLayout1->addRow(trUtf8("Фамилия"), m_surnameLE);
+//    formLayout1->addRow(trUtf8("Имя"), m_nameLE);
+//    formLayout1->addRow(trUtf8("Отчество"), m_middlenameLE);
     formLayout1->addRow(trUtf8("Табельный номер"), m_tabnumLE);
     formLayout1->addRow(trUtf8("Дата рождения"), m_birthdayLE);
     formLayout1->addRow(trUtf8("Должность"), m_positionLE);
@@ -189,8 +194,13 @@ void MapperDialog::layoutPrivateWidgets()
     tabWidget->addTab(page4, trUtf8("Образование"));
     tabWidget->addTab(page3, trUtf8("Награды"));
 
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    mainLayout->addLayout(nameLayout);
+    mainLayout->addWidget(tabWidget);
+
     QVBoxLayout *privateWidgetsLayout = layout();
-    privateWidgetsLayout->addWidget(tabWidget);
+//    privateWidgetsLayout->addWidget(tabWidget);
+    privateWidgetsLayout->addLayout(mainLayout);
 }
 
 void MapperDialog::updatePrivateWidgets()

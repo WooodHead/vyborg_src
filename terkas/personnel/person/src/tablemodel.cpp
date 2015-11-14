@@ -4,6 +4,8 @@
 #include "tablemodel.h"
 #include "declarations.h"
 
+#include <QDebug>
+
 TableModel::TableModel(QObject *parent, QSqlDatabase db) :
     QSqlTableModel(parent, db)
 {
@@ -42,3 +44,7 @@ QVariant TableModel::data(const QModelIndex &idx, int role) const
     return QSqlTableModel::data(idx, role);
 }
 
+//bool TableModel::setData(const QModelIndex &index, const QVariant &value, int role)
+//{
+//    QSqlTableModel::setData(index, value, role);
+//}

@@ -20,7 +20,8 @@ MainDialog::MainDialog(QWidget *parent)
 
 void MainDialog::setupModel()
 {
-    m_model = static_cast<QSqlTableModel *> (new TableModel);
+//    m_model = static_cast<QSqlTableModel *> (new TableModel);
+//    m_model->setEditStrategy(QSqlTableModel::OnManualSubmit);
     m_model->setTable(PGSQL_TABLENAME);
     m_model->select();
 
