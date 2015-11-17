@@ -4,6 +4,7 @@
 #include "mapperdialog.h"
 #include "declarations.h"
 #include "mapperdelegate.h"
+#include "calendarbutton.h"
 
 
 MapperDialog::MapperDialog(QSqlTableModel *model, QWidget *parent)
@@ -20,7 +21,6 @@ void MapperDialog::createPrivateWidgets()
     m_nameLE = new QLineEdit;
     m_middlenameLE = new QLineEdit;
     m_tabnumLE = new QLineEdit;
-    m_birthdayLE = new QLineEdit;
     m_divisionLE = new QLineEdit;
     m_subdivisionLE = new QLineEdit;
     m_shiftLE = new QLineEdit;
@@ -54,13 +54,15 @@ void MapperDialog::createPrivateWidgets()
     m_positionCB = new QComboBox;
     m_sectorgroupCB = new QComboBox;
 
+    m_birthdayCalB = new CalendarButton;
+
 
     QDataWidgetMapper* m_mapper = mapper();
     m_mapper->addMapping(m_surnameLE, person_surname);
     m_mapper->addMapping(m_nameLE, person_name);
     m_mapper->addMapping(m_middlenameLE, person_middlename);
     m_mapper->addMapping(m_tabnumLE, person_tabnum);
-    m_mapper->addMapping(m_birthdayLE, person_birthday);
+    m_mapper->addMapping(m_birthdayCalB, person_birthday);
     m_mapper->addMapping(m_positionCB, person_position);
     m_mapper->addMapping(m_divisionLE, person_division);
     m_mapper->addMapping(m_subdivisionLE, person_subdivision);
@@ -106,7 +108,7 @@ void MapperDialog::layoutPrivateWidgets()
 
     QFormLayout *formLayout1 = new QFormLayout;
     formLayout1->addRow(trUtf8("Табельный номер"), m_tabnumLE);
-    formLayout1->addRow(trUtf8("Дата рождения"), m_birthdayLE);
+    formLayout1->addRow(trUtf8("Дата рождения"), m_birthdayCalB);
     formLayout1->addRow(trUtf8("Должность"), m_positionCB);
     formLayout1->addRow(trUtf8("Служба"), m_divisionLE);
     formLayout1->addRow(trUtf8("Подразделение"), m_subdivisionLE);
@@ -208,7 +210,6 @@ void MapperDialog::updatePrivateWidgets()
         m_nameLE->setReadOnly(false);
         m_middlenameLE->setReadOnly(false);
         m_tabnumLE->setReadOnly(false);
-        m_birthdayLE->setReadOnly(false);
         m_divisionLE->setReadOnly(false);
         m_subdivisionLE->setReadOnly(false);
         m_shiftLE->setReadOnly(false);
@@ -241,6 +242,8 @@ void MapperDialog::updatePrivateWidgets()
 
         m_positionCB->setEditable(false);
         m_sectorgroupCB->setEditable(false);
+
+        m_birthdayCalB->setEnabled(true);
     }
     else
     {
@@ -248,7 +251,6 @@ void MapperDialog::updatePrivateWidgets()
         m_nameLE->setReadOnly(true);
         m_middlenameLE->setReadOnly(true);
         m_tabnumLE->setReadOnly(true);
-        m_birthdayLE->setReadOnly(true);
         m_divisionLE->setReadOnly(true);
         m_subdivisionLE->setReadOnly(true);
         m_shiftLE->setReadOnly(true);
@@ -281,5 +283,7 @@ void MapperDialog::updatePrivateWidgets()
 
         m_positionCB->setEditable(false);
         m_sectorgroupCB->setEditable(false);
+
+        m_birthdayCalB->setEnabled(false);
     }
 }

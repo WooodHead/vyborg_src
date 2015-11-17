@@ -3,7 +3,8 @@ SOURCES += src/main.cpp\
     src/mapperdialog.cpp \
 #    src/personmodeldelegate.cpp
     $$PWD/mapperdelegate.cpp \
-    $$PWD/tablemodel.cpp
+    $$PWD/tablemodel.cpp \
+    src/calendarbutton.cpp
 
 HEADERS  += \
     src/maindialog.h \
@@ -11,5 +12,5 @@ HEADERS  += \
     src/declarations.h \
 #    src/personmodeldelegate.h
     $$PWD/mapperdelegate.h \
-    $$PWD/tablemodel.h
-
+    $$PWD/tablemodel.h \
+    src/calendarbutton.h

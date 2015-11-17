@@ -6,7 +6,10 @@
 QT_BEGIN_NAMESPACE
 class QLineEdit;
 class QComboBox;
+class QPushButton;
 QT_END_NAMESPACE
+
+class CalendarButton;
 
 class MapperDialog : public VyborgMapperDialog
 {
@@ -25,7 +28,6 @@ private:
     QLineEdit *m_nameLE;
     QLineEdit *m_middlenameLE;
     QLineEdit *m_tabnumLE;
-    QLineEdit *m_birthdayLE;
     QLineEdit *m_divisionLE;
     QLineEdit *m_subdivisionLE;
     QLineEdit *m_shiftLE;
@@ -57,6 +59,7 @@ private:
     QLineEdit *m_filialnagradyLE;
     QComboBox *m_positionCB;
     QComboBox *m_sectorgroupCB;
+    CalendarButton *m_birthdayCalB;
 };
 
 #endif // MAPPERDIALOG_H

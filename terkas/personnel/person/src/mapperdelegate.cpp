@@ -15,7 +15,11 @@ MapperDelegate::MapperDelegate(QObject *parent) :
 void MapperDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const
 {
     int col = index.column();
-    if (col == person_position)
+    if (col == person_birthday)
+    {
+
+    }
+    else if (col == person_position)
     {
         QComboBox *combo = qobject_cast<QComboBox*>(editor);
         QString data = combo->currentText();
@@ -41,7 +45,13 @@ void MapperDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, co
 void MapperDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
     int col = index.column();
-    if (col == person_position)
+    if (col == person_birthday)
+    {
+        QPushButton *button = static_cast<QPushButton*>(editor);
+        QDate data = index.model()->data(index, Qt::EditRole).toDate();
+        button->setText(data.toString("dd MMMM yyyy"));
+    }
+    else if (col == person_position)
     {
         QComboBox *combo = static_cast<QComboBox *>(editor);
         combo->clear();
