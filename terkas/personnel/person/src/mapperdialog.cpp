@@ -34,7 +34,8 @@ void MapperDialog::createPrivateWidgets()
     m_stazhLE = new QLineEdit;
     m_postupLE = new QLineEdit;
     m_medicalvalidLE = new QLineEdit;
-    m_sectorgroupLE = new QLineEdit;
+//    m_sectorgroupLE = new QLineEdit;
+    m_sectorgroupCB = new QComboBox;
     m_sectoradmittanceLE = new QLineEdit;
     m_positionadmittanceLE = new QLineEdit;
     m_kpkrpLE = new QLineEdit;
@@ -73,7 +74,8 @@ void MapperDialog::createPrivateWidgets()
     m_mapper->addMapping(m_stazhLE, person_stazh);
     m_mapper->addMapping(m_postupLE, person_postup);
     m_mapper->addMapping(m_medicalvalidLE, person_medicalvalid);
-    m_mapper->addMapping(m_sectorgroupLE, person_sectorgroup);
+//    m_mapper->addMapping(m_sectorgroupLE, person_sectorgroup);
+    m_mapper->addMapping(m_sectorgroupCB, person_sectorgroup);
     m_mapper->addMapping(m_sectoradmittanceLE, person_sectoradmittance);
     m_mapper->addMapping(m_positionadmittanceLE, person_positionadmittance);
     m_mapper->addMapping(m_kpkrpLE, person_kpkrp);
@@ -119,7 +121,8 @@ void MapperDialog::layoutPrivateWidgets()
     formLayout1->addRow(trUtf8("Номер мобильного телефона"), m_mobilephoneLE);
     formLayout1->addRow(trUtf8("Стаж работы"), m_stazhLE);
     formLayout1->addRow(trUtf8("Дата поступления в МЦ"), m_postupLE);
-    formLayout1->addRow(trUtf8("Рабочее направление"), m_sectorgroupLE);
+//    formLayout1->addRow(trUtf8("Рабочее направление"), m_sectorgroupLE);
+    formLayout1->addRow(trUtf8("Рабочее направление"), m_sectorgroupCB);
 
     QWidget *page1 = new QWidget;
     page1->setLayout(formLayout1);
@@ -225,7 +228,8 @@ void MapperDialog::updatePrivateWidgets()
         m_stazhLE->setReadOnly(false);
         m_postupLE->setReadOnly(false);
         m_medicalvalidLE->setReadOnly(false);
-        m_sectorgroupLE->setReadOnly(false);
+//        m_sectorgroupLE->setReadOnly(false);
+        m_sectorgroupCB->setEditable(false);
         m_sectoradmittanceLE->setReadOnly(false);
         m_positionadmittanceLE->setReadOnly(false);
         m_kpkrpLE->setReadOnly(false);
@@ -264,7 +268,8 @@ void MapperDialog::updatePrivateWidgets()
         m_stazhLE->setReadOnly(true);
         m_postupLE->setReadOnly(true);
         m_medicalvalidLE->setReadOnly(true);
-        m_sectorgroupLE->setReadOnly(true);
+//        m_sectorgroupLE->setReadOnly(true);
+        m_sectorgroupCB->setEditable(false);
         m_sectoradmittanceLE->setReadOnly(true);
         m_positionadmittanceLE->setReadOnly(true);
         m_kpkrpLE->setReadOnly(true);

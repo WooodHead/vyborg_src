@@ -5,6 +5,7 @@
 
 QT_BEGIN_NAMESPACE
 class QLineEdit;
+class QComboBox;
 QT_END_NAMESPACE
 
 class MapperDialog : public VyborgMapperDialog
@@ -38,7 +39,8 @@ private:
     QLineEdit *m_stazhLE;
     QLineEdit *m_postupLE;
     QLineEdit *m_medicalvalidLE;
-    QLineEdit *m_sectorgroupLE;
+//    QLineEdit *m_sectorgroupLE;
+    QComboBox *m_sectorgroupCB;
     QLineEdit *m_sectoradmittanceLE;
     QLineEdit *m_positionadmittanceLE;
     QLineEdit *m_kpkrpLE;
