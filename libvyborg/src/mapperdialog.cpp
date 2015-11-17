@@ -132,7 +132,7 @@ void VyborgMapperDialog::submit()
 {
     int curRow = m_mapper->currentIndex();
 
-    m_mapper->submit();
+    m_mapper->submit();''
     bool ret = m_model->submitAll();
     if (ret == false)
         qDebug() << "ERROR: " << m_model->lastError().text().toUtf8();
