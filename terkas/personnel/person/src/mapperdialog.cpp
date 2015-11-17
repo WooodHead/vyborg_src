@@ -21,7 +21,6 @@ void MapperDialog::createPrivateWidgets()
     m_middlenameLE = new QLineEdit;
     m_tabnumLE = new QLineEdit;
     m_birthdayLE = new QLineEdit;
-    m_positionLE = new QLineEdit;
     m_divisionLE = new QLineEdit;
     m_subdivisionLE = new QLineEdit;
     m_shiftLE = new QLineEdit;
@@ -34,8 +33,6 @@ void MapperDialog::createPrivateWidgets()
     m_stazhLE = new QLineEdit;
     m_postupLE = new QLineEdit;
     m_medicalvalidLE = new QLineEdit;
-//    m_sectorgroupLE = new QLineEdit;
-    m_sectorgroupCB = new QComboBox;
     m_sectoradmittanceLE = new QLineEdit;
     m_positionadmittanceLE = new QLineEdit;
     m_kpkrpLE = new QLineEdit;
@@ -54,6 +51,9 @@ void MapperDialog::createPrivateWidgets()
     m_fgupnagradyLE = new QLineEdit;
     m_filialnagradyLE = new QLineEdit;
 
+    m_positionCB = new QComboBox;
+    m_sectorgroupCB = new QComboBox;
+
 
     QDataWidgetMapper* m_mapper = mapper();
     m_mapper->addMapping(m_surnameLE, person_surname);
@@ -61,7 +61,7 @@ void MapperDialog::createPrivateWidgets()
     m_mapper->addMapping(m_middlenameLE, person_middlename);
     m_mapper->addMapping(m_tabnumLE, person_tabnum);
     m_mapper->addMapping(m_birthdayLE, person_birthday);
-    m_mapper->addMapping(m_positionLE, person_position);
+    m_mapper->addMapping(m_positionCB, person_position);
     m_mapper->addMapping(m_divisionLE, person_division);
     m_mapper->addMapping(m_subdivisionLE, person_subdivision);
     m_mapper->addMapping(m_shiftLE, person_shift);
@@ -74,7 +74,6 @@ void MapperDialog::createPrivateWidgets()
     m_mapper->addMapping(m_stazhLE, person_stazh);
     m_mapper->addMapping(m_postupLE, person_postup);
     m_mapper->addMapping(m_medicalvalidLE, person_medicalvalid);
-//    m_mapper->addMapping(m_sectorgroupLE, person_sectorgroup);
     m_mapper->addMapping(m_sectorgroupCB, person_sectorgroup);
     m_mapper->addMapping(m_sectoradmittanceLE, person_sectoradmittance);
     m_mapper->addMapping(m_positionadmittanceLE, person_positionadmittance);
@@ -106,12 +105,9 @@ void MapperDialog::layoutPrivateWidgets()
     nameLayout->addWidget(m_middlenameLE);
 
     QFormLayout *formLayout1 = new QFormLayout;
-//    formLayout1->addRow(trUtf8("Фамилия"), m_surnameLE);
-//    formLayout1->addRow(trUtf8("Имя"), m_nameLE);
-//    formLayout1->addRow(trUtf8("Отчество"), m_middlenameLE);
     formLayout1->addRow(trUtf8("Табельный номер"), m_tabnumLE);
     formLayout1->addRow(trUtf8("Дата рождения"), m_birthdayLE);
-    formLayout1->addRow(trUtf8("Должность"), m_positionLE);
+    formLayout1->addRow(trUtf8("Должность"), m_positionCB);
     formLayout1->addRow(trUtf8("Служба"), m_divisionLE);
     formLayout1->addRow(trUtf8("Подразделение"), m_subdivisionLE);
     formLayout1->addRow(trUtf8("Номер смены"), m_shiftLE);
@@ -121,7 +117,6 @@ void MapperDialog::layoutPrivateWidgets()
     formLayout1->addRow(trUtf8("Номер мобильного телефона"), m_mobilephoneLE);
     formLayout1->addRow(trUtf8("Стаж работы"), m_stazhLE);
     formLayout1->addRow(trUtf8("Дата поступления в МЦ"), m_postupLE);
-//    formLayout1->addRow(trUtf8("Рабочее направление"), m_sectorgroupLE);
     formLayout1->addRow(trUtf8("Рабочее направление"), m_sectorgroupCB);
 
     QWidget *page1 = new QWidget;
@@ -202,7 +197,6 @@ void MapperDialog::layoutPrivateWidgets()
     mainLayout->addWidget(tabWidget);
 
     QVBoxLayout *privateWidgetsLayout = layout();
-//    privateWidgetsLayout->addWidget(tabWidget);
     privateWidgetsLayout->addLayout(mainLayout);
 }
 
@@ -215,7 +209,6 @@ void MapperDialog::updatePrivateWidgets()
         m_middlenameLE->setReadOnly(false);
         m_tabnumLE->setReadOnly(false);
         m_birthdayLE->setReadOnly(false);
-        m_positionLE->setReadOnly(false);
         m_divisionLE->setReadOnly(false);
         m_subdivisionLE->setReadOnly(false);
         m_shiftLE->setReadOnly(false);
@@ -228,8 +221,6 @@ void MapperDialog::updatePrivateWidgets()
         m_stazhLE->setReadOnly(false);
         m_postupLE->setReadOnly(false);
         m_medicalvalidLE->setReadOnly(false);
-//        m_sectorgroupLE->setReadOnly(false);
-        m_sectorgroupCB->setEditable(false);
         m_sectoradmittanceLE->setReadOnly(false);
         m_positionadmittanceLE->setReadOnly(false);
         m_kpkrpLE->setReadOnly(false);
@@ -247,6 +238,9 @@ void MapperDialog::updatePrivateWidgets()
         m_otraslnagradyLE->setReadOnly(false);
         m_fgupnagradyLE->setReadOnly(false);
         m_filialnagradyLE->setReadOnly(false);
+
+        m_positionCB->setEditable(false);
+        m_sectorgroupCB->setEditable(false);
     }
     else
     {
@@ -255,7 +249,6 @@ void MapperDialog::updatePrivateWidgets()
         m_middlenameLE->setReadOnly(true);
         m_tabnumLE->setReadOnly(true);
         m_birthdayLE->setReadOnly(true);
-        m_positionLE->setReadOnly(true);
         m_divisionLE->setReadOnly(true);
         m_subdivisionLE->setReadOnly(true);
         m_shiftLE->setReadOnly(true);
@@ -268,8 +261,6 @@ void MapperDialog::updatePrivateWidgets()
         m_stazhLE->setReadOnly(true);
         m_postupLE->setReadOnly(true);
         m_medicalvalidLE->setReadOnly(true);
-//        m_sectorgroupLE->setReadOnly(true);
-        m_sectorgroupCB->setEditable(false);
         m_sectoradmittanceLE->setReadOnly(true);
         m_positionadmittanceLE->setReadOnly(true);
         m_kpkrpLE->setReadOnly(true);
@@ -287,5 +278,8 @@ void MapperDialog::updatePrivateWidgets()
         m_otraslnagradyLE->setReadOnly(true);
         m_fgupnagradyLE->setReadOnly(true);
         m_filialnagradyLE->setReadOnly(true);
+
+        m_positionCB->setEditable(false);
+        m_sectorgroupCB->setEditable(false);
     }
 }

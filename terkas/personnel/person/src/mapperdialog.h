@@ -26,7 +26,6 @@ private:
     QLineEdit *m_middlenameLE;
     QLineEdit *m_tabnumLE;
     QLineEdit *m_birthdayLE;
-    QLineEdit *m_positionLE;
     QLineEdit *m_divisionLE;
     QLineEdit *m_subdivisionLE;
     QLineEdit *m_shiftLE;
@@ -39,8 +38,6 @@ private:
     QLineEdit *m_stazhLE;
     QLineEdit *m_postupLE;
     QLineEdit *m_medicalvalidLE;
-//    QLineEdit *m_sectorgroupLE;
-    QComboBox *m_sectorgroupCB;
     QLineEdit *m_sectoradmittanceLE;
     QLineEdit *m_positionadmittanceLE;
     QLineEdit *m_kpkrpLE;
@@ -58,6 +55,8 @@ private:
     QLineEdit *m_otraslnagradyLE;
     QLineEdit *m_fgupnagradyLE;
     QLineEdit *m_filialnagradyLE;
+    QComboBox *m_positionCB;
+    QComboBox *m_sectorgroupCB;
 };
 
 #endif // MAPPERDIALOG_H
