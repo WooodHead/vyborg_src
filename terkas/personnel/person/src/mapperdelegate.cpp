@@ -57,14 +57,26 @@ void MapperDelegate::setEditorData(QWidget *editor, const QModelIndex &index) co
         combo->clear();
         combo->addItem(QString::null);
 
-        QSqlQuery query("SELECT unnest(enum_range(NULL::person.t_position))");
+//        QSqlQuery query("SELECT unnest(enum_range(NULL::person.t_position))");
+        QSqlQuery query("SELECT position,t_position FROM person.position");
         while (query.next()) {
             QString position = query.value(0).toString().toUtf8();
-            combo->addItem(position);
+            QString t_position = query.value(1).toString().toUtf8();
+            combo->addItem(position, t_position);
         }
+        query.clear();
 
         QString data = index.model()->data(index, Qt::EditRole).toString().toUtf8();
-        combo->setCurrentText(data);
+        QSqlQuery query1("SELECT position,t_position FROM person.position");
+        while (query1.next()) {
+            QString position = query1.value(0).toString().toUtf8();
+            QString t_position = query1.value(1).toString().toUtf8();
+            if (t_position == data) {
+                    combo->setCurrentText(position);
+                    query1.clear();
+                    break;
+            }
+        }
     }
     else if (col == person_sectorgroup)
     {

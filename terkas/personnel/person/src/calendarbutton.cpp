@@ -2,6 +2,10 @@
 
 #include "calendarbutton.h"
 
+#ifndef DATE_FORMAT
+#define DATE_FORMAT QString("dd MMMM yyyy")
+#endif
+
 CalendarButton::CalendarButton(QWidget *parent) :
     QPushButton(parent)
 {
@@ -15,14 +19,13 @@ CalendarButton::CalendarButton(QWidget *parent) :
 
 void CalendarButton::showCalendar()
 {
-    QDate date = QDate::fromString(this->text(), "dd MMMM yyyy");
-
+    QDate date = QDate::fromString(this->text(), DATE_FORMAT);
     m_calendar->setSelectedDate(date);
     m_calendar->show();
 }
 
 void CalendarButton::calendarClicked(const QDate &date)
 {
-    this->setText(date.toString("dd MMMM yyyy"));
-    m_calendar->close();
+    this->setText(date.toString(DATE_FORMAT));
+    m_calendar->hide();
 }
