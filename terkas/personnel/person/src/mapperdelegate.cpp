@@ -23,7 +23,20 @@ void MapperDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, co
     {
         QComboBox *combo = qobject_cast<QComboBox*>(editor);
         QString data = combo->currentText();
+
+        QSqlQuery query("SELECT position,t_position FROM person.position");
+        while (query.next()) {
+            QString position = query.value(0).toString().toUtf8();
+            QString t_position = query.value(1).toString().toUtf8();
+            if (position == data) {
+                model->setData(index, t_position);
+                query.clear();
+                return;
+            }
+        }
+
         model->setData(index, data);
+        query.clear();
     }
     else if (col == person_sectorgroup)
     {

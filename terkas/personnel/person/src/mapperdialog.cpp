@@ -107,6 +107,7 @@ void MapperDialog::layoutPrivateWidgets()
     nameLayout->addWidget(m_middlenameLE);
 
     QFormLayout *formLayout1 = new QFormLayout;
+    formLayout1->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
     formLayout1->addRow(trUtf8("Табельный номер"), m_tabnumLE);
     formLayout1->addRow(trUtf8("Дата рождения"), m_birthdayCalB);
     formLayout1->addRow(trUtf8("Должность"), m_positionCB);
