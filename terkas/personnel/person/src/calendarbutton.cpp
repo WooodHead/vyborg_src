@@ -12,7 +12,9 @@ CalendarButton::CalendarButton(QWidget *parent) :
     connect(this, SIGNAL(clicked(bool)),
             this, SLOT(showCalendar()));
 
-    m_calendar = new QCalendarWidget;
+    m_calendar = new QCalendarWidget(this);
+    m_calendar->setWindowModality(Qt::ApplicationModal);
+    m_calendar->setWindowFlags(Qt::Dialog);
     connect(m_calendar, SIGNAL(clicked(QDate)),
             this, SLOT(calendarClicked(QDate)));
 }
