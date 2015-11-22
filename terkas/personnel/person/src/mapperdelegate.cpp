@@ -49,9 +49,15 @@ void MapperDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, co
         QLineEdit *w = qobject_cast<QLineEdit*>(editor);
         QString data = w->text();
         if (data.isEmpty())
-            model->setData(index, QVariant());
+        {
+            bool ret = model->setData(index, QVariant());
+            if (ret == false) qDebug() << "ERROR";
+        }
         else
-            model->setData(index, data);
+        {
+            bool ret = model->setData(index, data);
+            if (ret == false) qDebug() << "ERROR";
+        }
     }
 }
 
