@@ -5,6 +5,7 @@
 #include "declarations.h"
 #include "mapperdelegate.h"
 #include "calendarbutton.h"
+#include "positionadmittancewidget.h"
 
 
 MapperDialog::MapperDialog(QSqlTableModel *model, QWidget *parent)
@@ -56,6 +57,8 @@ void MapperDialog::createPrivateWidgets()
 
     m_birthdayCalB = new CalendarButton;
 
+    m_positionadmittanceW = new PositionAdmittanceWidget;
+
 
     QDataWidgetMapper* m_mapper = mapper();
     m_mapper->addMapping(m_surnameLE, person_surname);
@@ -79,6 +82,7 @@ void MapperDialog::createPrivateWidgets()
     m_mapper->addMapping(m_sectorgroupCB, person_sectorgroup);
     m_mapper->addMapping(m_sectoradmittanceLE, person_sectoradmittance);
     m_mapper->addMapping(m_positionadmittanceLE, person_positionadmittance);
+    m_mapper->addMapping(m_positionadmittanceW, person_positionadmittance);
     m_mapper->addMapping(m_kpkrpLE, person_kpkrp);
     m_mapper->addMapping(m_kpksdLE, person_kpksd);
     m_mapper->addMapping(m_kpkdiLE, person_kpkdi);
@@ -131,6 +135,7 @@ void MapperDialog::layoutPrivateWidgets()
     QFormLayout *formLayout6 = new QFormLayout;
     formLayout6->addRow(trUtf8("Допуска на секторы"), m_sectoradmittanceLE);
     formLayout6->addRow(trUtf8("Допуска к работе"), m_positionadmittanceLE);
+    formLayout6->addRow(trUtf8("Допуски"), m_positionadmittanceW);
 
     QWidget *page6 = new QWidget;
     page6->setLayout(formLayout6);

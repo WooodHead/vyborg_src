@@ -10,6 +10,7 @@ class QPushButton;
 QT_END_NAMESPACE
 
 class CalendarButton;
+class PositionAdmittanceWidget;
 
 class MapperDialog : public VyborgMapperDialog
 {
@@ -60,6 +61,7 @@ private:
     QComboBox *m_positionCB;
     QComboBox *m_sectorgroupCB;
     CalendarButton *m_birthdayCalB;
+    PositionAdmittanceWidget *m_positionadmittanceW;
 };
 
 #endif // MAPPERDIALOG_H
