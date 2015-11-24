@@ -35,7 +35,6 @@ void MapperDialog::createPrivateWidgets()
     m_postupLE = new QLineEdit;
     m_medicalvalidLE = new QLineEdit;
     m_sectoradmittanceLE = new QLineEdit;
-    m_positionadmittanceLE = new QLineEdit;
     m_kpkrpLE = new QLineEdit;
     m_kpksdLE = new QLineEdit;
     m_kpkdiLE = new QLineEdit;
@@ -81,7 +80,6 @@ void MapperDialog::createPrivateWidgets()
     m_mapper->addMapping(m_medicalvalidLE, person_medicalvalid);
     m_mapper->addMapping(m_sectorgroupCB, person_sectorgroup);
     m_mapper->addMapping(m_sectoradmittanceLE, person_sectoradmittance);
-    m_mapper->addMapping(m_positionadmittanceLE, person_positionadmittance);
     m_mapper->addMapping(m_positionadmittanceW, person_positionadmittance);
     m_mapper->addMapping(m_kpkrpLE, person_kpkrp);
     m_mapper->addMapping(m_kpksdLE, person_kpksd);
@@ -134,8 +132,7 @@ void MapperDialog::layoutPrivateWidgets()
 
     QFormLayout *formLayout6 = new QFormLayout;
     formLayout6->addRow(trUtf8("Допуска на секторы"), m_sectoradmittanceLE);
-    formLayout6->addRow(trUtf8("Допуска к работе"), m_positionadmittanceLE);
-    formLayout6->addRow(trUtf8("Допуски"), m_positionadmittanceW);
+    formLayout6->addRow(m_positionadmittanceW);
 
     QWidget *page6 = new QWidget;
     page6->setLayout(formLayout6);
@@ -229,7 +226,6 @@ void MapperDialog::updatePrivateWidgets()
         m_postupLE->setReadOnly(false);
         m_medicalvalidLE->setReadOnly(false);
         m_sectoradmittanceLE->setReadOnly(false);
-        m_positionadmittanceLE->setReadOnly(false);
         m_kpkrpLE->setReadOnly(false);
         m_kpksdLE->setReadOnly(false);
         m_kpkdiLE->setReadOnly(false);
@@ -270,7 +266,6 @@ void MapperDialog::updatePrivateWidgets()
         m_postupLE->setReadOnly(true);
         m_medicalvalidLE->setReadOnly(true);
         m_sectoradmittanceLE->setReadOnly(true);
-        m_positionadmittanceLE->setReadOnly(true);
         m_kpkrpLE->setReadOnly(true);
         m_kpksdLE->setReadOnly(true);
         m_kpkdiLE->setReadOnly(true);

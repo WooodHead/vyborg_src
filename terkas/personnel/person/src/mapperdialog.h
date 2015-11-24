@@ -25,6 +25,7 @@ protected:
     virtual void updatePrivateWidgets();
 
 private:
+    // Visual widgets
     QLineEdit *m_surnameLE;
     QLineEdit *m_nameLE;
     QLineEdit *m_middlenameLE;
@@ -42,7 +43,6 @@ private:
     QLineEdit *m_postupLE;
     QLineEdit *m_medicalvalidLE;
     QLineEdit *m_sectoradmittanceLE;
-    QLineEdit *m_positionadmittanceLE;
     QLineEdit *m_kpkrpLE;
     QLineEdit *m_kpksdLE;
     QLineEdit *m_kpkdiLE;

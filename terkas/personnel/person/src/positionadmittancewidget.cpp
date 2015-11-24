@@ -1,5 +1,4 @@
 #include <QtWidgets>
-#include <QSqlQuery>
 #include <QStringList>
 
 #include "positionadmittancewidget.h"
@@ -22,13 +21,58 @@ PositionAdmittanceWidget::PositionAdmittanceWidget(QWidget *parent)
     vlayout->addWidget(m_checkD);
     vlayout->addWidget(m_checkSDGOP);
     vlayout->addWidget(m_checkDGOP);
-}
+    vlayout->addStretch(1);
 
-#include <QDebug>
+    QGroupBox *groupBox = new QGroupBox(trUtf8("Допуски к работе"));
+    groupBox->setLayout(vlayout);
+
+    QVBoxLayout *mainLayout = new QVBoxLayout(this);
+    mainLayout->addWidget(groupBox);
+}
 
 QString PositionAdmittanceWidget::array() const
 {
-    return "OK";
+    QString posAdm = QString();
+
+    if (m_checkRP->isChecked())
+    {
+        posAdm.isNull() ? posAdm.append(trUtf8("РП"))
+                        : posAdm.append(trUtf8(",РП"));
+    }
+    if (m_checkSD->isChecked())
+    {
+        posAdm.isNull() ? posAdm.append(trUtf8("СД"))
+                        : posAdm.append(trUtf8(",СД"));
+    }
+    if (m_checkDI->isChecked())
+    {
+        posAdm.isNull() ? posAdm.append(trUtf8("ДИ"))
+                        : posAdm.append(trUtf8(",ДИ"));
+    }
+    if (m_checkD->isChecked())
+    {
+        posAdm.isNull() ? posAdm.append(trUtf8("Дисп"))
+                        : posAdm.append(trUtf8(",Дисп"));
+    }
+    if (m_checkSDGOP->isChecked())
+    {
+        posAdm.isNull() ? posAdm.append(trUtf8("СДГОП"))
+                        : posAdm.append(trUtf8(",СДГОП"));
+    }
+    if (m_checkDGOP->isChecked())
+    {
+        posAdm.isNull() ? posAdm.append(trUtf8("ДиспГОП"))
+                        : posAdm.append(trUtf8(",ДиспГОП"));
+    }
+
+    if (!posAdm.isNull())
+    {
+        posAdm.prepend("{");
+        posAdm.append("}");
+        return posAdm;
+    }
+    else
+        return QString();
 }
 
 void PositionAdmittanceWidget::setArray(const QString &array)
@@ -62,7 +106,7 @@ void PositionAdmittanceWidget::setArray(const QString &array)
                 m_checkDI->setChecked(true);
             else if (position == trUtf8("Дисп"))
                 m_checkD->setChecked(true);
-            else if (position == trUtf8("СДГоп"))
+            else if (position == trUtf8("СДГОП"))
                 m_checkSDGOP->setChecked(true);
             else if (position == trUtf8("ДиспГОП"))
                 m_checkDGOP->setChecked(true);

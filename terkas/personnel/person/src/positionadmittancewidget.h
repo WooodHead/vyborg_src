@@ -20,7 +20,6 @@ public Q_SLOTS:
     QString array() const;
     void setArray(const QString & array);
 
-
 private:
     QCheckBox *m_checkRP;
     QCheckBox *m_checkSD;
