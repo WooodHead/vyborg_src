@@ -31,3 +31,9 @@ void CalendarButton::calendarClicked(const QDate &date)
     this->setText(date.toString(DATE_FORMAT));
     m_calendar->hide();
 }
+
+QString CalendarButton::stringDate() const
+{
+    QDate date = QDate::fromString(this->text(), DATE_FORMAT);
+    return QString(date.toString("yyyy-MM-dd"));
+}

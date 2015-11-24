@@ -4,6 +4,8 @@
 
 #include "mapperdelegate.h"
 #include "declarations.h"
+
+#include "calendarbutton.h"
 #include "positionadmittancewidget.h"
 
 #include <QDebug>
@@ -18,7 +20,10 @@ void MapperDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, co
     int col = index.column();
     if (col == person_birthday)
     {
+        CalendarButton *button = qobject_cast<CalendarButton *>(editor);
+        QString data = button->stringDate();
 
+        model->setData(index, data);
     }
     else if (col == person_position)
     {
@@ -45,11 +50,11 @@ void MapperDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, co
         QString data = combo->currentText();
         model->setData(index, data);
     }
-//    else if (col == person_positionadmittance)
-//    {
+    else if (col == person_positionadmittance)
+    {
 //        PositionAdmittanceWidget *posWid = qobject_cast<PositionAdmittanceWidget*>(editor);
 ////        QString data =
-//    }
+    }
     else
     {
         QLineEdit *w = qobject_cast<QLineEdit*>(editor);
@@ -72,7 +77,7 @@ void MapperDelegate::setEditorData(QWidget *editor, const QModelIndex &index) co
     int col = index.column();
     if (col == person_birthday)
     {
-        QPushButton *button = static_cast<QPushButton*>(editor);
+        CalendarButton *button = static_cast<CalendarButton *>(editor);
         QDate data = index.model()->data(index, Qt::EditRole).toDate();
         button->setText(data.toString("dd MMMM yyyy"));
     }
@@ -118,12 +123,12 @@ void MapperDelegate::setEditorData(QWidget *editor, const QModelIndex &index) co
         QString data = index.model()->data(index, Qt::EditRole).toString().toUtf8();
         combo->setCurrentText(data);
     }
-//    else if (col == person_positionadmittance)
-//    {
+    else if (col == person_positionadmittance)
+    {
 //        PositionAdmittanceWidget *posWid = static_cast<PositionAdmittanceWidget*>(editor);
 //        QString data = index.model()->data(index, Qt::EditRole).toString().toUtf8();
 //        posWid->setArray(data);
-//    }
+    }
     else
         QStyledItemDelegate::setEditorData(editor, index);
 }

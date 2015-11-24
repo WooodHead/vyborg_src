@@ -14,7 +14,11 @@ class CalendarButton : public QPushButton
 public:
     CalendarButton(QWidget *parent = 0);
 
-private slots:
+public Q_SLOTS:
+    // returns string in '0000-00-00' format
+    QString stringDate() const;
+
+private Q_SLOTS:
     void showCalendar();
     void calendarClicked(const QDate & date);
 
