@@ -8,6 +8,7 @@
 #include "calendarbutton.h"
 #include "positionadmittancewidget.h"
 
+
 #include <QDebug>
 
 MapperDelegate::MapperDelegate(QObject *parent) :

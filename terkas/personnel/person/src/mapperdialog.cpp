@@ -4,8 +4,10 @@
 #include "mapperdialog.h"
 #include "declarations.h"
 #include "mapperdelegate.h"
+
 #include "calendarbutton.h"
 #include "positionadmittancewidget.h"
+#include "sectoradmittancewidget.h"
 
 
 MapperDialog::MapperDialog(QSqlTableModel *model, QWidget *parent)
@@ -58,6 +60,8 @@ void MapperDialog::createPrivateWidgets()
 
     m_positionadmittanceW = new PositionAdmittanceWidget;
 
+    m_sectoradmittanceW = new SectorAdmittanceWidget;
+
 
     QDataWidgetMapper* m_mapper = mapper();
     m_mapper->addMapping(m_surnameLE, person_surname);
@@ -80,6 +84,7 @@ void MapperDialog::createPrivateWidgets()
     m_mapper->addMapping(m_medicalvalidLE, person_medicalvalid);
     m_mapper->addMapping(m_sectorgroupCB, person_sectorgroup);
     m_mapper->addMapping(m_sectoradmittanceLE, person_sectoradmittance);
+    m_mapper->addMapping(m_sectoradmittanceW, person_sectoradmittance);
     m_mapper->addMapping(m_positionadmittanceW, person_positionadmittance);
     m_mapper->addMapping(m_kpkrpLE, person_kpkrp);
     m_mapper->addMapping(m_kpksdLE, person_kpksd);
@@ -132,7 +137,9 @@ void MapperDialog::layoutPrivateWidgets()
 
     QFormLayout *formLayout6 = new QFormLayout;
     formLayout6->addRow(trUtf8("Допуска на секторы"), m_sectoradmittanceLE);
-    formLayout6->addRow(m_positionadmittanceW);
+
+    formLayout6->addRow(m_positionadmittanceW, m_sectoradmittanceW);
+//    formLayout6->addRow(m_positionadmittanceW);
 
     QWidget *page6 = new QWidget;
     page6->setLayout(formLayout6);

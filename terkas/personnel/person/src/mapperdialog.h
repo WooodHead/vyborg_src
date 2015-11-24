@@ -11,6 +11,7 @@ QT_END_NAMESPACE
 
 class CalendarButton;
 class PositionAdmittanceWidget;
+class SectorAdmittanceWidget;
 
 class MapperDialog : public VyborgMapperDialog
 {
@@ -25,7 +26,7 @@ protected:
     virtual void updatePrivateWidgets();
 
 private:
-    // Visual widgets
+    // Visual elements
     QLineEdit *m_surnameLE;
     QLineEdit *m_nameLE;
     QLineEdit *m_middlenameLE;
@@ -62,6 +63,7 @@ private:
     QComboBox *m_sectorgroupCB;
     CalendarButton *m_birthdayCalB;
     PositionAdmittanceWidget *m_positionadmittanceW;
+    SectorAdmittanceWidget *m_sectoradmittanceW;
 };
 
 #endif // MAPPERDIALOG_H

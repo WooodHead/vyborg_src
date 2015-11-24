@@ -6,8 +6,6 @@
 PositionAdmittanceWidget::PositionAdmittanceWidget(QWidget *parent)
     : QWidget(parent)
 {
-    QVBoxLayout *vlayout = new QVBoxLayout(this);
-
     m_checkRP    = new QCheckBox(trUtf8("Руководитель полетов"));
     m_checkSD    = new QCheckBox(trUtf8("Старший диспетчер"));
     m_checkDI    = new QCheckBox(trUtf8("Диспетчер-инструктор"));
@@ -15,10 +13,12 @@ PositionAdmittanceWidget::PositionAdmittanceWidget(QWidget *parent)
     m_checkSDGOP = new QCheckBox(trUtf8("Старший диспетчер ГОП"));
     m_checkDGOP  = new QCheckBox(trUtf8("Диспетчер ГОП"));
 
+    QVBoxLayout *vlayout = new QVBoxLayout;
     vlayout->addWidget(m_checkRP);
     vlayout->addWidget(m_checkSD);
     vlayout->addWidget(m_checkDI);
     vlayout->addWidget(m_checkD);
+    vlayout->addSpacing(10);
     vlayout->addWidget(m_checkSDGOP);
     vlayout->addWidget(m_checkDGOP);
     vlayout->addStretch(1);

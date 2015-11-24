@@ -11,7 +11,7 @@ class PositionAdmittanceWidget : public QWidget
 {
     Q_OBJECT
 
-    Q_PROPERTY(QString array READ array WRITE setArray /*NOTIFY arrayChanged*/ USER true)
+    Q_PROPERTY(QString array READ array WRITE setArray USER true)
 
 public:
     explicit PositionAdmittanceWidget(QWidget *parent = 0);
@@ -21,6 +21,7 @@ public Q_SLOTS:
     void setArray(const QString & array);
 
 private:
+    // Visual elements
     QCheckBox *m_checkRP;
     QCheckBox *m_checkSD;
     QCheckBox *m_checkDI;
@@ -28,6 +29,7 @@ private:
     QCheckBox *m_checkSDGOP;
     QCheckBox *m_checkDGOP;
 
+    // Non-visual elements
     QString m_array;
 };
 

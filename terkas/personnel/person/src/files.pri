@@ -5,7 +5,8 @@ SOURCES += src/main.cpp\
     $$PWD/mapperdelegate.cpp \
     $$PWD/tablemodel.cpp \
     src/calendarbutton.cpp \
-    src/positionadmittancewidget.cpp
+    src/positionadmittancewidget.cpp \
+    $$PWD/sectoradmittancewidget.cpp
 
 HEADERS  += \
     src/maindialog.h \
@@ -15,4 +16,5 @@ HEADERS  += \
     $$PWD/mapperdelegate.h \
     $$PWD/tablemodel.h \
     src/calendarbutton.h \
-    src/positionadmittancewidget.h
+    src/positionadmittancewidget.h \
+    $$PWD/sectoradmittancewidget.h
