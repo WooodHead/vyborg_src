@@ -43,7 +43,6 @@ private:
     QLineEdit *m_stazhLE;
     QLineEdit *m_postupLE;
     QLineEdit *m_medicalvalidLE;
-    QLineEdit *m_sectoradmittanceLE;
     QLineEdit *m_kpkrpLE;
     QLineEdit *m_kpksdLE;
     QLineEdit *m_kpkdiLE;

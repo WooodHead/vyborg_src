@@ -36,7 +36,6 @@ void MapperDialog::createPrivateWidgets()
     m_stazhLE = new QLineEdit;
     m_postupLE = new QLineEdit;
     m_medicalvalidLE = new QLineEdit;
-    m_sectoradmittanceLE = new QLineEdit;
     m_kpkrpLE = new QLineEdit;
     m_kpksdLE = new QLineEdit;
     m_kpkdiLE = new QLineEdit;
@@ -83,7 +82,6 @@ void MapperDialog::createPrivateWidgets()
     m_mapper->addMapping(m_postupLE, person_postup);
     m_mapper->addMapping(m_medicalvalidLE, person_medicalvalid);
     m_mapper->addMapping(m_sectorgroupCB, person_sectorgroup);
-    m_mapper->addMapping(m_sectoradmittanceLE, person_sectoradmittance);
     m_mapper->addMapping(m_sectoradmittanceW, person_sectoradmittance);
     m_mapper->addMapping(m_positionadmittanceW, person_positionadmittance);
     m_mapper->addMapping(m_kpkrpLE, person_kpkrp);
@@ -135,14 +133,12 @@ void MapperDialog::layoutPrivateWidgets()
 
     // Допуски
 
-    QFormLayout *formLayout6 = new QFormLayout;
-    formLayout6->addRow(trUtf8("Допуска на секторы"), m_sectoradmittanceLE);
-
-    formLayout6->addRow(m_positionadmittanceW, m_sectoradmittanceW);
-//    formLayout6->addRow(m_positionadmittanceW);
+    QHBoxLayout *hlayout6 = new QHBoxLayout;
+    hlayout6->addWidget(m_positionadmittanceW);
+    hlayout6->addWidget(m_sectoradmittanceW);
 
     QWidget *page6 = new QWidget;
-    page6->setLayout(formLayout6);
+    page6->setLayout(hlayout6);
 
 
     // Сроки действия
@@ -232,7 +228,6 @@ void MapperDialog::updatePrivateWidgets()
         m_stazhLE->setReadOnly(false);
         m_postupLE->setReadOnly(false);
         m_medicalvalidLE->setReadOnly(false);
-        m_sectoradmittanceLE->setReadOnly(false);
         m_kpkrpLE->setReadOnly(false);
         m_kpksdLE->setReadOnly(false);
         m_kpkdiLE->setReadOnly(false);
@@ -272,7 +267,6 @@ void MapperDialog::updatePrivateWidgets()
         m_stazhLE->setReadOnly(true);
         m_postupLE->setReadOnly(true);
         m_medicalvalidLE->setReadOnly(true);
-        m_sectoradmittanceLE->setReadOnly(true);
         m_kpkrpLE->setReadOnly(true);
         m_kpksdLE->setReadOnly(true);
         m_kpkdiLE->setReadOnly(true);
