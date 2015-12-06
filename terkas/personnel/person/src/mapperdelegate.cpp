@@ -26,6 +26,39 @@ void MapperDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, co
 
         model->setData(index, data);
     }
+    else if (col == person_tabnum ||
+             col == person_shift ||
+             col == person_class ||
+             col == person_icaolevel ||
+             col == person_licencenum)
+    {
+        QLineEdit *lineEdit = qobject_cast<QLineEdit *>(editor);
+        QString data = lineEdit->text();
+        if (data.isEmpty())
+            model->setData(index, QVariant());
+        else
+            model->setData(index, data.toInt());
+    }
+    else if (col == person_icaolevelvalid ||
+             col == person_licencevalid ||
+             col == person_stazh ||
+             col == person_postup ||
+             col == person_medicalvalid ||
+             col == person_kpkrp ||
+             col == person_kpksd ||
+             col == person_kpkdi ||
+             col == person_kpkfact ||
+             col == person_kpkplan ||
+             col == person_kpkompfact ||
+             col == person_kpkompplan)
+    {
+        QLineEdit *lineEdit = qobject_cast<QLineEdit *>(editor);
+        QString data = lineEdit->text();
+        if (data.isEmpty())
+            model->setData(index, QVariant());
+        else
+            model->setData(index, data);
+    }
     else if (col == person_position)
     {
         QComboBox *combo = qobject_cast<QComboBox*>(editor);
@@ -52,7 +85,10 @@ void MapperDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, co
         model->setData(index, data);
     }
     else
+    {
+        qDebug() << "DDD: " << model->data(index, Qt::EditRole);
         QStyledItemDelegate::setModelData(editor, model, index);
+    }
 }
 
 void MapperDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
@@ -63,6 +99,26 @@ void MapperDelegate::setEditorData(QWidget *editor, const QModelIndex &index) co
         CalendarButton *button = static_cast<CalendarButton *>(editor);
         QDate data = index.model()->data(index, Qt::EditRole).toDate();
         button->setText(data.toString("dd MMMM yyyy"));
+    }
+    else if (col == person_icaolevelvalid ||
+             col == person_licencevalid ||
+             col == person_stazh ||
+             col == person_postup ||
+             col == person_medicalvalid ||
+             col == person_kpkrp ||
+             col == person_kpksd ||
+             col == person_kpkdi ||
+             col == person_kpkfact ||
+             col == person_kpkplan ||
+             col == person_kpkompfact ||
+             col == person_kpkompplan)
+    {
+        QLineEdit *lineEdit = static_cast<QLineEdit *>(editor);
+        QDate data = index.model()->data(index, Qt::EditRole).toDate();
+        if (data.isValid())
+            lineEdit->setText(data.toString("yyyy-MM-dd"));
+        else
+            lineEdit->setText(QString(""));
     }
     else if (col == person_position)
     {
@@ -106,6 +162,18 @@ void MapperDelegate::setEditorData(QWidget *editor, const QModelIndex &index) co
         QString data = index.model()->data(index, Qt::EditRole).toString().toUtf8();
         combo->setCurrentText(data);
     }
+//    else if (col != person_positionadmittance &&
+//             col != person_sectoradmittance)
+//    {
+//        qDebug() << "STEP 2";
+//        QLineEdit *lineEdit = static_cast<QLineEdit *>(editor);
+//        QString data = lineEdit->text();
+//        qDebug() << data;
+//        if (data.isEmpty())
+//            lineEdit->setText(QString(""));
+//        else
+//            lineEdit->setText(data);
+//    }
     else
         QStyledItemDelegate::setEditorData(editor, index);
 }
