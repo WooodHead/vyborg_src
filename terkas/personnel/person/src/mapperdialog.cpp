@@ -5,7 +5,7 @@
 #include "declarations.h"
 #include "mapperdelegate.h"
 
-#include "calendarbutton.h"
+#include "vipcalendaredit.h"
 #include "positionadmittancewidget.h"
 #include "sectoradmittancewidget.h"
 
@@ -33,8 +33,8 @@ void MapperDialog::createPrivateWidgets()
     m_licencenumLE = new QLineEdit;
     m_licencevalidLE = new QLineEdit;
     m_mobilephoneLE = new QLineEdit;
-    m_stazhLE = new QLineEdit;
-    m_postupLE = new QLineEdit;
+//    m_stazhLE = new QLineEdit;
+//    m_postupLE = new QLineEdit;
     m_medicalvalidLE = new QLineEdit;
     m_kpkrpLE = new QLineEdit;
     m_kpksdLE = new QLineEdit;
@@ -55,7 +55,9 @@ void MapperDialog::createPrivateWidgets()
     m_positionCB = new QComboBox;
     m_sectorgroupCB = new QComboBox;
 
-    m_birthdayCalB = new CalendarButton;
+    m_birthdayCalendar = new VipCalendarEdit;
+    m_stazhCalendar = new VipCalendarEdit;
+    m_postupCalendar = new VipCalendarEdit;
 
     m_positionadmittanceW = new PositionAdmittanceWidget;
 
@@ -67,7 +69,7 @@ void MapperDialog::createPrivateWidgets()
     m_mapper->addMapping(m_nameLE, person_name);
     m_mapper->addMapping(m_middlenameLE, person_middlename);
     m_mapper->addMapping(m_tabnumLE, person_tabnum);
-    m_mapper->addMapping(m_birthdayCalB, person_birthday);
+    m_mapper->addMapping(m_birthdayCalendar, person_birthday);
     m_mapper->addMapping(m_positionCB, person_position);
     m_mapper->addMapping(m_divisionLE, person_division);
     m_mapper->addMapping(m_subdivisionLE, person_subdivision);
@@ -78,8 +80,10 @@ void MapperDialog::createPrivateWidgets()
     m_mapper->addMapping(m_licencenumLE, person_licencenum);
     m_mapper->addMapping(m_licencevalidLE, person_licencevalid);
     m_mapper->addMapping(m_mobilephoneLE, person_mobilephone);
-    m_mapper->addMapping(m_stazhLE, person_stazh);
-    m_mapper->addMapping(m_postupLE, person_postup);
+//    m_mapper->addMapping(m_stazhLE, person_stazh);
+    m_mapper->addMapping(m_stazhCalendar, person_stazh);
+//    m_mapper->addMapping(m_postupLE, person_postup);
+    m_mapper->addMapping(m_postupCalendar, person_postup);
     m_mapper->addMapping(m_medicalvalidLE, person_medicalvalid);
     m_mapper->addMapping(m_sectorgroupCB, person_sectorgroup);
     m_mapper->addMapping(m_sectoradmittanceW, person_sectoradmittance);
@@ -114,7 +118,7 @@ void MapperDialog::layoutPrivateWidgets()
     QFormLayout *formLayout1 = new QFormLayout;
     formLayout1->setFieldGrowthPolicy(QFormLayout::FieldsStayAtSizeHint);
     formLayout1->addRow(trUtf8("Табельный номер"), m_tabnumLE);
-    formLayout1->addRow(trUtf8("Дата рождения"), m_birthdayCalB);
+    formLayout1->addRow(trUtf8("Дата рождения"), m_birthdayCalendar);
     formLayout1->addRow(trUtf8("Должность"), m_positionCB);
     formLayout1->addRow(trUtf8("Служба"), m_divisionLE);
     formLayout1->addRow(trUtf8("Подразделение"), m_subdivisionLE);
@@ -123,8 +127,9 @@ void MapperDialog::layoutPrivateWidgets()
     formLayout1->addRow(trUtf8("Уровень ИКАО"), m_icaolevelLE);
     formLayout1->addRow(trUtf8("Свидетельство (номер)"), m_licencenumLE);
     formLayout1->addRow(trUtf8("Номер мобильного телефона"), m_mobilephoneLE);
-    formLayout1->addRow(trUtf8("Стаж работы"), m_stazhLE);
-    formLayout1->addRow(trUtf8("Дата поступления в МЦ"), m_postupLE);
+    formLayout1->addRow(trUtf8("Стаж работы"), m_stazhCalendar);
+//    formLayout1->addRow(trUtf8("Стаж работы"), m_stazhLE);
+    formLayout1->addRow(trUtf8("Дата поступления в МЦ"), m_postupCalendar);
     formLayout1->addRow(trUtf8("Рабочее направление"), m_sectorgroupCB);
 
     QWidget *page1 = new QWidget;
@@ -225,8 +230,6 @@ void MapperDialog::updatePrivateWidgets()
         m_licencenumLE->setReadOnly(false);
         m_licencevalidLE->setReadOnly(false);
         m_mobilephoneLE->setReadOnly(false);
-        m_stazhLE->setReadOnly(false);
-        m_postupLE->setReadOnly(false);
         m_medicalvalidLE->setReadOnly(false);
         m_kpkrpLE->setReadOnly(false);
         m_kpksdLE->setReadOnly(false);
@@ -247,7 +250,9 @@ void MapperDialog::updatePrivateWidgets()
         m_positionCB->setEditable(false);
         m_sectorgroupCB->setEditable(false);
 
-        m_birthdayCalB->setEnabled(true);
+        m_birthdayCalendar->setEditable(true);
+        m_stazhCalendar->setEditable(true);
+        m_postupCalendar->setEditable(true);
     }
     else
     {
@@ -264,8 +269,6 @@ void MapperDialog::updatePrivateWidgets()
         m_licencenumLE->setReadOnly(true);
         m_licencevalidLE->setReadOnly(true);
         m_mobilephoneLE->setReadOnly(true);
-        m_stazhLE->setReadOnly(true);
-        m_postupLE->setReadOnly(true);
         m_medicalvalidLE->setReadOnly(true);
         m_kpkrpLE->setReadOnly(true);
         m_kpksdLE->setReadOnly(true);
@@ -286,6 +289,8 @@ void MapperDialog::updatePrivateWidgets()
         m_positionCB->setEditable(false);
         m_sectorgroupCB->setEditable(false);
 
-        m_birthdayCalB->setEnabled(false);
+        m_birthdayCalendar->setEditable(false);
+        m_stazhCalendar->setEditable(false);
+        m_postupCalendar->setEditable(false);
     }
 }

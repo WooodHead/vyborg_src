@@ -6,7 +6,8 @@ SOURCES += src/main.cpp\
     $$PWD/tablemodel.cpp \
     src/calendarbutton.cpp \
     src/positionadmittancewidget.cpp \
-    $$PWD/sectoradmittancewidget.cpp
+    $$PWD/sectoradmittancewidget.cpp \
+    $$PWD/vipcalendaredit.cpp
 
 HEADERS  += \
     src/maindialog.h \
@@ -17,4 +18,5 @@ HEADERS  += \
     $$PWD/tablemodel.h \
     src/calendarbutton.h \
     src/positionadmittancewidget.h \
-    $$PWD/sectoradmittancewidget.h
+    $$PWD/sectoradmittancewidget.h \
+    $$PWD/vipcalendaredit.h

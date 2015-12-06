@@ -9,7 +9,7 @@ class QComboBox;
 class QPushButton;
 QT_END_NAMESPACE
 
-class CalendarButton;
+class VipCalendarEdit;
 class PositionAdmittanceWidget;
 class SectorAdmittanceWidget;
 
@@ -40,8 +40,8 @@ private:
     QLineEdit *m_licencenumLE;
     QLineEdit *m_licencevalidLE;
     QLineEdit *m_mobilephoneLE;
-    QLineEdit *m_stazhLE;
-    QLineEdit *m_postupLE;
+//    QLineEdit *m_stazhLE;
+//    QLineEdit *m_postupLE;
     QLineEdit *m_medicalvalidLE;
     QLineEdit *m_kpkrpLE;
     QLineEdit *m_kpksdLE;
@@ -60,7 +60,9 @@ private:
     QLineEdit *m_filialnagradyLE;
     QComboBox *m_positionCB;
     QComboBox *m_sectorgroupCB;
-    CalendarButton *m_birthdayCalB;
+    VipCalendarEdit *m_birthdayCalendar;
+    VipCalendarEdit *m_stazhCalendar;
+    VipCalendarEdit *m_postupCalendar;
     PositionAdmittanceWidget *m_positionadmittanceW;
     SectorAdmittanceWidget *m_sectoradmittanceW;
 };
