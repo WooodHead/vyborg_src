@@ -29,13 +29,15 @@ Q_SIGNALS:
 
 private Q_SLOTS:
     void showCalendar();
+    void clearDate() { setDate(QDate()); }
     void calendarClicked(const QDate & date);
 
 private:
     // Visual elements
     QCalendarWidget *m_calendar;
     QLineEdit       *m_lineEdit;
-    QPushButton     *m_button;
+    QPushButton     *m_buttonChange;
+    QPushButton     *m_buttonClear;
 
     // Variables
     QDate m_date;

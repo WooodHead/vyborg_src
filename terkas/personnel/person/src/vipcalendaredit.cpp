@@ -12,16 +12,17 @@ VipCalendarEdit::VipCalendarEdit(QWidget *parent)
     m_lineEdit = new QLineEdit;
     m_lineEdit->setFocusPolicy(Qt::NoFocus);
 
-    m_button = new QPushButton(trUtf8("..."));
-    QSize textSize = m_button->fontMetrics().size(Qt::TextShowMnemonic, m_button->text());
-    QStyleOptionButton opt;
-    opt.initFrom(m_button);
-    opt.rect.setSize(textSize);
-    m_button->setMinimumSize(
-      m_button->style()->sizeFromContents(QStyle::CT_PushButton,
-                                        &opt,
-                                        textSize,
-                                        m_button));
+    m_buttonChange = new QPushButton(trUtf8("..."));
+    m_buttonClear  = new QPushButton(trUtf8("Clear"));
+//    QSize textSize = m_buttonChange->fontMetrics().size(Qt::TextShowMnemonic, m_buttonChange->text());
+//    QStyleOptionButton opt;
+//    opt.initFrom(m_buttonChange);
+//    opt.rect.setSize(textSize);
+//    m_buttonChange->setMinimumSize(
+//      m_buttonChange->style()->sizeFromContents(QStyle::CT_PushButton,
+//                                        &opt,
+//                                        textSize,
+//                                        m_buttonChange));
 
 
 
@@ -30,8 +31,10 @@ VipCalendarEdit::VipCalendarEdit(QWidget *parent)
     m_calendar->setWindowModality(Qt::ApplicationModal);
     m_calendar->setWindowFlags(Qt::Dialog);
 
-    connect(m_button, SIGNAL(clicked(bool)),
+    connect(m_buttonChange, SIGNAL(clicked(bool)),
             this, SLOT(showCalendar()));
+    connect(m_buttonClear, SIGNAL(clicked(bool)),
+            this, SLOT(clearDate()));
     connect(m_calendar, SIGNAL(clicked(QDate)),
             this, SLOT(calendarClicked(QDate)));
 
@@ -39,7 +42,8 @@ VipCalendarEdit::VipCalendarEdit(QWidget *parent)
     layout->setSpacing(0);
     layout->setMargin(0);
     layout->addWidget(m_lineEdit);
-    layout->addWidget(m_button);
+    layout->addWidget(m_buttonChange);
+    layout->addWidget(m_buttonClear);
 }
 
 void VipCalendarEdit::showCalendar()
@@ -65,6 +69,6 @@ void VipCalendarEdit::setDate(const QDate &date)
 
 void VipCalendarEdit::setEditable(bool editable)
 {
-    editable == true ? m_button->setEnabled(true)
-                     : m_button->setEnabled(false);
+    editable == true ? ( m_buttonChange->setEnabled(true),  m_buttonClear->setEnabled(true) )
+                     : ( m_buttonChange->setEnabled(false), m_buttonClear->setEnabled(false) );
 }

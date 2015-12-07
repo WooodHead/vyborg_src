@@ -230,7 +230,7 @@ void MapperDialog::updatePrivateWidgets()
         m_licencenumLE->setReadOnly(false);
         m_licencevalidLE->setReadOnly(false);
         m_mobilephoneLE->setReadOnly(false);
-        m_medicalvalidLE->setReadOnly(false);
+            m_medicalvalidLE->setReadOnly(false);
         m_kpkrpLE->setReadOnly(false);
         m_kpksdLE->setReadOnly(false);
         m_kpkdiLE->setReadOnly(false);
