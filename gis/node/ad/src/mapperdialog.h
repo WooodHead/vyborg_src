@@ -8,6 +8,8 @@ class QLineEdit;
 class QTextEdit;
 QT_END_NAMESPACE
 
+class RWWidget;
+
 class MapperDialog : public VyborgMapperDialog
 {
     Q_OBJECT
@@ -19,6 +21,9 @@ protected:
     virtual void createPrivateWidgets();
     virtual void layoutPrivateWidgets();
     virtual void updatePrivateWidgets();
+
+private slots:
+    void changeIndx(int indx);
 
 private:
     // Visual elements
@@ -40,6 +45,7 @@ private:
     QLineEdit *m_webLE;
     QLineEdit *m_coordLE;
     QTextEdit *m_noteTE;
+    RWWidget *rwwid;
 };
 
 #endif // MAPPERDIALOG_H

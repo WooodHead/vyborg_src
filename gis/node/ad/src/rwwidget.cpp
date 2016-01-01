@@ -6,16 +6,24 @@
 RWWidget::RWWidget(QWidget *parent)
     : QWidget(parent)
 {
-    QSqlQueryModel *model = new QSqlQueryModel;
-    model->setQuery("SELECT * FROM ad.vw_rw");
-
-    QTableView *tableView = new QTableView;
-    tableView->setModel(model);
-    tableView->resizeColumnsToContents();
-    tableView->hideColumn(0);
+    m_tableView = new QTableView;
 
     QVBoxLayout *vbLayout = new QVBoxLayout;
-    vbLayout->addWidget(tableView);
+    vbLayout->addWidget(m_tableView);
 
     setLayout(vbLayout);
+}
+
+void RWWidget::setADId(const int &indx)
+{
+    QString queryString = QString("SELECT * FROM ad.vw_rw WHERE ad_pid=\'%1\'").arg(indx);
+    qDebug() << "INDX:" << queryString;
+
+
+
+    QSqlQueryModel *model = new QSqlQueryModel;
+    model->setQuery(queryString);
+    m_tableView->setModel(model);
+    m_tableView->resizeColumnsToContents();
+    m_tableView->hideColumn(0);
 }

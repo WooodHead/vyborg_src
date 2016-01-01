@@ -56,6 +56,9 @@ void MapperDialog::createPrivateWidgets()
     m_mapper->addMapping(m_noteTE, ad_note);
     m_mapper->addMapping(m_coordLE, ad_coord);
 
+    connect(m_mapper, SIGNAL(currentIndexChanged(int)),
+            this, SLOT(changeIndx(int)));
+
 //    m_mapper->setItemDelegate(new MapperDelegate);
 }
 
@@ -101,7 +104,7 @@ void MapperDialog::layoutPrivateWidgets()
 
 
     // Данные ВПП
-    RWWidget *rwwid = new RWWidget;
+    rwwid = new RWWidget();
 
     QVBoxLayout *vbLayout4 = new QVBoxLayout;
     vbLayout4->addWidget(rwwid);
@@ -168,4 +171,9 @@ void MapperDialog::updatePrivateWidgets()
         m_noteTE->setReadOnly(true);
         m_coordLE->setReadOnly(true);
     }
+}
+
+void MapperDialog::changeIndx(int indx)
+{
+    rwwid->setADId(indx);
 }
