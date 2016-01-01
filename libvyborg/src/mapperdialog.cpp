@@ -26,8 +26,8 @@ VyborgMapperDialog::VyborgMapperDialog(QSqlTableModel *model, QWidget *parent)
     m_privateWidgetsLayout = new QVBoxLayout;
 
     QVBoxLayout *vLayout = new QVBoxLayout;
-    vLayout->addLayout(m_navButtonBox);
     vLayout->addLayout(m_privateWidgetsLayout);
+    vLayout->addLayout(m_navButtonBox);
 
     QHBoxLayout *mainLayout = new QHBoxLayout;
     mainLayout->addLayout(vLayout);

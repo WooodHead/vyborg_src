@@ -11,10 +11,10 @@ VyborgNavigationButtonBox::VyborgNavigationButtonBox(QWidget *parent)
     nextButton     = new QPushButton;
     lastButton     = new QPushButton;
 
-    firstButton->setIcon(QIcon(":/First"));
-    previousButton->setIcon(QIcon(":/Previous"));
-    nextButton->setIcon(QIcon(":/Next"));
-    lastButton->setIcon(QIcon(":/Last"));
+    firstButton->setIcon(QIcon(":/first-icon"));
+    previousButton->setIcon(QIcon(":/previous-icon"));
+    nextButton->setIcon(QIcon(":/next-icon"));
+    lastButton->setIcon(QIcon(":/last-icon"));
 
     firstButton->setIconSize(QSize(48, 48));
     previousButton->setIconSize(QSize(48, 48));
