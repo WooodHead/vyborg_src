@@ -2,7 +2,7 @@ QT += core gui widgets sql
 TARGET = node_ad
 TEMPLATE = app
 CONFIG += vyborg
-DESTDIR = /home/kubuntu/bin
+DESTDIR = /home/debian/Programming/bin
 
 include(src/files.pri)
 

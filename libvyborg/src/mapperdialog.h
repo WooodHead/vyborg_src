@@ -27,9 +27,12 @@ public:
     QVBoxLayout* layout();
 
 protected:
-    virtual void createPrivateWidgets() = 0 Q_DECL_OVERRIDE;
-    virtual void layoutPrivateWidgets() = 0 Q_DECL_OVERRIDE;
-    virtual void updatePrivateWidgets() = 0 Q_DECL_OVERRIDE;
+//    virtual void createPrivateWidgets() = 0 Q_DECL_OVERRIDE;
+//    virtual void layoutPrivateWidgets() = 0 Q_DECL_OVERRIDE;
+//    virtual void updatePrivateWidgets() = 0 Q_DECL_OVERRIDE;
+    virtual void createPrivateWidgets() = 0;
+    virtual void layoutPrivateWidgets() = 0;
+    virtual void updatePrivateWidgets() = 0;
 
 public slots:
     void add();

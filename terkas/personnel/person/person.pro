@@ -2,7 +2,7 @@ QT     += core gui widgets sql
 CONFIG += vyborg
 TARGET = person
 TEMPLATE = app
-DESTDIR = /home/kubuntu/bin
+DESTDIR = /home/debian/Programming/bin
 
 
 OBJECTS_DIR = tmp

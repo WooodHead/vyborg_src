@@ -24,17 +24,20 @@ void MainDialog::setupModel()
     m_model->setTable(PGSQL_TABLENAME);
     m_model->select();
 
-    m_model->setHeaderData(ad_valid,       Qt::Horizontal, trUtf8("Действующий/Недействующий"));
-    m_model->setHeaderData(ad_countryindx, Qt::Horizontal, trUtf8("Индекс страны"));
+    m_model->setHeaderData(ad_valid,       Qt::Horizontal, trUtf8("Действующий/\nНедействующий"));
+    m_model->setHeaderData(ad_countryindx, Qt::Horizontal, trUtf8("Индекс\nстраны"));
     m_model->setHeaderData(ad_country,     Qt::Horizontal, trUtf8("Страна"));
     m_model->setHeaderData(ad_city,        Qt::Horizontal, trUtf8("Город"));
     m_model->setHeaderData(ad_name,        Qt::Horizontal, trUtf8("Аэродром"));
+    m_model->setHeaderData(ad_nameeng,     Qt::Horizontal, trUtf8("Aerodrome\n(EN)"));
     m_model->setHeaderData(ad_indx,        Qt::Horizontal, trUtf8("Индекс"));
     m_model->setHeaderData(ad_indxru,      Qt::Horizontal, trUtf8("Индекс Рус"));
     m_model->setHeaderData(ad_type,        Qt::Horizontal, trUtf8("Тип аэродрома"));
     m_model->setHeaderData(ad_intl,        Qt::Horizontal, trUtf8("Международный"));
     m_model->setHeaderData(ad_staff,       Qt::Horizontal, trUtf8("Организация"));
+    m_model->setHeaderData(ad_reglament,   Qt::Horizontal, trUtf8("Регламент\nработы"));
     m_model->setHeaderData(ad_elevation,   Qt::Horizontal, trUtf8("Превышение"));
+    m_model->setHeaderData(ad_magn,        Qt::Horizontal, trUtf8("Магнитное\nсклонение"));
     m_model->setHeaderData(ad_email,       Qt::Horizontal, trUtf8("E-mail"));
     m_model->setHeaderData(ad_web,         Qt::Horizontal, trUtf8("Web-сайт"));
     m_model->setHeaderData(ad_note,        Qt::Horizontal, trUtf8("Примечание"));

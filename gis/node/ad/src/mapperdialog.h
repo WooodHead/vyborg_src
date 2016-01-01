@@ -5,6 +5,7 @@
 
 QT_BEGIN_NAMESPACE
 class QLineEdit;
+class QTextEdit;
 QT_END_NAMESPACE
 
 class MapperDialog : public VyborgMapperDialog
@@ -26,16 +27,19 @@ private:
     QLineEdit *m_countryLE;
     QLineEdit *m_cityLE;
     QLineEdit *m_nameLE;
+    QLineEdit *m_nameengLE;
     QLineEdit *m_indxLE;
     QLineEdit *m_indxruLE;
     QLineEdit *m_typeLE;
     QLineEdit *m_intlLE;
     QLineEdit *m_staffLE;
+    QLineEdit *m_reglamentLE;
     QLineEdit *m_elevationLE;
+    QLineEdit *m_magnLE;
     QLineEdit *m_emailLE;
     QLineEdit *m_webLE;
-    QLineEdit *m_noteLE;
     QLineEdit *m_coordLE;
+    QTextEdit *m_noteTE;
 };
 
 #endif // MAPPERDIALOG_H

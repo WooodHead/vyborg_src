@@ -4,7 +4,6 @@
 #include "declarations.h"
 #include "dialog.h"
 #include "mapperdialog.h"
-//#include "tabledelegate.h"
 
 Dialog::Dialog(QWidget *parent)
     : VyborgMainDialog(parent)
