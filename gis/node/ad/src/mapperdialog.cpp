@@ -3,6 +3,7 @@
 
 #include "mapperdialog.h"
 #include "declarations.h"
+#include "rwwidget.h"
 
 
 MapperDialog::MapperDialog(QSqlTableModel *model, QWidget *parent)
@@ -60,6 +61,7 @@ void MapperDialog::createPrivateWidgets()
 
 void MapperDialog::layoutPrivateWidgets()
 {
+    // Основные данные
     QFormLayout *formLayout1 = new QFormLayout;
     formLayout1->addRow(trUtf8("Действующий/Недействующий"), m_validLE);
     formLayout1->addRow(trUtf8("Индекс страны"), m_countryindxLE);
@@ -81,6 +83,7 @@ void MapperDialog::layoutPrivateWidgets()
     page1->setLayout(formLayout1);
 
 
+    // Контакты
     QFormLayout *formLayout2 = new QFormLayout;
     formLayout2->addRow(trUtf8("E-mail"), m_emailLE);
     formLayout2->addRow(trUtf8("Web-сайт"), m_webLE);
@@ -89,6 +92,7 @@ void MapperDialog::layoutPrivateWidgets()
     page2->setLayout(formLayout2);
 
 
+    // Примечание
     QVBoxLayout *vbLayout3 = new QVBoxLayout;
     vbLayout3->addWidget(m_noteTE);
 
@@ -96,9 +100,20 @@ void MapperDialog::layoutPrivateWidgets()
     page3->setLayout(vbLayout3);
 
 
+    // Данные ВПП
+    RWWidget *rwwid = new RWWidget;
+
+    QVBoxLayout *vbLayout4 = new QVBoxLayout;
+    vbLayout4->addWidget(rwwid);
+
+    QWidget *page4 = new QWidget;
+    page4->setLayout(vbLayout4);
+
+
 
     QTabWidget *tabWidget = new QTabWidget;
     tabWidget->addTab(page1, trUtf8("Основные данные"));
+    tabWidget->addTab(page4, trUtf8("Данные ВПП"));
     tabWidget->addTab(page3, trUtf8("Примечание"));
     tabWidget->addTab(page2, trUtf8("Контакты"));
 

@@ -2,7 +2,7 @@
     <qresource prefix="/">
         <file alias="last-icon">images/Button-Last-icon.png</file>
         <file alias="next-icon">images/Button-Next-icon.png</file>
-        <file alias="previous-icon">images/Button-Previous.png</file>
-        <file alias="first-icon">images/Button-First.png</file>
+        <file alias="previous-icon">images/Button-Previous-icon.png</file>
+        <file alias="first-icon">images/Button-First-icon.png</file>
     </qresource>
 </RCC>

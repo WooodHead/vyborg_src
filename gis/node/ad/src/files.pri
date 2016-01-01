@@ -13,3 +13,9 @@ HEADERS += \
 
 SOURCES += \
     src/maindialog.cpp
+
+HEADERS += \
+    src/rwwidget.h
+
+SOURCES += \
+    src/rwwidget.cpp
