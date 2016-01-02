@@ -22,9 +22,6 @@ protected:
     virtual void layoutPrivateWidgets();
     virtual void updatePrivateWidgets();
 
-private slots:
-    void changeIndx(int indx);
-
 private:
     // Visual elements
     QLineEdit *m_validLE;
@@ -45,7 +42,7 @@ private:
     QLineEdit *m_webLE;
     QLineEdit *m_coordLE;
     QTextEdit *m_noteTE;
-    RWWidget *rwwid;
+    RWWidget *m_rwwid;
 };
 
 #endif // MAPPERDIALOG_H

@@ -11,13 +11,22 @@ class RWWidget : public QWidget
 {
     Q_OBJECT
 
-public:
-    explicit RWWidget(QWidget *parent = 0);
+    Q_PROPERTY(int adid READ adid WRITE setAdid NOTIFY adidChanged USER true)
 
-    void setADId(const int &indx);
+public:
+    RWWidget(QWidget *parent = 0);
+
+    void setAdid(const int &adid);
+    int adid() const;
+
+signals:
+    void adidChanged();
 
 private:
     QTableView *m_tableView;
+
+private:
+    int m_adid;
 };
 
 #endif // RWWIDGET_H

@@ -35,8 +35,10 @@ void MapperDialog::createPrivateWidgets()
     m_noteTE = new QTextEdit;
     m_coordLE = new QLineEdit;
 
+    m_rwwid = new RWWidget();
 
     QDataWidgetMapper* m_mapper = mapper();
+    m_mapper->addMapping(m_rwwid, ad_pid);
     m_mapper->addMapping(m_validLE, ad_valid);
     m_mapper->addMapping(m_countryindxLE, ad_countryindx);
     m_mapper->addMapping(m_countryLE, ad_country);
@@ -55,11 +57,6 @@ void MapperDialog::createPrivateWidgets()
     m_mapper->addMapping(m_webLE, ad_web);
     m_mapper->addMapping(m_noteTE, ad_note);
     m_mapper->addMapping(m_coordLE, ad_coord);
-
-    connect(m_mapper, SIGNAL(currentIndexChanged(int)),
-            this, SLOT(changeIndx(int)));
-
-//    m_mapper->setItemDelegate(new MapperDelegate);
 }
 
 void MapperDialog::layoutPrivateWidgets()
@@ -104,10 +101,8 @@ void MapperDialog::layoutPrivateWidgets()
 
 
     // Данные ВПП
-    rwwid = new RWWidget();
-
     QVBoxLayout *vbLayout4 = new QVBoxLayout;
-    vbLayout4->addWidget(rwwid);
+    vbLayout4->addWidget(m_rwwid);
 
     QWidget *page4 = new QWidget;
     page4->setLayout(vbLayout4);
@@ -171,9 +166,4 @@ void MapperDialog::updatePrivateWidgets()
         m_noteTE->setReadOnly(true);
         m_coordLE->setReadOnly(true);
     }
-}
-
-void MapperDialog::changeIndx(int indx)
-{
-    rwwid->setADId(indx);
 }

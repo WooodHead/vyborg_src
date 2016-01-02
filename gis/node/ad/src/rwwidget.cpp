@@ -14,16 +14,22 @@ RWWidget::RWWidget(QWidget *parent)
     setLayout(vbLayout);
 }
 
-void RWWidget::setADId(const int &indx)
+int RWWidget::adid() const
 {
-    QString queryString = QString("SELECT * FROM ad.vw_rw WHERE ad_pid=\'%1\'").arg(indx);
-    qDebug() << "INDX:" << queryString;
+    return m_adid;
+}
 
+void RWWidget::setAdid(const int &adid)
+{
+    // Check here if adid is exist
+    // ...
 
+    m_adid = adid;
 
+    QString queryStr = QString("SELECT * FROM ad.vw_rw WHERE ad_pid=\'%1\'").arg(m_adid);
+    QSqlQuery query(queryStr);
     QSqlQueryModel *model = new QSqlQueryModel;
-    model->setQuery(queryString);
+    model->setQuery(query);
     m_tableView->setModel(model);
     m_tableView->resizeColumnsToContents();
-    m_tableView->hideColumn(0);
 }
