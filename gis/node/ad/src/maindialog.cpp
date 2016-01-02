@@ -4,7 +4,6 @@
 #include "maindialog.h"
 #include "declarations.h"
 #include "mapperdialog.h"
-//#include "tablemodel.h"
 
 
 MainDialog::MainDialog(QWidget *parent)
@@ -19,17 +18,15 @@ MainDialog::MainDialog(QWidget *parent)
 
 void MainDialog::setupModel()
 {
-//    m_model = static_cast<QSqlTableModel *> (new TableModel);
-//    m_model->setEditStrategy(QSqlTableModel::OnManualSubmit);
     m_model->setTable(PGSQL_TABLENAME);
     m_model->select();
 
     m_model->setHeaderData(ad_valid,       Qt::Horizontal, trUtf8("Действующий/\nНедействующий"));
     m_model->setHeaderData(ad_countryindx, Qt::Horizontal, trUtf8("Индекс\nстраны"));
     m_model->setHeaderData(ad_country,     Qt::Horizontal, trUtf8("Страна"));
-    m_model->setHeaderData(ad_city,        Qt::Horizontal, trUtf8("Город"));
-    m_model->setHeaderData(ad_name,        Qt::Horizontal, trUtf8("Аэродром"));
-    m_model->setHeaderData(ad_nameeng,     Qt::Horizontal, trUtf8("Aerodrome\n(EN)"));
+    m_model->setHeaderData(ad_cityru,      Qt::Horizontal, trUtf8("Город"));
+    m_model->setHeaderData(ad_nameru,      Qt::Horizontal, trUtf8("Аэродром"));
+    m_model->setHeaderData(ad_name,        Qt::Horizontal, trUtf8("Aerodrome\n(EN)"));
     m_model->setHeaderData(ad_indx,        Qt::Horizontal, trUtf8("Индекс"));
     m_model->setHeaderData(ad_indxru,      Qt::Horizontal, trUtf8("Индекс Рус"));
     m_model->setHeaderData(ad_type,        Qt::Horizontal, trUtf8("Тип аэродрома"));
@@ -41,7 +38,7 @@ void MainDialog::setupModel()
     m_model->setHeaderData(ad_email,       Qt::Horizontal, trUtf8("E-mail"));
     m_model->setHeaderData(ad_web,         Qt::Horizontal, trUtf8("Web-сайт"));
     m_model->setHeaderData(ad_note,        Qt::Horizontal, trUtf8("Примечание"));
-    m_model->setHeaderData(ad_coord,       Qt::Horizontal, trUtf8("Координаты"));
+    m_model->setHeaderData(ad_geog,        Qt::Horizontal, trUtf8("Координаты"));
 }
 
 void MainDialog::setupView()

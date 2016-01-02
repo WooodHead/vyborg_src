@@ -10,7 +10,6 @@ QT_END_NAMESPACE
 class RWWidget : public QWidget
 {
     Q_OBJECT
-
     Q_PROPERTY(int adid READ adid WRITE setAdid NOTIFY adidChanged USER true)
 
 public:

@@ -8,6 +8,7 @@ class QLineEdit;
 class QTextEdit;
 QT_END_NAMESPACE
 
+class GeogWidget;
 class RWWidget;
 
 class MapperDialog : public VyborgMapperDialog
@@ -27,9 +28,9 @@ private:
     QLineEdit *m_validLE;
     QLineEdit *m_countryindxLE;
     QLineEdit *m_countryLE;
-    QLineEdit *m_cityLE;
+    QLineEdit *m_cityruLE;
+    QLineEdit *m_nameruLE;
     QLineEdit *m_nameLE;
-    QLineEdit *m_nameengLE;
     QLineEdit *m_indxLE;
     QLineEdit *m_indxruLE;
     QLineEdit *m_typeLE;
@@ -40,9 +41,10 @@ private:
     QLineEdit *m_magnLE;
     QLineEdit *m_emailLE;
     QLineEdit *m_webLE;
-    QLineEdit *m_coordLE;
+    QLineEdit *m_geogLE;
     QTextEdit *m_noteTE;
-    RWWidget *m_rwwid;
+    GeogWidget *m_geogWid;
+    RWWidget *m_rwWid;
 };
 
 #endif // MAPPERDIALOG_H

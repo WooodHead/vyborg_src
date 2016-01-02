@@ -3,8 +3,9 @@
 
 #include "mapperdialog.h"
 #include "declarations.h"
-#include "rwwidget.h"
 
+#include "rwwidget.h"
+#include "geogwidget.h"
 
 MapperDialog::MapperDialog(QSqlTableModel *model, QWidget *parent)
     : VyborgMapperDialog(model, parent)
@@ -19,9 +20,9 @@ void MapperDialog::createPrivateWidgets()
     m_validLE = new QLineEdit;
     m_countryindxLE = new QLineEdit;
     m_countryLE = new QLineEdit;
-    m_cityLE = new QLineEdit;
+    m_cityruLE = new QLineEdit;
+    m_nameruLE = new QLineEdit;
     m_nameLE = new QLineEdit;
-    m_nameengLE = new QLineEdit;
     m_indxLE = new QLineEdit;
     m_indxruLE = new QLineEdit;
     m_typeLE = new QLineEdit;
@@ -33,18 +34,20 @@ void MapperDialog::createPrivateWidgets()
     m_emailLE = new QLineEdit;
     m_webLE = new QLineEdit;
     m_noteTE = new QTextEdit;
-    m_coordLE = new QLineEdit;
+    m_geogLE = new QLineEdit;
 
-    m_rwwid = new RWWidget();
+    m_geogWid = new GeogWidget;
+    m_rwWid = new RWWidget;
 
     QDataWidgetMapper* m_mapper = mapper();
-    m_mapper->addMapping(m_rwwid, ad_pid);
+    m_mapper->addMapping(m_geogWid, ad_geog);
+    m_mapper->addMapping(m_rwWid, ad_pid);
     m_mapper->addMapping(m_validLE, ad_valid);
     m_mapper->addMapping(m_countryindxLE, ad_countryindx);
     m_mapper->addMapping(m_countryLE, ad_country);
-    m_mapper->addMapping(m_cityLE, ad_city);
+    m_mapper->addMapping(m_cityruLE, ad_cityru);
+    m_mapper->addMapping(m_nameruLE, ad_nameru);
     m_mapper->addMapping(m_nameLE, ad_name);
-    m_mapper->addMapping(m_nameengLE, ad_nameeng);
     m_mapper->addMapping(m_indxLE, ad_indx);
     m_mapper->addMapping(m_indxruLE, ad_indxru);
     m_mapper->addMapping(m_typeLE, ad_type);
@@ -56,7 +59,7 @@ void MapperDialog::createPrivateWidgets()
     m_mapper->addMapping(m_emailLE, ad_email);
     m_mapper->addMapping(m_webLE, ad_web);
     m_mapper->addMapping(m_noteTE, ad_note);
-    m_mapper->addMapping(m_coordLE, ad_coord);
+    m_mapper->addMapping(m_geogLE, ad_geog);
 }
 
 void MapperDialog::layoutPrivateWidgets()
@@ -66,9 +69,9 @@ void MapperDialog::layoutPrivateWidgets()
     formLayout1->addRow(trUtf8("Действующий/Недействующий"), m_validLE);
     formLayout1->addRow(trUtf8("Индекс страны"), m_countryindxLE);
     formLayout1->addRow(trUtf8("Страна"), m_countryLE);
-    formLayout1->addRow(trUtf8("Город"), m_cityLE);
-    formLayout1->addRow(trUtf8("Аэропорт"), m_nameLE);
-    formLayout1->addRow(trUtf8("Aerodrome (EN)"), m_nameengLE);
+    formLayout1->addRow(trUtf8("Город"), m_cityruLE);
+    formLayout1->addRow(trUtf8("Аэропорт"), m_nameruLE);
+    formLayout1->addRow(trUtf8("Aerodrome (EN)"), m_nameLE);
     formLayout1->addRow(trUtf8("Индекс"), m_indxLE);
     formLayout1->addRow(trUtf8("Индекс Рус"), m_indxruLE);
     formLayout1->addRow(trUtf8("Тип аэродрома"), m_typeLE);
@@ -77,10 +80,14 @@ void MapperDialog::layoutPrivateWidgets()
     formLayout1->addRow(trUtf8("Регламент работы"), m_reglamentLE);
     formLayout1->addRow(trUtf8("Превышение"), m_elevationLE);
     formLayout1->addRow(trUtf8("Магн склонение"), m_magnLE);
-    formLayout1->addRow(trUtf8("Координаты"), m_coordLE);
+    formLayout1->addRow(trUtf8("Координаты"), m_geogLE);
+
+    QVBoxLayout *vbLayout1 = new QVBoxLayout;
+    vbLayout1->addLayout(formLayout1);
+    vbLayout1->addWidget(m_geogWid);
 
     QWidget *page1 = new QWidget;
-    page1->setLayout(formLayout1);
+    page1->setLayout(vbLayout1);
 
 
     // Контакты
@@ -102,7 +109,7 @@ void MapperDialog::layoutPrivateWidgets()
 
     // Данные ВПП
     QVBoxLayout *vbLayout4 = new QVBoxLayout;
-    vbLayout4->addWidget(m_rwwid);
+    vbLayout4->addWidget(m_rwWid);
 
     QWidget *page4 = new QWidget;
     page4->setLayout(vbLayout4);
@@ -129,9 +136,9 @@ void MapperDialog::updatePrivateWidgets()
         m_validLE->setReadOnly(false);
         m_countryindxLE->setReadOnly(false);
         m_countryLE->setReadOnly(false);
-        m_cityLE->setReadOnly(false);
+        m_cityruLE->setReadOnly(false);
+        m_nameruLE->setReadOnly(false);
         m_nameLE->setReadOnly(false);
-        m_nameengLE->setReadOnly(false);
         m_indxLE->setReadOnly(false);
         m_indxruLE->setReadOnly(false);
         m_typeLE->setReadOnly(false);
@@ -143,16 +150,16 @@ void MapperDialog::updatePrivateWidgets()
         m_emailLE->setReadOnly(false);
         m_webLE->setReadOnly(false);
         m_noteTE->setReadOnly(false);
-        m_coordLE->setReadOnly(false);
+        m_geogLE->setReadOnly(false);
     }
     else
     {
         m_validLE->setReadOnly(true);
         m_countryindxLE->setReadOnly(true);
         m_countryLE->setReadOnly(true);
-        m_cityLE->setReadOnly(true);
+        m_cityruLE->setReadOnly(true);
+        m_nameruLE->setReadOnly(true);
         m_nameLE->setReadOnly(true);
-        m_nameengLE->setReadOnly(true);
         m_indxLE->setReadOnly(true);
         m_indxruLE->setReadOnly(true);
         m_typeLE->setReadOnly(true);
@@ -164,6 +171,6 @@ void MapperDialog::updatePrivateWidgets()
         m_emailLE->setReadOnly(true);
         m_webLE->setReadOnly(true);
         m_noteTE->setReadOnly(true);
-        m_coordLE->setReadOnly(true);
+        m_geogLE->setReadOnly(true);
     }
 }

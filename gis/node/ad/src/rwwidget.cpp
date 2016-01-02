@@ -11,7 +11,17 @@ RWWidget::RWWidget(QWidget *parent)
     QVBoxLayout *vbLayout = new QVBoxLayout;
     vbLayout->addWidget(m_tableView);
 
-    setLayout(vbLayout);
+    QPushButton *saveButton = new QPushButton(trUtf8("Save"));
+
+    QVBoxLayout *vbCntlLayout = new QVBoxLayout;
+    vbCntlLayout->addWidget(saveButton);
+
+
+    QHBoxLayout *mainLayout = new QHBoxLayout;
+    mainLayout->addLayout(vbLayout);
+    mainLayout->addLayout(vbCntlLayout);
+
+    setLayout(mainLayout);
 }
 
 int RWWidget::adid() const
@@ -26,7 +36,7 @@ void RWWidget::setAdid(const int &adid)
 
     m_adid = adid;
 
-    QString queryStr = QString("SELECT * FROM ad.vw_rw WHERE ad_pid=\'%1\'").arg(m_adid);
+    QString queryStr = QString("SELECT * FROM rw.vw_rw WHERE ad_pid=\'%1\'").arg(m_adid);
     QSqlQuery query(queryStr);
     QSqlQueryModel *model = new QSqlQueryModel;
     model->setQuery(query);

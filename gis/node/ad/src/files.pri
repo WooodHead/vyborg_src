@@ -19,3 +19,7 @@ HEADERS += \
 
 SOURCES += \
     src/rwwidget.cpp
+
+HEADERS +=
+
+SOURCES +=

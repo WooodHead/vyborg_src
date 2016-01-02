@@ -10,9 +10,9 @@ enum Columns {
     ad_valid,
     ad_countryindx,
     ad_country,
-    ad_city,
+    ad_cityru,
+    ad_nameru,
     ad_name,
-    ad_nameeng,
     ad_indx,
     ad_indxru,
     ad_type,
@@ -24,7 +24,7 @@ enum Columns {
     ad_email,
     ad_web,
     ad_note,
-    ad_coord,
+    ad_geog,
     ColumnsNumber
 };
 

@@ -22,5 +22,12 @@ MOC_DIR = tmp
 INCLUDEPATH += /usr/local/include/vyborg
 LIBS += -L/usr/local/lib/vyborg -lvyborg
 
+HEADERS += \
+    geogwidget.h
+
+SOURCES += \
+    geogwidget.cpp
+
+
 
 
