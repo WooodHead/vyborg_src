@@ -34,7 +34,6 @@ void MapperDialog::createPrivateWidgets()
     m_emailLE = new QLineEdit;
     m_webLE = new QLineEdit;
     m_noteTE = new QTextEdit;
-    m_geogLE = new QLineEdit;
 
     m_geogWid = new GeogWidget;
     m_rwWid = new RWWidget;
@@ -59,7 +58,6 @@ void MapperDialog::createPrivateWidgets()
     m_mapper->addMapping(m_emailLE, ad_email);
     m_mapper->addMapping(m_webLE, ad_web);
     m_mapper->addMapping(m_noteTE, ad_note);
-    m_mapper->addMapping(m_geogLE, ad_geog);
 }
 
 void MapperDialog::layoutPrivateWidgets()
@@ -80,13 +78,13 @@ void MapperDialog::layoutPrivateWidgets()
     formLayout1->addRow(trUtf8("Регламент работы"), m_reglamentLE);
     formLayout1->addRow(trUtf8("Превышение"), m_elevationLE);
     formLayout1->addRow(trUtf8("Магн склонение"), m_magnLE);
-    formLayout1->addRow(trUtf8("Координаты"), m_geogLE);
 
     QVBoxLayout *vbLayout1 = new QVBoxLayout;
     vbLayout1->addLayout(formLayout1);
     vbLayout1->addWidget(m_geogWid);
 
     QWidget *page1 = new QWidget;
+//    page1->setLayout(formLayout1);
     page1->setLayout(vbLayout1);
 
 
@@ -150,7 +148,6 @@ void MapperDialog::updatePrivateWidgets()
         m_emailLE->setReadOnly(false);
         m_webLE->setReadOnly(false);
         m_noteTE->setReadOnly(false);
-        m_geogLE->setReadOnly(false);
     }
     else
     {
@@ -171,6 +168,5 @@ void MapperDialog::updatePrivateWidgets()
         m_emailLE->setReadOnly(true);
         m_webLE->setReadOnly(true);
         m_noteTE->setReadOnly(true);
-        m_geogLE->setReadOnly(true);
     }
 }

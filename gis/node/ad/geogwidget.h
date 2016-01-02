@@ -4,7 +4,9 @@
 #include <QWidget>
 
 QT_BEGIN_NAMESPACE
-class QTableView;
+class QLabel;
+class QLineEdit;
+class QPushButton;
 QT_END_NAMESPACE
 
 class GeogWidget : public QWidget
@@ -22,7 +24,8 @@ signals:
     void geogChanged();
 
 private:
-    QTableView *m_tableView;
+    QLineEdit  *m_latLineEdit;
+    QLineEdit  *m_lonLineEdit;
 
 private:
     QString m_geog;

@@ -5,6 +5,8 @@
 
 QT_BEGIN_NAMESPACE
 class QTableView;
+//class QLabel;
+//class QLineEdit;
 QT_END_NAMESPACE
 
 class RWWidget : public QWidget
@@ -23,6 +25,8 @@ signals:
 
 private:
     QTableView *m_tableView;
+//    QLineEdit  *m_latLE;
+//    QLineEdit  *m_lonLE;
 
 private:
     int m_adid;

@@ -41,7 +41,6 @@ private:
     QLineEdit *m_magnLE;
     QLineEdit *m_emailLE;
     QLineEdit *m_webLE;
-    QLineEdit *m_geogLE;
     QTextEdit *m_noteTE;
     GeogWidget *m_geogWid;
     RWWidget *m_rwWid;
