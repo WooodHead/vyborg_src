@@ -17,47 +17,47 @@ MapperDialog::MapperDialog(QSqlTableModel *model, QWidget *parent)
 
 void MapperDialog::createPrivateWidgets()
 {
-    m_validLE = new QLineEdit;
+    m_validLE       = new QLineEdit;
     m_countryindxLE = new QLineEdit;
-    m_countryLE = new QLineEdit;
-    m_cityruLE = new QLineEdit;
-    m_nameruLE = new QLineEdit;
-    m_nameLE = new QLineEdit;
-    m_indxLE = new QLineEdit;
-    m_indxruLE = new QLineEdit;
-    m_typeLE = new QLineEdit;
-    m_intlLE = new QLineEdit;
-    m_staffLE = new QLineEdit;
-    m_reglamentLE = new QLineEdit;
-    m_elevationLE = new QLineEdit;
-    m_magnLE = new QLineEdit;
-    m_emailLE = new QLineEdit;
-    m_webLE = new QLineEdit;
-    m_noteTE = new QTextEdit;
+    m_countryLE     = new QLineEdit;
+    m_cityruLE      = new QLineEdit;
+    m_nameruLE      = new QLineEdit;
+    m_nameLE        = new QLineEdit;
+    m_indxLE        = new QLineEdit;
+    m_indxruLE      = new QLineEdit;
+    m_typeLE        = new QLineEdit;
+    m_intlLE        = new QLineEdit;
+    m_staffLE       = new QLineEdit;
+    m_reglamentLE   = new QLineEdit;
+    m_elevationLE   = new QLineEdit;
+    m_magnLE        = new QLineEdit;
+    m_emailLE       = new QLineEdit;
+    m_webLE         = new QLineEdit;
+    m_noteTE        = new QTextEdit;
 
     m_geogWid = new GeogWidget;
     m_rwWid = new RWWidget;
 
     QDataWidgetMapper* m_mapper = mapper();
-    m_mapper->addMapping(m_geogWid, ad_geog);
-    m_mapper->addMapping(m_rwWid, ad_pid);
-    m_mapper->addMapping(m_validLE, ad_valid);
+    m_mapper->addMapping(m_geogWid,       ad_geog);
+    m_mapper->addMapping(m_rwWid,         ad_pid);
+    m_mapper->addMapping(m_validLE,       ad_valid);
     m_mapper->addMapping(m_countryindxLE, ad_countryindx);
-    m_mapper->addMapping(m_countryLE, ad_country);
-    m_mapper->addMapping(m_cityruLE, ad_cityru);
-    m_mapper->addMapping(m_nameruLE, ad_nameru);
-    m_mapper->addMapping(m_nameLE, ad_name);
-    m_mapper->addMapping(m_indxLE, ad_indx);
-    m_mapper->addMapping(m_indxruLE, ad_indxru);
-    m_mapper->addMapping(m_typeLE, ad_type);
-    m_mapper->addMapping(m_intlLE, ad_intl);
-    m_mapper->addMapping(m_staffLE, ad_staff);
-    m_mapper->addMapping(m_reglamentLE, ad_reglament);
-    m_mapper->addMapping(m_elevationLE, ad_elevation);
-    m_mapper->addMapping(m_magnLE, ad_magn);
-    m_mapper->addMapping(m_emailLE, ad_email);
-    m_mapper->addMapping(m_webLE, ad_web);
-    m_mapper->addMapping(m_noteTE, ad_note);
+    m_mapper->addMapping(m_countryLE,     ad_country);
+    m_mapper->addMapping(m_cityruLE,      ad_cityru);
+    m_mapper->addMapping(m_nameruLE,      ad_nameru);
+    m_mapper->addMapping(m_nameLE,        ad_name);
+    m_mapper->addMapping(m_indxLE,        ad_indx);
+    m_mapper->addMapping(m_indxruLE,      ad_indxru);
+    m_mapper->addMapping(m_typeLE,        ad_type);
+    m_mapper->addMapping(m_intlLE,        ad_intl);
+    m_mapper->addMapping(m_staffLE,       ad_staff);
+    m_mapper->addMapping(m_reglamentLE,   ad_reglament);
+    m_mapper->addMapping(m_elevationLE,   ad_elevation);
+    m_mapper->addMapping(m_magnLE,        ad_magn);
+    m_mapper->addMapping(m_emailLE,       ad_email);
+    m_mapper->addMapping(m_webLE,         ad_web);
+    m_mapper->addMapping(m_noteTE,        ad_note);
 }
 
 void MapperDialog::layoutPrivateWidgets()
@@ -65,19 +65,19 @@ void MapperDialog::layoutPrivateWidgets()
     // Основные данные
     QFormLayout *formLayout1 = new QFormLayout;
     formLayout1->addRow(trUtf8("Действующий/Недействующий"), m_validLE);
-    formLayout1->addRow(trUtf8("Индекс страны"), m_countryindxLE);
-    formLayout1->addRow(trUtf8("Страна"), m_countryLE);
-    formLayout1->addRow(trUtf8("Город"), m_cityruLE);
-    formLayout1->addRow(trUtf8("Аэропорт"), m_nameruLE);
-    formLayout1->addRow(trUtf8("Aerodrome (EN)"), m_nameLE);
-    formLayout1->addRow(trUtf8("Индекс"), m_indxLE);
-    formLayout1->addRow(trUtf8("Индекс Рус"), m_indxruLE);
-    formLayout1->addRow(trUtf8("Тип аэродрома"), m_typeLE);
-    formLayout1->addRow(trUtf8("Международный"), m_intlLE);
-    formLayout1->addRow(trUtf8("Организация"), m_staffLE);
-    formLayout1->addRow(trUtf8("Регламент работы"), m_reglamentLE);
-    formLayout1->addRow(trUtf8("Превышение"), m_elevationLE);
-    formLayout1->addRow(trUtf8("Магн склонение"), m_magnLE);
+    formLayout1->addRow(trUtf8("Индекс страны"),             m_countryindxLE);
+    formLayout1->addRow(trUtf8("Страна"),                    m_countryLE);
+    formLayout1->addRow(trUtf8("Город"),                     m_cityruLE);
+    formLayout1->addRow(trUtf8("Аэропорт"),                  m_nameruLE);
+    formLayout1->addRow(trUtf8("Aerodrome"),                 m_nameLE);
+    formLayout1->addRow(trUtf8("Индекс"),                    m_indxLE);
+    formLayout1->addRow(trUtf8("Индекс Рус"),                m_indxruLE);
+    formLayout1->addRow(trUtf8("Тип аэродрома"),             m_typeLE);
+    formLayout1->addRow(trUtf8("Международный"),             m_intlLE);
+    formLayout1->addRow(trUtf8("Организация"),               m_staffLE);
+    formLayout1->addRow(trUtf8("Регламент работы"),          m_reglamentLE);
+    formLayout1->addRow(trUtf8("Превышение"),                m_elevationLE);
+    formLayout1->addRow(trUtf8("Магн склонение"),            m_magnLE);
 
     QVBoxLayout *vbLayout1 = new QVBoxLayout;
     vbLayout1->addLayout(formLayout1);
@@ -148,6 +148,7 @@ void MapperDialog::updatePrivateWidgets()
         m_emailLE->setReadOnly(false);
         m_webLE->setReadOnly(false);
         m_noteTE->setReadOnly(false);
+        m_geogWid->setEnabled(true);
     }
     else
     {
@@ -168,5 +169,6 @@ void MapperDialog::updatePrivateWidgets()
         m_emailLE->setReadOnly(true);
         m_webLE->setReadOnly(true);
         m_noteTE->setReadOnly(true);
+        m_geogWid->setEnabled(false);
     }
 }

@@ -4,9 +4,8 @@
 #include <QWidget>
 
 QT_BEGIN_NAMESPACE
-class QLabel;
 class QLineEdit;
-class QPushButton;
+class QRadioButton;
 QT_END_NAMESPACE
 
 class GeogWidget : public QWidget
@@ -20,15 +19,19 @@ public:
     void setGeog(const QString &geog);
     QString geog() const;
 
+    void setEnabled(bool state);
+
 signals:
     void geogChanged();
 
 private:
-    QLineEdit  *m_latLineEdit;
-    QLineEdit  *m_lonLineEdit;
+    QLineEdit    *m_latLineEdit;
+    QLineEdit    *m_lonLineEdit;
+    QRadioButton *m_radio1;
+    QRadioButton *m_radio2;
 
 private:
-    QString m_geog;
+    mutable QString m_geog;
 };
 
 #endif // GEOGWIDGET_H
