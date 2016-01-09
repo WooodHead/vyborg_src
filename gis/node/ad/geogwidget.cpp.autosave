@@ -78,8 +78,6 @@ void GeogWidget::setGeog(const QString &geog)
             double lon = query.value(1).toDouble();
             int srid = query.value(2).toInt();
 
-//            qDebug() << "LAT: " << QString::number(lat, 'f', 5) << "LON: " << lon << "GEOG: " << m_geog;
-
             m_latLineEdit->setText(QString::number(lat, 'f', 5));
             m_lonLineEdit->setText(QString::number(lon, 'f', 5));
             m_sridLE->setText(QString::number(srid));
@@ -95,18 +93,11 @@ QString GeogWidget::geog() const
     QString queryString = QString("SELECT ST_GeographyFromText('SRID=4326;POINT(%1 %2)')")
             .arg(lon, 0, 'f', 5)
             .arg(lat, 0, 'f', 5);
-    qDebug() << "LAT: " << QString::number(lat, 'f', 5) << "LON: " << QString::number(lon, 'f', 5);
     QSqlQuery query(queryString);
-    qDebug() << "QUERY: " << queryString;
-//    query.exec();
-//    QString outputString;
     while (query.next()) {
         m_geog = query.value(0).toString();
-        qDebug() << "GEOG: " << m_geog;
-//        outputString = query.value(0).toString();
     }
 
-//    m_geog = outputString;
     return m_geog;
 }
 

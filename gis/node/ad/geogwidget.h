@@ -27,6 +27,7 @@ signals:
 private:
     QLineEdit    *m_latLineEdit;
     QLineEdit    *m_lonLineEdit;
+    QLineEdit    *m_sridLE;
     QRadioButton *m_radio1;
     QRadioButton *m_radio2;
 

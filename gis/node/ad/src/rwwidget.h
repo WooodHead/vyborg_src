@@ -2,11 +2,10 @@
 #define RWWIDGET_H
 
 #include <QWidget>
+#include <QSqlTableModel>
 
 QT_BEGIN_NAMESPACE
 class QTableView;
-//class QLabel;
-//class QLineEdit;
 QT_END_NAMESPACE
 
 class RWWidget : public QWidget
@@ -25,11 +24,19 @@ signals:
 
 private:
     QTableView *m_tableView;
-//    QLineEdit  *m_latLE;
-//    QLineEdit  *m_lonLE;
 
 private:
     int m_adid;
+};
+
+class RWTableModel : public QSqlTableModel
+{
+    Q_OBJECT
+
+public:
+    RWTableModel(QObject *parent = Q_NULLPTR, QSqlDatabase db = QSqlDatabase());
+
+    QVariant data(const QModelIndex &idx, int role) const;
 };
 
 #endif // RWWIDGET_H

@@ -29,6 +29,7 @@ private:
     QLineEdit      *m_countryindxLE;
     QLineEdit      *m_countryLE;
     QLineEdit      *m_cityruLE;
+    QLineEdit      *m_cityLE;
     QLineEdit      *m_nameruLE;
     QLineEdit      *m_nameLE;
     QLineEdit      *m_indxLE;

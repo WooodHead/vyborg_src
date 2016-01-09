@@ -20,6 +20,10 @@ HEADERS += \
 SOURCES += \
     src/rwwidget.cpp
 
-HEADERS +=
+HEADERS += \
+    geogwidget.h
 
-SOURCES +=
+SOURCES += \
+    geogwidget.cpp
+
+

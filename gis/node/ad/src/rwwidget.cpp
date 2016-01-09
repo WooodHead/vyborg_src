@@ -2,6 +2,7 @@
 #include <QtSql>
 
 #include "rwwidget.h"
+#include "declarations.h"
 
 RWWidget::RWWidget(QWidget *parent)
     : QWidget(parent)
@@ -37,11 +38,40 @@ void RWWidget::setAdid(const int &adid)
 
     m_adid = adid;
 
-    QString queryStr = QString("SELECT * FROM rw.vw_rw WHERE ad_pid=\'%1\'")
+    RWTableModel *model = new RWTableModel;
+    QString filterString = QString("ad_pid=%1")
             .arg(m_adid);
-    QSqlQuery query(queryStr);
-    QSqlQueryModel *model = new QSqlQueryModel;
-    model->setQuery(query);
+    model->setFilter(filterString);
+    model->select();
+
     m_tableView->setModel(model);
     m_tableView->resizeColumnsToContents();
+    m_tableView->hideColumn(0);
+    m_tableView->hideColumn(11);
+}
+
+// RWTableModel implementation
+//
+
+RWTableModel::RWTableModel(QObject *parent, QSqlDatabase db)
+    : QSqlTableModel(parent, db)
+{
+    setTable("rw.vw_rw");
+}
+
+QVariant RWTableModel::data(const QModelIndex &idx, int role) const
+{
+    if (!idx.isValid())
+        return QVariant();
+
+    int col = idx.column();
+    if (col == 5 || col == 6) {
+        if (role == Qt::DisplayRole) {
+            double ddd = QSqlTableModel::data(idx, role).toDouble();
+            QString output = QString::number(ddd, 'f', 5);
+            return output;
+        }
+    }
+
+    return QSqlTableModel::data(idx, role);
 }

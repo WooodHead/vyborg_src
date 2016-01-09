@@ -1,5 +1,5 @@
 QT += core gui widgets sql
-TARGET = node_ad
+TARGET = vyborg_ad
 TEMPLATE = app
 CONFIG += vyborg
 DESTDIR = /home/debian/Programming/bin
@@ -21,13 +21,6 @@ MOC_DIR = tmp
 
 INCLUDEPATH += /usr/local/include/vyborg
 LIBS += -L/usr/local/lib/vyborg -lvyborg
-
-HEADERS += \
-    geogwidget.h
-
-SOURCES += \
-    geogwidget.cpp
-
 
 
 
