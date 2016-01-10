@@ -11,6 +11,7 @@ enum Columns {
     ad_countryindx,
     ad_country,
     ad_cityru,
+    ad_city,
     ad_nameru,
     ad_name,
     ad_indx,

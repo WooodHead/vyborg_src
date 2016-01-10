@@ -21,6 +21,7 @@ void MapperDialog::createPrivateWidgets()
     m_countryindxLE = new QLineEdit;
     m_countryLE     = new QLineEdit;
     m_cityruLE      = new QLineEdit;
+    m_cityLE        = new QLineEdit;
     m_nameruLE      = new QLineEdit;
     m_nameLE        = new QLineEdit;
     m_indxLE        = new QLineEdit;
@@ -45,6 +46,7 @@ void MapperDialog::createPrivateWidgets()
     m_mapper->addMapping(m_countryindxLE, ad_countryindx);
     m_mapper->addMapping(m_countryLE,     ad_country);
     m_mapper->addMapping(m_cityruLE,      ad_cityru);
+    m_mapper->addMapping(m_cityLE,        ad_city);
     m_mapper->addMapping(m_nameruLE,      ad_nameru);
     m_mapper->addMapping(m_nameLE,        ad_name);
     m_mapper->addMapping(m_indxLE,        ad_indx);
@@ -68,6 +70,7 @@ void MapperDialog::layoutPrivateWidgets()
     formLayout1->addRow(trUtf8("Индекс страны"),             m_countryindxLE);
     formLayout1->addRow(trUtf8("Страна"),                    m_countryLE);
     formLayout1->addRow(trUtf8("Город"),                     m_cityruLE);
+    formLayout1->addRow(trUtf8("City"),                      m_cityLE);
     formLayout1->addRow(trUtf8("Аэропорт"),                  m_nameruLE);
     formLayout1->addRow(trUtf8("Aerodrome"),                 m_nameLE);
     formLayout1->addRow(trUtf8("Индекс"),                    m_indxLE);
@@ -135,6 +138,7 @@ void MapperDialog::updatePrivateWidgets()
         m_countryindxLE->setReadOnly(false);
         m_countryLE->setReadOnly(false);
         m_cityruLE->setReadOnly(false);
+        m_cityLE->setReadOnly(false);
         m_nameruLE->setReadOnly(false);
         m_nameLE->setReadOnly(false);
         m_indxLE->setReadOnly(false);
@@ -156,6 +160,7 @@ void MapperDialog::updatePrivateWidgets()
         m_countryindxLE->setReadOnly(true);
         m_countryLE->setReadOnly(true);
         m_cityruLE->setReadOnly(true);
+        m_cityLE->setReadOnly(true);
         m_nameruLE->setReadOnly(true);
         m_nameLE->setReadOnly(true);
         m_indxLE->setReadOnly(true);
