@@ -173,7 +173,7 @@ void MapperDialog::layoutPrivateWidgets()
 
 
     // Образование
-
+    //
     QFormLayout *formLayout4 = new QFormLayout;
     formLayout4->addRow(trUtf8("Образование (высшее)"), m_vysshLE);
     formLayout4->addRow(trUtf8("Образование (среднее)"), m_sredneeLE);
@@ -185,7 +185,7 @@ void MapperDialog::layoutPrivateWidgets()
 
 
     // Награды
-
+    //
     QFormLayout *formLayout3 = new QFormLayout;
     formLayout3->addRow(trUtf8("Награды (государственные)"), m_gosnagradyLE);
     formLayout3->addRow(trUtf8("Награды (отраслевые)"), m_otraslnagradyLE);
@@ -230,7 +230,7 @@ void MapperDialog::updatePrivateWidgets()
         m_licencenumLE->setReadOnly(false);
         m_licencevalidLE->setReadOnly(false);
         m_mobilephoneLE->setReadOnly(false);
-            m_medicalvalidLE->setReadOnly(false);
+        m_medicalvalidLE->setReadOnly(false);
         m_kpkrpLE->setReadOnly(false);
         m_kpksdLE->setReadOnly(false);
         m_kpkdiLE->setReadOnly(false);
