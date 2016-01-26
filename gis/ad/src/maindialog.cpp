@@ -22,19 +22,17 @@ void MainDialog::setupModel()
     m_model->select();
 
     m_model->setHeaderData(ad_valid,       Qt::Horizontal, trUtf8("Действующий/\nНедействующий"));
-    m_model->setHeaderData(ad_countryindx, Qt::Horizontal, trUtf8("Индекс\nстраны"));
     m_model->setHeaderData(ad_country,     Qt::Horizontal, trUtf8("Страна"));
     m_model->setHeaderData(ad_cityru,      Qt::Horizontal, trUtf8("Город"));
     m_model->setHeaderData(ad_nameru,      Qt::Horizontal, trUtf8("Аэродром"));
     m_model->setHeaderData(ad_name,        Qt::Horizontal, trUtf8("Aerodrome\n(EN)"));
     m_model->setHeaderData(ad_indx,        Qt::Horizontal, trUtf8("Индекс"));
-    m_model->setHeaderData(ad_indxru,      Qt::Horizontal, trUtf8("Индекс Рус"));
     m_model->setHeaderData(ad_type,        Qt::Horizontal, trUtf8("Тип аэродрома"));
     m_model->setHeaderData(ad_intl,        Qt::Horizontal, trUtf8("Международный"));
     m_model->setHeaderData(ad_staff,       Qt::Horizontal, trUtf8("Организация"));
     m_model->setHeaderData(ad_reglament,   Qt::Horizontal, trUtf8("Регламент\nработы"));
     m_model->setHeaderData(ad_elevation,   Qt::Horizontal, trUtf8("Превышение"));
-    m_model->setHeaderData(ad_magn,        Qt::Horizontal, trUtf8("Магнитное\nсклонение"));
+    m_model->setHeaderData(ad_magvar,      Qt::Horizontal, trUtf8("Магнитное\nсклонение"));
     m_model->setHeaderData(ad_email,       Qt::Horizontal, trUtf8("E-mail"));
     m_model->setHeaderData(ad_web,         Qt::Horizontal, trUtf8("Web-сайт"));
     m_model->setHeaderData(ad_note,        Qt::Horizontal, trUtf8("Примечание"));
@@ -47,12 +45,20 @@ void MainDialog::setupView()
 //    m_view->setItemDelegate(new PersonModelDelegate(m_view));
 
     m_view->resizeColumnsToContents();
-    m_view->resizeRowsToContents();
+//    m_view->resizeRowsToContents();
     m_view->horizontalHeader()->setStretchLastSection(true);
 
     m_view->verticalHeader()->show();
 
     m_view->hideColumn(ad_pid);
+    m_view->hideColumn(ad_city);
+    m_view->hideColumn(ad_reglament);
+    m_view->hideColumn(ad_elevation);
+    m_view->hideColumn(ad_magvar);
+    m_view->hideColumn(ad_email);
+    m_view->hideColumn(ad_web);
+    m_view->hideColumn(ad_note);
+    m_view->hideColumn(ad_geog);
 
     m_view->selectRow(0);
 }

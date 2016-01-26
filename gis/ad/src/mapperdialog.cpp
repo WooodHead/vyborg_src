@@ -5,7 +5,7 @@
 #include "declarations.h"
 #include "mapperdelegate.h"
 
-#include "rwwidget.h"
+#include "rwwidget/rwwidget.h"
 #include "geogwidget.h"
 
 MapperDialog::MapperDialog(QSqlTableModel *model, QWidget *parent)
@@ -18,19 +18,25 @@ MapperDialog::MapperDialog(QSqlTableModel *model, QWidget *parent)
 
 void MapperDialog::createPrivateWidgets()
 {
-    m_countryindxLE = new QLineEdit;
     m_countryLE     = new QLineEdit;
     m_cityruLE      = new QLineEdit;
     m_cityLE        = new QLineEdit;
     m_nameruLE      = new QLineEdit;
     m_nameLE        = new QLineEdit;
     m_indxLE        = new QLineEdit;
-    m_indxruLE      = new QLineEdit;
     m_reglamentLE   = new QLineEdit;
-    m_elevationLE   = new QLineEdit;
-    m_magnLE        = new QLineEdit;
     m_emailLE       = new QLineEdit;
     m_webLE         = new QLineEdit;
+
+    m_elevationSB = new QSpinBox;
+    m_elevationSB->setRange(-301, 4500);
+    m_elevationSB->setSingleStep(10);
+    m_elevationSB->setSpecialValueText(" ");
+
+    m_magvarDSB = new QDoubleSpinBox;
+    m_magvarDSB->setRange(-31.0, 30.0);
+    m_magvarDSB->setSingleStep(1.0);
+    m_magvarDSB->setSpecialValueText(" ");
 
     m_validCB = new QComboBox;
     m_typeCB  = new QComboBox;
@@ -47,20 +53,18 @@ void MapperDialog::createPrivateWidgets()
     m_mapper->addMapping(m_geogWid,       ad_geog);
     m_mapper->addMapping(m_rwWid,         ad_pid);
     m_mapper->addMapping(m_validCB,       ad_valid);
-    m_mapper->addMapping(m_countryindxLE, ad_countryindx);
     m_mapper->addMapping(m_countryLE,     ad_country);
     m_mapper->addMapping(m_cityruLE,      ad_cityru);
     m_mapper->addMapping(m_cityLE,        ad_city);
     m_mapper->addMapping(m_nameruLE,      ad_nameru);
     m_mapper->addMapping(m_nameLE,        ad_name);
     m_mapper->addMapping(m_indxLE,        ad_indx);
-    m_mapper->addMapping(m_indxruLE,      ad_indxru);
     m_mapper->addMapping(m_typeCB,        ad_type);
     m_mapper->addMapping(m_intlCB,        ad_intl);
     m_mapper->addMapping(m_staffCB,       ad_staff);
     m_mapper->addMapping(m_reglamentLE,   ad_reglament);
-    m_mapper->addMapping(m_elevationLE,   ad_elevation);
-    m_mapper->addMapping(m_magnLE,        ad_magn);
+    m_mapper->addMapping(m_elevationSB,   ad_elevation);
+    m_mapper->addMapping(m_magvarDSB,     ad_magvar);
     m_mapper->addMapping(m_emailLE,       ad_email);
     m_mapper->addMapping(m_webLE,         ad_web);
     m_mapper->addMapping(m_notePTE,       ad_note);
@@ -89,16 +93,14 @@ void MapperDialog::layoutPrivateWidgets()
     // (Page 1)
 
     QFormLayout *formLayout1 = new QFormLayout;
-    formLayout1->addRow(trUtf8("Индекс страны"),    m_countryindxLE);
     formLayout1->addRow(trUtf8("Страна"),           m_countryLE);
     formLayout1->addRow(trUtf8("Город"),            m_cityruLE);
     formLayout1->addRow(trUtf8("City"),             m_cityLE);
     formLayout1->addRow(trUtf8("Индекс"),           m_indxLE);
-    formLayout1->addRow(trUtf8("Индекс Рус"),       m_indxruLE);
     formLayout1->addRow(trUtf8("Организация"),      m_staffCB);
     formLayout1->addRow(trUtf8("Регламент работы"), m_reglamentLE);
-    formLayout1->addRow(trUtf8("Превышение"),       m_elevationLE);
-    formLayout1->addRow(trUtf8("Магн склонение"),   m_magnLE);
+    formLayout1->addRow(trUtf8("Превышение"),       m_elevationSB);
+    formLayout1->addRow(trUtf8("Магн склонение"),   m_magvarDSB);
 
     QVBoxLayout *vbLayout1 = new QVBoxLayout;
     vbLayout1->addLayout(formLayout1);
@@ -154,48 +156,52 @@ void MapperDialog::updatePrivateWidgets()
 {
     if (isDirty())
     {
-        m_countryindxLE->setReadOnly(false);
         m_countryLE->setReadOnly(false);
         m_cityruLE->setReadOnly(false);
         m_cityLE->setReadOnly(false);
         m_nameruLE->setReadOnly(false);
         m_nameLE->setReadOnly(false);
         m_indxLE->setReadOnly(false);
-        m_indxruLE->setReadOnly(false);
         m_reglamentLE->setReadOnly(false);
-        m_elevationLE->setReadOnly(false);
-        m_magnLE->setReadOnly(false);
         m_emailLE->setReadOnly(false);
         m_webLE->setReadOnly(false);
+
+        m_elevationSB->setEnabled(true);
+
+        m_magvarDSB->setEnabled(true);
+
         m_notePTE->setReadOnly(false);
+
         m_geogWid->setEnabled(true);
 
-        m_validCB->setEditable(true);
-        m_typeCB->setEditable(true);
-        m_intlCB->setEditable(true);
-        m_staffCB->setEditable(true);
+        m_validCB->setEnabled(true);
+        m_typeCB->setEnabled(true);
+        m_intlCB->setEnabled(true);
+        m_staffCB->setEnabled(true);
     }
     else
     {
-        m_countryindxLE->setReadOnly(true);
         m_countryLE->setReadOnly(true);
         m_cityruLE->setReadOnly(true);
         m_cityLE->setReadOnly(true);
         m_nameruLE->setReadOnly(true);
         m_nameLE->setReadOnly(true);
         m_indxLE->setReadOnly(true);
-        m_indxruLE->setReadOnly(true);
         m_reglamentLE->setReadOnly(true);
-        m_elevationLE->setReadOnly(true);
-        m_magnLE->setReadOnly(true);
         m_emailLE->setReadOnly(true);
         m_webLE->setReadOnly(true);
+
+        m_elevationSB->setEnabled(false);
+
+        m_magvarDSB->setEnabled(false);
+
         m_notePTE->setReadOnly(true);
+
         m_geogWid->setEnabled(false);
 
-        m_validCB->setEditable(false);
-        m_typeCB->setEditable(false);
-        m_intlCB->setEditable(false);
-        m_staffCB->setEditable(false);
+        m_validCB->setEnabled(false);
+        m_typeCB->setEnabled(false);
+        m_intlCB->setEnabled(false);
+        m_staffCB->setEnabled(false);
     }
 }

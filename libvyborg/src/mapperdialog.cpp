@@ -130,14 +130,16 @@ void VyborgMapperDialog::edit()
 
 void VyborgMapperDialog::submit()
 {
-    int curRow = m_mapper->currentIndex();
+//    int curRow = m_mapper->currentIndex();
 
     m_mapper->submit();
+    qDebug() << "STEP 1";
     bool ret = m_model->submitAll();
     if (ret == false)
         qDebug() << "ERROR: " << m_model->lastError().text().toUtf8();
+    qDebug() << "STEP 2";
 
-    m_mapper->setCurrentIndex(curRow);
+//    m_mapper->setCurrentIndex(curRow);
 
     setDirty(false);
 

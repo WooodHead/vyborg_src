@@ -5,6 +5,7 @@ CONFIG += vyborg
 DESTDIR = /home/debian/Programming/bin
 
 include(src/files.pri)
+include(src/rwwidget/files.pri)
 
 #CONFIG(release) {
 #    DESTDIR = ../.build/build-$$TARGET-Release
@@ -21,6 +22,9 @@ MOC_DIR = tmp
 
 INCLUDEPATH += /usr/local/include/vyborg
 LIBS += -L/usr/local/lib/vyborg -lvyborg
+
+#DISTFILES += \
+#    src/rwwidget/files.pri
 
 
 

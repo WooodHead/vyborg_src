@@ -9,8 +9,8 @@ MOC_DIR = tmp
 
 # Input
 
-DISTFILES += \
-    src/files.pri
+#DISTFILES += \
+#    src/files.pri
 
 include(src/files.pri)
 

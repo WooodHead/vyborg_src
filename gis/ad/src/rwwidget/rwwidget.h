@@ -6,7 +6,10 @@
 
 QT_BEGIN_NAMESPACE
 class QTableView;
+class QPushButton;
 QT_END_NAMESPACE
+
+class RWTableModel;
 
 class RWWidget : public QWidget
 {
@@ -22,10 +25,20 @@ public:
 signals:
     void adidChanged();
 
-private:
-    QTableView *m_tableView;
+private slots:
+    void onEditButtonClicked();
+    void onAddButtonClicked();
+    void onSaveButtonClicked();
+    void onRevertButtonClicked();
 
 private:
+    QTableView   *m_tableView;
+    QPushButton  *m_editButton;
+    QPushButton  *m_addButton;
+    QPushButton  *m_saveButton;
+    QPushButton  *m_revertButton;
+    RWTableModel *m_model;
+
     int m_adid;
 };
 
@@ -36,7 +49,10 @@ class RWTableModel : public QSqlTableModel
 public:
     RWTableModel(QObject *parent = Q_NULLPTR, QSqlDatabase db = QSqlDatabase());
 
-    QVariant data(const QModelIndex &idx, int role) const;
+    QVariant data(const QModelIndex &idx, int role) const Q_DECL_OVERRIDE;
+//    bool setData(const QModelIndex &index, const QVariant &value, int role);
+
+    int m_adid;
 };
 
 #endif // RWWIDGET_H

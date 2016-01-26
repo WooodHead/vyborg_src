@@ -6,6 +6,8 @@
 QT_BEGIN_NAMESPACE
 class QLineEdit;
 class QComboBox;
+class QSpinBox;
+class QDoubleSpinBox;
 class QPlainTextEdit;
 QT_END_NAMESPACE
 
@@ -26,19 +28,17 @@ protected:
 
 private:
     // Visual elements
-    QLineEdit      *m_countryindxLE;
     QLineEdit      *m_countryLE;
     QLineEdit      *m_cityruLE;
     QLineEdit      *m_cityLE;
     QLineEdit      *m_nameruLE;
     QLineEdit      *m_nameLE;
     QLineEdit      *m_indxLE;
-    QLineEdit      *m_indxruLE;
     QLineEdit      *m_reglamentLE;
-    QLineEdit      *m_elevationLE;
-    QLineEdit      *m_magnLE;
     QLineEdit      *m_emailLE;
     QLineEdit      *m_webLE;
+    QSpinBox       *m_elevationSB;
+    QDoubleSpinBox *m_magvarDSB;
     QComboBox      *m_validCB;
     QComboBox      *m_typeCB;
     QComboBox      *m_intlCB;

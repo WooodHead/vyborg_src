@@ -21,10 +21,22 @@ void MapperDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, co
     {
         QComboBox *combo = qobject_cast<QComboBox*>(editor);
         QString data = combo->currentText();
-        if (data == QString::null)
+        if (data.isEmpty())
             model->setData(index, QString("undefined"));
         else
             model->setData(index, data);
+    }
+    else if (col == ad_elevation)
+    {
+        QSpinBox *spinBox = qobject_cast<QSpinBox *>(editor);
+        int data = spinBox->value();
+        model->setData(index, data);
+    }
+    else if (col == ad_magvar)
+    {
+        QDoubleSpinBox *spinBox = qobject_cast<QDoubleSpinBox *>(editor);
+        double data = spinBox->value();
+        model->setData(index, data);
     }
 
 //    int col = index.column();
@@ -126,7 +138,9 @@ void MapperDelegate::setEditorData(QWidget *editor, const QModelIndex &index) co
 
         QString data = index.model()->data(index, Qt::EditRole).toString().toUtf8();
         combo->setCurrentText(data);
-    } else if (col == ad_staff) {
+    }
+    else if (col == ad_staff)
+    {
         QComboBox *combo = static_cast<QComboBox *>(editor);
         combo->clear();
 
@@ -141,7 +155,9 @@ void MapperDelegate::setEditorData(QWidget *editor, const QModelIndex &index) co
 
         QString data = index.model()->data(index, Qt::EditRole).toString().toUtf8();
         combo->setCurrentText(data);
-    } else if (col == ad_intl) {
+    }
+    else if (col == ad_intl)
+    {
         QComboBox *combo = static_cast<QComboBox *>(editor);
         combo->clear();
 
@@ -156,6 +172,26 @@ void MapperDelegate::setEditorData(QWidget *editor, const QModelIndex &index) co
 
         QString data = index.model()->data(index, Qt::EditRole).toString().toUtf8();
         combo->setCurrentText(data);
+    }
+    else if (col == ad_elevation)
+    {
+        QSpinBox *spinBox = static_cast<QSpinBox *>(editor);
+
+        int elevation = index.model()->data(index, Qt::EditRole).toInt();
+        if (elevation == 0)
+            spinBox->setValue(-301);
+        else
+            spinBox->setValue(elevation);
+    }
+    else if (col == ad_magvar)
+    {
+        QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox *>(editor);
+
+        double magvar = index.model()->data(index, Qt::EditRole).toDouble();
+        if (magvar == 0.0)
+            spinBox->setValue(-31.0);
+        else
+            spinBox->setValue(magvar);
     }
 
 //    int col = index.column();

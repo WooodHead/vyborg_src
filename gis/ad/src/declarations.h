@@ -8,26 +8,23 @@
 enum Columns {
     ad_pid,
     ad_valid,
-    ad_countryindx,
     ad_country,
     ad_cityru,
     ad_city,
     ad_nameru,
     ad_name,
     ad_indx,
-    ad_indxru,
     ad_type,
     ad_intl,
     ad_staff,
     ad_reglament,
     ad_elevation,
-    ad_magn,
+    ad_magvar,
     ad_email,
     ad_web,
     ad_note,
     ad_geog,
     ColumnsNumber
 };
-
 
 #endif // DECLARATIONS_H
