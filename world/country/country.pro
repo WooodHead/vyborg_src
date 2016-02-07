@@ -1,5 +1,5 @@
 TEMPLATE = app
-TARGET   = world_country
+TARGET   = vyborg_country
 
 
 QT += sql widgets gui core
@@ -14,7 +14,7 @@ MOC_DIR = tmp
 
 include(src/files.pri)
 
-DEPENDPATH  += .
+#DEPENDPATH  += .
 
 INCLUDEPATH += /usr/local/include/vyborg
 LIBS += -L/usr/local/lib/vyborg -lvyborg

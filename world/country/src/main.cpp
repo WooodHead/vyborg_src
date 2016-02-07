@@ -1,7 +1,7 @@
 #include <QApplication>
 
 #include "declarations.h"
-#include <vyborg_connection.h>
+#include <vyborg/connection.h>
 
 #include "maindialog.h"
 

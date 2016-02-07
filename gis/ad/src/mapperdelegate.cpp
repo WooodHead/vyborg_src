@@ -188,8 +188,9 @@ void MapperDelegate::setEditorData(QWidget *editor, const QModelIndex &index) co
         QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox *>(editor);
 
         double magvar = index.model()->data(index, Qt::EditRole).toDouble();
+        qDebug() << "MAG VAR:" << magvar;
         if (magvar == 0.0)
-            spinBox->setValue(-31.0);
+            spinBox->setValue(-51.0);
         else
             spinBox->setValue(magvar);
     }

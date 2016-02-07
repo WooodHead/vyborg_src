@@ -22,7 +22,7 @@ void MainDialog::setupModel()
     m_model->select();
 
     m_model->setHeaderData(ad_valid,       Qt::Horizontal, trUtf8("Действующий/\nНедействующий"));
-    m_model->setHeaderData(ad_country,     Qt::Horizontal, trUtf8("Страна"));
+    m_model->setHeaderData(ad_country_pid, Qt::Horizontal, trUtf8("Страна"));
     m_model->setHeaderData(ad_cityru,      Qt::Horizontal, trUtf8("Город"));
     m_model->setHeaderData(ad_nameru,      Qt::Horizontal, trUtf8("Аэродром"));
     m_model->setHeaderData(ad_name,        Qt::Horizontal, trUtf8("Aerodrome\n(EN)"));
@@ -51,7 +51,6 @@ void MainDialog::setupView()
     m_view->verticalHeader()->show();
 
     m_view->hideColumn(ad_pid);
-    m_view->hideColumn(ad_city);
     m_view->hideColumn(ad_reglament);
     m_view->hideColumn(ad_elevation);
     m_view->hideColumn(ad_magvar);

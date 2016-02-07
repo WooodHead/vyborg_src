@@ -1,12 +1,11 @@
-#include <QtWidgets>
+﻿#include <QtWidgets>
+#include <QtSql>
 
 #include "mapperdialog.h"
 #include "declarations.h"
-#include "imagewidget.h"
 
-
-MapperDialog::MapperDialog(QSortFilterProxyModel *proxy, QWidget *parent)
-    : VyborgMapperDialog(proxy, parent)
+MapperDialog::MapperDialog(QSqlTableModel *model, QWidget *parent)
+    : VyborgMapperDialog(model, parent)
 {
     createPrivateWidgets();
     layoutPrivateWidgets();
@@ -15,90 +14,72 @@ MapperDialog::MapperDialog(QSortFilterProxyModel *proxy, QWidget *parent)
 
 void MapperDialog::createPrivateWidgets()
 {
-    flag = new ImageWidget;
-    gerb = new ImageWidget;
+    m_nameLE         = new QLineEdit;
+    m_nameruLE       = new QLineEdit;
+    m_nameshortLE    = new QLineEdit;
+    m_nameshortruLE  = new QLineEdit;
+    m_iso3166code2LE = new QLineEdit;
+    m_iso3166code3LE = new QLineEdit;
+    m_iso3166codenLE = new QLineEdit;
+    m_noteLE         = new QLineEdit;
+    m_noteruLE       = new QLineEdit;
 
-    isoNumSpinBox = new QSpinBox;
-    isoNumSpinBox->setMinimum(0);
-    isoNumSpinBox->setMaximum(1000);
-
-    nameEdit           = new QLineEdit;
-    nameAbridgedEdit   = new QLineEdit;
-    nameRuEdit         = new QLineEdit;
-    nameAbridgedRuEdit = new QLineEdit;
-    iso2Edit           = new QLineEdit;
-    iso3Edit           = new QLineEdit;
-    noteEdit           = new QLineEdit;
-    noteRuEdit         = new QLineEdit;
-
-
-    mapper_->addMapping(nameEdit,           country_name);
-    mapper_->addMapping(nameAbridgedEdit,   country_nameAbridged);
-    mapper_->addMapping(nameRuEdit,         country_nameRu);
-    mapper_->addMapping(nameAbridgedRuEdit, country_nameAbridgedRu);
-    mapper_->addMapping(isoNumSpinBox,      country_iso3166_num);
-    mapper_->addMapping(iso2Edit,           country_iso3166_2);
-    mapper_->addMapping(iso3Edit,           country_iso3166_3);
-    mapper_->addMapping(noteEdit,           country_note);
-    mapper_->addMapping(noteRuEdit,         country_noteRu);
-//    mapper_->addMapping(flag,               country_nameAbridged, "fileName");
+    QDataWidgetMapper* m_mapper = mapper();
+    m_mapper->addMapping(m_nameLE,         country_name);
+    m_mapper->addMapping(m_nameruLE,       country_nameru);
+    m_mapper->addMapping(m_nameshortLE,    country_nameshort);
+    m_mapper->addMapping(m_nameshortruLE,  country_nameshortru);
+    m_mapper->addMapping(m_iso3166code2LE, country_iso3166code2);
+    m_mapper->addMapping(m_iso3166code3LE, country_iso3166code3);
+    m_mapper->addMapping(m_iso3166codenLE, country_iso3166coden);
+    m_mapper->addMapping(m_noteLE,         country_note);
+    m_mapper->addMapping(m_noteruLE,       country_noteru);
 }
 
 void MapperDialog::layoutPrivateWidgets()
 {
-    QGroupBox *flagGroupBox = new QGroupBox;
-    QHBoxLayout *flagLayout = new QHBoxLayout;
-    flagLayout->addWidget(flag);
-    flagLayout->addWidget(gerb);
-    flagGroupBox->setLayout(flagLayout);
+    // Основные данные
 
     QFormLayout *formLayout = new QFormLayout;
-    formLayout->addRow(trUtf8("C&ountry"),                                      nameEdit);
-    formLayout->addRow(trUtf8("Co&untry (abridged name)"),                      nameAbridgedEdit);
-    formLayout->addRow(trUtf8("&Страна"),                                       nameRuEdit);
-    formLayout->addRow(trUtf8("C&трана (сокращенное название)"),                nameAbridgedRuEdit);
-    formLayout->addRow(trUtf8("ISO 3166-1 Numeric Code (UN M49 Numeric Code)"), isoNumSpinBox);
-    formLayout->addRow(trUtf8("ISO 3166-1 ALPHA-2 Code"),                       iso2Edit);
-    formLayout->addRow(trUtf8("ISO 3166-1 ALPHA-3 Code"),                       iso3Edit);
-    formLayout->addRow(trUtf8("No&te"),                                         noteEdit);
-    formLayout->addRow(trUtf8("&Примечание"),                                   noteRuEdit);
+    formLayout->addRow(trUtf8("Name"), m_nameLE);
+    formLayout->addRow(trUtf8("Название"), m_nameruLE);
+    formLayout->addRow(trUtf8("Short name"), m_nameshortLE);
+    formLayout->addRow(trUtf8("Сокращенное название"), m_nameshortruLE);
+    formLayout->addRow(trUtf8("ISO3166 code 2"), m_iso3166code2LE);
+    formLayout->addRow(trUtf8("ISO3166 code 3"), m_iso3166code3LE);
+    formLayout->addRow(trUtf8("ISO3166 Number"), m_iso3166codenLE);
 
-    QGridLayout *grid = new QGridLayout;
-    grid->addWidget(flagGroupBox, 0, 0);
-    grid->addLayout(formLayout, 1, 0);
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    mainLayout->addLayout(formLayout);
 
-    privateWidgetsLayout->addLayout(grid);
+    QVBoxLayout *privateWidgetsLayout = layout();
+    privateWidgetsLayout->addLayout(mainLayout);
 }
 
 void MapperDialog::updatePrivateWidgets()
 {
-    if (dirty_ == true) {
-        isoNumSpinBox->setReadOnly(false);
-
-        flag->setEnabled(true);
-
-        nameEdit->setReadOnly(false);
-        nameAbridgedEdit->setReadOnly(false);
-        nameRuEdit->setReadOnly(false);
-        nameAbridgedRuEdit->setReadOnly(false);
-        iso2Edit->setReadOnly(false);
-        iso3Edit->setReadOnly(false);
-        noteEdit->setReadOnly(false);
-        noteRuEdit->setReadOnly(false);
-
-        nameEdit->setFocus();
-    } else {
-        isoNumSpinBox->setReadOnly(true);
-
-        flag->setEnabled(false);
-
-        nameEdit->setReadOnly(true);
-        nameAbridgedEdit->setReadOnly(true);
-        nameRuEdit->setReadOnly(true);
-        nameAbridgedRuEdit->setReadOnly(true);
-        iso2Edit->setReadOnly(true);
-        iso3Edit->setReadOnly(true);
-        noteEdit->setReadOnly(true);
-        noteRuEdit->setReadOnly(true);
+    if (isDirty())
+    {
+        m_nameLE->setEnabled(false);
+        m_nameruLE->setEnabled(false);
+        m_nameshortLE->setEnabled(false);
+        m_nameshortruLE->setEnabled(false);
+        m_iso3166code2LE->setEnabled(false);
+        m_iso3166code3LE->setEnabled(false);
+        m_iso3166codenLE->setEnabled(false);
+        m_noteLE->setEnabled(false);
+        m_noteruLE->setEnabled(false);
+    }
+    else
+    {
+        m_nameLE->setEnabled(true);
+        m_nameruLE->setEnabled(true);
+        m_nameshortLE->setEnabled(true);
+        m_nameshortruLE->setEnabled(true);
+        m_iso3166code2LE->setEnabled(true);
+        m_iso3166code3LE->setEnabled(true);
+        m_iso3166codenLE->setEnabled(true);
+        m_noteLE->setEnabled(true);
+        m_noteruLE->setEnabled(true);
     }
 }

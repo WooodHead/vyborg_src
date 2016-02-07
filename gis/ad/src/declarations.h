@@ -8,9 +8,8 @@
 enum Columns {
     ad_pid,
     ad_valid,
-    ad_country,
+    ad_country_pid,
     ad_cityru,
-    ad_city,
     ad_nameru,
     ad_name,
     ad_indx,

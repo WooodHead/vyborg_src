@@ -5,7 +5,7 @@
 #include "declarations.h"
 #include "mapperdelegate.h"
 
-#include "rwwidget/rwwidget.h"
+#include "rwwidget.h"
 #include "geogwidget.h"
 
 MapperDialog::MapperDialog(QSqlTableModel *model, QWidget *parent)
@@ -20,7 +20,6 @@ void MapperDialog::createPrivateWidgets()
 {
     m_countryLE     = new QLineEdit;
     m_cityruLE      = new QLineEdit;
-    m_cityLE        = new QLineEdit;
     m_nameruLE      = new QLineEdit;
     m_nameLE        = new QLineEdit;
     m_indxLE        = new QLineEdit;
@@ -34,7 +33,7 @@ void MapperDialog::createPrivateWidgets()
     m_elevationSB->setSpecialValueText(" ");
 
     m_magvarDSB = new QDoubleSpinBox;
-    m_magvarDSB->setRange(-31.0, 30.0);
+    m_magvarDSB->setRange(-51.0, 50.0);
     m_magvarDSB->setSingleStep(1.0);
     m_magvarDSB->setSpecialValueText(" ");
 
@@ -50,24 +49,23 @@ void MapperDialog::createPrivateWidgets()
     m_rwWid = new RWWidget;
 
     QDataWidgetMapper* m_mapper = mapper();
-    m_mapper->addMapping(m_geogWid,       ad_geog);
-    m_mapper->addMapping(m_rwWid,         ad_pid);
-    m_mapper->addMapping(m_validCB,       ad_valid);
-    m_mapper->addMapping(m_countryLE,     ad_country);
-    m_mapper->addMapping(m_cityruLE,      ad_cityru);
-    m_mapper->addMapping(m_cityLE,        ad_city);
-    m_mapper->addMapping(m_nameruLE,      ad_nameru);
-    m_mapper->addMapping(m_nameLE,        ad_name);
-    m_mapper->addMapping(m_indxLE,        ad_indx);
-    m_mapper->addMapping(m_typeCB,        ad_type);
-    m_mapper->addMapping(m_intlCB,        ad_intl);
-    m_mapper->addMapping(m_staffCB,       ad_staff);
-    m_mapper->addMapping(m_reglamentLE,   ad_reglament);
-    m_mapper->addMapping(m_elevationSB,   ad_elevation);
-    m_mapper->addMapping(m_magvarDSB,     ad_magvar);
-    m_mapper->addMapping(m_emailLE,       ad_email);
-    m_mapper->addMapping(m_webLE,         ad_web);
-    m_mapper->addMapping(m_notePTE,       ad_note);
+    m_mapper->addMapping(m_geogWid,     ad_geog);
+    m_mapper->addMapping(m_rwWid,       ad_pid);
+    m_mapper->addMapping(m_validCB,     ad_valid);
+    m_mapper->addMapping(m_countryLE,   ad_country_pid);
+    m_mapper->addMapping(m_cityruLE,    ad_cityru);
+    m_mapper->addMapping(m_nameruLE,    ad_nameru);
+    m_mapper->addMapping(m_nameLE,      ad_name);
+    m_mapper->addMapping(m_indxLE,      ad_indx);
+    m_mapper->addMapping(m_typeCB,      ad_type);
+    m_mapper->addMapping(m_intlCB,      ad_intl);
+    m_mapper->addMapping(m_staffCB,     ad_staff);
+    m_mapper->addMapping(m_reglamentLE, ad_reglament);
+    m_mapper->addMapping(m_elevationSB, ad_elevation);
+    m_mapper->addMapping(m_magvarDSB,   ad_magvar);
+    m_mapper->addMapping(m_emailLE,     ad_email);
+    m_mapper->addMapping(m_webLE,       ad_web);
+    m_mapper->addMapping(m_notePTE,     ad_note);
     m_mapper->setItemDelegate(new MapperDelegate);
 }
 
@@ -95,7 +93,6 @@ void MapperDialog::layoutPrivateWidgets()
     QFormLayout *formLayout1 = new QFormLayout;
     formLayout1->addRow(trUtf8("Страна"),           m_countryLE);
     formLayout1->addRow(trUtf8("Город"),            m_cityruLE);
-    formLayout1->addRow(trUtf8("City"),             m_cityLE);
     formLayout1->addRow(trUtf8("Индекс"),           m_indxLE);
     formLayout1->addRow(trUtf8("Организация"),      m_staffCB);
     formLayout1->addRow(trUtf8("Регламент работы"), m_reglamentLE);
@@ -158,7 +155,6 @@ void MapperDialog::updatePrivateWidgets()
     {
         m_countryLE->setReadOnly(false);
         m_cityruLE->setReadOnly(false);
-        m_cityLE->setReadOnly(false);
         m_nameruLE->setReadOnly(false);
         m_nameLE->setReadOnly(false);
         m_indxLE->setReadOnly(false);
@@ -183,7 +179,6 @@ void MapperDialog::updatePrivateWidgets()
     {
         m_countryLE->setReadOnly(true);
         m_cityruLE->setReadOnly(true);
-        m_cityLE->setReadOnly(true);
         m_nameruLE->setReadOnly(true);
         m_nameLE->setReadOnly(true);
         m_indxLE->setReadOnly(true);
