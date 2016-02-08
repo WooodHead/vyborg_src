@@ -1,0 +1,2 @@
+INCLUDEPATH += /usr/local/include/aviawidgets
+LIBS += -L/usr/local/lib/aviawidgets -laviawidgets

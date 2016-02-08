@@ -2,7 +2,10 @@ QT += core gui widgets sql
 TARGET = vyborg_ad
 TEMPLATE = app
 CONFIG += vyborg
+CONFIG += aviawidgets
 DESTDIR = /home/debian/Programming/bin
+
+#message("$$QMAKESPEC/../features/")
 
 include(src/files.pri)
 
@@ -19,14 +22,17 @@ MOC_DIR = tmp
 #DISTFILES += \
 #    src/files.pri
 
-INCLUDEPATH += /usr/local/include/vyborg \
-    /usr/local/include/aviawidgets
+#INCLUDEPATH += /usr/local/include/vyborg \
+#    /usr/local/include/aviawidgets
 
-LIBS += -L/usr/local/lib/vyborg -lvyborg \
-    -L/usr/local/lib/aviawidgets -laviawidgets
+#LIBS += -L/usr/local/lib/vyborg -lvyborg \
+#    -L/usr/local/lib/aviawidgets -laviawidgets
 
 #DISTFILES += \
 #    src/rwwidget/files.pri
 
+
+
+#INCLUDEPATH += $$QMAKESPEC/../features/
 
 

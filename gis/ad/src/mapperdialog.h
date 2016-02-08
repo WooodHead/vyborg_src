@@ -2,6 +2,7 @@
 #define MAPPERDIALOG_H
 
 #include <vyborg.h>
+#include <aviawidgets.h>
 
 QT_BEGIN_NAMESPACE
 class QLineEdit;

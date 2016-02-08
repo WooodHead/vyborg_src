@@ -5,8 +5,7 @@
 #include "declarations.h"
 #include "mapperdelegate.h"
 
-#include "rwwidget.h"
-#include "geogwidget.h"
+#include <aviawidgets.h>
 
 MapperDialog::MapperDialog(QSqlTableModel *model, QWidget *parent)
     : VyborgMapperDialog(model, parent)

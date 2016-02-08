@@ -17,9 +17,17 @@ unix {
     headers.path = $$HEADERS_INSTALL_DIR
     INSTALLS += headers
 
+#    features.extra = echo $$QMAKESPEC
+    features.files = aviawidgets.prf
+    features.path = $$QMAKESPEC/../features/unix
+    INSTALLS += features
+
     target.path = /usr/local/lib/aviawidgets
     INSTALLS += target
 }
 
+#DISTFILES += \
+#    ../gis/ad/src/rwwidget/files.pri
+
 DISTFILES += \
-    ../gis/ad/src/rwwidget/files.pri
+    aviawidgets.prf

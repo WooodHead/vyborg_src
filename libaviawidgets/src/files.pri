@@ -3,7 +3,8 @@ HEADERS += \
     $$PWD/libaviawidgets_global.h \
     $$PWD/rwwidget.h \
     $$PWD/doublespinboxdelegate.h \
-    $$PWD/geogwidget.h
+    $$PWD/geogwidget.h \
+    $$PWD/aviawidgets.h
 
 SOURCES += \
     $$PWD/libaviawidgets.cpp \
