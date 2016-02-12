@@ -30,6 +30,7 @@ void MapperDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, co
     {
         QSpinBox *spinBox = qobject_cast<QSpinBox *>(editor);
         int data = spinBox->value();
+        qDebug() << "ELEVATION: " << data;
         model->setData(index, data);
     }
     else if (col == ad_magvar)
@@ -178,9 +179,9 @@ void MapperDelegate::setEditorData(QWidget *editor, const QModelIndex &index) co
         QSpinBox *spinBox = static_cast<QSpinBox *>(editor);
 
         int elevation = index.model()->data(index, Qt::EditRole).toInt();
-        if (elevation == 0)
-            spinBox->setValue(-301);
-        else
+//        if (elevation == 0)
+//            spinBox->setValue(-301);
+//        else
             spinBox->setValue(elevation);
     }
     else if (col == ad_magvar)
