@@ -6,25 +6,20 @@
 GeogWidget::GeogWidget(QWidget *parent)
     : QWidget(parent)
 {
-    m_latLineEdit = new QLineEdit;
-    m_lonLineEdit = new QLineEdit;
+    m_latLE  = new QLineEdit;
+    m_lonLE  = new QLineEdit;
     m_sridLE = new QLineEdit;
-
-//    QFormLayout *formLayout1 = new QFormLayout;
-//    formLayout1->addRow(QObject::trUtf8("Широта "),  m_latLineEdit);
-//    formLayout1->addRow(QObject::trUtf8("Долгота "), m_lonLineEdit);
 
 
     QHBoxLayout *coordLayout = new QHBoxLayout;
-    coordLayout->addWidget(new QLabel(trUtf8("Координаты")));
-    coordLayout->addWidget(m_latLineEdit);
-    coordLayout->addWidget(m_lonLineEdit);
+    coordLayout->addWidget(m_latLE);
+    coordLayout->addWidget(m_lonLE);
     coordLayout->addWidget(new QLabel(trUtf8("SRID")));
     coordLayout->addWidget(m_sridLE);
 
 
-    m_radio1 = new QRadioButton(trUtf8("Показывать целое число"));
-    m_radio2 = new QRadioButton(trUtf8("Показывать град/мин/сек"));
+    m_radio1 = new QRadioButton(trUtf8("град (XXX.XXXXX°)"));
+    m_radio2 = new QRadioButton(trUtf8("град/мин/сек (XXX° XX\' XX.XXX\")"));
     m_radio1->setChecked(true);
 
     QButtonGroup *buttonGroup = new QButtonGroup;
@@ -37,12 +32,11 @@ GeogWidget::GeogWidget(QWidget *parent)
 
 
     QVBoxLayout *innerLayout = new QVBoxLayout;
-//    innerLayout->addLayout(formLayout1);
     innerLayout->addLayout(coordLayout);
     innerLayout->addLayout(radioBox);
 
     QGroupBox *m_groupBox = new QGroupBox;
-    m_groupBox->setTitle(trUtf8("Координаты КТА"));
+    m_groupBox->setTitle(trUtf8("Координаты"));
     m_groupBox->setLayout(innerLayout);
 
 
@@ -60,11 +54,17 @@ void GeogWidget::setGeog(const QString &geog)
 {
     // Check here if geog is not null
     // ...
+    if (geog.isEmpty()) {
+        qDebug() << "DEBUG: geog is empty.";
+        m_latLE->setText("");
+        m_lonLE->setText("");
+        m_sridLE->setText("4326");
+        return;
+    }
 
 
     if (geog != m_geog) {
         m_geog = geog;
-//        emit geogChanged();
 
         QString queryString = QString("SELECT St_Y(\'%1\'::geometry),St_X(\'%2\'::geometry),St_SRID(\'%3\'::geometry)")
                 .arg(m_geog)
@@ -72,14 +72,16 @@ void GeogWidget::setGeog(const QString &geog)
                 .arg(m_geog);
         QSqlQuery query(queryString);
         while (query.next()) {
-//            qreal lat = query.value(0).toReal();
-//            qreal lon = query.value(1).toReal();
             double lat = query.value(0).toDouble();
             double lon = query.value(1).toDouble();
             int srid = query.value(2).toInt();
 
-            m_latLineEdit->setText(QString::number(lat, 'f', 5));
-            m_lonLineEdit->setText(QString::number(lon, 'f', 5));
+            if (m_radio1->isChecked()) {
+                m_latLE->setInputMask(QString("99.99999°"));
+                m_latLE->setText(QString::number(lat, 'f', 5));
+                m_lonLE->setText(QString::number(lon, 'f', 5));
+            }
+
             m_sridLE->setText(QString::number(srid));
         }
     }
@@ -87,8 +89,8 @@ void GeogWidget::setGeog(const QString &geog)
 
 QString GeogWidget::geog() const
 {
-    double lat = m_latLineEdit->text().toDouble();
-    double lon = m_lonLineEdit->text().toDouble();
+    double lat = m_latLE->text().toDouble();
+    double lon = m_lonLE->text().toDouble();
 
     QString queryString = QString("SELECT ST_GeographyFromText('SRID=4326;POINT(%1 %2)')")
             .arg(lon, 0, 'f', 5)
@@ -104,10 +106,12 @@ QString GeogWidget::geog() const
 void GeogWidget::setEnabled(bool state)
 {
     if (state == true) {
-        m_latLineEdit->setReadOnly(false);
-        m_lonLineEdit->setReadOnly(false);
+        m_latLE->setReadOnly(false);
+        m_lonLE->setReadOnly(false);
+        m_sridLE->setReadOnly(false);
     } else {
-        m_latLineEdit->setReadOnly(true);
-        m_lonLineEdit->setReadOnly(true);
+        m_latLE->setReadOnly(true);
+        m_lonLE->setReadOnly(true);
+        m_sridLE->setReadOnly(true);
     }
 }

@@ -28,7 +28,7 @@ void MapperDialog::createPrivateWidgets()
 
     m_elevationSB = new QSpinBox;
     m_elevationSB->setRange(-301, 4500);
-    m_elevationSB->setSingleStep(10);
+    m_elevationSB->setSingleStep(1);
     m_elevationSB->setSpecialValueText(" ");
 
     m_magvarDSB = new QDoubleSpinBox;
