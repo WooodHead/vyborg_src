@@ -17,14 +17,14 @@ MapperDialog::MapperDialog(QSqlTableModel *model, QWidget *parent)
 
 void MapperDialog::createPrivateWidgets()
 {
-    m_countryLE     = new QLineEdit;
-    m_cityruLE      = new QLineEdit;
-    m_nameruLE      = new QLineEdit;
-    m_nameLE        = new QLineEdit;
-    m_indxLE        = new QLineEdit;
-    m_reglamentLE   = new QLineEdit;
-    m_emailLE       = new QLineEdit;
-    m_webLE         = new QLineEdit;
+    m_countryLE   = new QLineEdit;
+    m_cityruLE    = new QLineEdit;
+    m_nameruLE    = new QLineEdit;
+    m_nameLE      = new QLineEdit;
+    m_indxLE      = new QLineEdit;
+    m_reglamentLE = new QLineEdit;
+    m_emailLE     = new QLineEdit;
+    m_webLE       = new QLineEdit;
 
     m_elevationSB = new QSpinBox;
     m_elevationSB->setRange(-301, 4500);

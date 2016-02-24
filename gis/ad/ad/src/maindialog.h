@@ -3,7 +3,6 @@
 
 #include <vyborg.h>
 
-
 class MainDialog : public VyborgMainDialog
 {
     Q_OBJECT

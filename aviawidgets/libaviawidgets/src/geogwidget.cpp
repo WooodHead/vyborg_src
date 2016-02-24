@@ -62,7 +62,6 @@ void GeogWidget::setGeog(const QString &geog)
         return;
     }
 
-
     if (geog != m_geog) {
         m_geog = geog;
 
@@ -77,7 +76,7 @@ void GeogWidget::setGeog(const QString &geog)
             int srid = query.value(2).toInt();
 
             if (m_radio1->isChecked()) {
-                m_latLE->setInputMask(QString("99.99999°"));
+//                m_latLE->setInputMask(QString("99.99999°"));
                 m_latLE->setText(QString::number(lat, 'f', 5));
                 m_lonLE->setText(QString::number(lon, 'f', 5));
             }

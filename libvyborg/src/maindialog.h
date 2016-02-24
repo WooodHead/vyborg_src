@@ -44,12 +44,12 @@ private slots:
     void showSortDialog();
 
 public:
-    QSqlTableModel   *m_model;
-    QTableView                 *m_view;
-    VyborgMapperDialog         *m_mapperDialog;
-    VyborgFilterDialog         *filterDialog_;
-    VyborgSortDialog           *sortDialog_;
-    VyborgAboutDialog          *aboutDialog_;
+    QSqlTableModel     *m_model;
+    QTableView         *m_view;
+    VyborgMapperDialog *m_mapperDialog;
+    VyborgFilterDialog *filterDialog_;
+    VyborgSortDialog   *sortDialog_;
+    VyborgAboutDialog  *aboutDialog_;
     VyborgMainDialogControlButtonBox *m_controlButtonBox;
 };
 

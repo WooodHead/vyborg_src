@@ -3,8 +3,6 @@
 
 #include <QString>
 
-
 QString lat2rus(QString latStr);
-
 
 #endif // RUS_H
