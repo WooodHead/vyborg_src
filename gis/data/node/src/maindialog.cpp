@@ -30,31 +30,18 @@ void MainDialog::setupModel()
         qApp->quit();
     }
 
-    m_model->setHeaderData(sector_pid,      Qt::Horizontal, trUtf8("PID"));
-    m_model->setHeaderData(sector_sector,   Qt::Horizontal, trUtf8("Сектор"));
-    m_model->setHeaderData(sector_fullname, Qt::Horizontal, trUtf8("Расширенное\nнаименование"));
-    m_model->setHeaderData(sector_label,    Qt::Horizontal, trUtf8("Метка"));
-    m_model->setHeaderData(sector_compound, Qt::Horizontal, trUtf8("Составной"));
-    m_model->setHeaderData(sector_geog,     Qt::Horizontal, trUtf8("Граница сектора"));
-    m_model->setHeaderData(sector_points,   Qt::Horizontal, trUtf8("Координаты\nточек границы"));
+    m_model->setHeaderData(node_pid,  Qt::Horizontal, trUtf8("PID"));
+    m_model->setHeaderData(node_lat,  Qt::Horizontal, trUtf8("Широта"));
+    m_model->setHeaderData(node_lon,  Qt::Horizontal, trUtf8("Долгота"));
+    m_model->setHeaderData(node_geog, Qt::Horizontal, trUtf8("Координаты"));
 }
 
 void MainDialog::setupView()
 {
     m_view->setModel(m_model);
-//    m_view->setItemDelegate(new PersonModelDelegate(m_view));
-
     m_view->resizeColumnsToContents();
-//    m_view->resizeRowsToContents();
-    m_view->horizontalHeader()->setStretchLastSection(true);
-
     m_view->verticalHeader()->show();
-
-    m_view->hideColumn(sector_pid);
-    m_view->hideColumn(sector_sector);
-    m_view->hideColumn(sector_geog);
-    m_view->hideColumn(sector_points);
-
+    m_view->hideColumn(node_geog);
     m_view->selectRow(0);
 }
 

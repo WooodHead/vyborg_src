@@ -32,7 +32,7 @@ void MapperDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, co
         QString data = QString::number(spinBox->value());
 //        int data = spinBox->value();
         qDebug() << "ELEVATION out: " << data;
-//        model->setData(index, data);
+        model->setData(index, data);
     }
     else if (col == ad_magvar)
     {
@@ -186,10 +186,9 @@ void MapperDelegate::setEditorData(QWidget *editor, const QModelIndex &index) co
 //            spinBox->setValue(elevation);
 
         QString elevation = index.model()->data(index, Qt::EditRole).toString();
-        if (elevation.isEmpty()) {
-            qDebug() << "ELEVATION:" << elevation;
+        qDebug() << "ELEVAT" << elevation;
+        if (elevation.isEmpty())
             spinBox->setValue(-301);
-        }
         else
             spinBox->setValue(elevation.toInt());
     }
@@ -198,7 +197,6 @@ void MapperDelegate::setEditorData(QWidget *editor, const QModelIndex &index) co
         QDoubleSpinBox *spinBox = static_cast<QDoubleSpinBox *>(editor);
 
         double magvar = index.model()->data(index, Qt::EditRole).toDouble();
-        qDebug() << "MAG VAR:" << magvar;
         if (magvar == 0.0)
             spinBox->setValue(-51.0);
         else

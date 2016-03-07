@@ -135,9 +135,10 @@ void VyborgMapperDialog::submit()
     m_mapper->submit();
     qDebug() << "STEP 1";
     bool ret = m_model->submitAll();
+    qDebug() << "STEP 2";
     if (ret == false)
         qDebug() << "ERROR: " << m_model->lastError().text().toUtf8();
-    qDebug() << "STEP 2";
+    qDebug() << "STEP 3";
 
 //    m_mapper->setCurrentIndex(curRow);
 
@@ -164,7 +165,8 @@ void VyborgMapperDialog::revert()
 
 void VyborgMapperDialog::close()
 {
-    if (isDirty()) {
+    if (isDirty())
+    {
         int ret = QMessageBox::warning(this,
                                  trUtf8("WARNING"),
                                  trUtf8("Unsaved data exists!\nDo you want to save data?"),
@@ -173,10 +175,11 @@ void VyborgMapperDialog::close()
             submit();
         else if (ret == QMessageBox::Discard)
             revert();
+
         done(QDialog::Rejected);
-    } else {
-        done(QDialog::Accepted);
     }
+    else
+        done(QDialog::Accepted);
 }
 
 void VyborgMapperDialog::setCurrentRow(int row)

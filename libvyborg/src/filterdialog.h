@@ -4,7 +4,6 @@
 #include <QDialog>
 
 QT_BEGIN_NAMESPACE
-//class QSortFilterProxyModel;
 class QSqlTableModel;
 class QLineEdit;
 class QComboBox;
@@ -17,17 +16,20 @@ class VyborgFilterDialog : public QDialog
     Q_OBJECT
 
 public:
-//    VyborgFilterDialog(QSortFilterProxyModel *proxy = 0, QWidget *parent = 0);
-    VyborgFilterDialog(QSqlTableModel *model = 0, QWidget *parent = 0);
+    VyborgFilterDialog(QSqlTableModel *model = 0,
+                       QWidget *parent = 0);
 
-    void addColumn(const QString &columnText, const int columnData);
-    void addColumn(const QString &columnText, const QString &columnData);
+    void addColumn(const QString &columnText,
+                   const int columnData);
+    void addColumn(const QString &columnText,
+                   const QString &columnData);
 
 private slots:
     void filterRegExpChanged();
     void filter();
     void close();
 
+// Visual elements
 private:
     QLineEdit   *patternLineEdit;
     QComboBox   *syntaxComboBox;
@@ -35,7 +37,7 @@ private:
     QCheckBox   *caseSensitivityCheckBox;
     QPushButton *filterButton;
 
-//    QSortFilterProxyModel *proxy_;
+private:
     QSqlTableModel *m_model;
 };
 

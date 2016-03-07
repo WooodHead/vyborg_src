@@ -6,6 +6,7 @@
 QT_BEGIN_NAMESPACE
 class QLineEdit;
 class QRadioButton;
+class QAbstractButton;
 QT_END_NAMESPACE
 
 class GeogWidget : public QWidget
@@ -24,6 +25,9 @@ public:
 signals:
     void geogChanged();
 
+private slots:
+    void showGeog();
+
 private:
     QLineEdit    *m_latLE;
     QLineEdit    *m_lonLE;
@@ -33,6 +37,9 @@ private:
 
 private:
     mutable QString m_geog;
+    double m_lat;
+    double m_lon;
+    int m_srid;
 };
 
 #endif // GEOGWIDGET_H

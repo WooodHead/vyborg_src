@@ -42,10 +42,8 @@ void MainDialog::setupModel()
 void MainDialog::setupView()
 {
     m_view->setModel(m_model);
-//    m_view->setItemDelegate(new PersonModelDelegate(m_view));
 
     m_view->resizeColumnsToContents();
-//    m_view->resizeRowsToContents();
     m_view->horizontalHeader()->setStretchLastSection(true);
 
     m_view->verticalHeader()->show();
@@ -71,14 +69,8 @@ void MainDialog::setupMapperDialog()
 
 void MainDialog::setupFilterDialog()
 {
-//    filterDialog_->addColumn(trUtf8("ICAO code"), AC_ICAO);
-//    filterDialog_->addColumn(trUtf8("IATA code"), AC_IATA);
-//    filterDialog_->addColumn(trUtf8("Российский код"), AC_codeRu);
-//    filterDialog_->addColumn(trUtf8("Callsign"), AC_CS);
-//    filterDialog_->addColumn(trUtf8("Позывной а/к"), AC_CSru);
-//    filterDialog_->addColumn(trUtf8("Company name"), AC_AC);
-//    filterDialog_->addColumn(trUtf8("Название а/к"), AC_ACru);
-//    filterDialog_->addColumn(trUtf8("Страна"), AC_country_id);
+    filterDialog_->addColumn(trUtf8("Город"), "cityru");
+    filterDialog_->addColumn(trUtf8("Аэродром"), ad_nameru);
 }
 
 void MainDialog::setupSortDialog()

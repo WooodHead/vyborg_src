@@ -3,12 +3,9 @@
 
 #include "filterdialog.h"
 
-//VyborgFilterDialog::VyborgFilterDialog(QSortFilterProxyModel *proxy, QWidget *parent)
 VyborgFilterDialog::VyborgFilterDialog(QSqlTableModel *model, QWidget *parent)
     : QDialog(parent)
-//      m_model(model)
 {
-//    proxy_ = proxy;
     m_model = model;
 
     caseSensitivityCheckBox = new QCheckBox(trUtf8("Case sensitive filtering"));
@@ -66,12 +63,21 @@ VyborgFilterDialog::VyborgFilterDialog(QSqlTableModel *model, QWidget *parent)
     setLayout(mainLayout);
 }
 
-void VyborgFilterDialog::addColumn(const QString &columnText, const int columnData)
+/*
+ * Add column to search identified by table column number
+ */
+void VyborgFilterDialog::addColumn(const QString &columnText,
+                                   const int columnData)
 {
-    columnComboBox->addItem(columnText, columnData);
+    QString fieldName = m_model->query().record().fieldName(columnData);
+    columnComboBox->addItem(columnText, fieldName);
 }
 
-void VyborgFilterDialog::addColumn(const QString &columnText, const QString &columnData)
+/*
+ * Add column to search identified by table column name
+ */
+void VyborgFilterDialog::addColumn(const QString &columnText,
+                                   const QString &columnData)
 {
     columnComboBox->addItem(columnText, columnData);
 }
@@ -84,29 +90,23 @@ void VyborgFilterDialog::filterRegExpChanged()
 
 void VyborgFilterDialog::filter()
 {
-//    int col = columnComboBox->currentData().toInt();
-//    QRegExp::PatternSyntax syntax =
-//            QRegExp::PatternSyntax(syntaxComboBox->itemData(syntaxComboBox->currentIndex()).toInt());
-//    Qt::CaseSensitivity cs = caseSensitivityCheckBox->isChecked() ? Qt::CaseSensitive :
-//                                                                    Qt::CaseInsensitive;
-//    QString text = patternLineEdit->text();
-//    QRegExp rx(text, cs, syntax);
-
-
     QString columnData = columnComboBox->currentData().toString();
+
+    QRegExp::PatternSyntax syntax = QRegExp::PatternSyntax(
+                syntaxComboBox->itemData(syntaxComboBox->currentIndex()).toInt());
+    Qt::CaseSensitivity caseSensitivity =
+            caseSensitivityCheckBox->isChecked() ? Qt::CaseSensitive
+                                                 : Qt::CaseInsensitive;
     QString text = patternLineEdit->text();
-    QString filterExp = columnData + "=\'" + text + "\'";
+    QRegExp regExp(text,
+                   caseSensitivity,
+                   syntax);
+
+    QString filterExp = columnData + "=\'" + regExp.pattern() + "\'";
+//    QString filterExp = columnData + " REGEXP \'" + regExp.pattern() + "\'";
+    qDebug() << "FILTER EXP:" << filterExp;
+
     m_model->setFilter(filterExp);
-
-//    qDebug() << "FILTER: " << filterStr;
-
-
-
-//    m_model->setFilter("internal=21559");
-//    m_model->select();
-
-//    proxy_->setFilterKeyColumn(col);
-//    proxy_->setFilterRegExp(rx);
 
     done(QDialog::Accepted);
 }
