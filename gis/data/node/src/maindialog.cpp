@@ -30,18 +30,23 @@ void MainDialog::setupModel()
         qApp->quit();
     }
 
-    m_model->setHeaderData(node_pid,  Qt::Horizontal, trUtf8("PID"));
-    m_model->setHeaderData(node_lat,  Qt::Horizontal, trUtf8("Широта"));
-    m_model->setHeaderData(node_lon,  Qt::Horizontal, trUtf8("Долгота"));
-    m_model->setHeaderData(node_geog, Qt::Horizontal, trUtf8("Координаты"));
+    m_model->setHeaderData(node_pid,    Qt::Horizontal, trUtf8("PID"));
+    m_model->setHeaderData(node_geog,   Qt::Horizontal, trUtf8("Координаты"));
+    m_model->setHeaderData(node_noteru, Qt::Horizontal, trUtf8("Примечание"));
 }
 
 void MainDialog::setupView()
 {
     m_view->setModel(m_model);
+
     m_view->resizeColumnsToContents();
     m_view->verticalHeader()->show();
+
+    m_view->horizontalHeader()->setStretchLastSection(true);
+
+    m_view->hideColumn(node_pid);
     m_view->hideColumn(node_geog);
+
     m_view->selectRow(0);
 }
 

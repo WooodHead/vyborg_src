@@ -81,9 +81,12 @@ void VyborgMapperDialog::updateOuterWidgets()
 void VyborgMapperDialog::add()
 {
 //    int curRow = m_navButtonBox->currentIndex();
-    int curRow = m_mapper->currentIndex();
-    m_model->insertRow(curRow);
-    m_mapper->setCurrentIndex(curRow);
+////    int curRow = m_mapper->currentIndex();
+//    m_model->insertRow(curRow);
+//    m_mapper->setCurrentIndex(curRow);
+
+    m_model->insertRow(0);
+    m_mapper->setCurrentIndex(0);
 
     edit();
 

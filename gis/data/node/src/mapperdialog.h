@@ -7,6 +7,8 @@ QT_BEGIN_NAMESPACE
 class QLineEdit;
 QT_END_NAMESPACE
 
+class GeogWidget;
+
 class MapperDialog : public VyborgMapperDialog
 {
     Q_OBJECT
@@ -21,8 +23,8 @@ protected:
 
 private:
     // Visual elements
-    QLineEdit *m_latLE;
-    QLineEdit *m_lonLE;
+    GeogWidget *m_geogWid;
+    QLineEdit *m_noteruLE;
 };
 
 #endif // MAPPERDIALOG_H

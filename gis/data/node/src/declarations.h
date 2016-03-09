@@ -8,9 +8,8 @@
 enum Columns
 {
     node_pid,
-    node_lat,
-    node_lon,
     node_geog,
+    node_noteru,
     ColumnsNumber
 };
 

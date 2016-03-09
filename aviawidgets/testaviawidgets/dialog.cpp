@@ -9,8 +9,8 @@ Dialog::Dialog(QWidget *parent)
 {
     GeogWidget *geogWidget = new GeogWidget;
     geogWidget->setEnabled(true);
-    geogWidget->setGeog("0101000020E61000000282397AFCA24240CDCCCCCCCCCC4B40");
-//    geogWidget->setGeog("");
+//    geogWidget->setGeog("0101000020E61000000282397AFCA24240CDCCCCCCCCCC4B40");
+    geogWidget->setGeog(QString());
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
     mainLayout->addWidget(geogWidget);

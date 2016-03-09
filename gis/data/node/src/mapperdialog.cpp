@@ -1,6 +1,8 @@
 #include <QtWidgets>
 #include <QtSql>
 
+#include <aviawidgets.h>
+
 #include "mapperdialog.h"
 #include "declarations.h"
 
@@ -14,21 +16,22 @@ MapperDialog::MapperDialog(QSqlTableModel *model, QWidget *parent)
 
 void MapperDialog::createPrivateWidgets()
 {
-    m_latLE = new QLineEdit;
-    m_lonLE = new QLineEdit;
+    m_geogWid = new GeogWidget;
+
+    m_noteruLE = new QLineEdit;
 
     QDataWidgetMapper* m_mapper = mapper();
-    m_mapper->addMapping(m_latLE, node_lat);
-    m_mapper->addMapping(m_lonLE, node_lon);
+    m_mapper->addMapping(m_geogWid,  node_geog);
+    m_mapper->addMapping(m_noteruLE, node_noteru);
 }
 
 void MapperDialog::layoutPrivateWidgets()
 {
     QFormLayout *formLayout1 = new QFormLayout;
-    formLayout1->addRow(trUtf8("Широта"), m_latLE);
-    formLayout1->addRow(trUtf8("Долгота"), m_lonLE);
+    formLayout1->addRow(trUtf8("Примечание"), m_noteruLE);
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
+    mainLayout->addWidget(m_geogWid);
     mainLayout->addLayout(formLayout1);
 
     QVBoxLayout *privateWidgetsLayout = layout();
@@ -39,50 +42,12 @@ void MapperDialog::updatePrivateWidgets()
 {
     if (isDirty())
     {
-//        m_countryLE->setReadOnly(false);
-//        m_cityruLE->setReadOnly(false);
-//        m_nameruLE->setReadOnly(false);
-//        m_nameLE->setReadOnly(false);
-//        m_indxLE->setReadOnly(false);
-//        m_reglamentLE->setReadOnly(false);
-//        m_emailLE->setReadOnly(false);
-//        m_webLE->setReadOnly(false);
-
-//        m_elevationSB->setEnabled(true);
-
-//        m_magvarDSB->setEnabled(true);
-
-//        m_notePTE->setReadOnly(false);
-
-//        m_geogWid->setEnabled(true);
-
-//        m_validCB->setEnabled(true);
-//        m_typeCB->setEnabled(true);
-//        m_intlCB->setEnabled(true);
-//        m_staffCB->setEnabled(true);
+        m_geogWid->setEnabled(true);
+        m_noteruLE->setReadOnly(false);
     }
     else
     {
-//        m_countryLE->setReadOnly(true);
-//        m_cityruLE->setReadOnly(true);
-//        m_nameruLE->setReadOnly(true);
-//        m_nameLE->setReadOnly(true);
-//        m_indxLE->setReadOnly(true);
-//        m_reglamentLE->setReadOnly(true);
-//        m_emailLE->setReadOnly(true);
-//        m_webLE->setReadOnly(true);
-
-//        m_elevationSB->setEnabled(false);
-
-//        m_magvarDSB->setEnabled(false);
-
-//        m_notePTE->setReadOnly(true);
-
-//        m_geogWid->setEnabled(false);
-
-//        m_validCB->setEnabled(false);
-//        m_typeCB->setEnabled(false);
-//        m_intlCB->setEnabled(false);
-//        m_staffCB->setEnabled(false);
+        m_geogWid->setEnabled(false);
+        m_noteruLE->setReadOnly(true);
     }
 }

@@ -62,7 +62,7 @@ void GeogWidget::setGeog(const QString &geog)
     }
     else if (geog != m_geog) {
         m_geog = geog;
-        emit geogChanged();
+//        emit geogChanged();
 
 //        QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL");
 //        db.setUserName("postgres");
@@ -186,5 +186,5 @@ void GeogWidget::showGeog()
     m_sridLE->setText(QString::number(m_srid));
 
     m_latLE->setCursorPosition(0);
-    m_latLE->setFocus();
+//    m_latLE->setFocus();
 }
