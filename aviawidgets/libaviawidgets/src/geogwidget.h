@@ -37,9 +37,6 @@ private:
 
 private:
     mutable QString m_geog;
-    qreal m_lat;
-    qreal m_lon;
-    int m_srid;
 };
 
 #endif // GEOGWIDGET_H

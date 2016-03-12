@@ -3,6 +3,12 @@
 
 #include "geogwidget.h"
 
+//qint32 convertRealToInt(qreal r)
+//{
+//    return r < 0.0 ? (qint32)qCeil(r) :
+//                     (qint32)qFloor(r);
+//}
+
 GeogWidget::GeogWidget(QWidget *parent)
     : QWidget(parent)
 {
@@ -58,12 +64,11 @@ void GeogWidget::setGeog(const QString &geog)
     if (geog.isEmpty()) {
         qDebug() << "DEBUG: geog is empty.";
         m_geog = QString();
-        m_srid = 4326;
     }
 
     if (geog != m_geog) {
         m_geog = geog;
-//        emit geogChanged();
+        emit geogChanged();
 
         if (!QSqlDatabase::contains()) {
             QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL");
@@ -72,17 +77,6 @@ void GeogWidget::setGeog(const QString &geog)
             db.setDatabaseName("gis");
             db.open();
         }
-
-        QString queryString = QString("SELECT St_Y(\'%1\'::geometry),St_X(\'%2\'::geometry),St_SRID(\'%3\'::geometry)")
-                .arg(m_geog)
-                .arg(m_geog)
-                .arg(m_geog);
-        QSqlQuery query(queryString);
-        while (query.next()) {
-            m_lat  = query.value(0).toReal();
-            m_lon  = query.value(1).toReal();
-            m_srid = query.value(2).toInt();
-        }
     }
 
     showGeog();
@@ -90,36 +84,36 @@ void GeogWidget::setGeog(const QString &geog)
 
 QString GeogWidget::geog() const
 {
-    double lat;
-    double lon;
+//    qreal lat;
+//    qreal lon;
 
-    if (m_radio1->isChecked())
-    {
-        lat = m_latLE->text().mid(0, 8).toDouble();
-        lon = m_lonLE->text().mid(0, 9).toDouble();
-    }
-    else if (m_radio2->isChecked())
-    {
-        QString _lat = m_latLE->text();
-        QString _lon = m_lonLE->text();
+//    if (m_radio1->isChecked())
+//    {
+//        lat = m_latLE->text().mid(0, 8).toDouble();
+//        lon = m_lonLE->text().mid(0, 9).toDouble();
+//    }
+//    else if (m_radio2->isChecked())
+//    {
+//        QString _lat = m_latLE->text();
+//        QString _lon = m_lonLE->text();
 
-        lat = _lat.mid(0, 2).toDouble() +
-              _lat.mid(4, 2).toDouble() / 60.0 +
-              _lat.mid(8, 6).toDouble() / 60.0 / 60.0;
-        lon = _lon.mid(0, 3).toDouble() +
-              _lon.mid(5, 2).toDouble() / 60.0 +
-              _lon.mid(9, 6).toDouble() / 60.0 / 60.0;
-    }
+//        lat = _lat.mid(0, 2).toDouble() +
+//              _lat.mid(4, 2).toDouble() / 60.0 +
+//              _lat.mid(8, 6).toDouble() / 60.0 / 60.0;
+//        lon = _lon.mid(0, 3).toDouble() +
+//              _lon.mid(5, 2).toDouble() / 60.0 +
+//              _lon.mid(9, 6).toDouble() / 60.0 / 60.0;
+//    }
 
-    qDebug() << "GEOG:" << lat << lon;
+//    qDebug() << "GEOG:" << QString::number(lat, 'f', 20) << QString::number(lon, 'f', 20);
 
-    QString queryString = QString("SELECT ST_GeographyFromText('SRID=4326;POINT(%1 %2)')")
-            .arg(lon, 0, 'f', 5)
-            .arg(lat, 0, 'f', 5);
-    QSqlQuery query(queryString);
-    while (query.next()) {
-        m_geog = query.value(0).toString();
-    }
+//    QString queryString = QString("SELECT ST_GeographyFromText('SRID=4326;POINT(%1 %2)')")
+//            .arg(lon, 0, 'f', 5)
+//            .arg(lat, 0, 'f', 5);
+//    QSqlQuery query(queryString);
+//    while (query.next()) {
+//        m_geog = query.value(0).toString();
+//    }
 
     return m_geog;
 }
@@ -139,6 +133,7 @@ void GeogWidget::setEnabled(bool state)
 
 void GeogWidget::showGeog()
 {
+
     if (m_radio1->isChecked())
     {
         m_latLE->setInputMask(QString("99.99999°;_"));
@@ -149,11 +144,25 @@ void GeogWidget::showGeog()
             m_latLE->setText(QString());
             m_lonLE->setText(QString());
         } else {
-            m_latLE->setText(QString::number(m_lat, 'f', 5));
-            if (m_lon < 100.0)
-                m_lonLE->setText(QString("0") + QString::number(m_lon, 'f', 5));
+            qreal lat;
+            qreal lon;
+            qint32 srid;
+
+            QString queryString = QString("SELECT St_Y(\'%1\'::geometry),"
+                                          "St_X(\'%1\'::geometry),"
+                                          "St_SRID(\'%1\'::geometry)").arg(m_geog);
+            QSqlQuery query(queryString);
+            while (query.next()) {
+                lat  = query.value(0).toReal();
+                lon  = query.value(1).toReal();
+                srid = query.value(2).toInt();
+            }
+
+            m_latLE->setText(QString::number(lat, 'f', 5));
+            if (lon < 100.0)
+                m_lonLE->setText(QString("0") + QString::number(lon, 'f', 5));
             else
-                m_lonLE->setText(QString::number(m_lon, 'f', 5));
+                m_lonLE->setText(QString::number(lon, 'f', 5));
         }
     }
     else if (m_radio2->isChecked())
@@ -169,26 +178,50 @@ void GeogWidget::showGeog()
         }
         else
         {
-            int gg_lat = (int)m_lat;
-            int mm_lat = (int)((m_lat - gg_lat) * 60.0);
-            qreal ss_lat = ((m_lat - gg_lat) * 60.0 - mm_lat) * 60.0;
-            qreal lat = gg_lat * 100 * 100 + mm_lat * 100 + ss_lat;
+            QString queryString = QString("SELECT St_AsLatLonText(\'%1\'::geometry, \'DMS.SSS\'),"
+                                                 "St_SRID(\'%1\'::geometry)").arg(m_geog);
+            qDebug() << queryString;
 
-            int gg_lon = (int)m_lon;
-            int mm_lon = (int)((m_lon - gg_lon) * 60.0);
-            qreal ss_lon = ((m_lon - gg_lon) * 60.0 - mm_lon) * 60.0;
-            qreal lon = gg_lon * 100 * 100 + mm_lon * 100 + ss_lon;
+            QString out;
+            qint32 srid;
+            QSqlQuery query(queryString);
+            while (query.next()) {
+                out = query.value(0).toString();
+                srid = query.value(1).toInt();
+            }
 
-            m_latLE->setText(QString::number(lat, 'f', 3));
-            if (lon < 1800000.0)
-                m_lonLE->setText(QString("0") + QString::number(lon, 'f', 3));
-            else
-                m_lonLE->setText(QString::number(lon, 'f', 3));
+            QStringList coord = out.split(" ");
+            qDebug() << coord[0] << coord[1];
+
+            m_latLE->setText(coord[0]);
+            m_lonLE->setText(coord[1]);
+
+//            QSqlQuery query(queryString);
+//            while (query.next()) {
+//                lat  = query.value(0).toReal();
+//                lon  = query.value(1).toReal();
+//                srid = query.value(2).toInt();
+//            }
+//            qint32 gg_lat = (int)m_lat;
+//            qint32 mm_lat = (int)((m_lat - gg_lat) * 60.0);
+//            qreal ss_lat = ((m_lat - gg_lat) * 60.0 - mm_lat) * 60.0;
+//            qreal lat = gg_lat * 100 * 100 + mm_lat * 100 + ss_lat;
+
+//            int gg_lon = (int)m_lon;
+//            int mm_lon = (int)((m_lon - gg_lon) * 60.0);
+//            qreal ss_lon = ((m_lon - gg_lon) * 60.0 - mm_lon) * 60.0;
+//            qreal lon = gg_lon * 100 * 100 + mm_lon * 100 + ss_lon;
+
+//            m_latLE->setText(QString::number(lat, 'f', 3));
+//            if (lon < 1800000.0)
+//                m_lonLE->setText(QString("0") + QString::number(lon, 'f', 3));
+//            else
+//                m_lonLE->setText(QString::number(lon, 'f', 3));
         }
     }
 
-    m_sridLE->setText(QString::number(m_srid));
+//    m_sridLE->setText(QString::number(m_srid));
 
-    m_latLE->setCursorPosition(0);
+//    m_latLE->setCursorPosition(0);
 //    m_latLE->setFocus();
 }
