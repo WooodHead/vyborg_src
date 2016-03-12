@@ -60,15 +60,18 @@ void GeogWidget::setGeog(const QString &geog)
         m_geog = QString();
         m_srid = 4326;
     }
-    else if (geog != m_geog) {
+
+    if (geog != m_geog) {
         m_geog = geog;
 //        emit geogChanged();
 
-//        QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL");
-//        db.setUserName("postgres");
-//        db.setPassword("monrepo");
-//        db.setDatabaseName("gis");
-//        db.open();
+        if (!QSqlDatabase::contains()) {
+            QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL");
+            db.setUserName("postgres");
+            db.setPassword("monrepo");
+            db.setDatabaseName("gis");
+            db.open();
+        }
 
         QString queryString = QString("SELECT St_Y(\'%1\'::geometry),St_X(\'%2\'::geometry),St_SRID(\'%3\'::geometry)")
                 .arg(m_geog)
@@ -76,8 +79,8 @@ void GeogWidget::setGeog(const QString &geog)
                 .arg(m_geog);
         QSqlQuery query(queryString);
         while (query.next()) {
-            m_lat  = query.value(0).toDouble();
-            m_lon  = query.value(1).toDouble();
+            m_lat  = query.value(0).toReal();
+            m_lon  = query.value(1).toReal();
             m_srid = query.value(2).toInt();
         }
     }
@@ -141,14 +144,13 @@ void GeogWidget::showGeog()
         m_latLE->setInputMask(QString("99.99999°;_"));
         m_lonLE->setInputMask(QString("999.99999°;_"));
 
-        if (m_geog.isEmpty())
-        {
+        if (m_geog.isEmpty()) {
             // input nothing into lineEdit's
-        }
-        else
-        {
+            m_latLE->setText(QString());
+            m_lonLE->setText(QString());
+        } else {
             m_latLE->setText(QString::number(m_lat, 'f', 5));
-            if (m_lon < 180.0)
+            if (m_lon < 100.0)
                 m_lonLE->setText(QString("0") + QString::number(m_lon, 'f', 5));
             else
                 m_lonLE->setText(QString::number(m_lon, 'f', 5));
@@ -162,18 +164,20 @@ void GeogWidget::showGeog()
         if (m_geog.isEmpty())
         {
             // input nothing into lineEdit's
+            m_latLE->setText(QString());
+            m_lonLE->setText(QString());
         }
         else
         {
             int gg_lat = (int)m_lat;
             int mm_lat = (int)((m_lat - gg_lat) * 60.0);
-            double ss_lat = ((m_lat - gg_lat) * 60.0 - mm_lat) * 60.0;
-            double lat = gg_lat * 100 * 100 + mm_lat * 100 + ss_lat;
+            qreal ss_lat = ((m_lat - gg_lat) * 60.0 - mm_lat) * 60.0;
+            qreal lat = gg_lat * 100 * 100 + mm_lat * 100 + ss_lat;
 
             int gg_lon = (int)m_lon;
             int mm_lon = (int)((m_lon - gg_lon) * 60.0);
-            double ss_lon = ((m_lon - gg_lon) * 60.0 - mm_lon) * 60.0;
-            double lon = gg_lon * 100 * 100 + mm_lon * 100 + ss_lon;
+            qreal ss_lon = ((m_lon - gg_lon) * 60.0 - mm_lon) * 60.0;
+            qreal lon = gg_lon * 100 * 100 + mm_lon * 100 + ss_lon;
 
             m_latLE->setText(QString::number(lat, 'f', 3));
             if (lon < 1800000.0)

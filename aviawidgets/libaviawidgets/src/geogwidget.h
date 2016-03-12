@@ -37,8 +37,8 @@ private:
 
 private:
     mutable QString m_geog;
-    double m_lat;
-    double m_lon;
+    qreal m_lat;
+    qreal m_lon;
     int m_srid;
 };
 
