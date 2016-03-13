@@ -9,9 +9,8 @@ Dialog::Dialog(QWidget *parent)
 {
     geogWidget = new GeogWidget;
     geogWidget->setEnabled(true);
-//    geogWidget->setGeog("0101000020E61000000282397AFCA24240CDCCCCCCCCCC4B40");
-//    geogWidget->setGeog(QString());
-    geogWidget->setGeog("0101000020E6100000D925AAB7066A4240EACF7EA488284940");
+    geogWidget->setGeog("0101000020E61000003A6DA0D3066A42408988888888284940");
+
 
     button = new QPushButton("Click me");
     connect(button, SIGNAL(clicked(bool)),
