@@ -24,7 +24,7 @@ protected:
 private:
     // Visual elements
     GeogWidget *m_geogWid;
-    QLineEdit *m_noteruLE;
+    QLineEdit  *m_noteruLE;
 };
 
 #endif // MAPPERDIALOG_H

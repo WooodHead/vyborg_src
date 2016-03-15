@@ -134,6 +134,8 @@ void GeogWidget::setEnabled(bool state)
 
 void GeogWidget::showGeog()
 {
+    qint32 srid;
+
     // if not running QPSQL driver start new one
     if (!QSqlDatabase::contains()) {
         QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL");
@@ -221,15 +223,13 @@ void GeogWidget::showGeog()
 
             m_latLE->setText(lat);
             m_lonLE->setText(lon);
+
+            QString queryString = QString("SELECT St_SRID('%1'::geometry)").arg(m_geog);
+            QSqlQuery query(queryString);
+            while (query.next()) {
+                srid = query.value(0).toInt();
+            }
         }
-    }
-
-    qint32 srid;
-
-    QString queryString = QString("SELECT St_SRID('%1'::geometry)").arg(m_geog);
-    QSqlQuery query(queryString);
-    while (query.next()) {
-        srid = query.value(0).toInt();
     }
 
     m_sridLE->setText(QString::number(srid));

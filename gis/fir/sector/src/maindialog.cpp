@@ -36,7 +36,7 @@ void MainDialog::setupModel()
     m_model->setHeaderData(sector_label,    Qt::Horizontal, trUtf8("Метка"));
     m_model->setHeaderData(sector_compound, Qt::Horizontal, trUtf8("Составной"));
     m_model->setHeaderData(sector_geog,     Qt::Horizontal, trUtf8("Граница сектора"));
-    m_model->setHeaderData(sector_points,   Qt::Horizontal, trUtf8("Координаты\nточек границы"));
+    m_model->setHeaderData(sector_node_pid, Qt::Horizontal, trUtf8("Координаты\nточек границы"));
 }
 
 void MainDialog::setupView()
@@ -53,7 +53,7 @@ void MainDialog::setupView()
     m_view->hideColumn(sector_pid);
     m_view->hideColumn(sector_sector);
     m_view->hideColumn(sector_geog);
-    m_view->hideColumn(sector_points);
+    m_view->hideColumn(sector_node_pid);
 
     m_view->selectRow(0);
 }

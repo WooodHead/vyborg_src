@@ -12,7 +12,7 @@ enum Columns {
     sector_label,
     sector_compound,
     sector_geog,
-    sector_points,
+    sector_node_pid,
     ColumnsNumber
 };
 
