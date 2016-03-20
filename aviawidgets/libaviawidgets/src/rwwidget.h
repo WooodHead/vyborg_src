@@ -2,7 +2,6 @@
 #define RWWIDGET_H
 
 #include <QWidget>
-#include <QSqlTableModel>
 
 QT_BEGIN_NAMESPACE
 class QTableView;
@@ -41,6 +40,10 @@ private:
 
     int m_adid;
 };
+
+
+
+#include <QSqlTableModel>
 
 class RWTableModel : public QSqlTableModel
 {

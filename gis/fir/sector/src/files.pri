@@ -10,4 +10,11 @@ HEADERS  += \
     $$PWD/maindialog.h \
     $$PWD/nodeslistwidget.h
 
+HEADERS += \
+    $$PWD/nodelistwidget.h
+
+SOURCES += \
+    $$PWD/nodelistwidget.cpp
+
+
 

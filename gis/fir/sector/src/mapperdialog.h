@@ -8,6 +8,7 @@ class QLineEdit;
 QT_END_NAMESPACE
 
 class NodesListWidget;
+class NodeListWidget;
 
 class MapperDialog : public VyborgMapperDialog
 {
@@ -28,6 +29,7 @@ private:
     QLineEdit *m_labelLE;
     QLineEdit *m_compoundLE;
     NodesListWidget *m_nodesListW;
+    NodeListWidget *m_nodeListW;
 };
 
 #endif // MAPPERDIALOG_H
