@@ -3,8 +3,7 @@
 
 #include "mapperdialog.h"
 #include "declarations.h"
-#include "nodeslistwidget.h"
-#include "nodelistwidget.h"
+#include "nodearraytablewidget.h"
 
 MapperDialog::MapperDialog(QSqlTableModel *model, QWidget *parent)
     : VyborgMapperDialog(model, parent)
@@ -21,16 +20,14 @@ void MapperDialog::createPrivateWidgets()
     m_labelLE    = new QLineEdit;
     m_compoundLE = new QLineEdit;
 
-    m_nodesListW = new NodesListWidget;
-    m_nodeListW = new NodeListWidget;
+    m_nodeArrayW = new NodeArrayTableWidget;
 
     QDataWidgetMapper* m_mapper = mapper();
     m_mapper->addMapping(m_sectorLE,   sector_sector);
     m_mapper->addMapping(m_fullnameLE, sector_fullname);
     m_mapper->addMapping(m_labelLE,    sector_label);
     m_mapper->addMapping(m_compoundLE, sector_compound);
-//    m_mapper->addMapping(m_nodesListW, sector_pid);
-    m_mapper->addMapping(m_nodeListW,  sector_pid);
+    m_mapper->addMapping(m_nodeArrayW, sector_node_pid);
 }
 
 void MapperDialog::layoutPrivateWidgets()
@@ -43,8 +40,7 @@ void MapperDialog::layoutPrivateWidgets()
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
     mainLayout->addLayout(formLayout1);
-    mainLayout->addWidget(m_nodesListW);
-    mainLayout->addWidget(m_nodeListW);
+    mainLayout->addWidget(m_nodeArrayW);
 
     QVBoxLayout *privateWidgetsLayout = layout();
     privateWidgetsLayout->addLayout(mainLayout);

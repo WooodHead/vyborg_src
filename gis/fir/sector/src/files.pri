@@ -17,4 +17,13 @@ SOURCES += \
     $$PWD/nodelistwidget.cpp
 
 
+HEADERS += \
+    $$PWD/nodearraytablewidget.h
+
+SOURCES += \
+    $$PWD/nodearraytablewidget.cpp
+
+
+
+
 

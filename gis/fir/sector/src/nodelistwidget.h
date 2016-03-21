@@ -4,8 +4,7 @@
 #include <QWidget>
 
 QT_BEGIN_NAMESPACE
-class QSqlTableModel;
-//class QSqlQueryModel;
+class QSqlQueryModel;
 class QTableView;
 QT_END_NAMESPACE
 
@@ -25,8 +24,7 @@ signals:
 
 private:
     int m_sectorpid;
-    QSqlTableModel *m_model;
-//    QSqlQueryModel *m_model;
+    QSqlQueryModel *m_model;
     QTableView *m_view;
 };
 
