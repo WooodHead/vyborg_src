@@ -3,6 +3,10 @@
 
 #include <QWidget>
 
+QT_BEGIN_NAMESPACE
+class QListWidget;
+QT_END_NAMESPACE
+
 class NodeArrayTableWidget : public QWidget
 {
     Q_OBJECT
@@ -23,6 +27,8 @@ private:
 
 private:
     QList<int> m_nodepidarr;
+    QListWidget *m_listW;
+
 };
 
 #endif // NODEARRAYTABLEWIDGET_H

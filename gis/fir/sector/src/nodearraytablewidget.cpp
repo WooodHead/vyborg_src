@@ -4,9 +4,14 @@
 #include "nodearraytablewidget.h"
 
 NodeArrayTableWidget::NodeArrayTableWidget(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent), m_nodepidarr(QList<int>())
 {
-    m_nodepidarr = QList<int>();
+    m_listW = new QListWidget;
+
+    QHBoxLayout *mainLayout = new QHBoxLayout;
+    mainLayout->addWidget(m_listW);
+
+    setLayout(mainLayout);
 }
 
 void NodeArrayTableWidget::setNodepidarr(const QString &nodepidarr)
@@ -15,6 +20,17 @@ void NodeArrayTableWidget::setNodepidarr(const QString &nodepidarr)
     if (l != m_nodepidarr) {
         m_nodepidarr = l;
         emit nodepidarrChanged();
+
+        m_listW->clear();
+
+        for (int i = 0; i < m_nodepidarr.size(); i++) {
+            QSqlQuery query("SELECT pid,St_AsLatLonText(geog::geometry),noteru "
+                            "FROM data.vw_node WHERE pid=" + QString::number(m_nodepidarr.at(i)));
+            query.exec();
+            QListWidgetItem *item = new QListWidgetItem;
+            item->setText(QString::number(i));
+            m_listW->addItem(QString::number(i));
+        }
     }
 }
 
