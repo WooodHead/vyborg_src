@@ -6,10 +6,16 @@
 NodeArrayTableWidget::NodeArrayTableWidget(QWidget *parent)
     : QWidget(parent), m_nodepidarr(QList<int>())
 {
-    m_listW = new QListWidget;
+    m_model = new QStandardItemModel(0, 2);
+    m_model->setHorizontalHeaderItem(0, new QStandardItem(trUtf8("Координаты точки")));
+    m_model->setHorizontalHeaderItem(1, new QStandardItem(trUtf8("Примечание")));
+
+    m_view = new QTableView;
+    m_view->setModel(m_model);
+    m_view->resizeColumnsToContents();
 
     QHBoxLayout *mainLayout = new QHBoxLayout;
-    mainLayout->addWidget(m_listW);
+    mainLayout->addWidget(m_view);
 
     setLayout(mainLayout);
 }
@@ -21,15 +27,20 @@ void NodeArrayTableWidget::setNodepidarr(const QString &nodepidarr)
         m_nodepidarr = l;
         emit nodepidarrChanged();
 
-        m_listW->clear();
+        m_model->removeRows(0, m_model->rowCount()); // Clear the model
 
         for (int i = 0; i < m_nodepidarr.size(); i++) {
             QSqlQuery query("SELECT pid,St_AsLatLonText(geog::geometry),noteru "
                             "FROM data.vw_node WHERE pid=" + QString::number(m_nodepidarr.at(i)));
-            query.exec();
-            QListWidgetItem *item = new QListWidgetItem;
-            item->setText(QString::number(i));
-            m_listW->addItem(QString::number(i));
+            while (query.next()) {
+                QString geog = query.value(1).toString();
+                QString noteru = query.value(2).toString();
+
+                QStandardItem *itemGeog = new QStandardItem(geog);
+                QStandardItem *itemNoteru = new QStandardItem(noteru);
+                m_model->setItem(i, 0, itemGeog);
+                m_model->setItem(i, 1, itemNoteru);
+            }
         }
     }
 }

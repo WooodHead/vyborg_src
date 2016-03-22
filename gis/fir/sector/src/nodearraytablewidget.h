@@ -4,7 +4,8 @@
 #include <QWidget>
 
 QT_BEGIN_NAMESPACE
-class QListWidget;
+class QStandardItemModel;
+class QTableView;
 QT_END_NAMESPACE
 
 class NodeArrayTableWidget : public QWidget
@@ -27,8 +28,8 @@ private:
 
 private:
     QList<int> m_nodepidarr;
-    QListWidget *m_listW;
-
+    QStandardItemModel *m_model;
+    QTableView *m_view;
 };
 
 #endif // NODEARRAYTABLEWIDGET_H

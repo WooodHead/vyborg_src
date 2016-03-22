@@ -224,10 +224,10 @@ void GeogWidget::showGeog()
             m_latLE->setText(lat);
             m_lonLE->setText(lon);
 
-            QString queryString = QString("SELECT St_SRID('%1'::geometry)").arg(m_geog);
-            QSqlQuery query(queryString);
-            while (query.next()) {
-                srid = query.value(0).toInt();
+            QString queryString1 = QString("SELECT St_SRID('%1'::geometry)").arg(m_geog);
+            QSqlQuery query1(queryString1);
+            while (query1.next()) {
+                srid = query1.value(0).toInt();
             }
         }
     }
