@@ -20,6 +20,7 @@ public:
     VyborgMapperDialog(QSqlTableModel *model, QWidget *parent = 0);
 
     void setCurrentRow(int row);
+
     void setDirty(bool dirty);
     bool isDirty() const;
 

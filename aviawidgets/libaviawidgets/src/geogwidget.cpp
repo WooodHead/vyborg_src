@@ -134,8 +134,6 @@ void GeogWidget::setEnabled(bool state)
 
 void GeogWidget::showGeog()
 {
-    qint32 srid;
-
     // if not running QPSQL driver start new one
     if (!QSqlDatabase::contains()) {
         QSqlDatabase db = QSqlDatabase::addDatabase("QPSQL");
@@ -154,12 +152,15 @@ void GeogWidget::showGeog()
             // input nothing into lineEdit's
             m_latLE->setText(QString());
             m_lonLE->setText(QString());
+            m_sridLE->setText(QString());
         } else {
             QStringList coord;
             QString lat;
             QString lon;
+            QString srid;
 
-            QString queryString = QString("SELECT St_AsLatLonText('%1'::geometry,'D.DDDDDDDDDD')").arg(m_geog);
+            QString queryString = QString("SELECT St_AsLatLonText('%1'::geometry,'D.DDDDDDDDDD'),St_SRID('%1'::geometry)")
+                                          .arg(m_geog);
             QSqlQuery query(queryString);
             while (query.next()) {
                 coord = query.value(0).toString().split(" ");
@@ -167,10 +168,12 @@ void GeogWidget::showGeog()
                 lon = coord.at(1);
                 if (lon.length() == 13)
                     lon.prepend("0");
+                srid = query.value(1).toString();
             }
 
             m_latLE->setText(lat);
             m_lonLE->setText(lon);
+            m_sridLE->setText(srid);
         }
     }
     else if (m_radio2->isChecked())
@@ -183,14 +186,17 @@ void GeogWidget::showGeog()
             // input nothing into lineEdit's
             m_latLE->setText(QString());
             m_lonLE->setText(QString());
+            m_sridLE->setText(QString());
         }
         else
         {
             QStringList coord;
             QString lat;
             QString lon;
+            QString srid;
 
-            QString queryString = QString("SELECT St_AsLatLonText('%1'::geometry, 'D M S.SSS')").arg(m_geog);
+            QString queryString = QString("SELECT St_AsLatLonText('%1'::geometry, 'D M S.SSS'),St_SRID('%1'::geometry)")
+                                          .arg(m_geog);
             QSqlQuery query(queryString);
             while (query.next()) {
                 coord = query.value(0).toString().split(" ");
@@ -219,20 +225,23 @@ void GeogWidget::showGeog()
 
                 lat = lat_gg + lat_mm + lat_ss;
                 lon = lon_gg + lon_mm + lon_ss;
+
+                srid = query.value(1).toString();
             }
 
             m_latLE->setText(lat);
             m_lonLE->setText(lon);
-
-            QString queryString1 = QString("SELECT St_SRID('%1'::geometry)").arg(m_geog);
-            QSqlQuery query1(queryString1);
-            while (query1.next()) {
-                srid = query1.value(0).toInt();
-            }
+            m_sridLE->setText(srid);
         }
     }
 
-    m_sridLE->setText(QString::number(srid));
+//    qint32 srid;
+//    QString queryString1 = QString("SELECT St_SRID('%1'::geometry)").arg(m_geog);
+//    QSqlQuery query1(queryString1);
+//    while (query1.next()) {
+//        srid = query1.value(0).toInt();
+//    }
+//    m_sridLE->setText(QString::number(srid));
 
     m_latLE->setCursorPosition(0);
     m_latLE->setFocus();

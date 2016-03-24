@@ -65,6 +65,7 @@ void MapperDialog::createPrivateWidgets()
     m_mapper->addMapping(m_emailLE,     ad_email);
     m_mapper->addMapping(m_webLE,       ad_web);
     m_mapper->addMapping(m_notePTE,     ad_note);
+
     m_mapper->setItemDelegate(new MapperDelegate);
 }
 
