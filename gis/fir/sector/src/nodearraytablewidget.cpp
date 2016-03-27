@@ -4,7 +4,8 @@
 #include "nodearraytablewidget.h"
 
 NodeArrayTableWidget::NodeArrayTableWidget(QWidget *parent)
-    : QWidget(parent), m_nodepidarr(QList<int>())
+    : QWidget(parent),
+      m_nodepidarr(QList<int>())
 {
     m_model = new QStandardItemModel(0, 2);
     m_model->setHorizontalHeaderItem(0, new QStandardItem(trUtf8("Координаты точки")));
@@ -87,4 +88,10 @@ QString NodeArrayTableWidget::toString(QList<int> arr) const
     string.append("}");
 
     return string;
+}
+
+ArrayTableModel::ArrayTableModel(QObject *parent)
+    : QAbstractTableModel(parent)
+{
+
 }

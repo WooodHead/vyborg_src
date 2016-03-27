@@ -4,7 +4,7 @@
 #include <QWidget>
 
 QT_BEGIN_NAMESPACE
-class QStandardItemModel;
+class QAbstractTableModel;
 class QTableView;
 QT_END_NAMESPACE
 
@@ -28,8 +28,25 @@ private:
 
 private:
     QList<int> m_nodepidarr;
-    QStandardItemModel *m_model;
+
+    // Visible elements
+    ArrayTableModel *m_model;
     QTableView *m_view;
+};
+
+#include <QAbstractTableModel>
+
+class ArrayTableModel : public QAbstractTableModel
+{
+    Q_OBJECT
+
+public:
+    explicit ArrayTableModel(QObject *parent = Q_NULLPTR);
+
+    QVariant data(const QModelIndex &index, int role) const;
+
+    int rowCount(const QModelIndex &parent) const;
+    int columnCount(const QModelIndex &parent) const;
 };
 
 #endif // NODEARRAYTABLEWIDGET_H
