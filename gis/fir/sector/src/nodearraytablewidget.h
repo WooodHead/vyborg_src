@@ -8,6 +8,8 @@ class QAbstractTableModel;
 class QTableView;
 QT_END_NAMESPACE
 
+class ArrayTableModel;
+
 class NodeArrayTableWidget : public QWidget
 {
     Q_OBJECT
@@ -41,12 +43,19 @@ class ArrayTableModel : public QAbstractTableModel
     Q_OBJECT
 
 public:
-    explicit ArrayTableModel(QObject *parent = Q_NULLPTR);
+    ArrayTableModel(QObject *parent = Q_NULLPTR);
+    ArrayTableModel(QList<int> nodepidarr, QObject *parent = Q_NULLPTR);
 
-    QVariant data(const QModelIndex &index, int role) const;
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
+    QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
 
-    int rowCount(const QModelIndex &parent) const;
-    int columnCount(const QModelIndex &parent) const;
+    int rowCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
+    int columnCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
+
+    void setNodepidarr(QList<int> nodepidarr);
+
+private:
+    QList<int> m_nodepidarr;
 };
 
 #endif // NODEARRAYTABLEWIDGET_H
