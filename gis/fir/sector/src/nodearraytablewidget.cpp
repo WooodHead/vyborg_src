@@ -7,10 +7,7 @@ NodeArrayTableWidget::NodeArrayTableWidget(QWidget *parent)
     : QWidget(parent),
       m_nodepidarr(QList<int>())
 {
-    m_model = new ArrayTableModel;
-    m_model->setNodepidarr(m_nodepidarr);
-//    m_model->setHorizontalHeaderItem(0, new QStandardItem(trUtf8("Координаты точки")));
-//    m_model->setHorizontalHeaderItem(1, new QStandardItem(trUtf8("Примечание")));
+    m_model = new ArrayTableModel(m_nodepidarr, this);
 
     m_view = new QTableView;
     m_view->setModel(m_model);
@@ -24,29 +21,13 @@ NodeArrayTableWidget::NodeArrayTableWidget(QWidget *parent)
 
 void NodeArrayTableWidget::setNodepidarr(const QString &nodepidarr)
 {
+    // Add here check for correct array string
+
     QList<int> l = fromString(nodepidarr);
     if (l != m_nodepidarr) {
         m_nodepidarr = l;
         m_model->setNodepidarr(m_nodepidarr);
-
         emit nodepidarrChanged();
-
-
-//        m_model->removeRows(0, m_model->rowCount()); // Clear the model
-
-//        for (int i = 0; i < m_nodepidarr.size(); i++) {
-//            QSqlQuery query("SELECT pid,St_AsLatLonText(geog::geometry),noteru "
-//                            "FROM data.vw_node WHERE pid=" + QString::number(m_nodepidarr.at(i)));
-//            while (query.next()) {
-//                QString geog = query.value(1).toString();
-//                QString noteru = query.value(2).toString();
-
-//                QStandardItem *itemGeog = new QStandardItem(geog);
-//                QStandardItem *itemNoteru = new QStandardItem(noteru);
-//                m_model->setItem(i, 0, itemGeog);
-//                m_model->setItem(i, 1, itemNoteru);
-//            }
-//        }
     }
 }
 
@@ -111,42 +92,60 @@ QVariant ArrayTableModel::data(const QModelIndex &index, int role) const
     if (!index.isValid())
         return QVariant();
 
-    int row = index.row();
+    int column = index.column();
 
     if (role == Qt::DisplayRole)
-        return m_nodepidarr.at(row);
-    else
-        return QVariant();
+    {
+        for (int i = 0; i < m_nodepidarr.size(); i++) {
+            QSqlQuery query("SELECT pid,St_AsLatLonText(geog::geometry),noteru "
+                            "FROM data.vw_node WHERE pid=" + QString::number(m_nodepidarr.at(i)));
+            while (query.next()) {
+                QString geog = query.value(1).toString();
+                QString noteru = query.value(2).toString();
+                if (column == 0)
+                    return geog;
+                else if (column == 1)
+                    return noteru;
+            }
+        }
+    }
+
+    return QVariant();
+    return QAbstractTableModel::data(index, role);
 }
 
 QVariant ArrayTableModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
-    if (section < 0 || section > columnCount())
+    if (section < 0)
         return QVariant();
 
-    if (orientation == Qt::Horizontal) {
+    if (orientation == Qt::Horizontal)
+    {
+        if (section > columnCount())
+            return QVariant();
+
         if (role == Qt::DisplayRole)
         {
-//            if (section == 0)
-//                return "N";
-            if (section == 0)
-                return trUtf8("Координаты точки");
-            else if (section == 1)
-                return trUtf8("Примечание");
+            switch (section) {
+            case 0: return trUtf8("Координаты точки");
+                break;
+            case 1: return trUtf8("Примечание");
+                break;
+            }
         }
     }
 
     return QAbstractTableModel::headerData(section, orientation, role);
 }
 
-int ArrayTableModel::rowCount(const QModelIndex &parent) const
+int ArrayTableModel::rowCount(const QModelIndex &/*parent*/) const
 {
     return m_nodepidarr.size();
 }
 
-int ArrayTableModel::columnCount(const QModelIndex &parent) const
+int ArrayTableModel::columnCount(const QModelIndex &/*parent*/) const
 {
-    return 1;
+    return 2;
 }
 
 void ArrayTableModel::setNodepidarr(QList<int> nodepidarr)
