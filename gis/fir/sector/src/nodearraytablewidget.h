@@ -4,8 +4,8 @@
 #include <QWidget>
 
 QT_BEGIN_NAMESPACE
-class QAbstractTableModel;
 class QTableView;
+class QPushButton;
 QT_END_NAMESPACE
 
 class ArrayTableModel;
@@ -24,16 +24,21 @@ public:
 signals:
     void nodepidarrChanged();
 
-private:
+private slots:
+    void addButtonClicked();
+    void removeButtonClicked();
+
+private: // functions
     QList<int> fromString(const QString &string);
     QString toString(QList<int> arr) const;
 
 private:
     QList<int> m_nodepidarr;
 
-    // Visible elements
     ArrayTableModel *m_model;
     QTableView *m_view;
+    QPushButton *m_addButton;
+    QPushButton *m_removeButton;
 };
 
 #include <QAbstractTableModel>
@@ -51,6 +56,10 @@ public:
 
     int rowCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
     int columnCount(const QModelIndex &parent = QModelIndex()) const Q_DECL_OVERRIDE;
+
+    Qt::ItemFlags flags(const QModelIndex &index) const Q_DECL_OVERRIDE;
+    bool insertRows(int row, int count, const QModelIndex &parent = QModelIndex()) Q_DECL_OVERRIDE;
+    bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex()) Q_DECL_OVERRIDE;
 
     void setNodepidarr(QList<int> nodepidarr);
 
