@@ -50,50 +50,20 @@ void MapperDialog::updatePrivateWidgets()
 {
     if (isDirty())
     {
-//        m_countryLE->setReadOnly(false);
-//        m_cityruLE->setReadOnly(false);
-//        m_nameruLE->setReadOnly(false);
-//        m_nameLE->setReadOnly(false);
-//        m_indxLE->setReadOnly(false);
-//        m_reglamentLE->setReadOnly(false);
-//        m_emailLE->setReadOnly(false);
-//        m_webLE->setReadOnly(false);
+        m_sectorLE->setReadOnly(false);
+        m_fullnameLE->setReadOnly(false);
+        m_labelLE->setReadOnly(false);
+        m_compoundLE->setReadOnly(false);
 
-//        m_elevationSB->setEnabled(true);
-
-//        m_magvarDSB->setEnabled(true);
-
-//        m_notePTE->setReadOnly(false);
-
-//        m_geogWid->setEnabled(true);
-
-//        m_validCB->setEnabled(true);
-//        m_typeCB->setEnabled(true);
-//        m_intlCB->setEnabled(true);
-//        m_staffCB->setEnabled(true);
+        m_nodeArrayW->setEnabled(true);
     }
     else
     {
-//        m_countryLE->setReadOnly(true);
-//        m_cityruLE->setReadOnly(true);
-//        m_nameruLE->setReadOnly(true);
-//        m_nameLE->setReadOnly(true);
-//        m_indxLE->setReadOnly(true);
-//        m_reglamentLE->setReadOnly(true);
-//        m_emailLE->setReadOnly(true);
-//        m_webLE->setReadOnly(true);
+        m_sectorLE->setReadOnly(true);
+        m_fullnameLE->setReadOnly(true);
+        m_labelLE->setReadOnly(true);
+        m_compoundLE->setReadOnly(true);
 
-//        m_elevationSB->setEnabled(false);
-
-//        m_magvarDSB->setEnabled(false);
-
-//        m_notePTE->setReadOnly(true);
-
-//        m_geogWid->setEnabled(false);
-
-//        m_validCB->setEnabled(false);
-//        m_typeCB->setEnabled(false);
-//        m_intlCB->setEnabled(false);
-//        m_staffCB->setEnabled(false);
+        m_nodeArrayW->setEnabled(false);
     }
 }

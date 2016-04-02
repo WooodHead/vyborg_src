@@ -61,8 +61,19 @@ void NodeArrayTableWidget::setNodepidarr(const QString &nodepidarr)
 
 QString NodeArrayTableWidget::nodepidarr() const
 {
-    QString string = toString(m_nodepidarr);
-    return string;
+    QString nodepidarr = toString(m_nodepidarr);
+    return nodepidarr;
+}
+
+void NodeArrayTableWidget::setEnabled(bool state)
+{
+    if (state == true) {
+        m_addButton->setEnabled(true);
+        m_removeButton->setEnabled(true);
+    } else {
+        m_addButton->setEnabled(false);
+        m_removeButton->setEnabled(false);
+    }
 }
 
 QList<int> NodeArrayTableWidget::fromString(const QString &string)
@@ -105,9 +116,21 @@ QString NodeArrayTableWidget::toString(QList<int> arr) const
 
 void NodeArrayTableWidget::addButtonClicked()
 {
-    QModelIndex indx = m_view->currentIndex();
-    int row = indx.row();
-    m_model->insertRows(row, 1);
+    bool ok;
+    int val  = QInputDialog::getInt(this,
+                                    trUtf8("Введите число"),
+                                    trUtf8("Номер node:"),
+                                    -1, 0, 100, 1,
+                                    &ok);
+
+    if (ok) {
+        QModelIndex indx = m_view->currentIndex();
+        int row = indx.row();
+        m_model->insertRows(row, 1);
+        m_model->setData(indx, val);
+
+        m_nodepidarr = m_model->nodepidarr();
+    }
 }
 
 void NodeArrayTableWidget::removeButtonClicked()
@@ -192,6 +215,18 @@ QVariant ArrayTableModel::headerData(int section, Qt::Orientation orientation, i
 //    return QAbstractTableModel::headerData(section, orientation, role);
 }
 
+bool ArrayTableModel::setData(const QModelIndex &index, const QVariant &value, int role)
+{
+    if (index.isValid() && role == Qt::EditRole) {
+        int i = index.row();
+        m_nodepidarr.replace(i, value.toInt());
+        emit dataChanged(index, index);
+        return true;
+    }
+
+    return false;
+}
+
 int ArrayTableModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
@@ -212,6 +247,11 @@ void ArrayTableModel::setNodepidarr(QList<int> nodepidarr)
     }
 }
 
+QList<int> ArrayTableModel::nodepidarr() const
+{
+    return m_nodepidarr;
+}
+
 bool ArrayTableModel::insertRows(int row, int count, const QModelIndex &parent)
 {
     if (row < 0 || row > m_nodepidarr.size())
@@ -224,7 +264,7 @@ bool ArrayTableModel::insertRows(int row, int count, const QModelIndex &parent)
 
     endInsertRows();
 
-    layoutChanged();
+    emit layoutChanged();
     return true;
 }
 
