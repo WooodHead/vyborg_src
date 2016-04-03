@@ -27,7 +27,8 @@ signals:
     void nodepidarrChanged();
 
 private slots:
-    void addButtonClicked();
+    void insertButtonClicked();
+    void appendButtonClicked();
     void removeButtonClicked();
 
 private: // functions
@@ -39,7 +40,8 @@ private:
     ArrayTableModel *m_model;
     // Visual elements
     QTableView *m_view;
-    QPushButton *m_addButton;
+    QPushButton *m_insertButton;
+    QPushButton *m_appendButton;
     QPushButton *m_removeButton;
 };
 

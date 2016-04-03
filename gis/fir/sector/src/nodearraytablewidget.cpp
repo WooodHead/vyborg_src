@@ -22,17 +22,21 @@ NodeArrayTableWidget::NodeArrayTableWidget(QWidget *parent)
     m_view->resizeColumnsToContents();
 
 
-    m_addButton = new QPushButton(trUtf8("Add node"));
+    m_insertButton = new QPushButton(trUtf8("Insert node"));
+    m_appendButton = new QPushButton(trUtf8("Append node"));
     m_removeButton = new QPushButton(trUtf8("Remove node"));
 
-    connect(m_addButton, SIGNAL(clicked(bool)),
-            this, SLOT(addButtonClicked()));
+    connect(m_insertButton, SIGNAL(clicked(bool)),
+            this, SLOT(insertButtonClicked()));
+    connect(m_appendButton, SIGNAL(clicked(bool)),
+            this, SLOT(appendButtonClicked()));
     connect(m_removeButton, SIGNAL(clicked(bool)),
             this, SLOT(removeButtonClicked()));
 
 
     QVBoxLayout *buttonLayout = new QVBoxLayout;
-    buttonLayout->addWidget(m_addButton);
+    buttonLayout->addWidget(m_insertButton);
+    buttonLayout->addWidget(m_appendButton);
     buttonLayout->addWidget(m_removeButton);
     buttonLayout->addStretch();
 
@@ -68,10 +72,12 @@ QString NodeArrayTableWidget::nodepidarr() const
 void NodeArrayTableWidget::setEnabled(bool state)
 {
     if (state == true) {
-        m_addButton->setEnabled(true);
+        m_appendButton->setEnabled(true);
+        m_insertButton->setEnabled(true);
         m_removeButton->setEnabled(true);
     } else {
-        m_addButton->setEnabled(false);
+        m_appendButton->setEnabled(false);
+        m_insertButton->setEnabled(false);
         m_removeButton->setEnabled(false);
     }
 }
@@ -114,7 +120,7 @@ QString NodeArrayTableWidget::toString(QList<int> arr) const
     return string;
 }
 
-void NodeArrayTableWidget::addButtonClicked()
+void NodeArrayTableWidget::insertButtonClicked()
 {
     bool ok;
     int val  = QInputDialog::getInt(this,
@@ -133,11 +139,31 @@ void NodeArrayTableWidget::addButtonClicked()
     }
 }
 
+void NodeArrayTableWidget::appendButtonClicked()
+{
+    bool ok;
+    int val = QInputDialog::getInt(this,
+                                   trUtf8("Введите число"),
+                                   trUtf8("Номер node"),
+                                   -1, 0, 100, 1,
+                                   &ok);
+    if (ok) {
+        int row = m_nodepidarr.size();
+        m_model->insertRows(row, 1);
+        QModelIndex indx = m_model->index(row, 0);
+        m_model->setData(indx, val);
+
+        m_nodepidarr = m_model->nodepidarr();
+    }
+}
+
 void NodeArrayTableWidget::removeButtonClicked()
 {
     QModelIndex indx = m_view->currentIndex();
     int row = indx.row();
     m_model->removeRows(row, 1);
+
+    m_nodepidarr = m_model->nodepidarr();
 }
 
 ArrayTableModel::ArrayTableModel(QObject *parent)
@@ -263,8 +289,6 @@ bool ArrayTableModel::insertRows(int row, int count, const QModelIndex &parent)
         m_nodepidarr.insert(row + i, -1); // Inserting value of -1 into array
 
     endInsertRows();
-
-    emit layoutChanged();
     return true;
 }
 
@@ -279,7 +303,5 @@ bool ArrayTableModel::removeRows(int row, int count, const QModelIndex &parent)
         m_nodepidarr.removeAt(row + i);
 
     endRemoveRows();
-
-    emit layoutChanged();
     return true;
 }
