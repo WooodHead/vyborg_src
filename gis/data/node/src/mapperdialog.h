@@ -5,6 +5,7 @@
 
 QT_BEGIN_NAMESPACE
 class QLineEdit;
+class QPlainTextEdit;
 QT_END_NAMESPACE
 
 class GeogWidget;
@@ -22,9 +23,9 @@ protected:
     virtual void updatePrivateWidgets();
 
 private:
-    // Visual elements
+    // visual elements
     GeogWidget *m_geogWid;
-    QLineEdit  *m_noteruLE;
+    QPlainTextEdit  *m_noteruTE;
 };
 
 #endif // MAPPERDIALOG_H

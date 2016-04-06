@@ -3,23 +3,24 @@
 
 #include <QAbstractItemModel>
 
-#include "nodearraytablewidget.h"
+#include "nodearraywidget.h"
+#include "nodearraytablemodel.h"
 
 NodeArrayTableWidget::NodeArrayTableWidget(QWidget *parent)
     : QWidget(parent),
       m_nodepidarr(QList<int>())
 {
-    m_model = new ArrayTableModel(m_nodepidarr, this);
+    m_model = new NodeArrayTableModel(m_nodepidarr, this);
 
     m_view = new QTableView;
+    m_view->setModel(m_model);
     m_view->setEditTriggers(QAbstractItemView::NoEditTriggers);
     m_view->setSelectionBehavior(QAbstractItemView::SelectRows);
     m_view->setSelectionMode(QAbstractItemView::SingleSelection);
     m_view->setShowGrid(true);
     m_view->setAlternatingRowColors(true);
-    m_view->verticalHeader()->setVisible(false);
-    m_view->setModel(m_model);
-    m_view->resizeColumnsToContents();
+    m_view->verticalHeader()->setVisible(true);
+    m_view->setColumnWidth(0, 250);
 
 
     m_insertButton = new QPushButton(trUtf8("Insert node"));
@@ -44,6 +45,7 @@ NodeArrayTableWidget::NodeArrayTableWidget(QWidget *parent)
     QHBoxLayout *mainLayout = new QHBoxLayout;
     mainLayout->addWidget(m_view);
     mainLayout->addLayout(buttonLayout);
+//    mainLayout->addStretch();
 
     setLayout(mainLayout);
 }
@@ -122,11 +124,21 @@ QString NodeArrayTableWidget::toString(QList<int> arr) const
 
 void NodeArrayTableWidget::insertButtonClicked()
 {
+    int maxval = -1;
+    QSqlQuery query("SELECT MAX(pid) FROM data.vw_node");
+    while (query.next()) {
+        maxval = query.value(0).toInt();
+    }
+
+    if (maxval == -1)
+        return;
+
     bool ok;
+    QString offerstr = trUtf8("Введите номер node (максимальное число %1)").arg(maxval);
     int val  = QInputDialog::getInt(this,
                                     trUtf8("Введите число"),
-                                    trUtf8("Номер node:"),
-                                    -1, 0, 100, 1,
+                                    offerstr,
+                                    -1, -1, maxval, 1,
                                     &ok);
 
     if (ok) {
@@ -141,11 +153,18 @@ void NodeArrayTableWidget::insertButtonClicked()
 
 void NodeArrayTableWidget::appendButtonClicked()
 {
+    int maxval;
+    QSqlQuery query("SELECT MAX(pid) FROM data.vw_node");
+    while (query.next()) {
+        maxval = query.value(0).toInt();
+    }
+
     bool ok;
+    QString offerstr = trUtf8("Введите номер node (максимальное число %1)").arg(maxval);
     int val = QInputDialog::getInt(this,
                                    trUtf8("Введите число"),
-                                   trUtf8("Номер node"),
-                                   -1, 0, 100, 1,
+                                   offerstr,
+                                   -1, -1, 100, 1,
                                    &ok);
     if (ok) {
         int row = m_nodepidarr.size();
@@ -164,144 +183,4 @@ void NodeArrayTableWidget::removeButtonClicked()
     m_model->removeRows(row, 1);
 
     m_nodepidarr = m_model->nodepidarr();
-}
-
-ArrayTableModel::ArrayTableModel(QObject *parent)
-    : QAbstractTableModel(parent)
-{
-    m_nodepidarr = QList<int>();
-}
-
-ArrayTableModel::ArrayTableModel(QList<int> nodepidarr, QObject *parent)
-    : QAbstractTableModel(parent)
-{
-    m_nodepidarr = nodepidarr;
-}
-
-Qt::ItemFlags ArrayTableModel::flags(const QModelIndex &index) const
-{
-    if (!index.isValid())
-        return Qt::ItemIsEnabled;
-
-    return QAbstractTableModel::flags(index) | Qt::ItemIsEditable;
-}
-
-QVariant ArrayTableModel::data(const QModelIndex &index, int role) const
-{
-    if (!index.isValid())
-        return QVariant();
-
-    if (index.row() >= m_nodepidarr.size() || index.row() < 0)
-        return QVariant();
-
-    if (role == Qt::DisplayRole)
-    {
-        int row = index.row();
-        int column = index.column();
-
-        QSqlQuery query("SELECT pid,St_AsLatLonText(geog::geometry),noteru "
-                        "FROM data.vw_node WHERE pid=" + QString::number(m_nodepidarr.at(row)));
-        while (query.next()) {
-            QString geog = query.value(1).toString();
-            QString noteru = query.value(2).toString();
-            if (column == 0)
-                return geog;
-            else if (column == 1)
-                return noteru;
-        }
-    }
-
-    return QVariant();
-}
-
-QVariant ArrayTableModel::headerData(int section, Qt::Orientation orientation, int role) const
-{
-    if (section < 0)
-        return QVariant();
-
-    if (role != Qt::DisplayRole)
-        return QVariant();
-
-    if (orientation == Qt::Horizontal)
-    {
-        if (section > columnCount())
-            return QVariant();
-
-        switch (section) {
-        case 0:
-            return trUtf8("Координаты точки");
-        case 1:
-            return trUtf8("Примечание");
-        default:
-            return QVariant();
-        }
-    }
-
-    return QVariant();
-//    return QAbstractTableModel::headerData(section, orientation, role);
-}
-
-bool ArrayTableModel::setData(const QModelIndex &index, const QVariant &value, int role)
-{
-    if (index.isValid() && role == Qt::EditRole) {
-        int i = index.row();
-        m_nodepidarr.replace(i, value.toInt());
-        emit dataChanged(index, index);
-        return true;
-    }
-
-    return false;
-}
-
-int ArrayTableModel::rowCount(const QModelIndex &parent) const
-{
-    Q_UNUSED(parent);
-    return m_nodepidarr.size();
-}
-
-int ArrayTableModel::columnCount(const QModelIndex &/*parent*/) const
-{
-    return 2;
-}
-
-void ArrayTableModel::setNodepidarr(QList<int> nodepidarr)
-{
-    if (nodepidarr != m_nodepidarr) {
-        beginResetModel();
-        m_nodepidarr = nodepidarr;
-        endResetModel();
-    }
-}
-
-QList<int> ArrayTableModel::nodepidarr() const
-{
-    return m_nodepidarr;
-}
-
-bool ArrayTableModel::insertRows(int row, int count, const QModelIndex &parent)
-{
-    if (row < 0 || row > m_nodepidarr.size())
-        return false;
-
-    beginInsertRows(parent, row, row + count - 1);
-
-    for (int i = 0; i < count; i++)
-        m_nodepidarr.insert(row + i, -1); // Inserting value of -1 into array
-
-    endInsertRows();
-    return true;
-}
-
-bool ArrayTableModel::removeRows(int row, int count, const QModelIndex &parent)
-{
-    if (row < 0 || row > m_nodepidarr.size())
-        return false;
-
-    beginRemoveRows(parent, row, row + count - 1);
-
-    for (int i = 0; i < count; ++i)
-        m_nodepidarr.removeAt(row + i);
-
-    endRemoveRows();
-    return true;
 }

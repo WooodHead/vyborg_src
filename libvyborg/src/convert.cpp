@@ -1,4 +1,7 @@
-#include "rus.h"
+#include <QStringList>
+#include <QString>
+
+#include "convert.h"
 
 QString lat2rus(QString latStr)
 {
@@ -89,4 +92,34 @@ QString lat2rus(QString latStr)
     }
 
     return rusStr;
+}
+
+QString coordRaw2readable(QString coordRaw)
+{
+    QStringList coord = coordRaw.split(" ");
+
+    QString lat_gg = coord.at(0);
+    if (lat_gg.length() == 1)
+        lat_gg.prepend("0");
+    QString lat_mm = coord.at(1);
+    if (lat_mm.length() == 1)
+        lat_mm.prepend("0");
+    QString lat_ss = coord.at(2);
+    if (lat_ss.length() == 5)
+        lat_ss.prepend("0");
+
+    QString lon_gg = coord.at(3);
+    if (lon_gg.length() == 1)
+        lon_gg.prepend("0");
+    if (lon_gg.length() == 2)
+        lon_gg.prepend("0");
+    QString lon_mm = coord.at(4);
+    if (lon_mm.length() == 1)
+        lon_mm.prepend("0");
+    QString lon_ss = coord.at(5);
+    if (lon_ss.length() == 5)
+        lon_ss.prepend("0");
+
+    return QString(lat_gg + "° " + lat_mm + "\' " + lat_ss + "\"" + "   " +
+                   lon_gg + "° " + lon_mm + "\' " + lon_ss + "\"");
 }

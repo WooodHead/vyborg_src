@@ -40,3 +40,4 @@ RESOURCES += \
 
 OTHER_FILES += \
     vyborg.prf
+

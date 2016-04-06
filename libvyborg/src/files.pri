@@ -10,7 +10,12 @@ SOURCES += \
     $$PWD/sortdialog.cpp \
     $$PWD/yearmonth.cpp \
     $$PWD/yearmonthday.cpp \
-    $$PWD/yearmonthwidget.cpp
+    $$PWD/yearmonthwidget.cpp \
+    $$PWD/convert.cpp \
+    $$PWD/geogwidget.cpp \
+    $$PWD/rwwidget.cpp \
+    $$PWD/doublespinboxdelegate.cpp
+
 
 HEADERS += \
     $$PWD/libvyborg.h\
@@ -27,4 +32,8 @@ HEADERS += \
     $$PWD/sortdialog.h \
     $$PWD/yearmonth.h \
     $$PWD/yearmonthwidget.h \
-    $$PWD/yearmonthday.h
+    $$PWD/yearmonthday.h \
+    $$PWD/convert.h \
+    $$PWD/geogwidget.h \
+    $$PWD/rwwidget.h \
+    $$PWD/doublespinboxdelegate.h

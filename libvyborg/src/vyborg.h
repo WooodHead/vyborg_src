@@ -7,5 +7,9 @@
 #include "filterdialog.h"
 #include "sortdialog.h"
 #include "aboutdialog.h"
+#include "convert.h"
+#include "doublespinboxdelegate.h"
+#include "rwwidget.h"
+#include "geogwidget.h"
 
 #endif // VYBORG_H

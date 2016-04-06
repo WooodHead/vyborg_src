@@ -3,7 +3,7 @@
 
 #include "mapperdialog.h"
 #include "declarations.h"
-#include "nodearraytablewidget.h"
+#include "nodearraywidget.h"
 
 MapperDialog::MapperDialog(QSqlTableModel *model, QWidget *parent)
     : VyborgMapperDialog(model, parent)

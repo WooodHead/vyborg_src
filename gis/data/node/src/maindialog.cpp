@@ -38,15 +38,11 @@ void MainDialog::setupModel()
 void MainDialog::setupView()
 {
     m_view->setModel(m_model);
-
     m_view->resizeColumnsToContents();
     m_view->verticalHeader()->show();
-
     m_view->horizontalHeader()->setStretchLastSection(true);
-
     m_view->hideColumn(node_pid);
     m_view->hideColumn(node_geog);
-
     m_view->selectRow(0);
 }
 
