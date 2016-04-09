@@ -142,10 +142,10 @@ void NodeArrayTableWidget::insertButtonClicked()
                                     &ok);
 
     if (ok) {
-        QModelIndex indx = m_view->currentIndex();
-        int row = indx.row();
+        int row = m_view->currentIndex().row();
+        if (row == -1) row = 0;
         m_model->insertRows(row, 1);
-        m_model->setData(indx, val);
+        m_model->setData(m_model->index(row, 1), val);
 
         m_nodepidarr = m_model->nodepidarr();
     }
@@ -169,8 +169,7 @@ void NodeArrayTableWidget::appendButtonClicked()
     if (ok) {
         int row = m_nodepidarr.size();
         m_model->insertRows(row, 1);
-        QModelIndex indx = m_model->index(row, 0);
-        m_model->setData(indx, val);
+        m_model->setData(m_model->index(row, 1), val);
 
         m_nodepidarr = m_model->nodepidarr();
     }
