@@ -3,7 +3,7 @@
 
 #include "mapperdialog.h"
 #include "declarations.h"
-#include "nodearraywidget.h"
+#include "nodepidarraytablewidget.h"
 
 MapperDialog::MapperDialog(QSqlTableModel *model, QWidget *parent)
     : VyborgMapperDialog(model, parent)
@@ -20,7 +20,7 @@ void MapperDialog::createPrivateWidgets()
     m_labelLE    = new QLineEdit;
     m_compoundLE = new QLineEdit;
 
-    m_nodeArrayW = new NodeArrayTableWidget;
+    m_nodeArrayW = new NodePidArrayTableWidget;
 
     QDataWidgetMapper* m_mapper = mapper();
     m_mapper->addMapping(m_sectorLE,   sector_sector);

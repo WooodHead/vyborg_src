@@ -1,5 +1,5 @@
-#ifndef NODEARRAYTABLEWIDGET_H
-#define NODEARRAYTABLEWIDGET_H
+#ifndef NODEPIDARRAYTABLEWIDGET_H
+#define NODEPIDARRAYTABLEWIDGET_H
 
 #include <QWidget>
 
@@ -8,15 +8,15 @@ class QTableView;
 class QPushButton;
 QT_END_NAMESPACE
 
-class NodeArrayTableModel;
+class NodePidArrayTableModel;
 
-class NodeArrayTableWidget : public QWidget
+class NodePidArrayTableWidget : public QWidget
 {
     Q_OBJECT
     Q_PROPERTY(QString nodepidarr READ nodepidarr WRITE setNodepidarr NOTIFY nodepidarrChanged USER true)
 
 public:
-    explicit NodeArrayTableWidget(QWidget *parent = 0);
+    explicit NodePidArrayTableWidget(QWidget *parent = 0);
 
     void setNodepidarr(const QString &nodepidarr);
     QString nodepidarr() const;
@@ -38,7 +38,7 @@ private: // functions
 private:
     // non-Visual elements
     QList<int> m_nodepidarr;
-    NodeArrayTableModel *m_model;
+    NodePidArrayTableModel *m_model;
 
     // visual elements
     QTableView *m_view;
@@ -47,4 +47,4 @@ private:
     QPushButton *m_removeButton;
 };
 
-#endif // NODEARRAYTABLEWIDGET_H
+#endif // NODEPIDARRAYTABLEWIDGET_H

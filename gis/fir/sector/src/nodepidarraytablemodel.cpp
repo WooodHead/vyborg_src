@@ -3,21 +3,21 @@
 
 #include <vyborg/convert.h>
 
-#include "nodearraytablemodel.h"
+#include "nodepidarraytablemodel.h"
 
-NodeArrayTableModel::NodeArrayTableModel(QObject *parent)
+NodePidArrayTableModel::NodePidArrayTableModel(QObject *parent)
     : QAbstractTableModel(parent)
 {
     m_nodepidarr = QList<int>();
 }
 
-NodeArrayTableModel::NodeArrayTableModel(QList<int> nodepidarr, QObject *parent)
+NodePidArrayTableModel::NodePidArrayTableModel(QList<int> nodepidarr, QObject *parent)
     : QAbstractTableModel(parent)
 {
     m_nodepidarr = nodepidarr;
 }
 
-Qt::ItemFlags NodeArrayTableModel::flags(const QModelIndex &index) const
+Qt::ItemFlags NodePidArrayTableModel::flags(const QModelIndex &index) const
 {
     if (!index.isValid())
         return Qt::ItemIsEnabled;
@@ -25,7 +25,7 @@ Qt::ItemFlags NodeArrayTableModel::flags(const QModelIndex &index) const
     return QAbstractTableModel::flags(index) | Qt::ItemIsEditable;
 }
 
-QVariant NodeArrayTableModel::data(const QModelIndex &index, int role) const
+QVariant NodePidArrayTableModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid())
         return QVariant();
@@ -53,7 +53,7 @@ QVariant NodeArrayTableModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-QVariant NodeArrayTableModel::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant NodePidArrayTableModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if (section < 0)
         return QVariant();
@@ -80,7 +80,7 @@ QVariant NodeArrayTableModel::headerData(int section, Qt::Orientation orientatio
     return QVariant();
 }
 
-bool NodeArrayTableModel::setData(const QModelIndex &index, const QVariant &value, int role)
+bool NodePidArrayTableModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
     if (index.isValid() && role == Qt::EditRole) {
         int i = index.row();
@@ -92,19 +92,19 @@ bool NodeArrayTableModel::setData(const QModelIndex &index, const QVariant &valu
     return false;
 }
 
-int NodeArrayTableModel::rowCount(const QModelIndex &parent) const
+int NodePidArrayTableModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
     return m_nodepidarr.size();
 }
 
-int NodeArrayTableModel::columnCount(const QModelIndex &parent) const
+int NodePidArrayTableModel::columnCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
     return 2;
 }
 
-void NodeArrayTableModel::setNodepidarr(QList<int> nodepidarr)
+void NodePidArrayTableModel::setNodepidarr(QList<int> nodepidarr)
 {
     if (nodepidarr != m_nodepidarr) {
         beginResetModel();
@@ -113,12 +113,12 @@ void NodeArrayTableModel::setNodepidarr(QList<int> nodepidarr)
     }
 }
 
-QList<int> NodeArrayTableModel::nodepidarr() const
+QList<int> NodePidArrayTableModel::nodepidarr() const
 {
     return m_nodepidarr;
 }
 
-bool NodeArrayTableModel::insertRows(int row, int count, const QModelIndex &parent)
+bool NodePidArrayTableModel::insertRows(int row, int count, const QModelIndex &parent)
 {
     if (row < 0 || row > m_nodepidarr.size())
         return false;
@@ -132,7 +132,7 @@ bool NodeArrayTableModel::insertRows(int row, int count, const QModelIndex &pare
     return true;
 }
 
-bool NodeArrayTableModel::removeRows(int row, int count, const QModelIndex &parent)
+bool NodePidArrayTableModel::removeRows(int row, int count, const QModelIndex &parent)
 {
     if (row < 0 || row > m_nodepidarr.size())
         return false;

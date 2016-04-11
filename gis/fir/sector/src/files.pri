@@ -2,14 +2,14 @@ SOURCES += \
     $$PWD/mapperdialog.cpp \
     $$PWD/main.cpp \
     $$PWD/maindialog.cpp \
-    $$PWD/nodearraytablemodel.cpp \
-    $$PWD/nodearraywidget.cpp
+    $$PWD/nodepidarraytablemodel.cpp \
+    $$PWD/nodepidarraytablewidget.cpp
 
 HEADERS  += \
     $$PWD/declarations.h \
     $$PWD/mapperdialog.h \
     $$PWD/maindialog.h \
-    $$PWD/nodearraytablemodel.h \
-    $$PWD/nodearraywidget.h
+    $$PWD/nodepidarraytablemodel.h \
+    $$PWD/nodepidarraytablewidget.h
 
 

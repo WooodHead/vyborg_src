@@ -3,14 +3,14 @@
 
 #include <QAbstractItemModel>
 
-#include "nodearraywidget.h"
-#include "nodearraytablemodel.h"
+#include "nodepidarraytablewidget.h"
+#include "nodepidarraytablemodel.h"
 
-NodeArrayTableWidget::NodeArrayTableWidget(QWidget *parent)
+NodePidArrayTableWidget::NodePidArrayTableWidget(QWidget *parent)
     : QWidget(parent),
       m_nodepidarr(QList<int>())
 {
-    m_model = new NodeArrayTableModel(m_nodepidarr, this);
+    m_model = new NodePidArrayTableModel(m_nodepidarr, this);
 
     m_view = new QTableView;
     m_view->setModel(m_model);
@@ -50,7 +50,7 @@ NodeArrayTableWidget::NodeArrayTableWidget(QWidget *parent)
     setLayout(mainLayout);
 }
 
-void NodeArrayTableWidget::setNodepidarr(const QString &nodepidarr)
+void NodePidArrayTableWidget::setNodepidarr(const QString &nodepidarr)
 {
     // Add here check for correct array string
 
@@ -65,13 +65,13 @@ void NodeArrayTableWidget::setNodepidarr(const QString &nodepidarr)
     }
 }
 
-QString NodeArrayTableWidget::nodepidarr() const
+QString NodePidArrayTableWidget::nodepidarr() const
 {
     QString nodepidarr = toString(m_nodepidarr);
     return nodepidarr;
 }
 
-void NodeArrayTableWidget::setEnabled(bool state)
+void NodePidArrayTableWidget::setEnabled(bool state)
 {
     if (state == true) {
         m_appendButton->setEnabled(true);
@@ -84,7 +84,7 @@ void NodeArrayTableWidget::setEnabled(bool state)
     }
 }
 
-QList<int> NodeArrayTableWidget::fromString(const QString &string)
+QList<int> NodePidArrayTableWidget::fromString(const QString &string)
 {
     if (string.isEmpty())
         return QList<int>();
@@ -105,7 +105,7 @@ QList<int> NodeArrayTableWidget::fromString(const QString &string)
     return list;
 }
 
-QString NodeArrayTableWidget::toString(QList<int> arr) const
+QString NodePidArrayTableWidget::toString(QList<int> arr) const
 {
     if (arr.isEmpty())
         return QString();
@@ -122,7 +122,7 @@ QString NodeArrayTableWidget::toString(QList<int> arr) const
     return string;
 }
 
-void NodeArrayTableWidget::insertButtonClicked()
+void NodePidArrayTableWidget::insertButtonClicked()
 {
     int maxval = -1;
     QSqlQuery query("SELECT MAX(pid) FROM data.vw_node");
@@ -151,7 +151,7 @@ void NodeArrayTableWidget::insertButtonClicked()
     }
 }
 
-void NodeArrayTableWidget::appendButtonClicked()
+void NodePidArrayTableWidget::appendButtonClicked()
 {
     int maxval;
     QSqlQuery query("SELECT MAX(pid) FROM data.vw_node");
@@ -175,7 +175,7 @@ void NodeArrayTableWidget::appendButtonClicked()
     }
 }
 
-void NodeArrayTableWidget::removeButtonClicked()
+void NodePidArrayTableWidget::removeButtonClicked()
 {
     QModelIndex indx = m_view->currentIndex();
     int row = indx.row();

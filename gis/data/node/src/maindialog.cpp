@@ -4,6 +4,7 @@
 #include "maindialog.h"
 #include "declarations.h"
 #include "mapperdialog.h"
+#include "nodetablemodel.h"
 
 #include <QDebug>
 
@@ -19,6 +20,7 @@ MainDialog::MainDialog(QWidget *parent)
 
 void MainDialog::setupModel()
 {
+    m_model = new NodeTableModel;
     m_model->setTable(PGSQL_TABLENAME);
     bool ret = m_model->select();
     if (ret == false) {
@@ -42,7 +44,6 @@ void MainDialog::setupView()
     m_view->verticalHeader()->show();
     m_view->horizontalHeader()->setStretchLastSection(true);
     m_view->hideColumn(node_pid);
-    m_view->hideColumn(node_geog);
     m_view->selectRow(0);
 }
 

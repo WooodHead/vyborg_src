@@ -1,15 +1,15 @@
-#ifndef NODEARRAYTABLEMODEL_H
-#define NODEARRAYTABLEMODEL_H
+#ifndef NODEPIDARRAYTABLEMODEL_H
+#define NODEPIDARRAYTABLEMODEL_H
 
 #include <QAbstractTableModel>
 
-class NodeArrayTableModel : public QAbstractTableModel
+class NodePidArrayTableModel : public QAbstractTableModel
 {
     Q_OBJECT
 
 public:
-    NodeArrayTableModel(QObject *parent = Q_NULLPTR);
-    NodeArrayTableModel(QList<int> nodepidarr, QObject *parent = Q_NULLPTR);
+    NodePidArrayTableModel(QObject *parent = Q_NULLPTR);
+    NodePidArrayTableModel(QList<int> nodepidarr, QObject *parent = Q_NULLPTR);
 
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
@@ -29,4 +29,4 @@ private:
     QList<int> m_nodepidarr;
 };
 
-#endif // NODEARRAYTABLEMODEL_H
+#endif // NODEPIDARRAYTABLEMODEL_H
