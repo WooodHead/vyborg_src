@@ -1,7 +1,7 @@
 QT += core gui widgets sql
 TARGET = vyborg_ad_ad
 TEMPLATE = app
-CONFIG += vyborg aviawidgets
+CONFIG += vyborg
 DESTDIR = /home/debian/Programming/bin
 
 #message("$$QMAKESPEC/../features/")

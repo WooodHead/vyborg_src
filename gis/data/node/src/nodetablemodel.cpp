@@ -4,6 +4,8 @@
 #include "declarations.h"
 #include "nodetablemodel.h"
 
+#include <QDebug>
+
 NodeTableModel::NodeTableModel(QObject *parent, QSqlDatabase db)
     : QSqlTableModel(parent, db)
 {

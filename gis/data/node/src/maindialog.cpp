@@ -20,7 +20,7 @@ MainDialog::MainDialog(QWidget *parent)
 
 void MainDialog::setupModel()
 {
-    m_model = new NodeTableModel;
+//    m_model = new NodeTableModel;
     m_model->setTable(PGSQL_TABLENAME);
     bool ret = m_model->select();
     if (ret == false) {
