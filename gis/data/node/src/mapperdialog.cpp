@@ -24,8 +24,6 @@ void MapperDialog::createPrivateWidgets()
 
 void MapperDialog::layoutPrivateWidgets()
 {
-    qDebug() << "Calling layoutPrivateWidgets()";
-
     QHBoxLayout *layout1 = new QHBoxLayout;
     layout1->addWidget(m_geogWid);
 
@@ -38,14 +36,10 @@ void MapperDialog::layoutPrivateWidgets()
 
     QVBoxLayout *privateWidgetsLayout = layout();
     privateWidgetsLayout->addLayout(mainLayout);
-
-    qDebug() << "End layoutPrivateWidgets()";
 }
 
 void MapperDialog::updatePrivateWidgets()
 {
-    qDebug() << "Calling updatePrivateWidgets()" << isDirty();
-
     if (isDirty())
     {
         m_geogWid->setEnabled(true);
@@ -56,6 +50,4 @@ void MapperDialog::updatePrivateWidgets()
         m_geogWid->setEnabled(false);
         m_noteruTE->setReadOnly(true);
     }
-
-    qDebug() << "End updatePrivateWidgets()";
 }
