@@ -29,3 +29,4 @@ MOC_DIR = tmp
 
 #DISTFILES += \
 #    src/rwwidget/files.pri
+
