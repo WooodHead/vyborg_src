@@ -40,14 +40,14 @@ void MapperDialog::layoutPrivateWidgets()
 
 void MapperDialog::updatePrivateWidgets()
 {
-    if (isDirty())
-    {
-        m_geogWid->setEnabled(true);
-        m_noteruTE->setReadOnly(false);
-    }
-    else
+    if (state() == VyborgMapperDialog::Normal)
     {
         m_geogWid->setEnabled(false);
         m_noteruTE->setReadOnly(true);
+    }
+    else
+    {
+        m_geogWid->setEnabled(true);
+        m_noteruTE->setReadOnly(false);
     }
 }
