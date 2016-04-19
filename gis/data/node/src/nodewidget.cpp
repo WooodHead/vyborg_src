@@ -48,6 +48,11 @@ NodeWidget::NodeWidget(QWidget *parent)
 
     setLayout(mainLayout);
 
+    connect(m_latLE, SIGNAL(textEdited(QString)),
+            this, SLOT(coordEdited(QString)));
+    connect(m_lonLE, SIGNAL(textEdited(QString)),
+            this, SLOT(coordEdited(QString)));
+
     setEnabled(false);
 }
 
@@ -100,15 +105,17 @@ QString NodeWidget::geog() const
             lat = query.value(0).toString();
             lon = query.value(1).toString();
         }
+        query.clear();
     }
 
-    QString queryString = QString("SELECT ST_NoderaphyFromText('SRID=4326;POINT(%1 %2)')")
+    QString queryString = QString("SELECT ST_GeographyFromText('SRID=4326;POINT(%1 %2)')")
             .arg(lon)
             .arg(lat);
     QSqlQuery query(queryString);
     while (query.next()) {
         m_geog = query.value(0).toString();
     }
+    query.clear();
 
     return m_geog;
 }
@@ -124,6 +131,25 @@ void NodeWidget::setEnabled(bool state)
         m_latLE->setReadOnly(true);
         m_lonLE->setReadOnly(true);
         m_sridLE->setReadOnly(true);
+    }
+}
+
+void NodeWidget::coordEdited(const QString &text)
+{
+    QString coord = this->geog();
+
+    int i = 0;
+    QString queryString = QString("SELECT COUNT(geog) FROM data.node WHERE geog='%1'").arg(coord);
+    QSqlQuery query(queryString);
+    while (query.next()) {
+        i = query.value(0).toInt();
+    }
+    query.clear();
+
+    if (i > 0) {
+        QMessageBox msgBox;
+        msgBox.setText("NODE with the same coordinates already EXISTS!");
+        msgBox.exec();
     }
 }
 
@@ -165,6 +191,7 @@ void NodeWidget::showNode()
                     lon.prepend("0");
                 srid = query.value(1).toString();
             }
+            query.clear();
 
             m_latLE->setText(lat);
             m_lonLE->setText(lon);
@@ -223,20 +250,13 @@ void NodeWidget::showNode()
 
                 srid = query.value(1).toString();
             }
+            query.clear();
 
             m_latLE->setText(lat);
             m_lonLE->setText(lon);
             m_sridLE->setText(srid);
         }
     }
-
-//    qint32 srid;
-//    QString queryString1 = QString("SELECT St_SRID('%1'::geometry)").arg(m_geog);
-//    QSqlQuery query1(queryString1);
-//    while (query1.next()) {
-//        srid = query1.value(0).toInt();
-//    }
-//    m_sridLE->setText(QString::number(srid));
 
     m_latLE->setCursorPosition(0);
     m_latLE->setFocus();

@@ -25,16 +25,18 @@ signals:
     void geogChanged();
 
 private slots:
+    void coordEdited(const QString &text);
     void showNode();
 
 private:
+    // visual elements
     QLineEdit    *m_latLE;
     QLineEdit    *m_lonLE;
     QLineEdit    *m_sridLE;
     QRadioButton *m_radio1;
     QRadioButton *m_radio2;
 
-private:
+    // non-visual elements
     mutable QString m_geog;
 };
 
