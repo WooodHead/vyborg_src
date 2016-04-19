@@ -4,6 +4,8 @@
 #include "mapperdialog.h"
 #include "declarations.h"
 
+#include "nodewidget.h"
+
 MapperDialog::MapperDialog(QSqlTableModel *model, QWidget *parent)
     : VyborgMapperDialog(model, parent)
 {
@@ -14,18 +16,19 @@ MapperDialog::MapperDialog(QSqlTableModel *model, QWidget *parent)
 
 void MapperDialog::createPrivateWidgets()
 {
-    m_geogWid = new GeogWidget;
+    m_nodeWid = new NodeWidget;
+    m_nodeWid->setFocus();
     m_noteruTE = new QPlainTextEdit;
 
     QDataWidgetMapper* m_mapper = mapper();
-    m_mapper->addMapping(m_geogWid,  node_geog);
+    m_mapper->addMapping(m_nodeWid,  node_geog);
     m_mapper->addMapping(m_noteruTE, node_noteru);
 }
 
 void MapperDialog::layoutPrivateWidgets()
 {
     QHBoxLayout *layout1 = new QHBoxLayout;
-    layout1->addWidget(m_geogWid);
+    layout1->addWidget(m_nodeWid);
 
     QFormLayout *formLayout1 = new QFormLayout;
     formLayout1->addRow(trUtf8("Примечание"), m_noteruTE);
@@ -42,12 +45,12 @@ void MapperDialog::updatePrivateWidgets()
 {
     if (state() == VyborgMapperDialog::Normal)
     {
-        m_geogWid->setEnabled(false);
+        m_nodeWid->setEnabled(false);
         m_noteruTE->setReadOnly(true);
     }
     else
     {
-        m_geogWid->setEnabled(true);
+        m_nodeWid->setEnabled(true);
         m_noteruTE->setReadOnly(false);
     }
 }
