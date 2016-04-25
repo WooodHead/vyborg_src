@@ -136,6 +136,8 @@ void NodeWidget::setEnabled(bool state)
 
 void NodeWidget::coordEdited(const QString &text)
 {
+    Q_UNUSED(text)
+
     QString coord = this->geog();
 
     int i = 0;
@@ -150,6 +152,8 @@ void NodeWidget::coordEdited(const QString &text)
         QMessageBox msgBox;
         msgBox.setText("NODE with the same coordinates already EXISTS!");
         msgBox.exec();
+
+        emit geogFound(coord);
     }
 }
 

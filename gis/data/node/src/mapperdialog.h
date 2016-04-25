@@ -22,6 +22,9 @@ protected:
     virtual void layoutPrivateWidgets();
     virtual void updatePrivateWidgets();
 
+private slots:
+    void geogFound(const QString &geog);
+
 private:
     // visual elements
     NodeWidget *m_nodeWid;

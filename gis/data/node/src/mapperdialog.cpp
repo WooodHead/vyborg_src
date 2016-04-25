@@ -18,11 +18,15 @@ void MapperDialog::createPrivateWidgets()
 {
     m_nodeWid = new NodeWidget;
     m_nodeWid->setFocus();
+
     m_noteruTE = new QPlainTextEdit;
 
     QDataWidgetMapper* m_mapper = mapper();
     m_mapper->addMapping(m_nodeWid,  node_geog);
     m_mapper->addMapping(m_noteruTE, node_noteru);
+
+    connect(m_nodeWid, SIGNAL(geogFound(QString)),
+            this, SLOT(geogFound(QString)));
 }
 
 void MapperDialog::layoutPrivateWidgets()
@@ -53,4 +57,9 @@ void MapperDialog::updatePrivateWidgets()
         m_nodeWid->setEnabled(true);
         m_noteruTE->setReadOnly(false);
     }
+}
+
+void MapperDialog::geogFound(const QString &geog)
+{
+    qDebug() << geog;
 }

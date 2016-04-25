@@ -22,6 +22,7 @@ public:
     void setEnabled(bool state);
 
 signals:
+    void geogFound(const QString &geog);
     void geogChanged();
 
 private slots:

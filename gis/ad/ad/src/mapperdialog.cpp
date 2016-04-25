@@ -151,31 +151,7 @@ void MapperDialog::layoutPrivateWidgets()
 
 void MapperDialog::updatePrivateWidgets()
 {
-    if (isDirty())
-    {
-        m_countryLE->setReadOnly(false);
-        m_cityruLE->setReadOnly(false);
-        m_nameruLE->setReadOnly(false);
-        m_nameLE->setReadOnly(false);
-        m_indxLE->setReadOnly(false);
-        m_reglamentLE->setReadOnly(false);
-        m_emailLE->setReadOnly(false);
-        m_webLE->setReadOnly(false);
-
-        m_elevationSB->setEnabled(true);
-
-        m_magvarDSB->setEnabled(true);
-
-        m_notePTE->setReadOnly(false);
-
-        m_geogWid->setEnabled(true);
-
-        m_validCB->setEnabled(true);
-        m_typeCB->setEnabled(true);
-        m_intlCB->setEnabled(true);
-        m_staffCB->setEnabled(true);
-    }
-    else
+    if (state() == VyborgMapperDialog::Normal)
     {
         m_countryLE->setReadOnly(true);
         m_cityruLE->setReadOnly(true);
@@ -198,5 +174,29 @@ void MapperDialog::updatePrivateWidgets()
         m_typeCB->setEnabled(false);
         m_intlCB->setEnabled(false);
         m_staffCB->setEnabled(false);
+    }
+    else
+    {
+        m_countryLE->setReadOnly(false);
+        m_cityruLE->setReadOnly(false);
+        m_nameruLE->setReadOnly(false);
+        m_nameLE->setReadOnly(false);
+        m_indxLE->setReadOnly(false);
+        m_reglamentLE->setReadOnly(false);
+        m_emailLE->setReadOnly(false);
+        m_webLE->setReadOnly(false);
+
+        m_elevationSB->setEnabled(true);
+
+        m_magvarDSB->setEnabled(true);
+
+        m_notePTE->setReadOnly(false);
+
+        m_geogWid->setEnabled(true);
+
+        m_validCB->setEnabled(true);
+        m_typeCB->setEnabled(true);
+        m_intlCB->setEnabled(true);
+        m_staffCB->setEnabled(true);
     }
 }
