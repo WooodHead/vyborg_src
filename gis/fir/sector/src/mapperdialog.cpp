@@ -48,7 +48,7 @@ void MapperDialog::layoutPrivateWidgets()
 
 void MapperDialog::updatePrivateWidgets()
 {
-    if (isDirty())
+    if (state() == Edit)
     {
         m_sectorLE->setReadOnly(false);
         m_fullnameLE->setReadOnly(false);

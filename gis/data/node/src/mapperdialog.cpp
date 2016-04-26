@@ -1,10 +1,10 @@
 #include <QtWidgets>
 #include <QtSql>
 
+#include <vyborg.h>
+
 #include "mapperdialog.h"
 #include "declarations.h"
-
-#include "nodewidget.h"
 
 MapperDialog::MapperDialog(QSqlTableModel *model, QWidget *parent)
     : VyborgMapperDialog(model, parent)
