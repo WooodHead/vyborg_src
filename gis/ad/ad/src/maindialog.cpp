@@ -4,7 +4,8 @@
 #include "maindialog.h"
 #include "declarations.h"
 #include "mapperdialog.h"
-
+#include "tableviewdelegate.h"
+#include "tablemodel.h"
 
 MainDialog::MainDialog(QWidget *parent)
     : VyborgMainDialog(parent)
@@ -18,10 +19,12 @@ MainDialog::MainDialog(QWidget *parent)
 
 void MainDialog::setupModel()
 {
+    m_model = new TableModel();
+
     m_model->setTable(PGSQL_TABLENAME);
     m_model->select();
 
-    m_model->setHeaderData(ad_valid,       Qt::Horizontal, trUtf8("Действующий/\nНедействующий"));
+    m_model->setHeaderData(ad_opr,         Qt::Horizontal, trUtf8("Действующий/\nНедействующий"));
     m_model->setHeaderData(ad_country_pid, Qt::Horizontal, trUtf8("Страна"));
     m_model->setHeaderData(ad_cityru,      Qt::Horizontal, trUtf8("Город"));
     m_model->setHeaderData(ad_nameru,      Qt::Horizontal, trUtf8("Аэродром"));
@@ -42,12 +45,9 @@ void MainDialog::setupModel()
 void MainDialog::setupView()
 {
     m_view->setModel(m_model);
-
     m_view->resizeColumnsToContents();
     m_view->horizontalHeader()->setStretchLastSection(true);
-
     m_view->verticalHeader()->show();
-
     m_view->hideColumn(ad_pid);
     m_view->hideColumn(ad_reglament);
     m_view->hideColumn(ad_elevation);
@@ -56,8 +56,8 @@ void MainDialog::setupView()
     m_view->hideColumn(ad_web);
     m_view->hideColumn(ad_note);
     m_view->hideColumn(ad_geog);
-
     m_view->selectRow(0);
+    m_view->setItemDelegate(new TableViewDelegate);
 }
 
 void MainDialog::setupMapperDialog()
@@ -69,7 +69,7 @@ void MainDialog::setupMapperDialog()
 
 void MainDialog::setupFilterDialog()
 {
-    filterDialog_->addColumn(trUtf8("Город"), "cityru");
+    filterDialog_->addColumn(trUtf8("Город"),    "cityru");
     filterDialog_->addColumn(trUtf8("Аэродром"), ad_nameru);
 }
 

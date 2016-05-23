@@ -14,7 +14,7 @@ void MapperDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, co
 {
     int col = index.column();
 
-    if (col == ad_valid ||
+    if (col == ad_opr ||
         col == ad_type  ||
         col == ad_intl  ||
         col == ad_staff)
@@ -106,7 +106,7 @@ void MapperDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, co
 void MapperDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
     int col = index.column();
-    if (col == ad_valid)
+    if (col == ad_opr)
     {
         QComboBox *combo = static_cast<QComboBox *>(editor);
         combo->clear();

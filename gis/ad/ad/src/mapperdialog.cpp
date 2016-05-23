@@ -50,7 +50,7 @@ void MapperDialog::createPrivateWidgets()
     QDataWidgetMapper* m_mapper = mapper();
     m_mapper->addMapping(m_nodeWid,     ad_geog);
     m_mapper->addMapping(m_rwWid,       ad_pid);
-    m_mapper->addMapping(m_validCB,     ad_valid);
+    m_mapper->addMapping(m_validCB,     ad_opr);
     m_mapper->addMapping(m_countryLE,   ad_country_pid);
     m_mapper->addMapping(m_cityruLE,    ad_cityru);
     m_mapper->addMapping(m_nameruLE,    ad_nameru);

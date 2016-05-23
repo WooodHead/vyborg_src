@@ -7,7 +7,7 @@
 
 enum Columns {
     ad_pid,
-    ad_valid,
+    ad_opr,
     ad_country_pid,
     ad_cityru,
     ad_nameru,

@@ -1,4 +1,4 @@
-4#ifndef MAPPERDELEGATE_H
+#ifndef MAPPERDELEGATE_H
 #define MAPPERDELEGATE_H
 
 #include <QStyledItemDelegate>
