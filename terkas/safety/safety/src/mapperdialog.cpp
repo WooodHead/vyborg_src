@@ -138,7 +138,22 @@ void MapperDialog::layoutPrivateWidgets()
 
 void MapperDialog::updatePrivateWidgets()
 {
-    if (isDirty()) {
+    if (state() == Normal) {
+        m_dateEdit->setReadOnly(true);
+        m_shiftEdit->setReadOnly(true);
+        m_locationEdit->setReadOnly(true);
+        m_causeEdit->setReadOnly(true);
+        m_factorEdit->setReadOnly(true);
+        m_detailsEdit->setReadOnly(true);
+        m_sectorEdit->setReadOnly(true);
+        m_accCombo->setEditable(false);
+        m_classificationCombo->setEditable(false);
+        m_typeCombo->setEditable(false);
+        m_terkasCombo->setEditable(false);
+        m_alphaCombo->setEditable(false);
+        m_tcas1Combo->setEditable(false);
+        m_tcas2Combo->setEditable(false);
+    } else {
         m_dateEdit->setReadOnly(false);
         m_shiftEdit->setReadOnly(false);
         m_locationEdit->setReadOnly(false);
@@ -155,20 +170,5 @@ void MapperDialog::updatePrivateWidgets()
         m_tcas2Combo->setEditable(true);
 
         m_dateEdit->setFocus();
-    } else {
-        m_dateEdit->setReadOnly(true);
-        m_shiftEdit->setReadOnly(true);
-        m_locationEdit->setReadOnly(true);
-        m_causeEdit->setReadOnly(true);
-        m_factorEdit->setReadOnly(true);
-        m_detailsEdit->setReadOnly(true);
-        m_sectorEdit->setReadOnly(true);
-        m_accCombo->setEditable(false);
-        m_classificationCombo->setEditable(false);
-        m_typeCombo->setEditable(false);
-        m_terkasCombo->setEditable(false);
-        m_alphaCombo->setEditable(false);
-        m_tcas1Combo->setEditable(false);
-        m_tcas2Combo->setEditable(false);
     }
 }

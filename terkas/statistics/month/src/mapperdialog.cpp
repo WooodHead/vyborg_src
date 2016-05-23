@@ -82,7 +82,16 @@ void MapperDialog::layoutPrivateWidgets()
 
 void MapperDialog::updatePrivateWidgets()
 {
-    if (isDirty()) {
+    if (state() == Normal) {
+        dateEdit->setReadOnly(true);
+        innerFlightsEdit->setReadOnly(true);
+        foreignFlightsEdit->setReadOnly(true);
+        transitFlightsEdit->setReadOnly(true);
+        charterFlightsEdit->setReadOnly(true);
+        maxInDayFlightsEdit->setReadOnly(true);
+        foreignACEdit->setReadOnly(true);
+        noteEdit->setReadOnly(true);
+    } else {
         dateEdit->setReadOnly(false);
         innerFlightsEdit->setReadOnly(false);
         foreignFlightsEdit->setReadOnly(false);
@@ -93,14 +102,5 @@ void MapperDialog::updatePrivateWidgets()
         noteEdit->setReadOnly(false);
 
         dateEdit->setFocus();
-    } else {
-        dateEdit->setReadOnly(true);
-        innerFlightsEdit->setReadOnly(true);
-        foreignFlightsEdit->setReadOnly(true);
-        transitFlightsEdit->setReadOnly(true);
-        charterFlightsEdit->setReadOnly(true);
-        maxInDayFlightsEdit->setReadOnly(true);
-        foreignACEdit->setReadOnly(true);
-        noteEdit->setReadOnly(true);
     }
 }

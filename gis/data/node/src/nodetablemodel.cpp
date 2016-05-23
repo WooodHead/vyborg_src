@@ -9,7 +9,7 @@
 NodeTableModel::NodeTableModel(QObject *parent, QSqlDatabase db)
     : QSqlTableModel(parent, db)
 {
-
+    setEditStrategy(QSqlTableModel::OnManualSubmit);
 }
 
 QVariant NodeTableModel::data(const QModelIndex &idx, int role) const

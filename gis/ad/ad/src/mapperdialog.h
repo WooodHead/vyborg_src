@@ -11,7 +11,7 @@ class QDoubleSpinBox;
 class QPlainTextEdit;
 QT_END_NAMESPACE
 
-class GeogWidget;
+class NodeWidget;
 class RWWidget;
 
 class MapperDialog : public VyborgMapperDialog
@@ -43,7 +43,7 @@ private:
     QComboBox      *m_intlCB;
     QComboBox      *m_staffCB;
     QPlainTextEdit *m_notePTE;
-    GeogWidget     *m_geogWid;
+    NodeWidget     *m_nodeWid;
     RWWidget       *m_rwWid;
 };
 

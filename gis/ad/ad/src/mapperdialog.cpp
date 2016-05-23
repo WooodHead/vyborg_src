@@ -43,12 +43,12 @@ void MapperDialog::createPrivateWidgets()
 
     m_notePTE = new QPlainTextEdit;
 
-    m_geogWid = new GeogWidget;
+    m_nodeWid = new NodeWidget;
 
     m_rwWid = new RWWidget;
 
     QDataWidgetMapper* m_mapper = mapper();
-    m_mapper->addMapping(m_geogWid,     ad_geog);
+    m_mapper->addMapping(m_nodeWid,     ad_geog);
     m_mapper->addMapping(m_rwWid,       ad_pid);
     m_mapper->addMapping(m_validCB,     ad_valid);
     m_mapper->addMapping(m_countryLE,   ad_country_pid);
@@ -101,7 +101,7 @@ void MapperDialog::layoutPrivateWidgets()
 
     QVBoxLayout *vbLayout1 = new QVBoxLayout;
     vbLayout1->addLayout(formLayout1);
-    vbLayout1->addWidget(m_geogWid);
+    vbLayout1->addWidget(m_nodeWid);
 
     QWidget *page1 = new QWidget;
 //    page1->setLayout(formLayout1);
@@ -168,7 +168,7 @@ void MapperDialog::updatePrivateWidgets()
 
         m_notePTE->setReadOnly(true);
 
-        m_geogWid->setEnabled(false);
+        m_nodeWid->setEnabled(false);
 
         m_validCB->setEnabled(false);
         m_typeCB->setEnabled(false);
@@ -192,7 +192,7 @@ void MapperDialog::updatePrivateWidgets()
 
         m_notePTE->setReadOnly(false);
 
-        m_geogWid->setEnabled(true);
+        m_nodeWid->setEnabled(true);
 
         m_validCB->setEnabled(true);
         m_typeCB->setEnabled(true);
