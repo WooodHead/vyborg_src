@@ -17,6 +17,9 @@ MapperDialog::MapperDialog(QSqlTableModel *model, QWidget *parent)
 
 void MapperDialog::createPrivateWidgets()
 {
+    m_oprCheckBox  = new QCheckBox(trUtf8("OPR (действующий)"));
+    m_intlCheckBox = new QCheckBox(trUtf8("INTL (международный)"));
+
     m_countryLE   = new QLineEdit;
     m_cityruLE    = new QLineEdit;
     m_nameruLE    = new QLineEdit;
@@ -36,9 +39,7 @@ void MapperDialog::createPrivateWidgets()
     m_magvarDSB->setSingleStep(1.0);
     m_magvarDSB->setSpecialValueText(" ");
 
-    m_validCB = new QComboBox;
     m_typeCB  = new QComboBox;
-    m_intlCB  = new QComboBox;
     m_staffCB = new QComboBox;
 
     m_notePTE = new QPlainTextEdit;
@@ -50,14 +51,14 @@ void MapperDialog::createPrivateWidgets()
     QDataWidgetMapper* m_mapper = mapper();
     m_mapper->addMapping(m_nodeWid,     ad_geog);
     m_mapper->addMapping(m_rwWid,       ad_pid);
-    m_mapper->addMapping(m_validCB,     ad_opr);
+    m_mapper->addMapping(m_oprCheckBox,     ad_opr);
     m_mapper->addMapping(m_countryLE,   ad_country_pid);
     m_mapper->addMapping(m_cityruLE,    ad_cityru);
     m_mapper->addMapping(m_nameruLE,    ad_nameru);
     m_mapper->addMapping(m_nameLE,      ad_name);
     m_mapper->addMapping(m_indxLE,      ad_indx);
     m_mapper->addMapping(m_typeCB,      ad_type);
-    m_mapper->addMapping(m_intlCB,      ad_intl);
+    m_mapper->addMapping(m_intlCheckBox, ad_intl);
     m_mapper->addMapping(m_staffCB,     ad_staff);
     m_mapper->addMapping(m_reglamentLE, ad_reglament);
     m_mapper->addMapping(m_elevationSB, ad_elevation);
@@ -65,7 +66,6 @@ void MapperDialog::createPrivateWidgets()
     m_mapper->addMapping(m_emailLE,     ad_email);
     m_mapper->addMapping(m_webLE,       ad_web);
     m_mapper->addMapping(m_notePTE,     ad_note);
-
     m_mapper->setItemDelegate(new MapperDelegate);
 }
 
@@ -76,10 +76,8 @@ void MapperDialog::layoutPrivateWidgets()
     QHBoxLayout *hlayout1 = new QHBoxLayout;
     hlayout1->addWidget(new QLabel(trUtf8("Тип")));
     hlayout1->addWidget(m_typeCB);
-    hlayout1->addWidget(new QLabel(trUtf8("состояние")));
-    hlayout1->addWidget(m_validCB);
-    hlayout1->addWidget(new QLabel(trUtf8("Международный")));
-    hlayout1->addWidget(m_intlCB);
+    hlayout1->addWidget(m_oprCheckBox);
+    hlayout1->addWidget(m_intlCheckBox);
 
     QHBoxLayout *hlayout2 = new QHBoxLayout;
     hlayout2->addWidget(new QLabel(trUtf8("Аэродром")));
@@ -170,9 +168,10 @@ void MapperDialog::updatePrivateWidgets()
 
         m_nodeWid->setEnabled(false);
 
-        m_validCB->setEnabled(false);
+        m_oprCheckBox->setEnabled(false);
         m_typeCB->setEnabled(false);
-        m_intlCB->setEnabled(false);
+//        m_intlCB->setEnabled(false);
+        m_intlCheckBox->setEnabled(false);
         m_staffCB->setEnabled(false);
     }
     else
@@ -194,9 +193,10 @@ void MapperDialog::updatePrivateWidgets()
 
         m_nodeWid->setEnabled(true);
 
-        m_validCB->setEnabled(true);
+        m_oprCheckBox->setEnabled(true);
         m_typeCB->setEnabled(true);
-        m_intlCB->setEnabled(true);
+//        m_intlCB->setEnabled(true);
+        m_intlCheckBox->setEnabled(true);
         m_staffCB->setEnabled(true);
     }
 }

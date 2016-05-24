@@ -106,24 +106,25 @@ void MapperDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, co
 void MapperDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
     int col = index.column();
-    if (col == ad_opr)
-    {
-        QComboBox *combo = static_cast<QComboBox *>(editor);
-        combo->clear();
 
-        QSqlQuery query("SELECT unnest(enum_range(NULL::ad.t_ad_valid))");
-        while (query.next()) {
-            QString valid = query.value(0).toString().toUtf8();
-            if (valid == "undefined")
-                combo->addItem(QString::null);
-            else
-                combo->addItem(valid);
-        }
+//    if (col == ad_opr)
+//    {
+//        QComboBox *combo = static_cast<QComboBox *>(editor);
+//        combo->clear();
 
-        QString data = index.model()->data(index, Qt::EditRole).toString().toUtf8();
-        combo->setCurrentText(data);
-    }
-    else if (col == ad_type)
+//        QSqlQuery query("SELECT unnest(enum_range(NULL::ad.t_ad_valid))");
+//        while (query.next()) {
+//            QString valid = query.value(0).toString().toUtf8();
+//            if (valid == "undefined")
+//                combo->addItem(QString::null);
+//            else
+//                combo->addItem(valid);
+//        }
+
+//        QString data = index.model()->data(index, Qt::EditRole).toString().toUtf8();
+//        combo->setCurrentText(data);
+//    }
+    if (col == ad_type)
     {
         QComboBox *combo = static_cast<QComboBox *>(editor);
         combo->clear();
@@ -156,23 +157,27 @@ void MapperDelegate::setEditorData(QWidget *editor, const QModelIndex &index) co
 
         QString data = index.model()->data(index, Qt::EditRole).toString().toUtf8();
         combo->setCurrentText(data);
-    }
-    else if (col == ad_intl)
-    {
-        QComboBox *combo = static_cast<QComboBox *>(editor);
-        combo->clear();
+//    }
+//    else if (col == ad_intl)
+//    {
+////        QComboBox *combo = static_cast<QComboBox *>(editor);
+////        combo->clear();
 
-        QSqlQuery query("SELECT unnest(enum_range(NULL::ad.t_ad_intl))");
-        while (query.next()) {
-            QString valid = query.value(0).toString().toUtf8();
-            if (valid == "undefined")
-                combo->addItem(QString::null);
-            else
-                combo->addItem(valid);
-        }
+////        QSqlQuery query("SELECT unnest(enum_range(NULL::ad.t_ad_intl))");
+////        while (query.next()) {
+////            QString valid = query.value(0).toString().toUtf8();
+////            if (valid == "undefined")
+////                combo->addItem(QString::null);
+////            else
+////                combo->addItem(valid);
+////        }
 
-        QString data = index.model()->data(index, Qt::EditRole).toString().toUtf8();
-        combo->setCurrentText(data);
+////        QString data = index.model()->data(index, Qt::EditRole).toString().toUtf8();
+////        combo->setCurrentText(data);
+
+//        bool data = index.model()->data(index, Qt::EditRole).toBool();
+//        if (data == true)
+
     }
     else if (col == ad_elevation)
     {

@@ -15,7 +15,10 @@ QVariant TableModel::data(const QModelIndex &idx, int role) const
         return QVariant();
 
     int col = idx.column();
-    if (col == ad_opr) {
+
+    if (col == ad_opr ||
+        col == ad_intl)
+    {
         switch (role) {
         case Qt::DisplayRole:
             return QString();
@@ -26,6 +29,18 @@ QVariant TableModel::data(const QModelIndex &idx, int role) const
                     return Qt::Checked;
                 else
                     return Qt::Unchecked;
+            break;
+        }
+    }
+    else if (col == ad_staff)
+    {
+        switch (role) {
+        case Qt::DisplayRole:
+            QString data = QSqlTableModel::data(idx, Qt::DisplayRole).toString();
+            if (data == "undefined")
+                return QString();
+            else
+                return data;
             break;
         }
     }

@@ -4,7 +4,6 @@
 #include "maindialog.h"
 #include "declarations.h"
 #include "mapperdialog.h"
-#include "tableviewdelegate.h"
 #include "tablemodel.h"
 
 MainDialog::MainDialog(QWidget *parent)
@@ -24,14 +23,14 @@ void MainDialog::setupModel()
     m_model->setTable(PGSQL_TABLENAME);
     m_model->select();
 
-    m_model->setHeaderData(ad_opr,         Qt::Horizontal, trUtf8("Действующий/\nНедействующий"));
+    m_model->setHeaderData(ad_opr,         Qt::Horizontal, trUtf8("OPR"));
     m_model->setHeaderData(ad_country_pid, Qt::Horizontal, trUtf8("Страна"));
     m_model->setHeaderData(ad_cityru,      Qt::Horizontal, trUtf8("Город"));
-    m_model->setHeaderData(ad_nameru,      Qt::Horizontal, trUtf8("Аэродром"));
-    m_model->setHeaderData(ad_name,        Qt::Horizontal, trUtf8("Aerodrome\n(EN)"));
+    m_model->setHeaderData(ad_nameru,      Qt::Horizontal, trUtf8("Наименование"));
+    m_model->setHeaderData(ad_name,        Qt::Horizontal, trUtf8("Наименование (eng)"));
     m_model->setHeaderData(ad_indx,        Qt::Horizontal, trUtf8("Индекс"));
     m_model->setHeaderData(ad_type,        Qt::Horizontal, trUtf8("Тип аэродрома"));
-    m_model->setHeaderData(ad_intl,        Qt::Horizontal, trUtf8("Международный"));
+    m_model->setHeaderData(ad_intl,        Qt::Horizontal, trUtf8("INTL"));
     m_model->setHeaderData(ad_staff,       Qt::Horizontal, trUtf8("Организация"));
     m_model->setHeaderData(ad_reglament,   Qt::Horizontal, trUtf8("Регламент\nработы"));
     m_model->setHeaderData(ad_elevation,   Qt::Horizontal, trUtf8("Превышение"));
@@ -57,7 +56,6 @@ void MainDialog::setupView()
     m_view->hideColumn(ad_note);
     m_view->hideColumn(ad_geog);
     m_view->selectRow(0);
-    m_view->setItemDelegate(new TableViewDelegate);
 }
 
 void MainDialog::setupMapperDialog()

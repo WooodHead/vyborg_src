@@ -3,7 +3,6 @@ HEADERS  += \
     $$PWD/mapperdialog.h \
     $$PWD/mapperdelegate.h \
     $$PWD/maindialog.h \
-    $$PWD/tableviewdelegate.h \
     $$PWD/tablemodel.h
 
 SOURCES += \
@@ -11,5 +10,4 @@ SOURCES += \
     $$PWD/main.cpp \
     $$PWD/mapperdelegate.cpp \
     $$PWD/maindialog.cpp \
-    $$PWD/tableviewdelegate.cpp \
     $$PWD/tablemodel.cpp
