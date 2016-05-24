@@ -31,6 +31,7 @@ private:
     // Visual elements
     QCheckBox      *m_oprCheckBox;
     QCheckBox      *m_intlCheckBox;
+    QComboBox      *m_departmentComboBox;
 
     QLineEdit      *m_countryLE;
     QLineEdit      *m_cityruLE;
@@ -43,7 +44,6 @@ private:
     QSpinBox       *m_elevationSB;
     QDoubleSpinBox *m_magvarDSB;
     QComboBox      *m_typeCB;
-    QComboBox      *m_staffCB;
     QPlainTextEdit *m_notePTE;
     NodeWidget     *m_nodeWid;
     RWWidget       *m_rwWid;

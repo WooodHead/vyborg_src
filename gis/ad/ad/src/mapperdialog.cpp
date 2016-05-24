@@ -40,7 +40,7 @@ void MapperDialog::createPrivateWidgets()
     m_magvarDSB->setSpecialValueText(" ");
 
     m_typeCB  = new QComboBox;
-    m_staffCB = new QComboBox;
+    m_departmentComboBox = new QComboBox;
 
     m_notePTE = new QPlainTextEdit;
 
@@ -59,7 +59,7 @@ void MapperDialog::createPrivateWidgets()
     m_mapper->addMapping(m_indxLE,      ad_indx);
     m_mapper->addMapping(m_typeCB,      ad_type);
     m_mapper->addMapping(m_intlCheckBox, ad_intl);
-    m_mapper->addMapping(m_staffCB,     ad_staff);
+    m_mapper->addMapping(m_departmentComboBox,     ad_department);
     m_mapper->addMapping(m_reglamentLE, ad_reglament);
     m_mapper->addMapping(m_elevationSB, ad_elevation);
     m_mapper->addMapping(m_magvarDSB,   ad_magvar);
@@ -73,26 +73,52 @@ void MapperDialog::layoutPrivateWidgets()
 {
     // Основные данные
 
+    QHBoxLayout *hCountryLayout = new QHBoxLayout;
+    hCountryLayout->addWidget(new QLabel(trUtf8("Страна")));
+    hCountryLayout->addWidget(m_countryLE);
+    hCountryLayout->addWidget(new QLabel(trUtf8("Страна (eng)")));
+    hCountryLayout->addStretch(1);
+
     QHBoxLayout *hlayout1 = new QHBoxLayout;
     hlayout1->addWidget(new QLabel(trUtf8("Тип")));
     hlayout1->addWidget(m_typeCB);
     hlayout1->addWidget(m_oprCheckBox);
     hlayout1->addWidget(m_intlCheckBox);
+    hlayout1->addStretch(1);
 
-    QHBoxLayout *hlayout2 = new QHBoxLayout;
-    hlayout2->addWidget(new QLabel(trUtf8("Аэродром")));
-    hlayout2->addWidget(m_nameruLE);
-    hlayout2->addWidget(new QLabel(trUtf8("Aerodrome")));
-    hlayout2->addWidget(m_nameLE);
+    QHBoxLayout *hDepartmentLayout = new QHBoxLayout;
+    hDepartmentLayout->addWidget(new QLabel(trUtf8("Принадлежность к ведомству")));
+    hDepartmentLayout->addWidget(m_departmentComboBox);
+    hDepartmentLayout->addStretch(1);
+
+    QHBoxLayout *hNameLayout = new QHBoxLayout;
+    hNameLayout->addWidget(new QLabel(trUtf8("Наименование")));
+    hNameLayout->addWidget(m_nameruLE);
+    hNameLayout->addWidget(new QLabel(trUtf8("Наименование (eng)")));
+    hNameLayout->addWidget(m_nameLE);
+
+    QHBoxLayout *indxLayout = new QHBoxLayout;
+    indxLayout->addWidget(new QLabel(trUtf8("Индекс ИКАО")));
+    indxLayout->addWidget(m_indxLE);
+    indxLayout->addWidget(new QLabel(trUtf8("Индекс ИКАО (eng)")));
+    indxLayout->addStretch(1);
+
+
+    QVBoxLayout *vlayout1 = new QVBoxLayout;
+    vlayout1->addLayout(hCountryLayout);
+    vlayout1->addLayout(hlayout1);
+    vlayout1->addLayout(hDepartmentLayout);
+    vlayout1->addLayout(hNameLayout);
+    vlayout1->addLayout(indxLayout);
+
+
+
 
 
     // (Page 1)
 
     QFormLayout *formLayout1 = new QFormLayout;
-    formLayout1->addRow(trUtf8("Страна"),           m_countryLE);
     formLayout1->addRow(trUtf8("Город"),            m_cityruLE);
-    formLayout1->addRow(trUtf8("Индекс"),           m_indxLE);
-    formLayout1->addRow(trUtf8("Организация"),      m_staffCB);
     formLayout1->addRow(trUtf8("Регламент работы"), m_reglamentLE);
     formLayout1->addRow(trUtf8("Превышение"),       m_elevationSB);
     formLayout1->addRow(trUtf8("Магн склонение"),   m_magvarDSB);
@@ -139,8 +165,8 @@ void MapperDialog::layoutPrivateWidgets()
     tabWidget->addTab(page2, trUtf8("Контакты"));
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
-    mainLayout->addLayout(hlayout1);
-    mainLayout->addLayout(hlayout2);
+//    mainLayout->addLayout(hNameLayout);
+    mainLayout->addLayout(vlayout1);
     mainLayout->addWidget(tabWidget);
 
     QVBoxLayout *privateWidgetsLayout = layout();
@@ -172,7 +198,7 @@ void MapperDialog::updatePrivateWidgets()
         m_typeCB->setEnabled(false);
 //        m_intlCB->setEnabled(false);
         m_intlCheckBox->setEnabled(false);
-        m_staffCB->setEnabled(false);
+        m_departmentComboBox->setEnabled(false);
     }
     else
     {
@@ -197,6 +223,6 @@ void MapperDialog::updatePrivateWidgets()
         m_typeCB->setEnabled(true);
 //        m_intlCB->setEnabled(true);
         m_intlCheckBox->setEnabled(true);
-        m_staffCB->setEnabled(true);
+        m_departmentComboBox->setEnabled(true);
     }
 }

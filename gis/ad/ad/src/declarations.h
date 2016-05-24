@@ -15,7 +15,7 @@ enum Columns {
     ad_cityru,
     ad_nameru,
     ad_name,
-    ad_staff,
+    ad_department,
     ad_reglament,
     ad_elevation,
     ad_magvar,

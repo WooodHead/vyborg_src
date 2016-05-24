@@ -31,7 +31,7 @@ void MainDialog::setupModel()
     m_model->setHeaderData(ad_indx,        Qt::Horizontal, trUtf8("Индекс"));
     m_model->setHeaderData(ad_type,        Qt::Horizontal, trUtf8("Тип аэродрома"));
     m_model->setHeaderData(ad_intl,        Qt::Horizontal, trUtf8("INTL"));
-    m_model->setHeaderData(ad_staff,       Qt::Horizontal, trUtf8("Организация"));
+    m_model->setHeaderData(ad_department,  Qt::Horizontal, trUtf8("Принадлежность\nк ведомству"));
     m_model->setHeaderData(ad_reglament,   Qt::Horizontal, trUtf8("Регламент\nработы"));
     m_model->setHeaderData(ad_elevation,   Qt::Horizontal, trUtf8("Превышение"));
     m_model->setHeaderData(ad_magvar,      Qt::Horizontal, trUtf8("Магнитное\nсклонение"));

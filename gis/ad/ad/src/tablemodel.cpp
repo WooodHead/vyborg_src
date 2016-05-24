@@ -32,7 +32,7 @@ QVariant TableModel::data(const QModelIndex &idx, int role) const
             break;
         }
     }
-    else if (col == ad_staff)
+    else if (col == ad_department)
     {
         switch (role) {
         case Qt::DisplayRole:

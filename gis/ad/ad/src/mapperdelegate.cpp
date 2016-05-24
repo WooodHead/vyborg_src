@@ -17,7 +17,7 @@ void MapperDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, co
     if (col == ad_opr ||
         col == ad_type  ||
         col == ad_intl  ||
-        col == ad_staff)
+        col == ad_department)
     {
         QComboBox *combo = qobject_cast<QComboBox*>(editor);
         QString data = combo->currentText();
@@ -141,7 +141,7 @@ void MapperDelegate::setEditorData(QWidget *editor, const QModelIndex &index) co
         QString data = index.model()->data(index, Qt::EditRole).toString().toUtf8();
         combo->setCurrentText(data);
     }
-    else if (col == ad_staff)
+    else if (col == ad_department)
     {
         QComboBox *combo = static_cast<QComboBox *>(editor);
         combo->clear();
