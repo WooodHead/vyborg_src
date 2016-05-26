@@ -14,9 +14,9 @@ void MapperDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, co
 {
     int col = index.column();
 
-    if (col == ad_opr ||
+    if (/* col == ad_opr ||*/
         col == ad_type  ||
-        col == ad_intl  ||
+        /* col == ad_intl  || */
         col == ad_department)
     {
         QComboBox *combo = qobject_cast<QComboBox*>(editor);
@@ -25,6 +25,15 @@ void MapperDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, co
             model->setData(index, QString("undefined"));
         else
             model->setData(index, data);
+    }
+    else if (col == ad_opr ||
+             col == ad_intl)
+    {
+        QCheckBox *check = qobject_cast<QCheckBox *>(editor);
+        if (check->isChecked())
+            model->setData(index, true);
+        else
+            model->setData(index, false);
     }
     else if (col == ad_elevation)
     {
