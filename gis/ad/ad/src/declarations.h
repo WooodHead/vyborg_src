@@ -10,6 +10,7 @@ enum Columns {
     ad_opr,
     ad_type,
     ad_intl,
+    ad_indxru,
     ad_indx,
     ad_country_pid,
     ad_cityru,

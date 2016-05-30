@@ -94,7 +94,7 @@ void MapperDialog::layoutPrivateWidgets()
     QHBoxLayout *hNameLayout = new QHBoxLayout;
     hNameLayout->addWidget(new QLabel(trUtf8("Наименование")));
     hNameLayout->addWidget(m_nameruLE);
-    hNameLayout->addWidget(new QLabel(trUtf8("Наименование (eng)")));
+    hNameLayout->addWidget(new QLabel(trUtf8("(eng)")));
     hNameLayout->addWidget(m_nameLE);
 
     QHBoxLayout *indxLayout = new QHBoxLayout;

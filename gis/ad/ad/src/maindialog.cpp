@@ -28,7 +28,8 @@ void MainDialog::setupModel()
     m_model->setHeaderData(ad_cityru,      Qt::Horizontal, trUtf8("Город"));
     m_model->setHeaderData(ad_nameru,      Qt::Horizontal, trUtf8("Наименование"));
     m_model->setHeaderData(ad_name,        Qt::Horizontal, trUtf8("Наименование (eng)"));
-    m_model->setHeaderData(ad_indx,        Qt::Horizontal, trUtf8("Индекс"));
+    m_model->setHeaderData(ad_indxru,      Qt::Horizontal, trUtf8("Индекс\nИКАО"));
+    m_model->setHeaderData(ad_indx,        Qt::Horizontal, trUtf8("Index\nICAO"));
     m_model->setHeaderData(ad_type,        Qt::Horizontal, trUtf8("Тип аэродрома"));
     m_model->setHeaderData(ad_intl,        Qt::Horizontal, trUtf8("INTL"));
     m_model->setHeaderData(ad_department,  Qt::Horizontal, trUtf8("Принадлежность\nк ведомству"));

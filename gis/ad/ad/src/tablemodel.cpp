@@ -1,7 +1,6 @@
 #include "tablemodel.h"
 #include "declarations.h"
-
-#include <QDebug>
+#include "vyborg.h"
 
 TableModel::TableModel(QObject *parent, QSqlDatabase db)
     : QSqlTableModel(parent, db)
@@ -30,6 +29,14 @@ QVariant TableModel::data(const QModelIndex &idx, int role) const
                 else
                     return Qt::Unchecked;
             break;
+        }
+    }
+    else if (col == ad_indxru)
+    {
+        switch (role) {
+        case Qt::DisplayRole:
+            QString data = QSqlTableModel::data(idx).toString();
+            return lat2rus(data);
         }
     }
     else if (col == ad_department)
