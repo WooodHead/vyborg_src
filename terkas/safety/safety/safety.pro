@@ -11,3 +11,4 @@ LIBS += -L/usr/local/lib/vyborg -lvyborg
 include(src/files.pri)
 #DISTFILES += \
 #    src/files.pri
+

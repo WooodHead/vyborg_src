@@ -3,6 +3,7 @@
 
 #include "maindialog.h"
 #include "declarations.h"
+#include "tablemodel.h"
 #include "mapperdialog.h"
 
 #include <QDebug>
@@ -20,7 +21,9 @@ MainDialog::MainDialog(QWidget *parent)
 
 void MainDialog::setupModel()
 {
+    m_model = new TableModel;
     m_model->setTable(PGSQL_TABLENAME);
+
     bool ret = m_model->select();
     if (ret == false) {
         QString msgText("SELECT returned FALSE: " + m_model->lastError().text());
@@ -54,18 +57,15 @@ void MainDialog::setupView()
 {
     m_view->setModel(m_model);
 
-    m_view->resizeRowsToContents();
-    m_view->resizeColumnsToContents();
-
-    m_view->selectRow(0);
-
     m_view->setColumnHidden(safety_pid,     true);
     m_view->setColumnHidden(safety_cause,   true);
     m_view->setColumnHidden(safety_details, true);
     m_view->setColumnHidden(safety_factor,  true);
 
     m_view->resizeRowsToContents();
+    m_view->resizeColumnsToContents();
 
+    m_view->selectRow(0);
 
 //    QHeaderView *header = m_view->horizontalHeader();
     //    header->setSectionResizeMode(safe, QHeaderView::Fixed);

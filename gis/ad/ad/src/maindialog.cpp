@@ -19,10 +19,7 @@ MainDialog::MainDialog(QWidget *parent)
 void MainDialog::setupModel()
 {
     m_model = new TableModel();
-
     m_model->setTable(PGSQL_TABLENAME);
-    m_model->select();
-
     m_model->setHeaderData(ad_opr,         Qt::Horizontal, trUtf8("OPR"));
     m_model->setHeaderData(ad_country_pid, Qt::Horizontal, trUtf8("Страна"));
     m_model->setHeaderData(ad_cityru,      Qt::Horizontal, trUtf8("Город"));
@@ -40,6 +37,7 @@ void MainDialog::setupModel()
     m_model->setHeaderData(ad_web,         Qt::Horizontal, trUtf8("Web-сайт"));
     m_model->setHeaderData(ad_note,        Qt::Horizontal, trUtf8("Примечание"));
     m_model->setHeaderData(ad_geog,        Qt::Horizontal, trUtf8("Координаты"));
+    m_model->select();
 }
 
 void MainDialog::setupView()
