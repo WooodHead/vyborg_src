@@ -3,7 +3,7 @@ TEMPLATE = app
 CONFIG += vyborg
 
 TARGET = vyborg_ad_ad
-DESTDIR = /home/ubuntu/Programming/bin
+DESTDIR = /home/debian/Programming/bin
 
 OBJECTS_DIR = tmp
 MOC_DIR = tmp

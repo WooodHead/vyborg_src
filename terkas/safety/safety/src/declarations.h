@@ -6,7 +6,9 @@
 #define PGSQL_TABLENAME "safety.vw_safety"
 
 enum {
+    safety_pid,
     safety_date,
+    safety_department,
     safety_shift,
     safety_location,
     safety_cause,
@@ -23,4 +25,3 @@ enum {
 };
 
 #endif // DECLARATIONS_H
-

@@ -59,6 +59,7 @@ void MainDialog::setupView()
 
     m_view->selectRow(0);
 
+    m_view->setColumnHidden(safety_pid,     true);
     m_view->setColumnHidden(safety_cause,   true);
     m_view->setColumnHidden(safety_details, true);
     m_view->setColumnHidden(safety_factor,  true);
