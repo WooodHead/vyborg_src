@@ -11,4 +11,4 @@ MOC_DIR = tmp
 include(src/files.pri)
 
 INCLUDEPATH += /usr/local/include/vyborg
-
+LIBS += -L/usr/local/lib/vyborg -lvyborg

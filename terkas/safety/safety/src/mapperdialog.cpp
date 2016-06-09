@@ -17,13 +17,14 @@ void MapperDialog::createPrivateWidgets()
     m_dateEdit            = new QDateEdit;
     m_dateEdit->setDisplayFormat("yyyy MMMM dd");
 
-    m_shiftEdit = new QLineEdit;
+    m_accCombo = new QComboBox;
+    m_departmentCombo = new QComboBox;
+    m_shiftCombo = new QComboBox;
+    m_sectorCombo = new QComboBox;
     m_locationEdit = new QLineEdit;
     m_causeEdit = new QTextEdit;
     m_factorEdit = new QTextEdit;
     m_detailsEdit = new QTextEdit;
-    m_sectorEdit = new QLineEdit;
-    m_accCombo = new QComboBox;
     m_classificationCombo = new QComboBox;
     m_typeCombo = new QComboBox;
     m_terkasCombo = new QComboBox;
@@ -33,13 +34,14 @@ void MapperDialog::createPrivateWidgets()
 
     QDataWidgetMapper* m_mapper = mapper();
     m_mapper->addMapping(m_dateEdit,            safety_date);
-    m_mapper->addMapping(m_shiftEdit,           safety_shift);
+    m_mapper->addMapping(m_accCombo,            safety_acc);
+    m_mapper->addMapping(m_departmentCombo,     safety_department);
+    m_mapper->addMapping(m_shiftCombo,          safety_shift);
+    m_mapper->addMapping(m_sectorCombo,         safety_sector_fullname);
     m_mapper->addMapping(m_locationEdit,        safety_location);
     m_mapper->addMapping(m_causeEdit,           safety_cause);
     m_mapper->addMapping(m_factorEdit,          safety_factor);
     m_mapper->addMapping(m_detailsEdit,         safety_details);
-    m_mapper->addMapping(m_sectorEdit,          safety_sector_pid);
-    m_mapper->addMapping(m_accCombo,            safety_acc);
     m_mapper->addMapping(m_classificationCombo, safety_classification);
     m_mapper->addMapping(m_typeCombo,           safety_type);
     m_mapper->addMapping(m_terkasCombo,         safety_terkas);
@@ -54,8 +56,17 @@ void MapperDialog::layoutPrivateWidgets()
     QLabel *dateLabel = new QLabel(trUtf8("Дата события:"));
     dateLabel->setBuddy(m_dateEdit);
 
-    QLabel *shiftLabel = new QLabel(trUtf8("Shift:"));
-    shiftLabel->setBuddy(m_shiftEdit);
+    QLabel *accLabel = new QLabel(trUtf8("ACC:"));
+    accLabel->setBuddy(m_accCombo);
+
+    QLabel *departmentLabel = new QLabel(trUtf8("Подразделение:"));
+    departmentLabel->setBuddy(m_departmentCombo);
+
+    QLabel *shiftLabel = new QLabel(trUtf8("Смена:"));
+    shiftLabel->setBuddy(m_shiftCombo);
+
+    QLabel *sectorLabel = new QLabel(trUtf8("Сектор:"));
+    sectorLabel->setBuddy(m_sectorCombo);
 
     QLabel *locationLabel = new QLabel(trUtf8("Location:"));
     locationLabel->setBuddy(m_locationEdit);
@@ -68,12 +79,6 @@ void MapperDialog::layoutPrivateWidgets()
 
     QLabel *detailsLabel = new QLabel(trUtf8("Details:"));
     detailsLabel->setBuddy(m_detailsEdit);
-
-    QLabel *sectorLabel = new QLabel(trUtf8("Sector:"));
-    sectorLabel->setBuddy(m_sectorEdit);
-
-    QLabel *accLabel = new QLabel(trUtf8("ACC:"));
-    accLabel->setBuddy(m_accCombo);
 
     QLabel *classificationLabel = new QLabel(trUtf8("Classification:"));
     classificationLabel->setBuddy(m_classificationCombo);
@@ -103,10 +108,12 @@ void MapperDialog::layoutPrivateWidgets()
     QHBoxLayout *accSectorShiftLayout = new QHBoxLayout;
     accSectorShiftLayout->addWidget(accLabel);
     accSectorShiftLayout->addWidget(m_accCombo);
-    accSectorShiftLayout->addWidget(sectorLabel);
-    accSectorShiftLayout->addWidget(m_sectorEdit);
+    accSectorShiftLayout->addWidget(departmentLabel);
+    accSectorShiftLayout->addWidget(m_departmentCombo);
     accSectorShiftLayout->addWidget(shiftLabel);
-    accSectorShiftLayout->addWidget(m_shiftEdit);
+    accSectorShiftLayout->addWidget(m_shiftCombo);
+    accSectorShiftLayout->addWidget(sectorLabel);
+    accSectorShiftLayout->addWidget(m_sectorCombo);
 
     QHBoxLayout *atcSposLayout = new QHBoxLayout;
     atcSposLayout->addWidget(terkasLabel);
@@ -140,12 +147,12 @@ void MapperDialog::updatePrivateWidgets()
 {
     if (state() == Normal) {
         m_dateEdit->setReadOnly(true);
-        m_shiftEdit->setReadOnly(true);
+//        m_shiftEdit->setReadOnly(true);
         m_locationEdit->setReadOnly(true);
         m_causeEdit->setReadOnly(true);
         m_factorEdit->setReadOnly(true);
         m_detailsEdit->setReadOnly(true);
-        m_sectorEdit->setReadOnly(true);
+//        m_sectorEdit->setReadOnly(true);
         m_accCombo->setEditable(false);
         m_classificationCombo->setEditable(false);
         m_typeCombo->setEditable(false);
@@ -155,12 +162,12 @@ void MapperDialog::updatePrivateWidgets()
         m_tcas2Combo->setEditable(false);
     } else {
         m_dateEdit->setReadOnly(false);
-        m_shiftEdit->setReadOnly(false);
+//        m_shiftEdit->setReadOnly(false);
         m_locationEdit->setReadOnly(false);
         m_causeEdit->setReadOnly(false);
         m_factorEdit->setReadOnly(false);
         m_detailsEdit->setReadOnly(false);
-        m_sectorEdit->setReadOnly(false);
+//        m_sectorEdit->setReadOnly(false);
         m_accCombo->setEditable(true);
         m_classificationCombo->setEditable(true);
         m_typeCombo->setEditable(true);

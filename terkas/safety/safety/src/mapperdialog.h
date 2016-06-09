@@ -24,13 +24,14 @@ protected:
 
 private:
     QDateEdit *m_dateEdit;
-    QLineEdit *m_shiftEdit;
+    QComboBox *m_accCombo;
+    QComboBox *m_departmentCombo;
+    QComboBox *m_shiftCombo;
+    QComboBox *m_sectorCombo;
     QLineEdit *m_locationEdit;
     QTextEdit *m_causeEdit;
     QTextEdit *m_factorEdit;
     QTextEdit *m_detailsEdit;
-    QLineEdit *m_sectorEdit;
-    QComboBox *m_accCombo;
     QComboBox *m_classificationCombo;
     QComboBox *m_typeCombo;
     QComboBox *m_terkasCombo;

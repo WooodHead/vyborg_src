@@ -6,9 +6,6 @@
 #include "tablemodel.h"
 #include "mapperdialog.h"
 
-#include <QDebug>
-
-
 MainDialog::MainDialog(QWidget *parent)
     : VyborgMainDialog(parent)
 {
@@ -56,6 +53,9 @@ void MainDialog::setupModel()
 void MainDialog::setupView()
 {
     m_view->setModel(m_model);
+    m_view->resizeColumnsToContents();
+    m_view->horizontalHeader()->setStretchLastSection(true);
+    m_view->verticalHeader()->show();
     m_view->setColumnHidden(safety_pid,        true);
     m_view->setColumnHidden(safety_sector_pid, true);
     m_view->setColumnHidden(safety_cause,      true);
@@ -67,7 +67,7 @@ void MainDialog::setupView()
     m_view->setColumnHidden(safety_tcas2,      true);
 
 //    m_view->resizeRowsToContents();
-    m_view->resizeColumnsToContents();
+//    m_view->resizeColumnsToContents();
     m_view->selectRow(0);
 
 //    QHeaderView *header = m_view->horizontalHeader();
