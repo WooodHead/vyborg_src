@@ -61,8 +61,12 @@ void MainDialog::setupView()
     m_view->setColumnHidden(safety_cause,   true);
     m_view->setColumnHidden(safety_details, true);
     m_view->setColumnHidden(safety_factor,  true);
+    m_view->setColumnHidden(safety_terkas,  true);
+    m_view->setColumnHidden(safety_alpha,   true);
+    m_view->setColumnHidden(safety_tcas1,   true);
+    m_view->setColumnHidden(safety_tcas2,   true);
 
-    m_view->resizeRowsToContents();
+//    m_view->resizeRowsToContents();
     m_view->resizeColumnsToContents();
 
     m_view->selectRow(0);

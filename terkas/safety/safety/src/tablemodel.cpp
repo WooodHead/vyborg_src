@@ -23,8 +23,56 @@ QVariant TableModel::data(const QModelIndex &idx, int role) const
         case Qt::DisplayRole:
             QString str = QSqlTableModel::data(idx, Qt::DisplayRole).toString();
             QDate date = QDate::fromString(str, "yyyy-MM-dd");
-            return date;
-//            return str;
+            return date.toString(QString("yyyy MMMM dd"));
+            break;
+        }
+    }
+    else if (col == safety_shift)
+    {
+        switch (role) {
+        case Qt::DisplayRole:
+            QString str = QSqlTableModel::data(idx, Qt::DisplayRole).toString();
+            int num = str.toInt();
+            if (num > 0)
+                return QString("смена № " + str);
+            else
+                return QVariant();
+            break;
+        }
+    }
+    else if (col == safety_department)
+    {
+        switch (role) {
+        case Qt::DisplayRole:
+            QString strData = QSqlTableModel::data(idx, Qt::DisplayRole).toString();
+            if (strData == "unassigned")
+                return QVariant();
+            else
+                return strData;
+            break;
+        }
+    }
+    else if (col == safety_classification)
+    {
+        switch (role) {
+        case Qt::DisplayRole:
+            QString data = QSqlTableModel::data(idx, Qt::DisplayRole).toString();
+            if (data == "unclassified")
+                return QVariant();
+            else
+                return data;
+            break;
+        }
+    }
+    else if (col == safety_type)
+    {
+        switch (role) {
+        case Qt::DisplayRole:
+            QString data = QSqlTableModel::data(idx, Qt::DisplayRole).toString();
+            if (data == "unclassified")
+                return QVariant();
+            else
+                return data;
             break;
         }
     }
