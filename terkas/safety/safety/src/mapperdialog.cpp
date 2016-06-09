@@ -38,7 +38,7 @@ void MapperDialog::createPrivateWidgets()
     m_mapper->addMapping(m_causeEdit,           safety_cause);
     m_mapper->addMapping(m_factorEdit,          safety_factor);
     m_mapper->addMapping(m_detailsEdit,         safety_details);
-    m_mapper->addMapping(m_sectorEdit,          safety_sector_id);
+    m_mapper->addMapping(m_sectorEdit,          safety_sector_pid);
     m_mapper->addMapping(m_accCombo,            safety_acc);
     m_mapper->addMapping(m_classificationCombo, safety_classification);
     m_mapper->addMapping(m_typeCombo,           safety_type);

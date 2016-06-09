@@ -56,19 +56,18 @@ void MainDialog::setupModel()
 void MainDialog::setupView()
 {
     m_view->setModel(m_model);
-
-    m_view->setColumnHidden(safety_pid,     true);
-    m_view->setColumnHidden(safety_cause,   true);
-    m_view->setColumnHidden(safety_details, true);
-    m_view->setColumnHidden(safety_factor,  true);
-    m_view->setColumnHidden(safety_terkas,  true);
-    m_view->setColumnHidden(safety_alpha,   true);
-    m_view->setColumnHidden(safety_tcas1,   true);
-    m_view->setColumnHidden(safety_tcas2,   true);
+    m_view->setColumnHidden(safety_pid,        true);
+    m_view->setColumnHidden(safety_sector_pid, true);
+    m_view->setColumnHidden(safety_cause,      true);
+    m_view->setColumnHidden(safety_details,    true);
+    m_view->setColumnHidden(safety_factor,     true);
+    m_view->setColumnHidden(safety_terkas,     true);
+    m_view->setColumnHidden(safety_alpha,      true);
+    m_view->setColumnHidden(safety_tcas1,      true);
+    m_view->setColumnHidden(safety_tcas2,      true);
 
 //    m_view->resizeRowsToContents();
     m_view->resizeColumnsToContents();
-
     m_view->selectRow(0);
 
 //    QHeaderView *header = m_view->horizontalHeader();
