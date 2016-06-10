@@ -60,17 +60,17 @@ void MapperDialog::layoutPrivateWidgets()
 
 void MapperDialog::updatePrivateWidgets()
 {
-    if (isDirty()) {
+    if (state() == Normal) {
+        m_abbrComboBox->setEditable(false);
+        m_functionLineEdit->setReadOnly(true);
+        m_valLineEdit->setReadOnly(true);
+        m_valmaxLineEdit->setReadOnly(true);
+    } else {
         m_abbrComboBox->setEditable(true);
         m_functionLineEdit->setReadOnly(false);
         m_valLineEdit->setReadOnly(false);
         m_valmaxLineEdit->setReadOnly(false);
 
         m_abbrComboBox->setFocus();
-    } else {
-        m_abbrComboBox->setEditable(false);
-        m_functionLineEdit->setReadOnly(true);
-        m_valLineEdit->setReadOnly(true);
-        m_valmaxLineEdit->setReadOnly(true);
     }
 }

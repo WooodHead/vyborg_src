@@ -164,7 +164,30 @@ void MapperDialog::layoutPrivateWidgets()
 
 void MapperDialog::updatePrivateWidgets()
 {
-    if (isDirty()) {
+    if (state() == Normal) {
+        m_dateEdit->setReadOnly(true);
+        m_a5edit->setReadOnly(true);
+        m_a6edit->setReadOnly(true);
+        m_v1edit->setReadOnly(true);
+        m_v2edit->setReadOnly(true);
+        m_v3edit->setReadOnly(true);
+        m_v4edit->setReadOnly(true);
+        m_g2edit->setReadOnly(true);
+        m_g3edit->setReadOnly(true);
+        m_g4edit->setReadOnly(true);
+        m_g5edit->setReadOnly(true);
+        m_g6edit->setReadOnly(true);
+        m_z1edit->setReadOnly(true);
+        m_z2edit->setReadOnly(true);
+        m_k1edit->setReadOnly(true);
+        m_k2edit->setReadOnly(true);
+        m_l1edit->setReadOnly(true);
+        m_p1edit->setReadOnly(true);
+        m_p2edit->setReadOnly(true);
+        m_s1edit->setReadOnly(true);
+        m_h1edit->setReadOnly(true);
+        m_h2edit->setReadOnly(true);
+    } else {
         m_dateEdit->setReadOnly(false);
         m_a5edit->setReadOnly(false);
         m_a6edit->setReadOnly(false);
@@ -189,28 +212,5 @@ void MapperDialog::updatePrivateWidgets()
         m_h2edit->setReadOnly(false);
 
         m_dateEdit->setFocus();
-    } else {
-        m_dateEdit->setReadOnly(true);
-        m_a5edit->setReadOnly(true);
-        m_a6edit->setReadOnly(true);
-        m_v1edit->setReadOnly(true);
-        m_v2edit->setReadOnly(true);
-        m_v3edit->setReadOnly(true);
-        m_v4edit->setReadOnly(true);
-        m_g2edit->setReadOnly(true);
-        m_g3edit->setReadOnly(true);
-        m_g4edit->setReadOnly(true);
-        m_g5edit->setReadOnly(true);
-        m_g6edit->setReadOnly(true);
-        m_z1edit->setReadOnly(true);
-        m_z2edit->setReadOnly(true);
-        m_k1edit->setReadOnly(true);
-        m_k2edit->setReadOnly(true);
-        m_l1edit->setReadOnly(true);
-        m_p1edit->setReadOnly(true);
-        m_p2edit->setReadOnly(true);
-        m_s1edit->setReadOnly(true);
-        m_h1edit->setReadOnly(true);
-        m_h2edit->setReadOnly(true);
     }
 }

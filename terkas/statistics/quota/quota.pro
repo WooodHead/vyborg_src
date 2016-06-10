@@ -1,7 +1,7 @@
-QT       += core gui widgets sql
+QT += core gui widgets sql
 TARGET = quota
 TEMPLATE = app
-DESTDIR = /home/kubuntu/bin
+DESTDIR = /home/debian/bin
 
 MOC_DIR = tmp
 OBJECTS_DIR = tmp

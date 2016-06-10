@@ -52,15 +52,17 @@ void MapperDialog::layoutPrivateWidgets()
 
 void MapperDialog::updatePrivateWidgets()
 {
-    if (isDirty()) {
+    if (state() == Normal) {
+        m_dateEdit->setReadOnly(true);
+        m_sectorCombo->setEditable(false);
+        m_volEdit->setReadOnly(true);
+    }
+    else
+    {
         m_dateEdit->setReadOnly(false);
         m_sectorCombo->setEditable(true);
         m_volEdit->setReadOnly(false);
 
         m_dateEdit->setFocus();
-    } else {
-        m_dateEdit->setReadOnly(true);
-        m_sectorCombo->setEditable(false);
-        m_volEdit->setReadOnly(true);
     }
 }
