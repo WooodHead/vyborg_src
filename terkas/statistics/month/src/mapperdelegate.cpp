@@ -12,19 +12,19 @@ MapperDelegate::MapperDelegate(QObject *parent)
 
 void MapperDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
-//    switch (index.column()) {
-//    case safety_department: {
-//        QSqlQueryModel *model = new QSqlQueryModel;
-//        model->setQuery("SELECT department FROM structure.department");
+    switch (index.column()) {
+    case month_department: {
+        QSqlQueryModel *model = new QSqlQueryModel;
+        model->setQuery("SELECT department FROM structure.department");
 
-//        QComboBox *combo = qobject_cast<QComboBox *>(editor);
-//        Q_ASSERT(combo);
-//        combo->setModel(model);
+        QComboBox *combo = qobject_cast<QComboBox *>(editor);
+        Q_ASSERT(combo);
+        combo->setModel(model);
 
-//        QString data = index.data(Qt::DisplayRole).toString();
-//        combo->setCurrentText(data);
-//        break;
-//    }
+        QString data = index.data(Qt::DisplayRole).toString();
+        combo->setCurrentText(data);
+        break;
+    }
 //    case safety_shift: {
 //        QComboBox *combo = qobject_cast<QComboBox *>(editor);
 //        combo->addItem(QString(""));
@@ -49,7 +49,7 @@ void MapperDelegate::setEditorData(QWidget *editor, const QModelIndex &index) co
 //        combo->setCurrentText(data);
 //        break;
 //    }
-//    }
+    }
 
 //    int col = index.column();
 
@@ -152,15 +152,16 @@ void MapperDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, co
 //            qDebug() << "NO";
 //        break;
 //    }
-//    case safety_department: {
-//        QComboBox *combo = qobject_cast<QComboBox *>(editor);
-//        QString data = combo->currentText();
+    case month_department: {
+        QComboBox *combo = qobject_cast<QComboBox *>(editor);
+        QString data = combo->currentText();
 //        if (data.isEmpty())
-//            model->setData(index, QVariant());
-//        else
-//            model->setData(index, data);
-//        break;
-//    }
+        if (data == "unassigned")
+            model->setData(index, QVariant());
+        else
+            model->setData(index, data);
+        break;
+    }
 //    case safety_shift: {
 //        QComboBox *combo = qobject_cast<QComboBox*>(editor);
 //        QString data = combo->currentText();

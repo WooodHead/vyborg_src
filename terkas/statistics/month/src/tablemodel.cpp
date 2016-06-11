@@ -30,3 +30,28 @@ QVariant TableModel::data(const QModelIndex &idx, int role) const
 
     return QSqlTableModel::data(idx, role);
 }
+
+QVariant TableModel::headerData(int section, Qt::Orientation orientation, int role) const
+{
+    if (orientation == Qt::Horizontal)
+    {
+        if (section >= columnCount())
+            return QVariant();
+
+        if (role == Qt::DisplayRole) {
+            switch (section) {
+            case month_monthyear:
+                return QString("Год / Месяц");
+                break;
+            case month_department:
+                return QString("Подразделение");
+                break;
+            case month_vol:
+                return QString("Количество\nобслуженных ВС");
+                break;
+            }
+        }
+    }
+
+    return QSqlTableModel::headerData(section, orientation, role);
+}

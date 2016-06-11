@@ -14,10 +14,9 @@ MapperDialog::MapperDialog(QSqlTableModel *model, QWidget *parent)
 
 void MapperDialog::createPrivateWidgets()
 {
-    m_monthyearDateEdit            = new QDateEdit;
+    m_monthyearDateEdit = new QDateEdit;
     m_monthyearDateEdit->setDisplayFormat("yyyy MMMM dd");
-
-    m_departmentLineEdit = new QLineEdit;
+    m_departmentComboBox = new QComboBox;
     m_volLineEdit = new QLineEdit;
 
 //    m_accCombo = new QComboBox;
@@ -36,8 +35,8 @@ void MapperDialog::createPrivateWidgets()
 //    m_tcas2Combo = new QComboBox;
 
     QDataWidgetMapper* m_mapper = mapper();
-    m_mapper->addMapping(m_monthyearDateEdit,           month_monthyear);
-    m_mapper->addMapping(m_departmentLineEdit, month_department);
+    m_mapper->addMapping(m_monthyearDateEdit,  month_monthyear);
+    m_mapper->addMapping(m_departmentComboBox, month_department);
     m_mapper->addMapping(m_volLineEdit,        month_vol);
 //    m_mapper->addMapping(m_accCombo,            safety_acc);
 //    m_mapper->addMapping(m_departmentCombo,     safety_department);
@@ -146,7 +145,7 @@ void MapperDialog::layoutPrivateWidgets()
 
     QFormLayout *formLayout = new QFormLayout;
     formLayout->addRow(QString("Месяц/Год"),     m_monthyearDateEdit);
-    formLayout->addRow(QString("Подразделение"), m_departmentLineEdit);
+    formLayout->addRow(QString("Подразделение"), m_departmentComboBox);
     formLayout->addRow(QString("Количество"),    m_volLineEdit);
 
     QVBoxLayout *privateWidgetsLayout = layout();

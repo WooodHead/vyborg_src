@@ -6,8 +6,7 @@
 QT_BEGIN_NAMESPACE
 class QDateEdit;
 class QLineEdit;
-//class QComboBox;
-//class QTextEdit;
+class QComboBox;
 QT_END_NAMESPACE
 
 class MapperDialog : public VyborgMapperDialog
@@ -24,7 +23,7 @@ protected:
 
 private:
     QDateEdit *m_monthyearDateEdit;
-    QLineEdit *m_departmentLineEdit;
+    QComboBox *m_departmentComboBox;
     QLineEdit *m_volLineEdit;
 };
 
