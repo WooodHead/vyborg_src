@@ -6,10 +6,10 @@
 #define PGSQL_TABLENAME "statistics.vw_month"
 
 enum Columns {
-    month_pid,
-    month_department,
-    month_monthyear,
-    month_vol,
+    month_pid,        // 0
+    month_monthyear,  // 1
+    month_department, // 2
+    month_vol,        // 3
     ColumnsNumber
 };
 

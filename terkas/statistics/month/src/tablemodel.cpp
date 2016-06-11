@@ -1,6 +1,9 @@
-#include "tablemodel.h"
+#include <QDate>
+
+#include <vyborg.h>
+
 #include "declarations.h"
-#include "vyborg.h"
+#include "tablemodel.h"
 
 TableModel::TableModel(QObject *parent, QSqlDatabase db)
     : QSqlTableModel(parent, db)
@@ -12,6 +15,18 @@ QVariant TableModel::data(const QModelIndex &idx, int role) const
 {
     if (!idx.isValid())
         return QVariant();
+
+    if (role == Qt::DisplayRole)
+    {
+        switch (idx.column()) {
+        case month_monthyear: {
+            QString strData = QSqlTableModel::data(idx, Qt::DisplayRole).toString();
+            QDate dateData = QDate::fromString(strData, "yyyy-MM-dd");
+            return dateData.toString(QString("yyyy MMMM"));
+            break;
+        }
+        }
+    }
 
 //    int col = idx.column();
 
