@@ -2,7 +2,7 @@
 
 #include "mapperdialog.h"
 #include "declarations.h"
-//#include "mapperdelegate.h"
+#include "mapperdelegate.h"
 
 MapperDialog::MapperDialog(QSqlTableModel *model, QWidget *parent)
     : VyborgMapperDialog(model, parent)
@@ -53,7 +53,7 @@ void MapperDialog::createPrivateWidgets()
 //    m_mapper->addMapping(m_alphaCombo,          safety_alpha);
 //    m_mapper->addMapping(m_tcas1Combo,          safety_tcas1);
 //    m_mapper->addMapping(m_tcas2Combo,          safety_tcas2);
-//    m_mapper->setItemDelegate(new MapperDelegate);
+    m_mapper->setItemDelegate(new MapperDelegate);
 }
 
 void MapperDialog::layoutPrivateWidgets()

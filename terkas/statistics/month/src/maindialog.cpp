@@ -57,6 +57,7 @@ void MainDialog::setupView()
 //    m_view->horizontalHeader()->setStretchLastSection(true);
     m_view->verticalHeader()->show();
     m_view->setColumnHidden(month_pid, true);
+    m_view->setColumnHidden(month_department_pid, true);
     m_view->selectRow(0);
 }
 

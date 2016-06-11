@@ -14,6 +14,7 @@ int main(int argc, char *argv[])
         return -1;
 
     MainDialog mainDialog;
+    mainDialog.setTitle("Статистика филиала \"МЦ АУВД\"");
     mainDialog.showMaximized();
 
     app.exec();
