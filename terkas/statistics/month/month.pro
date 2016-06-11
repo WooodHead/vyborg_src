@@ -1,24 +1,18 @@
-QT       += core gui sql widgets
-TARGET   =  statistics_month
-TEMPLATE =  app
-DESTDIR = /home/debian/bin
-
-QMAKESPEC += $$QT_INSTALL_DIR/qtbase/mkspecs/features/
+QT += core gui widgets sql
+TEMPLATE = app
 CONFIG += vyborg
+TARGET = vyborg_statistics_month
+DESTDIR = /home/debian/Programming/bin
 
 OBJECTS_DIR = tmp
 MOC_DIR = tmp
-
-DEPENDPATH += . \
-    src
-
-#DISTFILES += \
-#    src/files.pri
 
 include(src/files.pri)
 
 INCLUDEPATH += /usr/local/include/vyborg
 LIBS += -L/usr/local/lib/vyborg -lvyborg
 
+#DISTFILES += \
+#    src/files.pri
 
 

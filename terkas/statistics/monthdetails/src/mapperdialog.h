@@ -6,8 +6,7 @@
 QT_BEGIN_NAMESPACE
 class QDateEdit;
 class QLineEdit;
-//class QComboBox;
-//class QTextEdit;
+class QTextEdit;
 QT_END_NAMESPACE
 
 class MapperDialog : public VyborgMapperDialog
@@ -23,9 +22,14 @@ protected:
     virtual void updatePrivateWidgets() Q_DECL_OVERRIDE;
 
 private:
-    QDateEdit *m_monthyearDateEdit;
-    QLineEdit *m_departmentLineEdit;
-    QLineEdit *m_volLineEdit;
+    QDateEdit *dateEdit;
+    QLineEdit *innerFlightsEdit;
+    QLineEdit *foreignFlightsEdit;
+    QLineEdit *transitFlightsEdit;
+    QLineEdit *charterFlightsEdit;
+    QLineEdit *maxInDayFlightsEdit;
+    QLineEdit *foreignACEdit;
+    QTextEdit *noteEdit;
 };
 
 #endif // MAPPERDIALOG_H

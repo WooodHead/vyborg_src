@@ -5,15 +5,12 @@
 #define PGSQL_DATABASE "terkas"
 #define PGSQL_TABLENAME "statistics.vw_month"
 
-enum {
-    statistics_date,
-    statistics_internal,
-    statistics_external,
-    statistics_transit,
-    statistics_charter,
-    statistics_maxday,
-    statistics_foreigner,
-    statistics_note
+enum Columns {
+    month_pid,
+    month_department,
+    month_monthyear,
+    month_vol,
+    ColumnsNumber
 };
 
 #endif // DECLARATIONS_H

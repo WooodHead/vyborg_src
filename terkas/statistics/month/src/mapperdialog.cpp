@@ -2,7 +2,7 @@
 
 #include "mapperdialog.h"
 #include "declarations.h"
-
+//#include "mapperdelegate.h"
 
 MapperDialog::MapperDialog(QSqlTableModel *model, QWidget *parent)
     : VyborgMapperDialog(model, parent)
@@ -14,93 +14,178 @@ MapperDialog::MapperDialog(QSqlTableModel *model, QWidget *parent)
 
 void MapperDialog::createPrivateWidgets()
 {
-    dateEdit            = new QDateEdit;
-    dateEdit->setDisplayFormat("yyyy MMMM");
+    m_monthyearDateEdit            = new QDateEdit;
+    m_monthyearDateEdit->setDisplayFormat("yyyy MMMM dd");
 
-    innerFlightsEdit    = new QLineEdit;
-    innerFlightsEdit->setValidator(new QIntValidator(0, 100000, this));
+    m_departmentLineEdit = new QLineEdit;
+    m_volLineEdit = new QLineEdit;
 
-    foreignFlightsEdit  = new QLineEdit;
-    transitFlightsEdit  = new QLineEdit;
-    charterFlightsEdit  = new QLineEdit;
-    maxInDayFlightsEdit = new QLineEdit;
-    foreignACEdit       = new QLineEdit;
-    noteEdit            = new QTextEdit;
-
+//    m_accCombo = new QComboBox;
+//    m_departmentCombo = new QComboBox;
+//    m_shiftCombo = new QComboBox;
+//    m_sectorCombo = new QComboBox;
+//    m_locationEdit = new QLineEdit;
+//    m_causeEdit = new QTextEdit;
+//    m_factorEdit = new QTextEdit;
+//    m_detailsEdit = new QTextEdit;
+//    m_classificationCombo = new QComboBox;
+//    m_typeCombo = new QComboBox;
+//    m_terkasCombo = new QComboBox;
+//    m_alphaCombo = new QComboBox;
+//    m_tcas1Combo = new QComboBox;
+//    m_tcas2Combo = new QComboBox;
 
     QDataWidgetMapper* m_mapper = mapper();
-    m_mapper->addMapping(dateEdit,            statistics_date);
-    m_mapper->addMapping(innerFlightsEdit,    statistics_internal);
-    m_mapper->addMapping(foreignFlightsEdit,  statistics_external);
-    m_mapper->addMapping(transitFlightsEdit,  statistics_transit);
-    m_mapper->addMapping(charterFlightsEdit,  statistics_charter);
-    m_mapper->addMapping(maxInDayFlightsEdit, statistics_maxday);
-    m_mapper->addMapping(foreignACEdit,       statistics_foreigner);
-    m_mapper->addMapping(noteEdit,            statistics_note);
+    m_mapper->addMapping(m_monthyearDateEdit,           month_monthyear);
+    m_mapper->addMapping(m_departmentLineEdit, month_department);
+    m_mapper->addMapping(m_volLineEdit,        month_vol);
+//    m_mapper->addMapping(m_accCombo,            safety_acc);
+//    m_mapper->addMapping(m_departmentCombo,     safety_department);
+//    m_mapper->addMapping(m_shiftCombo,          safety_shift);
+//    m_mapper->addMapping(m_sectorCombo,         safety_sector_fullname);
+//    m_mapper->addMapping(m_locationEdit,        safety_location);
+//    m_mapper->addMapping(m_causeEdit,           safety_cause);
+//    m_mapper->addMapping(m_factorEdit,          safety_factor);
+//    m_mapper->addMapping(m_detailsEdit,         safety_details);
+//    m_mapper->addMapping(m_classificationCombo, safety_classification);
+//    m_mapper->addMapping(m_typeCombo,           safety_type);
+//    m_mapper->addMapping(m_terkasCombo,         safety_terkas);
+//    m_mapper->addMapping(m_alphaCombo,          safety_alpha);
+//    m_mapper->addMapping(m_tcas1Combo,          safety_tcas1);
+//    m_mapper->addMapping(m_tcas2Combo,          safety_tcas2);
+//    m_mapper->setItemDelegate(new MapperDelegate);
 }
 
 void MapperDialog::layoutPrivateWidgets()
 {
-    QLabel *dateLabel = new QLabel(trUtf8("Year and month:"));
-    dateLabel->setBuddy(dateEdit);
+//    QLabel *dateLabel = new QLabel(trUtf8("Дата события:"));
+//    dateLabel->setBuddy(m_dateEdit);
 
-    QLabel *innerFlightsLabel = new QLabel(trUtf8("Inner Flights:"));
-    innerFlightsLabel->setBuddy(innerFlightsEdit);
+//    QLabel *accLabel = new QLabel(trUtf8("ACC:"));
+//    accLabel->setBuddy(m_accCombo);
 
-    QLabel *foreignFlightsLabel = new QLabel(trUtf8("Foreign Flights:"));
-    foreignFlightsLabel->setBuddy(foreignFlightsEdit);
+//    QLabel *departmentLabel = new QLabel(trUtf8("Подразделение:"));
+//    departmentLabel->setBuddy(m_departmentCombo);
 
-    QLabel *transitFlightsLabel = new QLabel(trUtf8("Transit Flights:"));
-    transitFlightsLabel->setBuddy(transitFlightsEdit);
+//    QLabel *shiftLabel = new QLabel(trUtf8("Смена:"));
+//    shiftLabel->setBuddy(m_shiftCombo);
 
-    QLabel *charterFlightsLabel = new QLabel(trUtf8("Charter Flights:"));
-    charterFlightsLabel->setBuddy(charterFlightsEdit);
+//    QLabel *sectorLabel = new QLabel(trUtf8("Сектор:"));
+//    sectorLabel->setBuddy(m_sectorCombo);
 
-    QLabel *maxInDayFlightsLabel = new QLabel(trUtf8("Max in day Flights:"));
-    maxInDayFlightsLabel->setBuddy(maxInDayFlightsEdit);
+//    QLabel *locationLabel = new QLabel(trUtf8("Location:"));
+//    locationLabel->setBuddy(m_locationEdit);
 
-    QLabel *foreignACLabel = new QLabel(trUtf8("Foreign AC:"));
-    foreignACLabel->setBuddy(foreignACEdit);
+//    QLabel *causeLabel = new QLabel(trUtf8("Cause:"));
+//    causeLabel->setBuddy(m_causeEdit);
 
-    QLabel *noteLabel = new QLabel(trUtf8("Note:"));
-    noteLabel->setBuddy(noteEdit);
+//    QLabel *factorLabel = new QLabel(trUtf8("Factor:"));
+//    factorLabel->setBuddy(m_factorEdit);
+
+//    QLabel *detailsLabel = new QLabel(trUtf8("Details:"));
+//    detailsLabel->setBuddy(m_detailsEdit);
+
+//    QLabel *classificationLabel = new QLabel(trUtf8("Classification:"));
+//    classificationLabel->setBuddy(m_classificationCombo);
+
+//    QLabel *typeLabel = new QLabel(trUtf8("Type:"));
+//    typeLabel->setBuddy(m_typeCombo);
+
+//    QLabel *terkasLabel = new QLabel(trUtf8("СПОС TERKAS:"));
+//    terkasLabel->setBuddy(m_terkasCombo);
+
+//    QLabel *alphaLabel = new QLabel(trUtf8("СПОС ALPHA:"));
+//    alphaLabel->setBuddy(m_alphaCombo);
+
+//    QLabel *tcas1Label = new QLabel(trUtf8("TCAS 1 ВС:"));
+//    tcas1Label->setBuddy(m_tcas1Combo);
+
+//    QLabel *tcas2Label = new QLabel(trUtf8("TCAS 2 ВС:"));
+//    tcas2Label->setBuddy(m_tcas2Combo);
 
 
-    QGridLayout *gridLayout = new QGridLayout;
-    gridLayout->addWidget(dateLabel,            0, 0, 1, 1);    gridLayout->addWidget(dateEdit,            0, 1, 1, 1);
-    gridLayout->addWidget(innerFlightsLabel,    1, 0, 1, 1);    gridLayout->addWidget(innerFlightsEdit,    1, 1, 1, 1);
-    gridLayout->addWidget(foreignFlightsLabel,  2, 0, 1, 1);    gridLayout->addWidget(foreignFlightsEdit,  2, 1, 1, 1);
-    gridLayout->addWidget(transitFlightsLabel,  3, 0, 1, 1);    gridLayout->addWidget(transitFlightsEdit,  3, 1, 1, 1);
-    gridLayout->addWidget(charterFlightsLabel,  4, 0, 1, 1);    gridLayout->addWidget(charterFlightsEdit,  4, 1, 1, 1);
-    gridLayout->addWidget(maxInDayFlightsLabel, 5, 0, 1, 1);    gridLayout->addWidget(maxInDayFlightsEdit, 5, 1, 1, 1);
-    gridLayout->addWidget(foreignACLabel,       6, 0, 1, 1);    gridLayout->addWidget(foreignACEdit,       6, 1, 1, 1);
-    gridLayout->addWidget(noteLabel,            7, 0, 1, 1);    gridLayout->addWidget(noteEdit,            7, 1, 2, 1);
+//    QHBoxLayout *dateLocationLayout = new QHBoxLayout;
+//    dateLocationLayout->addWidget(dateLabel);
+//    dateLocationLayout->addWidget(m_dateEdit);
+//    dateLocationLayout->addWidget(locationLabel);
+//    dateLocationLayout->addWidget(m_locationEdit);
+
+//    QHBoxLayout *accSectorShiftLayout = new QHBoxLayout;
+//    accSectorShiftLayout->addWidget(accLabel);
+//    accSectorShiftLayout->addWidget(m_accCombo);
+//    accSectorShiftLayout->addWidget(departmentLabel);
+//    accSectorShiftLayout->addWidget(m_departmentCombo);
+//    accSectorShiftLayout->addWidget(shiftLabel);
+//    accSectorShiftLayout->addWidget(m_shiftCombo);
+//    accSectorShiftLayout->addWidget(sectorLabel);
+//    accSectorShiftLayout->addWidget(m_sectorCombo);
+
+//    QHBoxLayout *atcSposLayout = new QHBoxLayout;
+//    atcSposLayout->addWidget(terkasLabel);
+//    atcSposLayout->addWidget(m_terkasCombo);
+//    atcSposLayout->addWidget(alphaLabel);
+//    atcSposLayout->addWidget(m_alphaCombo);
+
+//    QHBoxLayout *tcasLayout = new QHBoxLayout;
+//    tcasLayout->addWidget(tcas1Label);
+//    tcasLayout->addWidget(m_tcas1Combo);
+//    tcasLayout->addWidget(tcas2Label);
+//    tcasLayout->addWidget(m_tcas2Combo);
+
+
+//    QGridLayout *gridLayout = new QGridLayout;
+//    gridLayout->addLayout(dateLocationLayout,   0, 0, 1, 2);
+//    gridLayout->addLayout(accSectorShiftLayout, 1, 0, 1, 2);
+//    gridLayout->addWidget(classificationLabel,  2, 0, 1, 1);    gridLayout->addWidget(m_classificationCombo,  2, 1, 1, 1);
+//    gridLayout->addWidget(typeLabel,            3, 0, 1, 1);    gridLayout->addWidget(m_typeCombo,            3, 1, 1, 1);
+//    gridLayout->addLayout(atcSposLayout,        4, 0, 1, 2);
+//    gridLayout->addLayout(tcasLayout,           5, 0, 1, 2);
+//    gridLayout->addWidget(causeLabel,           6, 0, 1, 1);    gridLayout->addWidget(m_causeEdit,            6, 1, 1, 1);
+//    gridLayout->addWidget(factorLabel,          7, 0, 1, 1);    gridLayout->addWidget(m_factorEdit,           7, 1, 1, 1);
+//    gridLayout->addWidget(detailsLabel,         8, 0, 1, 1);    gridLayout->addWidget(m_detailsEdit,          8, 1, 1, 1);
+
+    QFormLayout *formLayout = new QFormLayout;
+    formLayout->addRow(QString("Месяц/Год"),     m_monthyearDateEdit);
+    formLayout->addRow(QString("Подразделение"), m_departmentLineEdit);
+    formLayout->addRow(QString("Количество"),    m_volLineEdit);
 
     QVBoxLayout *privateWidgetsLayout = layout();
-    privateWidgetsLayout->addLayout(gridLayout);
+    privateWidgetsLayout->addLayout(formLayout);
 }
 
 void MapperDialog::updatePrivateWidgets()
 {
     if (state() == Normal) {
-        dateEdit->setReadOnly(true);
-        innerFlightsEdit->setReadOnly(true);
-        foreignFlightsEdit->setReadOnly(true);
-        transitFlightsEdit->setReadOnly(true);
-        charterFlightsEdit->setReadOnly(true);
-        maxInDayFlightsEdit->setReadOnly(true);
-        foreignACEdit->setReadOnly(true);
-        noteEdit->setReadOnly(true);
+//        m_dateEdit->setReadOnly(true);
+////        m_shiftEdit->setReadOnly(true);
+//        m_locationEdit->setReadOnly(true);
+//        m_causeEdit->setReadOnly(true);
+//        m_factorEdit->setReadOnly(true);
+//        m_detailsEdit->setReadOnly(true);
+////        m_sectorEdit->setReadOnly(true);
+//        m_accCombo->setEditable(false);
+//        m_classificationCombo->setEditable(false);
+//        m_typeCombo->setEditable(false);
+//        m_terkasCombo->setEditable(false);
+//        m_alphaCombo->setEditable(false);
+//        m_tcas1Combo->setEditable(false);
+//        m_tcas2Combo->setEditable(false);
     } else {
-        dateEdit->setReadOnly(false);
-        innerFlightsEdit->setReadOnly(false);
-        foreignFlightsEdit->setReadOnly(false);
-        transitFlightsEdit->setReadOnly(false);
-        charterFlightsEdit->setReadOnly(false);
-        maxInDayFlightsEdit->setReadOnly(false);
-        foreignACEdit->setReadOnly(false);
-        noteEdit->setReadOnly(false);
+//        m_dateEdit->setReadOnly(false);
+////        m_shiftEdit->setReadOnly(false);
+//        m_locationEdit->setReadOnly(false);
+//        m_causeEdit->setReadOnly(false);
+//        m_factorEdit->setReadOnly(false);
+//        m_detailsEdit->setReadOnly(false);
+////        m_sectorEdit->setReadOnly(false);
+//        m_accCombo->setEditable(true);
+//        m_classificationCombo->setEditable(true);
+//        m_typeCombo->setEditable(true);
+//        m_terkasCombo->setEditable(true);
+//        m_alphaCombo->setEditable(true);
+//        m_tcas1Combo->setEditable(true);
+//        m_tcas2Combo->setEditable(true);
 
-        dateEdit->setFocus();
+//        m_dateEdit->setFocus();
     }
 }
