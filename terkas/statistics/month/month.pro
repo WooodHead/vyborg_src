@@ -1,4 +1,4 @@
-QT += core gui widgets sql
+QT += core gui widgets charts sql
 TEMPLATE = app
 CONFIG += vyborg
 TARGET = vyborg_statistics_month

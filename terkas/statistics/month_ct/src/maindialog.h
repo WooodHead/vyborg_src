@@ -19,6 +19,7 @@ protected:
 
 private slots:
     void chartsButtonClicked();
-};
 
+
+};
 #endif // MAINDIALOG_H

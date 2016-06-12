@@ -17,8 +17,12 @@ protected:
     virtual void setupFilterDialog() Q_DECL_OVERRIDE;
     virtual void setupSortDialog()   Q_DECL_OVERRIDE;
 
-private slots:
-    void chartsButtonClicked();
-};
+/* Uncomment if additional button is used
+ *
+ * private slots:
 
+ *   void chartsButtonClicked();
+ */
+
+};
 #endif // MAINDIALOG_H

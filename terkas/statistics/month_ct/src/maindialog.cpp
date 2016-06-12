@@ -1,18 +1,21 @@
 #include <QtWidgets>
 #include <QtSql>
+
 #include <QtCharts/QChart>
 #include <QtCharts/QChartView>
 #include <QtCharts/QBarSet>
 #include <QtCharts/QBarSeries>
 #include <QtCharts/QVBarModelMapper>
+#include <QtCharts/QHBarModelMapper>
 #include <QtCharts/QBarCategoryAxis>
+#include <QtCharts/QLegendMarker>
+
+QT_CHARTS_USE_NAMESPACE
 
 #include "maindialog.h"
 #include "declarations.h"
 #include "tablemodel.h"
 #include "mapperdialog.h"
-
-QT_CHARTS_USE_NAMESPACE
 
 MainDialog::MainDialog(QWidget *parent)
     : VyborgMainDialog(parent)
@@ -43,22 +46,7 @@ void MainDialog::setupModel()
         qApp->quit();
     }
 
-//    m_model->setHeaderData(statistics_date,      Qt::Horizontal,
-//                           trUtf8("Дата\n(Месяц, Год)"), Qt::DisplayRole);
-//    m_model->setHeaderData(statistics_internal,  Qt::Horizontal,
-//                           trUtf8("Внутренние\nрейсы"), Qt::DisplayRole);
-//    m_model->setHeaderData(statistics_external,  Qt::Horizontal,
-//                           trUtf8("Международные\nрейсы"), Qt::DisplayRole);
-//    m_model->setHeaderData(statistics_transit,   Qt::Horizontal,
-//                           trUtf8("Транзитные\nрейсы"), Qt::DisplayRole);
-//    m_model->setHeaderData(statistics_charter,   Qt::Horizontal,
-//                           trUtf8("Рейсы вне расписания\n(чартерные)"), Qt::DisplayRole);
-//    m_model->setHeaderData(statistics_maxday,    Qt::Horizontal,
-//                           trUtf8("Максимальная суточная\nинтенсивность ВС\nсекторов РДЦ"), Qt::DisplayRole);
-//    m_model->setHeaderData(statistics_foreigner, Qt::Horizontal,
-//                           trUtf8("Рейсы иностранных\nавиакомпаний"), Qt::DisplayRole);
-//    m_model->setHeaderData(statistics_note,      Qt::Horizontal,
-//                           trUtf8("Примечание"), Qt::DisplayRole);
+//  m_model->setHeaderData(statistics_date, Qt::Horizontal, trUtf8("Дата\n(Месяц, Год)"), Qt::DisplayRole);
 }
 
 
@@ -67,9 +55,9 @@ void MainDialog::setupView()
     m_view->setModel(m_model);
     m_view->resizeColumnsToContents();
 //    m_view->horizontalHeader()->setStretchLastSection(true);
-    m_view->verticalHeader()->show();
-    m_view->setColumnHidden(month_pid, true);
-    m_view->setColumnHidden(month_department_pid, true);
+    m_view->verticalHeader()->hide();
+//    m_view->setColumnHidden(month_pid, true);
+//    m_view->setColumnHidden(month_department_pid, true);
     m_view->selectRow(0);
 }
 
@@ -108,46 +96,44 @@ void MainDialog::chartsButtonClicked()
 
     QBarSeries *series = new QBarSeries;
 
-    QVBarModelMapper *mapper = new QVBarModelMapper(this);
-    mapper->setFirstBarSetColumn(4);
-//    mapper->setLastBarSetColumn(m_model->columnCount() - 1);
-    mapper->setLastBarSetColumn(4);
-    mapper->setFirstRow(0);
-    mapper->setRowCount(m_model->rowCount());
+    QHBarModelMapper *mapper = new QHBarModelMapper(this);
+    mapper->setFirstBarSetRow(0);
+    mapper->setLastBarSetRow(m_model->rowCount());
+    mapper->setFirstColumn(1);
+    mapper->setColumnCount(m_model->columnCount());
     mapper->setSeries(series);
     mapper->setModel(m_model);
 
+    chart->addSeries(series);
+
+    chart->legend()->setVisible(true);
+    chart->legend()->setAlignment(Qt::AlignBottom);
+    QList<QLegendMarker *> markers = chart->legend()->markers();
+    for (int i = 0; i < markers.count(); i++)
+        markers.at(i)->setLabel(QString::number(i + 2013));
+
     QStringList categories;
-    categories << "Январь" << "Февраль" << "Март" << "Апрель" << "Май" << "Июнь";
+    categories << "Январь"
+               << "Февраль"
+               << "Март"
+               << "Апрель"
+               << "Май"
+               << "Июнь"
+               << "Июль"
+               << "Август"
+               << "Сентябрь"
+               << "Октябрь"
+               << "Ноябрь"
+               << "Декабрь";
     QBarCategoryAxis *axis = new QBarCategoryAxis();
     axis->append(categories);
 
-    chart->addSeries(series);
     chart->createDefaultAxes();
     chart->setAxisX(axis, series);
 
-//    QString seriesColorHex = "#000000";
-
-//    // get the color of the series and use it for showing the mapped area
-//    QList<QBarSet *> barsets = series->barSets();
-//    for (int i = 0; i < barsets.count(); i++) {
-//        seriesColorHex = "#" + QString::number(barsets.at(i)->brush().color().rgb(), 16).right(6).toUpper();
-//        m_model->addMapping(seriesColorHex, QRect(1 + i, first, 1, barsets.at(i)->count()));
-//    }
-
-//    QStringList categories;
-//    categories << "April" << "May" << "June" << "July" << "August";
-//    QBarCategoryAxis *axis = new QBarCategoryAxis();
-//    axis->append(categories);
-//    chart->createDefaultAxes();
-//    chart->setAxisX(axis, series);
-
-
-
     QChartView *chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
-    chartView->setMinimumSize(640, 480);
-
+    chartView->setMinimumSize(1200, 480);
 
 
     QHBoxLayout *dialogLayout = new QHBoxLayout;

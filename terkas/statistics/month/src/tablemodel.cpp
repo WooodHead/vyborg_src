@@ -41,7 +41,7 @@ QVariant TableModel::headerData(int section, Qt::Orientation orientation, int ro
         if (role == Qt::DisplayRole) {
             switch (section) {
             case month_monthyear:
-                return QString("Год / Месяц");
+                return QString("Год/Месяц");
                 break;
             case month_department:
                 return QString("Подразделение");
