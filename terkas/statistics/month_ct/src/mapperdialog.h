@@ -4,7 +4,7 @@
 #include <vyborg.h>
 
 QT_BEGIN_NAMESPACE
-class QSpinBox;
+class QLineEdit;
 QT_END_NAMESPACE
 
 class MapperDialog : public VyborgMapperDialog
@@ -20,19 +20,19 @@ protected:
     virtual void updatePrivateWidgets() Q_DECL_OVERRIDE;
 
 private:
-    QSpinBox *m_yearSpinBox;
-    QSpinBox *m_janSpinBox;
-    QSpinBox *m_febSpinBox;
-    QSpinBox *m_marSpinBox;
-    QSpinBox *m_aprSpinBox;
-    QSpinBox *m_maySpinBox;
-    QSpinBox *m_junSpinBox;
-    QSpinBox *m_julSpinBox;
-    QSpinBox *m_augSpinBox;
-    QSpinBox *m_sepSpinBox;
-    QSpinBox *m_octSpinBox;
-    QSpinBox *m_novSpinBox;
-    QSpinBox *m_decSpinBox;
+    QLineEdit *m_yearLineEdit;
+    QLineEdit *m_janLineEdit;
+    QLineEdit *m_febLineEdit;
+    QLineEdit *m_marLineEdit;
+    QLineEdit *m_aprLineEdit;
+    QLineEdit *m_mayLineEdit;
+    QLineEdit *m_junLineEdit;
+    QLineEdit *m_julLineEdit;
+    QLineEdit *m_augLineEdit;
+    QLineEdit *m_sepLineEdit;
+    QLineEdit *m_octLineEdit;
+    QLineEdit *m_novLineEdit;
+    QLineEdit *m_decLineEdit;
 };
 
 #endif // MAPPERDIALOG_H

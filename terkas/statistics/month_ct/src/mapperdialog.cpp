@@ -14,67 +14,53 @@ MapperDialog::MapperDialog(QSqlTableModel *model, QWidget *parent)
 
 void MapperDialog::createPrivateWidgets()
 {
-    m_yearSpinBox = new QSpinBox;
-    m_yearSpinBox->setMaximum(2025);
-    m_janSpinBox  = new QSpinBox;
-    m_janSpinBox->setMaximum(1000000);
-    m_febSpinBox  = new QSpinBox;
-    m_febSpinBox->setMaximum(1000000);
-    m_marSpinBox  = new QSpinBox;
-    m_marSpinBox->setMaximum(1000000);
-    m_aprSpinBox  = new QSpinBox;
-    m_aprSpinBox->setMaximum(1000000);
-    m_maySpinBox  = new QSpinBox;
-    m_maySpinBox->setMaximum(1000000);
-    m_junSpinBox  = new QSpinBox;
-    m_junSpinBox->setMaximum(1000000);
-    m_julSpinBox  = new QSpinBox;
-    m_julSpinBox->setMaximum(1000000);
-    m_augSpinBox  = new QSpinBox;
-    m_augSpinBox->setMaximum(1000000);
-    m_sepSpinBox  = new QSpinBox;
-    m_sepSpinBox->setMaximum(1000000);
-    m_octSpinBox  = new QSpinBox;
-    m_octSpinBox->setMaximum(1000000);
-    m_novSpinBox  = new QSpinBox;
-    m_novSpinBox->setMaximum(1000000);
-    m_decSpinBox  = new QSpinBox;
-    m_decSpinBox->setMaximum(1000000);
+    m_yearLineEdit = new QLineEdit;
+    m_janLineEdit  = new QLineEdit;
+    m_febLineEdit  = new QLineEdit;
+    m_marLineEdit  = new QLineEdit;
+    m_aprLineEdit  = new QLineEdit;
+    m_mayLineEdit  = new QLineEdit;
+    m_junLineEdit  = new QLineEdit;
+    m_julLineEdit  = new QLineEdit;
+    m_augLineEdit  = new QLineEdit;
+    m_sepLineEdit  = new QLineEdit;
+    m_octLineEdit  = new QLineEdit;
+    m_novLineEdit  = new QLineEdit;
+    m_decLineEdit  = new QLineEdit;
 
     QDataWidgetMapper* m_mapper = mapper();
-    m_mapper->addMapping(m_yearSpinBox, month_ct_year);
-    m_mapper->addMapping(m_janSpinBox,  month_ct_jan);
-    m_mapper->addMapping(m_febSpinBox,  month_ct_feb);
-    m_mapper->addMapping(m_marSpinBox,  month_ct_mar);
-    m_mapper->addMapping(m_aprSpinBox,  month_ct_apr);
-    m_mapper->addMapping(m_maySpinBox,  month_ct_may);
-    m_mapper->addMapping(m_junSpinBox,  month_ct_jun);
-    m_mapper->addMapping(m_julSpinBox,  month_ct_jul);
-    m_mapper->addMapping(m_augSpinBox,  month_ct_aug);
-    m_mapper->addMapping(m_sepSpinBox,  month_ct_sep);
-    m_mapper->addMapping(m_octSpinBox,  month_ct_oct);
-    m_mapper->addMapping(m_novSpinBox,  month_ct_nov);
-    m_mapper->addMapping(m_decSpinBox,  month_ct_dec);
-
-//        m_mapper->setItemDelegate(new MapperDelegate);
+    m_mapper->addMapping(m_yearLineEdit, month_ct_year);
+    m_mapper->addMapping(m_janLineEdit,  month_ct_jan);
+    m_mapper->addMapping(m_febLineEdit,  month_ct_feb);
+    m_mapper->addMapping(m_marLineEdit,  month_ct_mar);
+    m_mapper->addMapping(m_aprLineEdit,  month_ct_apr);
+    m_mapper->addMapping(m_mayLineEdit,  month_ct_may);
+    m_mapper->addMapping(m_junLineEdit,  month_ct_jun);
+    m_mapper->addMapping(m_julLineEdit,  month_ct_jul);
+    m_mapper->addMapping(m_augLineEdit,  month_ct_aug);
+    m_mapper->addMapping(m_sepLineEdit,  month_ct_sep);
+    m_mapper->addMapping(m_octLineEdit,  month_ct_oct);
+    m_mapper->addMapping(m_novLineEdit,  month_ct_nov);
+    m_mapper->addMapping(m_decLineEdit,  month_ct_dec);
+//    m_mapper->setItemDelegate(new MapperDelegate);
 }
 
 void MapperDialog::layoutPrivateWidgets()
 {
     QFormLayout *formLayout = new QFormLayout;
-    formLayout->addRow(QString("Год"),      m_yearSpinBox);
-    formLayout->addRow(QString("Январь"),   m_janSpinBox);
-    formLayout->addRow(QString("Февраль"),  m_febSpinBox);
-    formLayout->addRow(QString("Март"),     m_marSpinBox);
-    formLayout->addRow(QString("Апрель"),   m_aprSpinBox);
-    formLayout->addRow(QString("Май"),      m_maySpinBox);
-    formLayout->addRow(QString("Июнь"),     m_junSpinBox);
-    formLayout->addRow(QString("Июль"),     m_julSpinBox);
-    formLayout->addRow(QString("Август"),   m_augSpinBox);
-    formLayout->addRow(QString("Сентябрь"), m_sepSpinBox);
-    formLayout->addRow(QString("Октябрь"),  m_octSpinBox);
-    formLayout->addRow(QString("Ноябрь"),   m_novSpinBox);
-    formLayout->addRow(QString("Декабрь"),  m_decSpinBox);
+    formLayout->addRow(QString("Год"),      m_yearLineEdit);
+    formLayout->addRow(QString("Январь"),   m_janLineEdit);
+    formLayout->addRow(QString("Февраль"),  m_febLineEdit);
+    formLayout->addRow(QString("Март"),     m_marLineEdit);
+    formLayout->addRow(QString("Апрель"),   m_aprLineEdit);
+    formLayout->addRow(QString("Май"),      m_mayLineEdit);
+    formLayout->addRow(QString("Июнь"),     m_junLineEdit);
+    formLayout->addRow(QString("Июль"),     m_julLineEdit);
+    formLayout->addRow(QString("Август"),   m_augLineEdit);
+    formLayout->addRow(QString("Сентябрь"), m_sepLineEdit);
+    formLayout->addRow(QString("Октябрь"),  m_octLineEdit);
+    formLayout->addRow(QString("Ноябрь"),   m_novLineEdit);
+    formLayout->addRow(QString("Декабрь"),  m_decLineEdit);
 
     QVBoxLayout *privateWidgetsLayout = layout();
     privateWidgetsLayout->addLayout(formLayout);
