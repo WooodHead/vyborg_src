@@ -133,7 +133,7 @@ void MainDialog::chartsButtonClicked()
 
     QChartView *chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
-    chartView->setMinimumSize(1200, 480);
+    chartView->setMinimumSize(1200, 640);
 
 
     QHBoxLayout *dialogLayout = new QHBoxLayout;

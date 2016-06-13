@@ -5,6 +5,8 @@
 #include "mapperdelegate.h"
 #include "declarations.h"
 
+#include <QDebug>
+
 MapperDelegate::MapperDelegate(QObject *parent)
     : QStyledItemDelegate(parent)
 {
@@ -29,6 +31,13 @@ void MapperDelegate::setEditorData(QWidget *editor, const QModelIndex &index) co
  * }
  * }
  */
+    QString strData = index.data(Qt::DisplayRole).toString();
+    int data = strData.toInt();
+
+
+    QSpinBox *spinBox = qobject_cast<QSpinBox *>(editor);
+    Q_ASSERT(spinBox);
+    spinBox->setValue(data);
 
     QStyledItemDelegate::setEditorData(editor, index);
 }
